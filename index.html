@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DailyAdventureBox — Website Redesign Reference</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <style>
   /* ============================================================
      RESET & BASE
@@ -520,20 +522,20 @@
     font-family: 'Montserrat', sans-serif;
   }
 
-  .map-placeholder {
+  #locationsMap {
     margin-top: 40px;
-    height: 300px;
-    background: rgba(255,255,255,0.05);
-    border: 1px dashed rgba(255,255,255,0.15);
+    height: 380px;
     border-radius: var(--radius);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: rgba(255,255,255,0.3);
-    font-family: 'Montserrat', sans-serif;
-    font-size: 14px;
-    font-weight: 600;
+    overflow: hidden;
+    z-index: 1;
   }
+  .leaflet-popup-content-wrapper {
+    border-radius: 12px !important;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.2) !important;
+    padding: 0 !important;
+  }
+  .leaflet-popup-content { margin: 12px 14px !important; }
+  .leaflet-popup-tip-container { display: none; }
 
   /* ============================================================
      SECTION 4: EQUIPMENT — Bento Grid
@@ -1218,7 +1220,7 @@
         <li><a href="https://www.dailyadventurebox.com/fund-adventure">Fund Adventure</a></li>
         <li><a href="https://www.dailyadventurebox.com/contractor-portal">Contractor Portal</a></li>
         <li><a href="https://www.dailyadventurebox.com/admin-portal">Admin Portal</a></li>
-        <li><a href="https://apps.apple.com/us/app/dailyadventurebox/id1673560415" class="nav-cta">Get the App</a></li>
+        <li><a href="https://www.dailyadventurebox.com/download-app" class="nav-cta">Get the App</a></li>
       </ul>
       <button class="nav-hamburger" onclick="document.querySelector('.nav-links').classList.toggle('show')">&#9776;</button>
     </div>
@@ -1241,7 +1243,7 @@
           Smart lockers loaded with surfboards, paddle boards, kayaks, and more — right where you recreate. Download the app, pick your gear, and the locker opens from your phone.
         </p>
         <div class="hero-buttons">
-          <a href="https://apps.apple.com/us/app/dailyadventurebox/id1673560415" class="btn btn-green">Download the App</a>
+          <a href="https://www.dailyadventurebox.com/download-app" class="btn btn-green">Download the App</a>
           <a href="#how-it-works" class="btn btn-outline">See How It Works</a>
         </div>
       </div>
@@ -1345,9 +1347,7 @@
         </div>
       </div>
 
-      <div class="map-placeholder">
-        [ Embedded Google Map / Interactive Locker Locator ]
-      </div>
+      <div id="locationsMap"></div>
     </div>
   </section>
 
@@ -1727,10 +1727,10 @@
       <h2>Get the DailyAdventureBox App</h2>
       <p>Browse gear, pick your rental, and unlock your locker — all from your phone. Free on iOS and Android.</p>
       <div class="app-buttons">
-        <a href="https://apps.apple.com/us/app/dailyadventurebox/id1673560415" class="app-btn app-btn-ios">
+        <a href="https://www.dailyadventurebox.com/download-app" class="app-btn app-btn-ios">
           &#63743; Download on the App Store
         </a>
-        <a href="https://play.google.com/store/apps/details?id=com.dailyadventurebox.dab" class="app-btn app-btn-android">
+        <a href="https://www.dailyadventurebox.com/download-app" class="app-btn app-btn-android">
           &#9654; Get it on Google Play
         </a>
       </div>
@@ -1813,6 +1813,39 @@
       });
     }, { threshold: 0.15 });
     fadeEls.forEach(function(el) { observer.observe(el); });
+  </script>
+
+  <script>
+    // Leaflet map — same locations as Fund Adventure portal
+    (function(){
+      var mapEl = document.getElementById('locationsMap');
+      if (!mapEl) return;
+      var map = L.map('locationsMap', { center: [34.60, -77.33], zoom: 11, scrollWheelZoom: false });
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; OpenStreetMap &copy; CARTO', maxZoom: 19
+      }).addTo(map);
+
+      var locs = [
+        { id: 'CLJ-03', name: 'Onslow Beach Reservation Office', lat: 34.5721, lng: -77.2688, status: 'live' },
+        { id: 'CLJ-05', name: 'Turtle Beach Gazebo', lat: 34.5673, lng: -77.2780, status: 'live' },
+        { id: 'CLJ-07', name: 'Hospital Point Recreation', lat: 34.6764, lng: -77.3738, status: 'live' },
+        { id: 'CLJ-01', name: 'Starfish Pavilion', lat: 34.5770, lng: -77.2610, status: 'pending' },
+        { id: 'CLJ-02', name: 'Starfish Pavilion (Ground)', lat: 34.5770, lng: -77.2612, status: 'pending' },
+        { id: 'CLJ-04', name: 'Sand Dollar Pavilion', lat: 34.5711, lng: -77.2698, status: 'pending' },
+        { id: 'CLJ-06', name: 'Courthouse Bay Dock', lat: 34.5829, lng: -77.3724, status: 'pending' },
+        { id: 'CLJ-08', name: 'New River Marina', lat: 34.6980, lng: -77.4302, status: 'pending' }
+      ];
+
+      var greenIcon = L.divIcon({ className: '', html: '<div style="width:14px;height:14px;border-radius:50%;background:#74B93F;border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,0.3);"></div>', iconSize: [14,14], iconAnchor: [7,7] });
+      var yellowIcon = L.divIcon({ className: '', html: '<div style="width:14px;height:14px;border-radius:50%;background:#F9C926;border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,0.3);"></div>', iconSize: [14,14], iconAnchor: [7,7] });
+
+      locs.forEach(function(loc) {
+        var icon = loc.status === 'live' ? greenIcon : yellowIcon;
+        var label = loc.status === 'live' ? '<span style="color:#74B93F;font-weight:700;">LIVE</span>' : '<span style="color:#F9C926;font-weight:700;">COMING SOON</span>';
+        L.marker([loc.lat, loc.lng], { icon: icon }).addTo(map)
+          .bindPopup('<div style="font-family:Montserrat,sans-serif;"><strong style="font-size:13px;">' + loc.id + ' — ' + loc.name + '</strong><br><span style="font-size:11px;">' + label + '</span></div>');
+      });
+    })();
   </script>
 
   <script>
