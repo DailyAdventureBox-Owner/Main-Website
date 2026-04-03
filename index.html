@@ -3,7 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DailyAdventureBox — Website Redesign Reference</title>
+<title>DailyAdventureBox — Adventure Gear On Demand</title>
+<meta name="description" content="Smart lockers loaded with surfboards, paddle boards, kayaks, and more — right where you recreate. Download the app, pick your gear, and the locker opens from your phone.">
+<meta property="og:title" content="DailyAdventureBox — Adventure Gear On Demand">
+<meta property="og:description" content="Smart lockers loaded with adventure gear — right where you recreate. Download the app, pick your gear, and go.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.dailyadventurebox.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -1180,7 +1185,30 @@
     .bento-grid { grid-template-columns: 1fr 1fr; }
     .bento-tall { grid-row: span 1; min-height: 260px; }
     .footer-grid { grid-template-columns: 1fr 1fr; }
-    .nav-links { display: none; }
+    .nav-links {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: rgba(26,26,26,0.97);
+      backdrop-filter: blur(12px);
+      flex-direction: column;
+      padding: 16px 24px;
+      gap: 4px;
+    }
+    .nav-links.show { display: flex; }
+    .nav-links li { width: 100%; }
+    .nav-links li a { display: block; padding: 10px 0; font-size: 14px; }
+    .nav-dropdown-menu {
+      position: static !important;
+      background: transparent !important;
+      box-shadow: none !important;
+      padding: 0 0 0 16px !important;
+      min-width: auto !important;
+    }
+    .nav-dropdown.open .nav-dropdown-menu,
+    .nav-dropdown:hover .nav-dropdown-menu { display: block; }
     .nav-hamburger { display: block; }
     .stats-row { grid-template-columns: 1fr 1fr; gap: 32px; }
     .hl-grid { grid-template-columns: 1fr; }
@@ -1224,11 +1252,9 @@
         <li><a href="https://www.dailyadventurebox.com/classes" target="_top">Classes</a></li>
         <li><a href="https://www.dailyadventurebox.com/have-a-location" target="_top">Have a Location?</a></li>
         <li><a href="https://www.dailyadventurebox.com/fund-adventure" target="_top">Fund Adventure Portal</a></li>
-        <li><a href="https://www.dailyadventurebox.com/contractor-portal" target="_top">Contractor Portal</a></li>
-        <li><a href="https://www.dailyadventurebox.com/admin-portal" target="_top">Admin Portal</a></li>
         <li><a href="https://www.dailyadventurebox.com/download-app" target="_top" class="nav-cta">Get the App</a></li>
       </ul>
-      <button class="nav-hamburger" onclick="document.querySelector('.nav-links').classList.toggle('show')">&#9776;</button>
+      <button class="nav-hamburger" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('show')">&#9776;</button>
     </div>
   </nav>
 
@@ -1248,6 +1274,10 @@
         <p class="hero-sub">
           Smart lockers loaded with surfboards, paddle boards, kayaks, and more — right where you recreate. Download the app, pick your gear, and the locker opens from your phone.
         </p>
+        <div class="hero-buttons">
+          <a href="https://www.dailyadventurebox.com/download-app" target="_top" class="btn btn-green">Get the App</a>
+          <a href="#locations" class="btn btn-outline">Explore Locations</a>
+        </div>
       </div>
     </div>
     <div class="hero-stats">
@@ -1662,12 +1692,12 @@
         <div class="partner-card fade-up">
           <h3>Host a Locker</h3>
           <p>Hotels, resorts, beaches, parks, military bases — if people recreate there, DAB belongs there. We supply the locker, equipment, and maintenance. You provide the space.</p>
-          <a href="/partnership-advertisementopportunities" class="btn btn-green">Learn More</a>
+          <a href="https://www.dailyadventurebox.com/have-a-location" target="_top" class="btn btn-green">Learn More</a>
         </div>
         <div class="partner-card fade-up">
           <h3>Brand Partnerships</h3>
           <p>Get your gear in front of adventurers. Feature your products inside DAB lockers or advertise on locker panels at high-traffic locations.</p>
-          <a href="/partnership-advertisementopportunities" class="btn btn-dark">Get in Touch</a>
+          <a href="https://www.dailyadventurebox.com/contact" target="_top" class="btn btn-dark">Get in Touch</a>
         </div>
       </div>
     </div>
@@ -1702,8 +1732,8 @@
           </div>
 
           <div class="hl-buttons">
-            <a href="/have-a-location" class="btn btn-green">I Have a Property</a>
-            <a href="/sales-rep" class="btn btn-sky">Become a Sales Rep</a>
+            <a href="https://www.dailyadventurebox.com/have-a-location" target="_top" class="btn btn-green">I Have a Property</a>
+            <a href="https://www.dailyadventurebox.com/contact" target="_top" class="btn btn-sky">Become a Sales Rep</a>
           </div>
         </div>
         <div class="hl-visual">
@@ -1748,23 +1778,23 @@
           <h4>Explore</h4>
           <a href="#how-it-works">How It Works</a>
           <a href="#locations">Locations</a>
-          <a href="#equipment">Equipment</a>
-          <a href="#classes">Classes & Guides</a>
-          <a href="#fund">Fund Adventure</a>
+          <a href="https://www.dailyadventurebox.com/equipment" target="_top">Equipment</a>
+          <a href="https://www.dailyadventurebox.com/classes" target="_top">Classes & Guides</a>
+          <a href="https://www.dailyadventurebox.com/fund-adventure" target="_top">Fund Adventure</a>
         </div>
         <div class="footer-col">
           <h4>Company</h4>
           <a href="#about">Our Story</a>
-          <a href="#partners">Partners</a>
-          <a href="/support">Support</a>
-          <a href="/contact">Contact</a>
+          <a href="https://www.dailyadventurebox.com/have-a-location" target="_top">Have a Location?</a>
+          <a href="https://www.dailyadventurebox.com/support" target="_top">Support</a>
+          <a href="https://www.dailyadventurebox.com/contact" target="_top">Contact</a>
         </div>
         <div class="footer-col">
           <h4>Legal</h4>
-          <a href="/terms-and-conditions">Terms & Conditions</a>
-          <a href="/federal-terms">Federal Terms</a>
-          <a href="/privacy-policy">Privacy Policy</a>
-          <a href="/nda">NDA</a>
+          <a href="https://www.dailyadventurebox.com/terms-and-conditions" target="_top">Terms & Conditions</a>
+          <a href="https://www.dailyadventurebox.com/federal-terms" target="_top">Federal Terms</a>
+          <a href="https://www.dailyadventurebox.com/privacy-policy" target="_top">Privacy Policy</a>
+          <a href="https://www.dailyadventurebox.com/nda" target="_top">NDA</a>
         </div>
       </div>
       <div class="footer-bottom">
