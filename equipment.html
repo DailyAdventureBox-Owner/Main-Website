@@ -630,5 +630,13 @@
     </div>
   </section>
 
+<script>
+    function sendHeight() {
+      window.parent.postMessage({ type: "resize", height: document.body.scrollHeight }, "*");
+    }
+    window.addEventListener("load", sendHeight);
+    window.addEventListener("resize", sendHeight);
+    setInterval(sendHeight, 500);
+  </script>
 </body>
 </html>
