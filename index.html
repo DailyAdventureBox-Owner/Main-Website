@@ -1,0 +1,1814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DailyAdventureBox — Website Redesign Reference</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* ============================================================
+     RESET & BASE
+  ============================================================ */
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --green: #74B93F;
+    --green-dark: #5a9630;
+    --sky: #5BBDD4;
+    --yellow: #F9C926;
+    --charcoal: #2C2C2C;
+    --dark: #1a1a1a;
+    --off-white: #F5F2EC;
+    --light: #f9fafb;
+    --text: #1f2937;
+    --text-mute: #6b7280;
+    --border: #e5e7eb;
+    --radius: 16px;
+    --radius-sm: 10px;
+    --shadow: 0 8px 30px rgba(0,0,0,0.08);
+    --shadow-lg: 0 20px 60px rgba(0,0,0,0.12);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    color: var(--text);
+    background: #ffffff;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  img { max-width: 100%; display: block; }
+  a { text-decoration: none; color: inherit; }
+
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+  .container-sm { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+
+  /* ============================================================
+     ANIMATIONS
+  ============================================================ */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  @keyframes countUp {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  .fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ============================================================
+     NAVIGATION — Sticky transparent → solid on scroll
+  ============================================================ */
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 16px 0;
+    transition: background 0.3s ease, padding 0.3s ease, box-shadow 0.3s ease;
+  }
+  .nav.scrolled {
+    background: rgba(26, 26, 26, 0.95);
+    backdrop-filter: blur(12px);
+    padding: 10px 0;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  }
+  .nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-logo { height: 44px; }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: rgba(255,255,255,0.85);
+    transition: color 0.2s ease;
+  }
+  .nav-links a:hover { color: #ffffff; }
+  .nav-dropdown {
+    position: relative;
+  }
+  .nav-dropdown > a {
+    cursor: pointer;
+  }
+  .nav-dropdown > a::after {
+    content: ' ▾';
+    font-size: 10px;
+  }
+  .nav-dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 12px;
+    background: rgba(30,30,30,0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    padding: 10px 0;
+    min-width: 200px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+    z-index: 100;
+    list-style: none;
+  }
+  .nav-dropdown:hover .nav-dropdown-menu {
+    display: block;
+  }
+  .nav-dropdown-menu li a {
+    display: block;
+    padding: 8px 20px;
+    font-size: 13px;
+    white-space: nowrap;
+  }
+  .nav-dropdown-menu li a:hover {
+    background: rgba(116,185,63,0.15);
+  }
+  .nav-cta {
+    background: var(--green) !important;
+    color: #fff !important;
+    padding: 10px 22px !important;
+    border-radius: 999px !important;
+    font-size: 12px !important;
+    letter-spacing: 0.8px !important;
+    text-transform: uppercase;
+    transition: transform 0.15s ease, box-shadow 0.15s ease !important;
+  }
+  .nav-cta:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(116, 185, 63, 0.4);
+  }
+  .nav-hamburger {
+    display: none;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 28px;
+    cursor: pointer;
+  }
+
+  /* ============================================================
+     SECTION 1: HERO — Full-bleed lifestyle + bold CTA
+  ============================================================ */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    background: var(--dark);
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+  }
+  .hero-bg-left {
+    position: absolute;
+    inset: 0;
+    background: url('img/dji-drone-floats.jpg') center/cover no-repeat;
+    clip-path: polygon(0 0, 100% 0, 100% 35%, 0 100%);
+    opacity: 0.5;
+    z-index: 1;
+  }
+  .hero-bg-right {
+    position: absolute;
+    inset: 0;
+    background: url('img/clj03-full-unit.jpeg') center/cover no-repeat;
+    clip-path: polygon(100% 36%, 100% 100%, 0 100%, 1% 100%);
+    opacity: 0.55;
+    z-index: 1;
+  }
+  .hero-bg-line {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    overflow: hidden;
+  }
+  .hero-bg-line::after {
+    content: '';
+    position: absolute;
+    top: -5%;
+    left: 0;
+    width: 3px;
+    height: 115%;
+    background: rgba(116,185,63,0.6);
+    transform-origin: top left;
+    transform: rotate(60.5deg) translateX(58vw);
+    box-shadow: 0 0 12px rgba(116,185,63,0.3);
+  }
+  .hero-gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(26,26,26,0.88) 0%, rgba(26,26,26,0.5) 40%, rgba(26,26,26,0.3) 70%, rgba(26,26,26,0.4) 100%);
+    z-index: 3;
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    margin: 0;
+    padding: 140px 24px 80px 60px;
+    display: block;
+  }
+  .hero-text h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 82px;
+    line-height: 0.95;
+    letter-spacing: 2px;
+    color: #ffffff;
+    margin-bottom: 20px;
+  }
+  .hero-text h1 span { color: var(--green); }
+  .hero-sub {
+    font-size: 19px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 32px;
+    max-width: 500px;
+  }
+  .hero-buttons {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 16px 32px;
+    border-radius: 999px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    border: none;
+    cursor: pointer;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn-green { background: var(--green); color: #fff; box-shadow: 0 8px 24px rgba(116,185,63,0.35); }
+  .btn-green:hover { box-shadow: 0 12px 32px rgba(116,185,63,0.45); }
+  .btn-outline { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.3); }
+  .btn-outline:hover { border-color: rgba(255,255,255,0.6); }
+  .btn-dark { background: var(--charcoal); color: #fff; box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+  .btn-sky { background: var(--sky); color: #fff; box-shadow: 0 8px 24px rgba(91,189,212,0.35); }
+
+  .hero-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .hero-phone {
+    width: 280px;
+    height: 560px;
+    background: var(--charcoal);
+    border-radius: 36px;
+    border: 3px solid rgba(255,255,255,0.15);
+    overflow: hidden;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+    animation: float 4s ease-in-out infinite;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .hero-phone::before {
+    content: 'DAB App';
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 2px;
+  }
+
+  .hero-stats {
+    position: absolute;
+    bottom: 80px;
+    right: 40px;
+    z-index: 5;
+    display: flex;
+    gap: 40px;
+    padding: 16px 28px;
+    background: rgba(0,0,0,0.45);
+    border-radius: 12px;
+    backdrop-filter: blur(6px);
+  }
+  .hero-stat {
+    text-align: center;
+    color: rgba(255,255,255,0.6);
+    font-size: 12px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .hero-stat strong {
+    display: block;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 42px;
+    color: #fff;
+    letter-spacing: 1px;
+  }
+
+  /* ============================================================
+     MARQUEE STRIP
+  ============================================================ */
+  .marquee-strip {
+    background: var(--green);
+    padding: 14px 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .marquee-inner {
+    display: inline-flex;
+    animation: marquee 30s linear infinite;
+  }
+  .marquee-inner span {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #fff;
+    padding: 0 40px;
+  }
+
+  /* ============================================================
+     SECTION 2: HOW IT WORKS — 3-step
+  ============================================================ */
+  .how-it-works {
+    padding: 100px 0;
+    background: #ffffff;
+  }
+  .section-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--green);
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 52px;
+    letter-spacing: 1.5px;
+    text-align: center;
+    color: var(--charcoal);
+    margin-bottom: 16px;
+  }
+  .section-sub {
+    text-align: center;
+    font-size: 17px;
+    color: var(--text-mute);
+    max-width: 600px;
+    margin: 0 auto 60px;
+    line-height: 1.7;
+  }
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+  .step-card {
+    text-align: center;
+    padding: 40px 28px;
+    border-radius: var(--radius);
+    background: var(--light);
+    border: 1px solid var(--border);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .step-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
+  .step-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 64px;
+    line-height: 1;
+    color: var(--green);
+    margin-bottom: 12px;
+  }
+  .step-card h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    margin-bottom: 10px;
+    color: var(--charcoal);
+  }
+  .step-card p {
+    font-size: 14px;
+    color: var(--text-mute);
+    line-height: 1.7;
+  }
+  .step-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    margin: 0 auto 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+  }
+  .step-icon-1 { background: rgba(116,185,63,0.12); }
+  .step-icon-2 { background: rgba(91,189,212,0.12); }
+  .step-icon-3 { background: rgba(249,201,38,0.12); }
+
+  /* ============================================================
+     SECTION 3: LOCATIONS — Map + Cards
+  ============================================================ */
+  .locations {
+    padding: 100px 0;
+    background: var(--dark);
+    color: #fff;
+  }
+  .locations .section-label { color: var(--sky); }
+  .locations .section-title { color: #fff; }
+  .locations .section-sub { color: rgba(255,255,255,0.6); }
+
+  .locations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+    margin-top: 40px;
+  }
+  .location-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--radius);
+    padding: 20px;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+  .location-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--green);
+  }
+  .location-card-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+  .status-live { background: var(--green); }
+  .status-coming { background: var(--yellow); }
+  .location-card h4 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+  .location-card p {
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.6;
+  }
+  .location-card .gear-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+  }
+  .gear-tag {
+    font-size: 10px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: rgba(116,185,63,0.15);
+    color: var(--green);
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .map-placeholder {
+    margin-top: 40px;
+    height: 300px;
+    background: rgba(255,255,255,0.05);
+    border: 1px dashed rgba(255,255,255,0.15);
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.3);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  /* ============================================================
+     SECTION 4: EQUIPMENT — Bento Grid
+  ============================================================ */
+  .equipment {
+    padding: 100px 0;
+    background: #ffffff;
+  }
+  .bento-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto auto;
+    gap: 16px;
+    margin-top: 48px;
+  }
+  .bento-card {
+    position: relative;
+    border-radius: var(--radius);
+    overflow: hidden;
+    min-height: 240px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  .bento-card:hover { transform: scale(1.02); }
+  .bento-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    inset: 0;
+  }
+  .bento-card .bento-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(transparent 40%, rgba(0,0,0,0.75) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 20px;
+  }
+  .bento-card h4 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    color: #fff;
+    letter-spacing: 0.5px;
+  }
+  .bento-card .bento-price {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--green);
+  }
+  .bento-wide { grid-column: span 2; }
+  .bento-tall { grid-row: span 2; min-height: 500px; }
+
+  /* ============================================================
+     SECTION 5: FEATURES — Scroll-reveal IoT style
+  ============================================================ */
+  .features {
+    padding: 100px 0;
+    background: var(--light);
+  }
+  .feature-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    margin-bottom: 80px;
+  }
+  .feature-row:last-child { margin-bottom: 0; }
+  .feature-row.reverse { direction: rtl; }
+  .feature-row.reverse > * { direction: ltr; }
+  .feature-img {
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+  }
+  .feature-img img {
+    width: 100%;
+    height: 360px;
+    object-fit: cover;
+  }
+  .feature-text h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 38px;
+    color: var(--charcoal);
+    margin-bottom: 14px;
+    letter-spacing: 0.5px;
+  }
+  .feature-text p {
+    font-size: 15px;
+    color: var(--text-mute);
+    line-height: 1.8;
+    margin-bottom: 16px;
+  }
+  .feature-specs {
+    display: flex;
+    gap: 24px;
+    margin-top: 20px;
+  }
+  .feature-spec {
+    text-align: center;
+  }
+  .feature-spec strong {
+    display: block;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    color: var(--green);
+  }
+  .feature-spec span {
+    font-size: 11px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    color: var(--text-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* ============================================================
+     SECTION 6: CLASSES & GUIDES (NEW)
+  ============================================================ */
+  .classes {
+    padding: 100px 0;
+    background: #ffffff;
+  }
+  .classes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 48px;
+  }
+  .class-card {
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--border);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: #fff;
+  }
+  .class-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
+  .class-card-img {
+    height: 220px;
+    overflow: hidden;
+    position: relative;
+  }
+  .class-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+  .class-card:hover .class-card-img img { transform: scale(1.05); }
+  .class-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 6px 12px;
+    border-radius: 999px;
+    color: #fff;
+  }
+  .badge-sky { background: var(--sky); }
+  .badge-green { background: var(--green); }
+  .badge-yellow { background: var(--yellow); color: var(--charcoal); }
+  .class-card-body { padding: 22px; }
+  .class-card-body h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--charcoal);
+    margin-bottom: 8px;
+  }
+  .class-card-body p {
+    font-size: 14px;
+    color: var(--text-mute);
+    line-height: 1.7;
+    margin-bottom: 14px;
+  }
+  .class-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .class-meta .price { color: var(--green); font-size: 16px; }
+  .class-meta .duration { color: var(--text-mute); }
+
+  /* ============================================================
+     SECTION 7: FUND ADVENTURE — CTA Section
+  ============================================================ */
+  .fund-adventure {
+    padding: 100px 0;
+    background: linear-gradient(135deg, var(--dark) 0%, #1e3a1e 100%);
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+  .fund-adventure::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(116,185,63,0.15) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .fa-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+  .fa-text h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 52px;
+    letter-spacing: 1px;
+    margin-bottom: 18px;
+  }
+  .fa-text h2 span { color: var(--green); }
+  .fa-text p {
+    font-size: 16px;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 14px;
+  }
+  .fa-text ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 28px;
+  }
+  .fa-text li {
+    font-size: 14px;
+    color: rgba(255,255,255,0.8);
+    padding: 8px 0;
+    padding-left: 24px;
+    position: relative;
+    line-height: 1.6;
+  }
+  .fa-text li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--green);
+    font-weight: 700;
+  }
+  .fa-pricing {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .fa-price-card {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: var(--radius);
+    padding: 28px;
+    text-align: center;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+  }
+  .fa-price-card:hover {
+    border-color: var(--green);
+    transform: translateY(-3px);
+  }
+  .fa-price-card h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 8px;
+  }
+  .fa-price-card .price {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    color: #fff;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .fa-price-card p {
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+  }
+
+  /* ============================================================
+     SECTION 8: SOCIAL PROOF / STATS
+  ============================================================ */
+  .social-proof {
+    padding: 80px 0;
+    background: #ffffff;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    text-align: center;
+  }
+  .stat-item strong {
+    display: block;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 56px;
+    color: var(--charcoal);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .stat-item span {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-mute);
+  }
+
+  /* ============================================================
+     SECTION 9: ABOUT / STORY
+  ============================================================ */
+  .about {
+    padding: 100px 0;
+    background: var(--light);
+  }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+  .about-img {
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+  }
+  .about-img img {
+    width: 100%;
+    height: 450px;
+    object-fit: cover;
+  }
+  .about-text h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 46px;
+    color: var(--charcoal);
+    margin-bottom: 18px;
+    letter-spacing: 0.5px;
+  }
+  .about-text p {
+    font-size: 15px;
+    color: var(--text-mute);
+    line-height: 1.8;
+    margin-bottom: 14px;
+  }
+  .about-timeline {
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .timeline-item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .timeline-year {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    color: var(--green);
+    min-width: 52px;
+  }
+  .timeline-item p {
+    font-size: 13px;
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  /* ============================================================
+     SECTION 10: PARTNERS
+  ============================================================ */
+  .partners {
+    padding: 100px 0;
+    background: #ffffff;
+  }
+  .partners-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 48px;
+  }
+  .partner-card {
+    padding: 40px;
+    border-radius: var(--radius);
+    border: 2px solid var(--border);
+    transition: border-color 0.3s ease, transform 0.3s ease;
+    text-align: center;
+  }
+  .partner-card:hover {
+    border-color: var(--green);
+    transform: translateY(-3px);
+  }
+  .partner-card h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    color: var(--charcoal);
+    margin-bottom: 12px;
+  }
+  .partner-card p {
+    font-size: 14px;
+    color: var(--text-mute);
+    line-height: 1.7;
+    margin-bottom: 20px;
+    max-width: 340px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ============================================================
+     SECTION 11: APP DOWNLOAD
+  ============================================================ */
+  .app-download {
+    padding: 100px 0;
+    background: linear-gradient(135deg, var(--sky) 0%, #3da8c2 100%);
+    color: #fff;
+    text-align: center;
+  }
+  .app-download h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 52px;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+  }
+  .app-download p {
+    font-size: 17px;
+    opacity: 0.9;
+    margin-bottom: 32px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.7;
+  }
+  .app-buttons {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .app-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 28px;
+    border-radius: 14px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    transition: transform 0.15s ease;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  }
+  .app-btn:hover { transform: translateY(-2px); }
+  .app-btn-ios { background: #111827; color: #fff; }
+  .app-btn-android { background: #fff; color: var(--charcoal); }
+
+  /* ============================================================
+     FOOTER
+  ============================================================ */
+  .footer {
+    padding: 60px 0 30px;
+    background: var(--dark);
+    color: rgba(255,255,255,0.6);
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 40px;
+  }
+  .footer-brand img { height: 48px; margin-bottom: 14px; }
+  .footer-brand p {
+    font-size: 13px;
+    line-height: 1.7;
+    max-width: 280px;
+  }
+  .footer-col h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.9);
+    margin-bottom: 16px;
+  }
+  .footer-col a {
+    display: block;
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+    padding: 4px 0;
+    transition: color 0.2s ease;
+  }
+  .footer-col a:hover { color: var(--green); }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+  }
+  .footer-socials {
+    display: flex;
+    gap: 16px;
+  }
+  .footer-socials a {
+    color: rgba(255,255,255,0.4);
+    font-size: 18px;
+    transition: color 0.2s ease;
+  }
+  .footer-socials a:hover { color: var(--green); }
+
+  /* ============================================================
+     SECTION 11: HAVE A LOCATION
+  ============================================================ */
+  .have-location {
+    padding: 100px 0;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: #fff;
+  }
+  .hl-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 60px;
+    align-items: center;
+  }
+  .hl-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 52px;
+    letter-spacing: 1px;
+    line-height: 1;
+    margin-bottom: 18px;
+  }
+  .hl-title span { color: var(--yellow); }
+  .hl-text > p {
+    font-size: 16px;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.7;
+    margin-bottom: 28px;
+  }
+  .hl-options {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-bottom: 28px;
+  }
+  .hl-option {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .hl-option-num {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    color: #fff;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .hl-option h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .hl-option p {
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.6;
+    margin: 0;
+  }
+  .hl-buttons { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn-sky { background: var(--sky); color: #fff; box-shadow: 0 8px 24px rgba(91,189,212,0.35); }
+
+  .hl-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: var(--radius);
+    padding: 28px;
+  }
+  .hl-card-header {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    margin-bottom: 18px;
+    letter-spacing: 0.5px;
+  }
+  .hl-card-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    font-size: 14px;
+    color: rgba(255,255,255,0.8);
+  }
+  .hl-card-item:last-child { border-bottom: none; }
+  .hl-check {
+    color: var(--green);
+    font-weight: 700;
+    font-size: 16px;
+  }
+
+  /* ============================================================
+     RESPONSIVE
+  ============================================================ */
+  @media (max-width: 991px) {
+    .hero-content { grid-template-columns: 1fr; padding-top: 120px; }
+    .hero-visual { display: none; }
+    .hero-text h1 { font-size: 58px; }
+    .section-title { font-size: 40px; }
+    .feature-row, .feature-row.reverse { grid-template-columns: 1fr; direction: ltr; }
+    .fa-grid { grid-template-columns: 1fr; }
+    .about-grid { grid-template-columns: 1fr; }
+    .bento-grid { grid-template-columns: 1fr 1fr; }
+    .bento-tall { grid-row: span 1; min-height: 260px; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .nav-links { display: none; }
+    .nav-hamburger { display: block; }
+    .stats-row { grid-template-columns: 1fr 1fr; gap: 32px; }
+    .hl-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 640px) {
+    .hero-text h1 { font-size: 44px; }
+    .section-title { font-size: 34px; }
+    .steps-grid { grid-template-columns: 1fr; }
+    .classes-grid { grid-template-columns: 1fr; }
+    .partners-grid { grid-template-columns: 1fr; }
+    .bento-grid { grid-template-columns: 1fr; }
+    .bento-wide { grid-column: span 1; }
+    .fa-pricing { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .hero-buttons { flex-direction: column; }
+    .btn { width: 100%; justify-content: center; }
+    .stats-row { grid-template-columns: 1fr 1fr; }
+    .hero-stats { flex-wrap: wrap; gap: 20px; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVIGATION
+  ============================================================ -->
+  <nav class="nav" id="mainNav">
+    <div class="nav-inner">
+      <img class="nav-logo" src="img/dab-logo.png" alt="DailyAdventureBox">
+      <ul class="nav-links">
+        <li class="nav-dropdown">
+          <a href="#">Home Page</a>
+          <ul class="nav-dropdown-menu">
+            <li><a href="#how-it-works">How It Works</a></li>
+            <li><a href="#locations">Locations</a></li>
+            <li><a href="#equipment">Equipment</a></li>
+            <li><a href="#classes">Classes</a></li>
+            <li><a href="#fund">Fund Adventure</a></li>
+            <li><a href="#about">Our Story</a></li>
+            <li><a href="#partners">Partners</a></li>
+            <li><a href="#have-location">Have a Location?</a></li>
+          </ul>
+        </li>
+        <li><a href="https://www.dailyadventurebox.com/fund-adventure">Fund Adventure</a></li>
+        <li><a href="https://www.dailyadventurebox.com/contractor-portal">Contractor Portal</a></li>
+        <li><a href="https://www.dailyadventurebox.com/admin-portal">Admin Portal</a></li>
+        <li><a href="https://apps.apple.com/us/app/dailyadventurebox/id1673560415" class="nav-cta">Get the App</a></li>
+      </ul>
+      <button class="nav-hamburger" onclick="document.querySelector('.nav-links').classList.toggle('show')">&#9776;</button>
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       SECTION 1: HERO
+  ============================================================ -->
+  <section class="hero">
+    <div class="hero-bg">
+      <div class="hero-bg-left"></div>
+      <div class="hero-bg-right"></div>
+      <div class="hero-bg-mesh"></div>
+    </div>
+    <div class="hero-gradient"></div>
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1>Adventure <span>On Demand.</span><br>Grab Gear. Hit the Water.</h1>
+        <p class="hero-sub">
+          Smart lockers loaded with surfboards, paddle boards, kayaks, and more — right where you recreate. Download the app, pick your gear, and the locker opens from your phone.
+        </p>
+        <div class="hero-buttons">
+          <a href="https://apps.apple.com/us/app/dailyadventurebox/id1673560415" class="btn btn-green">Download the App</a>
+          <a href="#how-it-works" class="btn btn-outline">See How It Works</a>
+        </div>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><strong>3</strong>Live Locations</div>
+      <div class="hero-stat"><strong>40+</strong>Gear Options</div>
+      <div class="hero-stat"><strong>$5-25</strong>Per Hour</div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       MARQUEE
+  ============================================================ -->
+  <div class="marquee-strip">
+    <div class="marquee-inner">
+      <span>Surfboards</span><span>Paddle Boards</span><span>Kayaks</span><span>Snorkel Gear</span><span>Floats</span><span>Footballs</span><span>Volleyball</span><span>Frisbees</span><span>Cornhole</span><span>Beach Chairs</span><span>Coolers</span><span>Speakers</span>
+      <span>Surfboards</span><span>Paddle Boards</span><span>Kayaks</span><span>Snorkel Gear</span><span>Floats</span><span>Footballs</span><span>Volleyball</span><span>Frisbees</span><span>Cornhole</span><span>Beach Chairs</span><span>Coolers</span><span>Speakers</span>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SECTION 2: HOW IT WORKS
+  ============================================================ -->
+  <section class="how-it-works" id="how-it-works">
+    <div class="container">
+      <div class="section-label">Simple as 1-2-3</div>
+      <h2 class="section-title">How It Works</h2>
+      <p class="section-sub">No reservations. No hauling gear. No hassle. Just scan, grab, and go.</p>
+      <div class="steps-grid">
+        <div class="step-card fade-up">
+          <div class="step-icon step-icon-1">&#128241;</div>
+          <div class="step-num">01</div>
+          <h3>Download the App</h3>
+          <p>Free on iOS and Android. Create your account in 30 seconds. Browse gear at your nearest locker.</p>
+        </div>
+        <div class="step-card fade-up">
+          <div class="step-icon step-icon-2">&#127940;</div>
+          <div class="step-num">02</div>
+          <h3>Pick Your Gear</h3>
+          <p>Surfboards, paddle boards, kayaks, snorkels, sports gear, floats — choose what sounds fun.</p>
+        </div>
+        <div class="step-card fade-up">
+          <div class="step-icon step-icon-3">&#128275;</div>
+          <div class="step-num">03</div>
+          <h3>Locker Opens</h3>
+          <p>Smart lock unlocks from your phone. Grab your gear and hit the water. Return when you're done.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 3: LOCATIONS
+  ============================================================ -->
+  <section class="locations" id="locations">
+    <div class="container">
+      <div class="section-label">Where to Find Us</div>
+      <h2 class="section-title">Locker Locations</h2>
+      <p class="section-sub">Currently live at Camp Lejeune, NC — with more locations coming to bases and beaches nationwide.</p>
+
+      <div class="locations-grid">
+        <div class="location-card">
+          <div class="location-card-status"><div class="status-dot status-live"></div> Live</div>
+          <h4>CLJ-05 — Onslow Beach</h4>
+          <p>Surfboards, paddle boards, body boards + V2 small gear locker</p>
+          <div class="gear-tags">
+            <span class="gear-tag">Surfboards</span>
+            <span class="gear-tag">SUPs</span>
+            <span class="gear-tag">Body Boards</span>
+            <span class="gear-tag">Sports Gear</span>
+          </div>
+        </div>
+        <div class="location-card">
+          <div class="location-card-status"><div class="status-dot status-live"></div> Live</div>
+          <h4>CLJ-03 — Onslow Beach</h4>
+          <p>Body boards + V2 small gear locker</p>
+          <div class="gear-tags">
+            <span class="gear-tag">Body Boards</span>
+            <span class="gear-tag">Sports Gear</span>
+            <span class="gear-tag">Snorkel</span>
+          </div>
+        </div>
+        <div class="location-card">
+          <div class="location-card-status"><div class="status-dot status-live"></div> Live</div>
+          <h4>CLJ-07</h4>
+          <p>V2 small gear locker — sports equipment, floats, games</p>
+          <div class="gear-tags">
+            <span class="gear-tag">Football</span>
+            <span class="gear-tag">Volleyball</span>
+            <span class="gear-tag">Frisbee</span>
+          </div>
+        </div>
+        <div class="location-card">
+          <div class="location-card-status"><div class="status-dot status-coming"></div> Coming Soon</div>
+          <h4>CLJ-01, 02, 04, 06, 08</h4>
+          <p>5 additional locations in development across Camp Lejeune</p>
+          <div class="gear-tags">
+            <span class="gear-tag">Expanding</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="map-placeholder">
+        [ Embedded Google Map / Interactive Locker Locator ]
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 4: EQUIPMENT — Bento Grid
+  ============================================================ -->
+  <section class="equipment" id="equipment">
+    <div class="container">
+      <div class="section-label">Premium Gear, Affordable Rates</div>
+      <h2 class="section-title">What's Inside the Lockers</h2>
+      <p class="section-sub">Top-quality equipment maintained to the highest standards. Always.</p>
+
+      <div class="bento-grid">
+        <!-- Row 1 -->
+        <div class="bento-card bento-wide bento-tall">
+          <img src="img/sup-hd-mangrove.png" alt="Stand up paddle boarding">
+          <div class="bento-overlay">
+            <div class="bento-price">From $15/hr</div>
+            <h4>Paddle Boards</h4>
+          </div>
+        </div>
+        <div class="bento-card">
+          <img src="img/screenshot-surfboards.png" alt="Surfboards in DAB locker">
+          <div class="bento-overlay">
+            <div class="bento-price">$25/hr</div>
+            <h4>Surfboards</h4>
+          </div>
+        </div>
+        <div class="bento-card">
+          <img src="img/float-dock10.png" alt="Floating dock platform">
+          <div class="bento-overlay">
+            <div class="bento-price">From $15/hr</div>
+            <h4>Floats & Hangouts</h4>
+          </div>
+        </div>
+        <!-- Row 2 -->
+        <div class="bento-card">
+          <img src="img/kayak-koda-120.png" alt="Kayak on the water">
+          <div class="bento-overlay">
+            <div class="bento-price">$25/hr</div>
+            <h4>Kayaks</h4>
+          </div>
+        </div>
+        <div class="bento-card">
+          <img src="img/screenshot-sports-gear.png" alt="Sports equipment on V2 locker">
+          <div class="bento-overlay">
+            <div class="bento-price">From $5/hr</div>
+            <h4>Sports Gear</h4>
+          </div>
+        </div>
+        <div class="bento-card bento-wide">
+          <img src="img/b33i3444.jpg" alt="Group on water with DAB gear">
+          <div class="bento-overlay">
+            <div class="bento-price">From $5/hr</div>
+            <h4>Snorkel, Games & More</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 5: FEATURES — Smart Locker Tech
+  ============================================================ -->
+  <section class="features" id="features">
+    <div class="container">
+      <div class="section-label">Built Different</div>
+      <h2 class="section-title">Smart Locker Technology</h2>
+      <p class="section-sub">Custom-built HDPE marine plastic lockers with smart locks, solar power, and IoT connectivity.</p>
+
+      <div class="feature-row fade-up">
+        <div class="feature-img">
+          <img src="img/screenshot-214141.png" alt="Full locker unit deployed at beach">
+        </div>
+        <div class="feature-text">
+          <h3>Self-Powered Smart Locks</h3>
+          <p>Every locker runs on solar power with a Raspberry Pi controller. No external power needed. Smart locks open from the app — no keys, no codes, no staff required.</p>
+          <div class="feature-specs">
+            <div class="feature-spec">
+              <strong>24/7</strong>
+              <span>Availability</span>
+            </div>
+            <div class="feature-spec">
+              <strong>Solar</strong>
+              <span>Powered</span>
+            </div>
+            <div class="feature-spec">
+              <strong>IoT</strong>
+              <span>Connected</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature-row reverse fade-up">
+        <div class="feature-img">
+          <img src="img/screenshot-145152.jpg" alt="Lockers on manufacturing floor">
+        </div>
+        <div class="feature-text">
+          <h3>Built to Last</h3>
+          <p>Made from recycled HDPE marine-grade plastic — the same material used in boat hulls. UV resistant, weatherproof, and designed to handle saltwater environments year-round.</p>
+          <div class="feature-specs">
+            <div class="feature-spec">
+              <strong>HDPE</strong>
+              <span>Marine Plastic</span>
+            </div>
+            <div class="feature-spec">
+              <strong>UV</strong>
+              <span>Resistant</span>
+            </div>
+            <div class="feature-spec">
+              <strong>USA</strong>
+              <span>Made</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature-row fade-up">
+        <div class="feature-img">
+          <img src="img/clj03-full-unit.jpeg" alt="Full locker unit at sunset">
+        </div>
+        <div class="feature-text">
+          <h3>Real Technology Inside</h3>
+          <p>Every locker has a custom circuit board with door sensors, cellular connectivity, GPS tracking, and weather API integration. We know when doors open, what gear is out, and when storms are coming.</p>
+          <div class="feature-specs">
+            <div class="feature-spec">
+              <strong>GPS</strong>
+              <span>Tracking</span>
+            </div>
+            <div class="feature-spec">
+              <strong>4G</strong>
+              <span>Cellular</span>
+            </div>
+            <div class="feature-spec">
+              <strong>API</strong>
+              <span>Weather Alerts</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 6: CLASSES & GUIDES
+  ============================================================ -->
+  <section class="classes" id="classes">
+    <div class="container">
+      <div class="section-label">More Than Gear</div>
+      <h2 class="section-title">Group Adventures & Guided Sessions</h2>
+      <p class="section-sub">Join experienced locals on the water. Equipment included — just show up.</p>
+
+      <div class="classes-grid">
+        <div class="class-card fade-up">
+          <div class="class-card-img">
+            <img src="img/sup-yoga.jpg" alt="Stand up paddle board yoga">
+            <span class="class-badge badge-sky">New</span>
+          </div>
+          <div class="class-card-body">
+            <h3>SUP Yoga</h3>
+            <p>Sunrise and sunset yoga on paddle boards. All skill levels. Equipment included. Led by experienced guides.</p>
+            <div class="class-meta">
+              <span class="price">Coming Soon</span>
+              <span class="duration">60 min</span>
+            </div>
+          </div>
+        </div>
+        <div class="class-card fade-up">
+          <div class="class-card-img">
+            <img src="img/sup-gatorshell.jpg" alt="Surf and paddle at the beach">
+            <span class="class-badge badge-green">Popular</span>
+          </div>
+          <div class="class-card-body">
+            <h3>Learn to Surf</h3>
+            <p>Learn the basics at Onslow Beach with experienced local surfers. Board included. No experience needed.</p>
+            <div class="class-meta">
+              <span class="price">Coming Soon</span>
+              <span class="duration">90 min</span>
+            </div>
+          </div>
+        </div>
+        <div class="class-card fade-up">
+          <div class="class-card-img">
+            <img src="img/dji-drone-floats.jpg" alt="Kayak fishing guide">
+            <span class="class-badge badge-yellow">Adventure</span>
+          </div>
+          <div class="class-card-body">
+            <h3>Kayak Fishing Trip</h3>
+            <p>Join local anglers on a group kayak fishing trip. Kayak, paddle, and basic tackle from the locker.</p>
+            <div class="class-meta">
+              <span class="price">Coming Soon</span>
+              <span class="duration">2-3 hrs</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 7: FUND ADVENTURE
+  ============================================================ -->
+  <section class="fund-adventure" id="fund">
+    <div class="container">
+      <div class="fa-grid">
+        <div class="fa-text">
+          <div class="section-label" style="text-align:left;color:var(--green);">Micro-Ownership</div>
+          <h2>Fund an <span>Adventure Box</span></h2>
+          <p>Own a piece of the adventure. Purchase an individual locker box and earn revenue every time it's rented. You pick the location. We handle everything else.</p>
+          <ul>
+            <li>Choose a specific box at a specific location</li>
+            <li>Earn revenue share on every rental</li>
+            <li>Track your box's performance in real-time</li>
+            <li>DAB handles all equipment, maintenance, and operations</li>
+            <li>Support outdoor recreation access for service members</li>
+          </ul>
+          <a href="https://www.dailyadventurebox.com/fund-adventure" class="btn btn-green">Fund an Adventure Box</a>
+        </div>
+        <div class="fa-pricing">
+          <div class="fa-price-card">
+            <h4>Small Box</h4>
+            <div class="price">$299</div>
+            <p>Sports gear, snorkels, floats, games</p>
+          </div>
+          <div class="fa-price-card">
+            <h4>Large Box</h4>
+            <div class="price">$499</div>
+            <p>Surfboards, paddle boards, kayaks</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 8: SOCIAL PROOF / STATS
+  ============================================================ -->
+  <section class="social-proof">
+    <div class="container">
+      <div class="stats-row">
+        <div class="stat-item fade-up">
+          <strong>8</strong>
+          <span>Locations (3 Live)</span>
+        </div>
+        <div class="stat-item fade-up">
+          <strong>40+</strong>
+          <span>Gear Options</span>
+        </div>
+        <div class="stat-item fade-up">
+          <strong>9</strong>
+          <span>Micro-Owners</span>
+        </div>
+        <div class="stat-item fade-up">
+          <strong>2023</strong>
+          <span>Founded</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 9: ABOUT / STORY
+  ============================================================ -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-img">
+          <img src="img/screenshot-145126.jpg" alt="Shay building lockers in workshop">
+        </div>
+        <div class="about-text">
+          <div class="section-label" style="text-align:left;">Our Story</div>
+          <h2>Built by a Marine. Built to Last.</h2>
+          <p>DailyAdventureBox was founded by Shay Putnam, an active-duty U.S. Marine, with a simple idea: make outdoor adventure gear accessible to everyone — no hauling, no reservations, no hassle.</p>
+          <p>What started as a single locker at Pensacola Beach has grown into a smart locker platform expanding across military bases and beaches nationwide.</p>
+
+          <div class="about-timeline">
+            <div class="timeline-item">
+              <div class="timeline-year">2023</div>
+              <p><strong>The First Launch</strong> — First DAB locker deployed at Pensacola Beach, FL</p>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-year">2024</div>
+              <p><strong>Rebuild</strong> — Complete system redesign: new app, new lockers, new platform</p>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-year">2025</div>
+              <p><strong>Camp Lejeune</strong> — Partnered with MCCS. First lockers live at Onslow Beach.</p>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-year">2026</div>
+              <p><strong>Expansion</strong> — 8 CLJ locations, Fund Adventure portal, national base expansion plan</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 10: PARTNERS
+  ============================================================ -->
+  <section class="partners" id="partners">
+    <div class="container">
+      <div class="section-label">Work With Us</div>
+      <h2 class="section-title">Partner With DailyAdventureBox</h2>
+      <p class="section-sub">We're looking for locations to host lockers and brands to feature inside them.</p>
+
+      <div class="partners-grid">
+        <div class="partner-card fade-up">
+          <h3>Host a Locker</h3>
+          <p>Hotels, resorts, beaches, parks, military bases — if people recreate there, DAB belongs there. We supply the locker, equipment, and maintenance. You provide the space.</p>
+          <a href="/partnership-advertisementopportunities" class="btn btn-green">Learn More</a>
+        </div>
+        <div class="partner-card fade-up">
+          <h3>Brand Partnerships</h3>
+          <p>Get your gear in front of adventurers. Feature your products inside DAB lockers or advertise on locker panels at high-traffic locations.</p>
+          <a href="/partnership-advertisementopportunities" class="btn btn-dark">Get in Touch</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 11: HAVE A LOCATION? — Sales Rep / Referral
+  ============================================================ -->
+  <section class="have-location" id="have-location">
+    <div class="container">
+      <div class="hl-grid">
+        <div class="hl-text">
+          <div class="section-label" style="text-align:left;color:var(--yellow);">Earn With Us</div>
+          <h2 class="hl-title">Have a Location?<br><span>Let's Put a Locker There.</span></h2>
+          <p>Know a beach, hotel, resort, park, campsite, or recreation area that needs a DAB locker? We cover all costs — equipment, installation, and maintenance. Two ways to get involved:</p>
+
+          <div class="hl-options">
+            <div class="hl-option">
+              <div class="hl-option-num" style="background:var(--green);">1</div>
+              <div>
+                <h4>You Own the Property</h4>
+                <p>We install the locker, supply the equipment, and handle all maintenance. You provide the space. Revenue share included — zero cost to you.</p>
+              </div>
+            </div>
+            <div class="hl-option">
+              <div class="hl-option-num" style="background:var(--sky);">2</div>
+              <div>
+                <h4>You Find Us Locations</h4>
+                <p>Become a DAB Sales Rep. Find businesses and properties that want a locker, connect us, and earn revenue share on every location you bring in. No experience needed.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="hl-buttons">
+            <a href="/have-a-location" class="btn btn-green">I Have a Property</a>
+            <a href="/sales-rep" class="btn btn-sky">Become a Sales Rep</a>
+          </div>
+        </div>
+        <div class="hl-visual">
+          <div class="hl-card">
+            <div class="hl-card-header">What You Get</div>
+            <div class="hl-card-item"><span class="hl-check">&#10003;</span> Revenue share on every rental</div>
+            <div class="hl-card-item"><span class="hl-check">&#10003;</span> Zero upfront cost</div>
+            <div class="hl-card-item"><span class="hl-check">&#10003;</span> We handle equipment & maintenance</div>
+            <div class="hl-card-item"><span class="hl-check">&#10003;</span> Attract more visitors to your location</div>
+            <div class="hl-card-item"><span class="hl-check">&#10003;</span> Custom locker branding available</div>
+            <div class="hl-card-item"><span class="hl-check">&#10003;</span> Sales reps: earn on every location you refer</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 12: APP DOWNLOAD
+  ============================================================ -->
+  <section class="app-download">
+    <div class="container">
+      <h2>Get the DailyAdventureBox App</h2>
+      <p>Browse gear, pick your rental, and unlock your locker — all from your phone. Free on iOS and Android.</p>
+      <div class="app-buttons">
+        <a href="https://apps.apple.com/us/app/dailyadventurebox/id1673560415" class="app-btn app-btn-ios">
+          &#63743; Download on the App Store
+        </a>
+        <a href="https://play.google.com/store/apps/details?id=com.dailyadventurebox.dab" class="app-btn app-btn-android">
+          &#9654; Get it on Google Play
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="img/dab-logo.png" alt="DailyAdventureBox">
+          <p>Smart lockers loaded with adventure gear — right where you recreate. Download the app, pick your gear, and go.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <a href="#how-it-works">How It Works</a>
+          <a href="#locations">Locations</a>
+          <a href="#equipment">Equipment</a>
+          <a href="#classes">Classes & Guides</a>
+          <a href="#fund">Fund Adventure</a>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="#about">Our Story</a>
+          <a href="#partners">Partners</a>
+          <a href="/support">Support</a>
+          <a href="/contact">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <a href="/terms-and-conditions">Terms & Conditions</a>
+          <a href="/federal-terms">Federal Terms</a>
+          <a href="/privacy-policy">Privacy Policy</a>
+          <a href="/nda">NDA</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 DailyAdventureBox. All rights reserved.</span>
+        <div class="footer-socials">
+          <a href="https://www.instagram.com/dailyadventurebox" target="_blank" title="Instagram">IG</a>
+          <a href="https://www.tiktok.com/@dailyadventurebox" target="_blank" title="TikTok">TT</a>
+          <a href="https://www.youtube.com/@DailyAdventureBox" target="_blank" title="YouTube">YT</a>
+          <a href="https://www.facebook.com/DailyAdventureBox" target="_blank" title="Facebook">FB</a>
+          <a href="https://www.linkedin.com/company/dailyadventurebox" target="_blank" title="LinkedIn">LI</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       JAVASCRIPT — Scroll animations + sticky nav
+  ============================================================ -->
+  <script>
+    // Sticky nav background on scroll
+    window.addEventListener('scroll', function() {
+      var nav = document.getElementById('mainNav');
+      if (window.scrollY > 60) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+
+    // Fade-up on scroll (IntersectionObserver)
+    var fadeEls = document.querySelectorAll('.fade-up');
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    fadeEls.forEach(function(el) { observer.observe(el); });
+  </script>
+
+</body>
+</html>

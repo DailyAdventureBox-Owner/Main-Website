@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DailyAdventureBox — Equipment</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --green: #74B93F; --sky: #5BBDD4; --yellow: #F9C926;
+    --charcoal: #2C2C2C; --dark: #1a1a1a; --light: #f9fafb;
+    --text: #1f2937; --text-mute: #6b7280; --border: #e5e7eb;
+    --radius: 16px; --shadow: 0 8px 30px rgba(0,0,0,0.08); --shadow-lg: 0 20px 60px rgba(0,0,0,0.12);
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; color: var(--text); background: #fff; line-height: 1.6; }
+  img { max-width: 100%; display: block; }
+  a { text-decoration: none; color: inherit; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 14px 28px; border-radius: 999px; font-family: 'Montserrat', sans-serif;
+    font-weight: 700; font-size: 14px; border: none; cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn-green { background: var(--green); color: #fff; box-shadow: 0 8px 24px rgba(116,185,63,0.35); }
+  .btn-outline { background: transparent; color: var(--charcoal); border: 2px solid var(--border); }
+
+  /* ── PAGE HERO ── */
+  .page-hero {
+    position: relative; padding: 140px 0 80px;
+    background: var(--dark); color: #fff; overflow: hidden;
+  }
+  .page-hero-bg {
+    position: absolute; inset: 0;
+    background: url('img/screenshot-v2-locker.png') center/cover no-repeat;
+    opacity: 0.25;
+  }
+  .page-hero-content { position: relative; z-index: 2; text-align: center; }
+  .page-hero h1 {
+    font-family: 'Bebas Neue', sans-serif; font-size: 64px;
+    letter-spacing: 2px; margin-bottom: 14px;
+  }
+  .page-hero h1 span { color: var(--green); }
+  .page-hero p {
+    font-size: 18px; color: rgba(255,255,255,0.65);
+    max-width: 560px; margin: 0 auto 28px; line-height: 1.7;
+  }
+  .hero-pricing {
+    display: flex; gap: 24px; justify-content: center; flex-wrap: wrap;
+  }
+  .hero-price-pill {
+    display: flex; align-items: center; gap: 10px;
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12);
+    padding: 12px 22px; border-radius: 999px;
+  }
+  .hero-price-pill strong {
+    font-family: 'Bebas Neue', sans-serif; font-size: 28px; color: var(--green);
+  }
+  .hero-price-pill span {
+    font-size: 13px; color: rgba(255,255,255,0.6);
+  }
+
+  /* ── SECTION LABELS ── */
+  .section-label {
+    font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700;
+    letter-spacing: 2.5px; text-transform: uppercase; color: var(--green);
+    text-align: center; margin-bottom: 10px;
+  }
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif; font-size: 46px; letter-spacing: 1px;
+    text-align: center; color: var(--charcoal); margin-bottom: 16px;
+  }
+  .section-sub {
+    text-align: center; font-size: 16px; color: var(--text-mute);
+    max-width: 580px; margin: 0 auto 48px; line-height: 1.7;
+  }
+
+  /* ── CATEGORY FILTER BAR ── */
+  .filter-bar {
+    padding: 24px 0; background: #fff; border-bottom: 1px solid var(--border);
+    position: sticky; top: 0; z-index: 100;
+  }
+  .filter-pills {
+    display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;
+  }
+  .filter-pill {
+    font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 700;
+    letter-spacing: 0.5px; padding: 10px 20px; border-radius: 999px;
+    border: 1px solid var(--border); background: #fff; color: var(--text-mute);
+    cursor: pointer; transition: background 0.15s ease, color 0.15s ease;
+  }
+  .filter-pill:hover, .filter-pill.active {
+    background: var(--green); color: #fff; border-color: var(--green);
+  }
+
+  /* ── LOCKER SHOWCASE (hero of the page) ── */
+  .locker-showcase { padding: 80px 0; background: var(--light); }
+  .locker-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+  }
+  .locker-card {
+    position: relative; border-radius: var(--radius); overflow: hidden;
+    min-height: 320px; cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  .locker-card:hover { transform: scale(1.02); }
+  .locker-card img {
+    width: 100%; height: 100%; object-fit: cover;
+    position: absolute; inset: 0;
+  }
+  .locker-card-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(transparent 50%, rgba(0,0,0,0.75) 100%);
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 24px;
+  }
+  .locker-card h3 {
+    font-family: 'Bebas Neue', sans-serif; font-size: 28px;
+    color: #fff; letter-spacing: 0.5px;
+  }
+  .locker-card p {
+    font-size: 13px; color: rgba(255,255,255,0.7); margin-top: 4px;
+  }
+
+  /* ── EQUIPMENT CATEGORY SECTIONS ── */
+  .equip-section { padding: 80px 0; }
+  .equip-section:nth-child(even) { background: var(--light); }
+
+  .equip-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 32px; flex-wrap: wrap; gap: 12px;
+  }
+  .equip-header h2 {
+    font-family: 'Bebas Neue', sans-serif; font-size: 40px;
+    color: var(--charcoal); letter-spacing: 0.5px;
+  }
+  .equip-header .price-range {
+    font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700;
+    color: var(--green);
+  }
+  .equip-header p {
+    width: 100%; font-size: 15px; color: var(--text-mute); line-height: 1.7;
+    max-width: 600px;
+  }
+
+  .equip-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px;
+  }
+  .equip-card {
+    border-radius: var(--radius); overflow: hidden;
+    border: 1px solid var(--border); background: #fff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .equip-card:hover {
+    transform: translateY(-3px); box-shadow: var(--shadow-lg);
+  }
+  .equip-card-img {
+    height: 200px; overflow: hidden; position: relative;
+  }
+  .equip-card-img img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+  .equip-card:hover .equip-card-img img { transform: scale(1.05); }
+  .equip-card-body { padding: 16px; }
+  .equip-card-body h4 {
+    font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 700;
+    color: var(--charcoal); margin-bottom: 4px;
+  }
+  .equip-card-body p {
+    font-size: 12px; color: var(--text-mute); line-height: 1.5; margin-bottom: 8px;
+  }
+  .equip-card-footer {
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .equip-price {
+    font-family: 'Bebas Neue', sans-serif; font-size: 22px; color: var(--green);
+  }
+  .equip-price span {
+    font-family: 'Inter', sans-serif; font-size: 11px; color: var(--text-mute);
+  }
+  .equip-location {
+    font-family: 'Montserrat', sans-serif; font-size: 9px; font-weight: 700;
+    letter-spacing: 0.5px; text-transform: uppercase; color: var(--text-mute);
+    padding: 4px 8px; background: var(--light); border-radius: 4px;
+  }
+
+  /* ── QUALITY PROMISE ── */
+  .quality {
+    padding: 80px 0; background: var(--dark); color: #fff; text-align: center;
+  }
+  .quality h2 {
+    font-family: 'Bebas Neue', sans-serif; font-size: 46px;
+    margin-bottom: 16px; letter-spacing: 1px;
+  }
+  .quality > .container > p {
+    font-size: 16px; color: rgba(255,255,255,0.65); max-width: 600px;
+    margin: 0 auto 40px; line-height: 1.7;
+  }
+  .quality-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
+    text-align: center;
+  }
+  .quality-item {
+    padding: 24px 16px; border-radius: var(--radius);
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+  }
+  .quality-icon {
+    font-size: 32px; margin-bottom: 10px;
+  }
+  .quality-item h4 {
+    font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .quality-item p {
+    font-size: 12px; color: rgba(255,255,255,0.5); line-height: 1.6;
+  }
+
+  /* ── CTA ── */
+  .equip-cta {
+    padding: 80px 0; text-align: center;
+  }
+  .equip-cta h2 {
+    font-family: 'Bebas Neue', sans-serif; font-size: 46px;
+    color: var(--charcoal); margin-bottom: 14px;
+  }
+  .equip-cta p {
+    font-size: 16px; color: var(--text-mute); max-width: 500px;
+    margin: 0 auto 28px; line-height: 1.7;
+  }
+  .equip-cta-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 991px) {
+    .page-hero h1 { font-size: 48px; }
+    .locker-grid { grid-template-columns: 1fr; }
+    .quality-grid { grid-template-columns: 1fr 1fr; }
+    .equip-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 640px) {
+    .page-hero h1 { font-size: 38px; }
+    .section-title { font-size: 34px; }
+    .equip-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+    .quality-grid { grid-template-columns: 1fr; }
+    .hero-pricing { flex-direction: column; align-items: center; }
+    .filter-pills { justify-content: flex-start; overflow-x: auto; flex-wrap: nowrap; padding-bottom: 8px; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- ── HERO ── -->
+  <section class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="page-hero-content container">
+      <h1>What's Inside <span>the Lockers</span></h1>
+      <p>Premium adventure and recreation equipment — maintained to the highest standards, always ready to grab and go.</p>
+      <div class="hero-pricing">
+        <div class="hero-price-pill">
+          <strong>$5</strong>
+          <span>Small Gear / hr</span>
+        </div>
+        <div class="hero-price-pill">
+          <strong>$10-25</strong>
+          <span>Large Gear / hr</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FILTER BAR (sticky) ── -->
+  <div class="filter-bar">
+    <div class="container">
+      <div class="filter-pills">
+        <button class="filter-pill active">All Gear</button>
+        <button class="filter-pill">Surfboards</button>
+        <button class="filter-pill">Paddle Boards</button>
+        <button class="filter-pill">Kayaks</button>
+        <button class="filter-pill">Floats & Hangouts</button>
+        <button class="filter-pill">Sports Gear</button>
+        <button class="filter-pill">Snorkel</button>
+        <button class="filter-pill">Beach Essentials</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── THE LOCKERS (hero of the page) ── -->
+  <section class="locker-showcase">
+    <div class="container">
+      <div class="section-label">The Smart Lockers</div>
+      <h2 class="section-title">This Is Where Your Gear Lives</h2>
+      <p class="section-sub">Custom-built, solar-powered smart lockers. Walk up, scan your phone, and the door opens. It's that simple.</p>
+
+      <div class="locker-grid">
+        <div class="locker-card">
+          <img src="img/clj03-full-unit.jpeg" alt="DAB large locker at location">
+          <div class="locker-card-overlay">
+            <h3>Large Lockers</h3>
+            <p>Surfboards, paddle boards, kayaks — full-size gear ready to grab</p>
+          </div>
+        </div>
+        <div class="locker-card">
+          <img src="img/clj03-04.png" alt="BOTE gear bag and pump from locker">
+          <div class="locker-card-overlay">
+            <h3>V2 Small Gear Lockers</h3>
+            <p>Sports gear, snorkels, floats, games — everything for a day at the beach</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SURFBOARDS ── -->
+  <section class="equip-section" id="surfboards">
+    <div class="container">
+      <div class="equip-header">
+        <h2>Surfboards</h2>
+        <div class="price-range">From $10/hr</div>
+        <p>Beginner-friendly foam boards and performance shortboards. Grab one from the locker and hit the waves at Onslow Beach.</p>
+      </div>
+      <div class="equip-grid">
+        <div class="equip-card">
+          <div class="equip-card-img">
+            <img src="img/sup-rackham-cutthroat.png" alt="Fishing paddle board on water">
+          </div>
+          <div class="equip-card-body">
+            <h4>Wavestorm Foam Board</h4>
+            <p>8' soft-top. Perfect for beginners. Lightweight and stable.</p>
+            <div class="equip-card-footer">
+              <div class="equip-price">$10 <span>/ hr</span></div>
+              <div class="equip-location">CLJ-05</div>
+            </div>
+          </div>
+        </div>
+        <div class="equip-card">
+          <div class="equip-card-img">
+            <img src="img/sup-hd-topwater.png" alt="Fishing SUP on the water">
+          </div>
+          <div class="equip-card-body">
+            <h4>Contour Shortboard</h4>
+            <p>6'2" performance shape. For intermediate+ riders who want to rip.</p>
+            <div class="equip-card-footer">
+              <div class="equip-price">$12 <span>/ hr</span></div>
+              <div class="equip-location">CLJ-05</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PADDLE BOARDS ── -->
+  <section class="equip-section" id="paddle-boards">
+    <div class="container">
+      <div class="equip-header">
+        <h2>Paddle Boards</h2>
+        <div class="price-range">From $10/hr</div>
+        <p>Inflatable and solid SUPs for cruising, yoga, fishing, or just floating. All boards come with paddle and leash.</p>
+      </div>
+      <div class="equip-grid">
+        <div class="equip-card">
+          <div class="equip-card-img">
+            <img src="img/sup-rackham-fusion.png" alt="Rackham paddle board on the water">
+          </div>
+          <div class="equip-card-body">
+            <h4>Inflatable SUP — All-Around</h4>
+            <p>11'6" stable platform. Great for beginners and cruisers. Packs down small.</p>
+            <div class="equip-card-footer">
+              <div class="equip-price">$10 <span>/ hr</span></div>
+              <div class="equip-location">CLJ-05, CLJ-03</div>
+            </div>
+          </div>
+        </div>
+        <div class="equip-card">
+          <div class="equip-card-img">
+            <img src="img/river-group-float.jpg" alt="Family on paddle boards">
+          </div>
+          <div class="equip-card-body">
+            <h4>Family / Tandem SUP</h4>
+            <p>Extra wide and stable. Fits 2 adults or 1 adult + kids. Perfect for families.</p>
+            <div class="equip-card-footer">
+              <div class="equip-price">$15 <span>/ hr</span></div>
+              <div class="equip-location">CLJ-05</div>
+            </div>
+          </div>
+        </div>
+        <div class="equip-card">
+          <div class="equip-card-img">
+            <img src="img/sup-yoga.jpg" alt="Girl doing SUP yoga">
+          </div>
+          <div class="equip-card-body">
+            <h4>Yoga SUP</h4>
+            <p>Extra-wide deck pad for yoga sessions. Stable enough for standing poses on flat water.</p>
+            <div class="equip-card-footer">
+              <div class="equip-price">$10 <span>/ hr</span></div>
+              <div class="equip-location">CLJ-05</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── KAYAKS ── -->
+  <section class="equip-section" id="kayaks">
+    <div class="container">
+      <div class="equip-header">
+        <h2>Kayaks</h2>
+        <div class="price-range">From $10/hr</div>
+        <p>Inflatable kayaks that pack into locker compartments and inflate in minutes. Paddle and PFD included.</p>
+      </div>
+      <div class="equip-grid">
+        <div class="equip-card">
+          <div class="equip-card-img">
+            <img src="img/kayak-vali.png" alt="Inflatable kayak on the water">
+          </div>
+          <div class="equip-card-body">
+            <h4>Inflatable Sit-On-Top Kayak</h4>
+            <p>12' stable kayak. Perfect for fishing, exploring, or just cruising the waterway.</p>
+            <div class="equip-card-footer">
+              <div class="equip-price">$10 <span>/ hr</span></div>
+              <div class="equip-location">CLJ-05</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FLOATS & HANGOUTS ── -->
+  <section class="equip-section" id="floats">
+    <div class="container">
+      <div class="equip-header">
+        <h2>Floats & Hangouts</h2>
+        <div class="price-range">From $10/hr</div>
+        <p>Floating docks, lounges, and hangout platforms. Bring your crew and set up camp on the water.</p>
+      </div>
+      <div class="equip-grid">
+        <div class="equip-card">
+          <div class="equip-card-img">
+            <img src="img/float-hangout-ladder.png" alt="Floating dock with people">
+          </div>
+          <div class="equip-card-body">
+            <h4>Floating Dock — 10'</h4>
+            <p>Inflatable platform. Fits 4-6 people. Bring chairs, coolers, whatever you want.</p>
+            <div class="equip-card-footer">
+              <div class="equip-price">$20 <span>/ hr</span></div>
+              <div class="equip-location">CLJ-05</div>
+            </div>
+          </div>
+        </div>
+        <div class="equip-card">
+          <div class="equip-card-img">
+            <img src="img/b33i2873.jpg" alt="Floating hangout couch">
+          </div>
+          <div class="equip-card-body">
+            <h4>Hangout Couch</h4>
+            <p>Inflatable floating couch. Seats 4-6. The most fun you'll have on water.</p>
+            <div class="equip-card-footer">
+              <div class="equip-price">$20 <span>/ hr</span></div>
+              <div class="equip-location">CLJ-05</div>
+            </div>
+          </div>
+        </div>
+        <div class="equip-card">
+          <div class="equip-card-img">
+            <img src="img/b33i3420.jpg" alt="Group on floating hangout">
+          </div>
+          <div class="equip-card-body">
+            <h4>Group Float Setup</h4>
+            <p>Dock + couch combo. Rent both for the ultimate water hangout for groups of 8+.</p>
+            <div class="equip-card-footer">
+              <div class="equip-price">$25 <span>/ hr</span></div>
+
+              <div class="equip-location">CLJ-05</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SPORTS GEAR ── -->
+  <section class="equip-section" id="sports">
+    <div class="container">
+      <div class="equip-header">
+        <h2>Sports Gear</h2>
+        <div class="price-range">From $5/hr</div>
+        <p>Grab a ball, a frisbee, or a full cornhole set from the V2 small gear locker. No commitment — rent by the hour.</p>
+      </div>
+      <div class="equip-grid">
+        <div class="equip-card">
+          <div class="equip-card-img">
+            <img src="img/screenshot-locker-gear.png" alt="Sports gear display">
+          </div>
+          <div class="equip-card-body">
+            <h4>Football, Soccer, Volleyball</h4>
+            <p>Spalding, Wilson, Nike — quality name-brand balls. Pump included.</p>
+            <div class="equip-card-footer">
+              <div class="equip-price">$5 <span>/ hr</span></div>
+              <div class="equip-location">CLJ-05, CLJ-03, CLJ-07</div>
+            </div>
+          </div>
+        </div>
+        <div class="equip-card">
+          <div class="equip-card-img">
+            <img src="img/clj03-02.png" alt="Spikeball and games on V2 locker">
+          </div>
+          <div class="equip-card-body">
+            <h4>Frisbee, Cornhole, Spikeball</h4>
+            <p>Beach games for groups. Everything you need for a competitive afternoon.</p>
+            <div class="equip-card-footer">
+              <div class="equip-price">$5 <span>/ hr</span></div>
+              <div class="equip-location">CLJ-07</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SNORKEL ── -->
+  <section class="equip-section" id="snorkel">
+    <div class="container">
+      <div class="equip-header">
+        <h2>Snorkel Gear</h2>
+        <div class="price-range">From $5/hr</div>
+        <p>Mask, snorkel, and fins. Sanitized after every use. Multiple sizes available.</p>
+      </div>
+      <div class="equip-grid">
+        <div class="equip-card">
+          <div class="equip-card-img">
+            <img src="img/clj03-01.png" alt="Beach gear and snorkel on locker">
+          </div>
+          <div class="equip-card-body">
+            <h4>Full Snorkel Set</h4>
+            <p>Mask + snorkel + fins. Dry-top snorkel, tempered glass mask. Adult and youth sizes.</p>
+            <div class="equip-card-footer">
+              <div class="equip-price">$5 <span>/ hr</span></div>
+              <div class="equip-location">CLJ-03, CLJ-05</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── BEACH ESSENTIALS ── -->
+  <section class="equip-section" id="beach">
+    <div class="container">
+      <div class="equip-header">
+        <h2>Beach Essentials</h2>
+        <div class="price-range">From $5/hr</div>
+        <p>Chairs, coolers, speakers, shade tents — everything to make your beach day complete.</p>
+      </div>
+      <div class="equip-grid">
+        <div class="equip-card">
+          <div class="equip-card-img">
+            <img src="img/clj03-03.png" alt="Shade tent and beach gear on locker">
+          </div>
+          <div class="equip-card-body">
+            <h4>Beach Chair + Shade</h4>
+            <p>Reclining beach chair with UV shade canopy. Set up in seconds.</p>
+            <div class="equip-card-footer">
+              <div class="equip-price">$5 <span>/ hr</span></div>
+              <div class="equip-location">CLJ-05</div>
+            </div>
+          </div>
+        </div>
+        <div class="equip-card">
+          <div class="equip-card-img">
+            <img src="img/clj03-05.png" alt="Beach shade and gear display">
+          </div>
+          <div class="equip-card-body">
+            <h4>Bluetooth Speaker</h4>
+            <p>Waterproof, rugged, loud. Pairs instantly with your phone.</p>
+            <div class="equip-card-footer">
+              <div class="equip-price">$5 <span>/ hr</span></div>
+              <div class="equip-location">CLJ-05, CLJ-07</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── QUALITY PROMISE ── -->
+  <section class="quality">
+    <div class="container">
+      <h2>Our Equipment Promise</h2>
+      <p>Affordable doesn't mean cheap. Every piece of gear in a DAB locker is maintained to the highest standard.</p>
+      <div class="quality-grid">
+        <div class="quality-item">
+          <div class="quality-icon">&#9733;</div>
+          <h4>Premium Brands</h4>
+          <p>We stock gear from BOTE, Contour, Wavestorm, Spalding, Wilson, and more. No bargain-bin equipment.</p>
+        </div>
+        <div class="quality-item">
+          <div class="quality-icon">&#128260;</div>
+          <h4>Regular Rotation</h4>
+          <p>Equipment is inspected and rotated on a maintenance cycle. Worn gear gets replaced, not rented.</p>
+        </div>
+        <div class="quality-item">
+          <div class="quality-icon">&#128167;</div>
+          <h4>Clean Every Time</h4>
+          <p>All gear is sanitized between rentals. Snorkel gear, life jackets — everything gets cleaned.</p>
+        </div>
+        <div class="quality-item">
+          <div class="quality-icon">&#128170;</div>
+          <h4>Built to Handle It</h4>
+          <p>Saltwater, sand, sun — our gear is selected for durability in real outdoor conditions.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA ── -->
+  <section class="equip-cta">
+    <div class="container">
+      <h2>Ready to Grab Some Gear?</h2>
+      <p>Download the app, find your nearest locker, and start your adventure in under a minute.</p>
+      <div class="equip-cta-buttons">
+        <a href="https://apps.apple.com/us/app/dailyadventurebox/id1673560415" class="btn btn-green">Download the App</a>
+        <a href="/locations" class="btn btn-outline">Find a Locker</a>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>

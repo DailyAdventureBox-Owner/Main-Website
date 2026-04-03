@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DailyAdventureBox — Classes, Lessons & Events</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --green: #74B93F; --green-dark: #5a9630; --sky: #5BBDD4; --yellow: #F9C926;
+    --charcoal: #2C2C2C; --dark: #1a1a1a; --off-white: #F5F2EC; --light: #f9fafb;
+    --text: #1f2937; --text-mute: #6b7280; --border: #e5e7eb;
+    --radius: 16px; --radius-sm: 10px;
+    --shadow: 0 8px 30px rgba(0,0,0,0.08); --shadow-lg: 0 20px 60px rgba(0,0,0,0.12);
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; color: var(--text); background: #fff; line-height: 1.6; }
+  img { max-width: 100%; display: block; }
+  a { text-decoration: none; color: inherit; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 14px 28px; border-radius: 999px; font-family: 'Montserrat', sans-serif;
+    font-weight: 700; font-size: 14px; letter-spacing: 0.5px; border: none; cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn-green { background: var(--green); color: #fff; box-shadow: 0 8px 24px rgba(116,185,63,0.35); }
+  .btn-outline { background: transparent; color: var(--charcoal); border: 2px solid var(--border); }
+  .btn-outline:hover { border-color: var(--charcoal); }
+  .btn-sm { padding: 10px 20px; font-size: 12px; }
+
+  /* ── PAGE HERO ── */
+  .page-hero {
+    padding: 140px 0 80px;
+    background: linear-gradient(rgba(20,20,20,0.55), rgba(20,20,20,0.7)), url('img/river-group-float.jpg') center/cover no-repeat;
+    color: #fff;
+    text-align: center;
+  }
+  .page-hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 64px;
+    letter-spacing: 2px;
+    margin-bottom: 14px;
+  }
+  .page-hero h1 span { color: var(--sky); }
+  .page-hero p {
+    font-size: 18px;
+    color: rgba(255,255,255,0.65);
+    max-width: 560px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  /* ── SECTION LABELS ── */
+  .section-label {
+    font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700;
+    letter-spacing: 2.5px; text-transform: uppercase; color: var(--green);
+    text-align: center; margin-bottom: 10px;
+  }
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif; font-size: 46px; letter-spacing: 1px;
+    text-align: center; color: var(--charcoal); margin-bottom: 16px;
+  }
+  .section-sub {
+    text-align: center; font-size: 16px; color: var(--text-mute);
+    max-width: 580px; margin: 0 auto 48px; line-height: 1.7;
+  }
+
+  /* ── OFFERINGS GRID ── */
+  .offerings { padding: 80px 0; }
+  .offerings-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .offering-card {
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: #fff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .offering-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
+  .offering-img {
+    height: 240px;
+    overflow: hidden;
+    position: relative;
+  }
+  .offering-img img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+  .offering-card:hover .offering-img img { transform: scale(1.05); }
+  .offering-badge {
+    position: absolute; top: 14px; left: 14px;
+    font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700;
+    letter-spacing: 1px; text-transform: uppercase;
+    padding: 6px 14px; border-radius: 999px; color: #fff;
+  }
+  .offering-body { padding: 24px; }
+  .offering-body h3 {
+    font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 800;
+    color: var(--charcoal); margin-bottom: 8px;
+  }
+  .offering-body p {
+    font-size: 14px; color: var(--text-mute); line-height: 1.7; margin-bottom: 16px;
+  }
+  .offering-details {
+    display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px;
+  }
+  .offering-tag {
+    font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700;
+    letter-spacing: 0.5px; padding: 5px 12px; border-radius: 999px;
+    background: var(--light); border: 1px solid var(--border); color: var(--text-mute);
+  }
+  .offering-footer {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-top: 14px; border-top: 1px solid var(--border);
+  }
+  .offering-price {
+    font-family: 'Bebas Neue', sans-serif; font-size: 28px; color: var(--green);
+  }
+  .offering-price span {
+    font-family: 'Inter', sans-serif; font-size: 12px; color: var(--text-mute); font-weight: 400;
+  }
+
+  /* ── HOW IT WORKS ── */
+  .class-how { padding: 80px 0; background: var(--light); }
+  .class-steps {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
+  }
+  .class-step {
+    text-align: center; padding: 28px 18px;
+    border-radius: var(--radius); background: #fff;
+    border: 1px solid var(--border);
+  }
+  .class-step-num {
+    font-family: 'Bebas Neue', sans-serif; font-size: 48px;
+    color: var(--green); line-height: 1; margin-bottom: 8px;
+  }
+  .class-step h4 {
+    font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 700;
+    margin-bottom: 6px; color: var(--charcoal);
+  }
+  .class-step p { font-size: 12px; color: var(--text-mute); line-height: 1.6; }
+
+  /* ── CALENDAR SECTION ── */
+  .events-calendar { padding: 80px 0; }
+  .cal-container {
+    background: #fff; border: 1px solid var(--border);
+    border-radius: var(--radius); overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+  .cal-header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 24px; background: var(--dark); color: #fff;
+  }
+  .cal-header h3 {
+    font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: 0.5px;
+  }
+  .cal-nav { display: flex; gap: 8px; }
+  .cal-nav button {
+    background: rgba(255,255,255,0.1); border: none; color: #fff;
+    width: 36px; height: 36px; border-radius: 8px; font-size: 18px;
+    cursor: pointer; transition: background 0.15s ease;
+  }
+  .cal-nav button:hover { background: rgba(255,255,255,0.2); }
+  .cal-filters {
+    display: flex; gap: 8px; padding: 16px 24px; border-bottom: 1px solid var(--border);
+    flex-wrap: wrap;
+  }
+  .cal-filter {
+    font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700;
+    letter-spacing: 0.5px; padding: 8px 16px; border-radius: 999px;
+    border: 1px solid var(--border); background: #fff; color: var(--text-mute);
+    cursor: pointer; transition: background 0.15s ease, color 0.15s ease;
+  }
+  .cal-filter:hover, .cal-filter.active {
+    background: var(--green); color: #fff; border-color: var(--green);
+  }
+  .cal-filter.filter-yoga.active, .cal-filter.filter-yoga:hover { background: var(--sky); border-color: var(--sky); }
+  .cal-filter.filter-surf.active, .cal-filter.filter-surf:hover { background: var(--green); border-color: var(--green); }
+  .cal-filter.filter-kayak.active, .cal-filter.filter-kayak:hover { background: var(--yellow); border-color: var(--yellow); color: var(--charcoal); }
+  .cal-filter.filter-event.active, .cal-filter.filter-event:hover { background: var(--charcoal); border-color: var(--charcoal); }
+
+  .cal-grid {
+    display: grid; grid-template-columns: repeat(7, 1fr);
+    border-top: 1px solid var(--border);
+  }
+  .cal-day-header {
+    padding: 10px; text-align: center;
+    font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700;
+    letter-spacing: 1px; text-transform: uppercase; color: var(--text-mute);
+    background: var(--light); border-bottom: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+  }
+  .cal-day {
+    min-height: 110px; padding: 8px;
+    border-bottom: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+    font-size: 12px;
+  }
+  .cal-day-num {
+    font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 13px;
+    color: var(--charcoal); margin-bottom: 4px;
+  }
+  .cal-day.empty { background: var(--light); opacity: 0.5; }
+  .cal-event {
+    display: block; padding: 4px 8px; border-radius: 6px; margin-bottom: 3px;
+    font-size: 10px; font-weight: 600; font-family: 'Montserrat', sans-serif;
+    color: #fff; cursor: pointer; transition: opacity 0.15s ease;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .cal-event:hover { opacity: 0.85; }
+  .cal-event-yoga { background: var(--sky); }
+  .cal-event-surf { background: var(--green); }
+  .cal-event-kayak { background: var(--yellow); color: var(--charcoal); }
+  .cal-event-event { background: var(--charcoal); }
+
+  /* ── UPCOMING LIST ── */
+  .upcoming { padding: 80px 0; background: var(--light); }
+  .upcoming-list { display: flex; flex-direction: column; gap: 14px; }
+  .upcoming-card {
+    display: grid; grid-template-columns: 80px 1fr auto;
+    gap: 20px; align-items: center;
+    background: #fff; border: 1px solid var(--border);
+    border-radius: var(--radius-sm); padding: 18px 22px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .upcoming-card:hover {
+    transform: translateY(-2px); box-shadow: var(--shadow);
+  }
+  .upcoming-date {
+    text-align: center;
+  }
+  .upcoming-date .month {
+    font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700;
+    letter-spacing: 1px; text-transform: uppercase; color: var(--text-mute);
+  }
+  .upcoming-date .day {
+    font-family: 'Bebas Neue', sans-serif; font-size: 36px; line-height: 1;
+    color: var(--charcoal);
+  }
+  .upcoming-date .time {
+    font-size: 11px; color: var(--text-mute); margin-top: 2px;
+  }
+  .upcoming-info h4 {
+    font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700;
+    color: var(--charcoal); margin-bottom: 4px;
+  }
+  .upcoming-info p {
+    font-size: 13px; color: var(--text-mute); line-height: 1.5;
+  }
+  .upcoming-info .spots {
+    font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 600;
+    color: var(--green); margin-top: 4px;
+  }
+  .upcoming-info .spots.low { color: #e53e3e; }
+
+  /* ── INSTRUCTOR SECTION ── */
+  .instructors { padding: 80px 0; }
+  .instructor-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+  }
+  .instructor-card {
+    text-align: center; padding: 28px; border-radius: var(--radius);
+    border: 1px solid var(--border); background: #fff;
+  }
+  .instructor-avatar {
+    width: 80px; height: 80px; border-radius: 50%;
+    background: var(--light); margin: 0 auto 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Bebas Neue', sans-serif; font-size: 28px; color: var(--text-mute);
+  }
+  .instructor-card h4 {
+    font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 700;
+    margin-bottom: 4px; color: var(--charcoal);
+  }
+  .instructor-card p {
+    font-size: 12px; color: var(--text-mute); line-height: 1.6;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 991px) {
+    .page-hero h1 { font-size: 48px; }
+    .offerings-grid { grid-template-columns: 1fr; max-width: 500px; margin: 0 auto; }
+    .class-steps { grid-template-columns: 1fr 1fr; }
+    .cal-grid { display: none; } /* show list view on tablet */
+    .upcoming-card { grid-template-columns: 60px 1fr; }
+    .upcoming-card .btn { grid-column: 1 / -1; }
+  }
+  @media (max-width: 640px) {
+    .page-hero h1 { font-size: 38px; }
+    .section-title { font-size: 34px; }
+    .class-steps { grid-template-columns: 1fr; }
+    .upcoming-card { grid-template-columns: 1fr; text-align: center; }
+    .upcoming-date { display: flex; gap: 8px; justify-content: center; align-items: baseline; }
+    .upcoming-date .day { font-size: 28px; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- ── PAGE HERO ── -->
+  <section class="page-hero">
+    <div class="container">
+      <h1>Group Adventures & <span>Events</span></h1>
+      <p>Join a group session led by experienced locals who love the water. Equipment included from the locker — just show up.</p>
+    </div>
+  </section>
+
+  <!-- ── OFFERINGS ── -->
+  <section class="offerings">
+    <div class="container">
+      <div class="section-label">What We Offer</div>
+      <h2 class="section-title">Choose Your Adventure</h2>
+      <p class="section-sub">All equipment provided from our smart lockers. Just show up.</p>
+
+      <div class="offerings-grid">
+        <!-- SUP Yoga -->
+        <div class="offering-card">
+          <div class="offering-img">
+            <img src="img/float-dock-fx.jpg" alt="SUP Yoga on the water">
+            <span class="offering-badge" style="background:var(--sky);">Most Popular</span>
+          </div>
+          <div class="offering-body">
+            <h3>SUP Yoga</h3>
+            <p>Sunrise and sunset yoga sessions on paddle boards in calm water. All skill levels welcome — our experienced guides walk you through every pose on the water.</p>
+            <div class="offering-details">
+              <span class="offering-tag">60 min</span>
+              <span class="offering-tag">All Levels</span>
+              <span class="offering-tag">Equipment Included</span>
+              <span class="offering-tag">Max 8 People</span>
+            </div>
+            <div class="offering-footer">
+              <div class="offering-price">$35 <span>/ person</span></div>
+              <a href="#calendar" class="btn btn-green btn-sm">View Schedule</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Surf Lessons -->
+        <div class="offering-card">
+          <div class="offering-img">
+            <img src="img/clj03-06.png" alt="Body board from DAB locker at Onslow Beach">
+            <span class="offering-badge" style="background:var(--green);">No Experience Needed</span>
+          </div>
+          <div class="offering-body">
+            <h3>Learn to Surf</h3>
+            <p>Learn the basics of surfing at Onslow Beach with experienced local surfers. Board included from the locker. No experience needed — we'll get you standing.</p>
+            <div class="offering-details">
+              <span class="offering-tag">90 min</span>
+              <span class="offering-tag">Beginners</span>
+              <span class="offering-tag">Board Included</span>
+              <span class="offering-tag">Max 6 People</span>
+            </div>
+            <div class="offering-footer">
+              <div class="offering-price">$45 <span>/ person</span></div>
+              <a href="#calendar" class="btn btn-green btn-sm">View Schedule</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Kayak Fishing -->
+        <div class="offering-card">
+          <div class="offering-img">
+            <img src="img/kayak-koda-140.png" alt="Tandem kayak fishing trip">
+            <span class="offering-badge" style="background:var(--yellow);color:var(--charcoal);">Adventure</span>
+          </div>
+          <div class="offering-body">
+            <h3>Kayak Fishing Trip</h3>
+            <p>Join experienced local anglers on a group kayak fishing trip. Kayak, paddle, and basic tackle provided from the locker. We know the spots — you bring the energy.</p>
+            <div class="offering-details">
+              <span class="offering-tag">2-3 Hours</span>
+              <span class="offering-tag">All Levels</span>
+              <span class="offering-tag">Kayak Included</span>
+              <span class="offering-tag">Max 4 People</span>
+            </div>
+            <div class="offering-footer">
+              <div class="offering-price">$65 <span>/ person</span></div>
+              <a href="#calendar" class="btn btn-green btn-sm">View Schedule</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── HOW BOOKING WORKS ── -->
+  <section class="class-how">
+    <div class="container">
+      <div class="section-label">Simple Booking</div>
+      <h2 class="section-title">How It Works</h2>
+      <p class="section-sub">Reserve your spot, show up, and we handle the rest.</p>
+      <div class="class-steps">
+        <div class="class-step">
+          <div class="class-step-num">01</div>
+          <h4>Pick a Class</h4>
+          <p>Browse the calendar below and find a date/time that works for you.</p>
+        </div>
+        <div class="class-step">
+          <div class="class-step-num">02</div>
+          <h4>Reserve & Pay</h4>
+          <p>Reserve your spot online. Payment confirms your booking instantly.</p>
+        </div>
+        <div class="class-step">
+          <div class="class-step-num">03</div>
+          <h4>Show Up</h4>
+          <p>Meet your guide at the locker location. All equipment is ready for you.</p>
+        </div>
+        <div class="class-step">
+          <div class="class-step-num">04</div>
+          <h4>Adventure</h4>
+          <p>Have an amazing time. Return gear to the locker when you're done.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── EVENTS CALENDAR ── -->
+  <section class="events-calendar" id="calendar">
+    <div class="container">
+      <div class="section-label">Schedule</div>
+      <h2 class="section-title">Events & Class Calendar</h2>
+      <p class="section-sub">Find your next adventure. Filter by type and reserve your spot.</p>
+
+      <div class="cal-container">
+        <div class="cal-header">
+          <h3>April 2026</h3>
+          <div class="cal-nav">
+            <button>&#8249;</button>
+            <button>&#8250;</button>
+          </div>
+        </div>
+        <div class="cal-filters">
+          <button class="cal-filter active">All</button>
+          <button class="cal-filter filter-yoga">SUP Yoga</button>
+          <button class="cal-filter filter-surf">Surf Lessons</button>
+          <button class="cal-filter filter-kayak">Kayak Fishing</button>
+          <button class="cal-filter filter-event">Events</button>
+        </div>
+        <div class="cal-grid">
+          <!-- Day Headers -->
+          <div class="cal-day-header">Sun</div>
+          <div class="cal-day-header">Mon</div>
+          <div class="cal-day-header">Tue</div>
+          <div class="cal-day-header">Wed</div>
+          <div class="cal-day-header">Thu</div>
+          <div class="cal-day-header">Fri</div>
+          <div class="cal-day-header">Sat</div>
+
+          <!-- Week 1 (partial) -->
+          <div class="cal-day empty"></div>
+          <div class="cal-day empty"></div>
+          <div class="cal-day empty"></div>
+          <div class="cal-day"><div class="cal-day-num">1</div></div>
+          <div class="cal-day"><div class="cal-day-num">2</div></div>
+          <div class="cal-day"><div class="cal-day-num">3</div></div>
+          <div class="cal-day">
+            <div class="cal-day-num">4</div>
+            <div class="cal-event cal-event-yoga">SUP Yoga 7am</div>
+            <div class="cal-event cal-event-surf">Surf 9am</div>
+          </div>
+
+          <!-- Week 2 -->
+          <div class="cal-day">
+            <div class="cal-day-num">5</div>
+            <div class="cal-event cal-event-yoga">SUP Yoga 6pm</div>
+          </div>
+          <div class="cal-day"><div class="cal-day-num">6</div></div>
+          <div class="cal-day"><div class="cal-day-num">7</div></div>
+          <div class="cal-day"><div class="cal-day-num">8</div></div>
+          <div class="cal-day"><div class="cal-day-num">9</div></div>
+          <div class="cal-day">
+            <div class="cal-day-num">10</div>
+            <div class="cal-event cal-event-kayak">Kayak Fish 6am</div>
+          </div>
+          <div class="cal-day">
+            <div class="cal-day-num">11</div>
+            <div class="cal-event cal-event-yoga">SUP Yoga 7am</div>
+            <div class="cal-event cal-event-surf">Surf 9am</div>
+          </div>
+
+          <!-- Week 3 -->
+          <div class="cal-day">
+            <div class="cal-day-num">12</div>
+            <div class="cal-event cal-event-yoga">SUP Yoga 6pm</div>
+          </div>
+          <div class="cal-day"><div class="cal-day-num">13</div></div>
+          <div class="cal-day"><div class="cal-day-num">14</div></div>
+          <div class="cal-day">
+            <div class="cal-day-num">15</div>
+            <div class="cal-event cal-event-event">Beach Cleanup</div>
+          </div>
+          <div class="cal-day"><div class="cal-day-num">16</div></div>
+          <div class="cal-day">
+            <div class="cal-day-num">17</div>
+            <div class="cal-event cal-event-kayak">Kayak Fish 6am</div>
+          </div>
+          <div class="cal-day">
+            <div class="cal-day-num">18</div>
+            <div class="cal-event cal-event-yoga">SUP Yoga 7am</div>
+            <div class="cal-event cal-event-surf">Surf 9am</div>
+            <div class="cal-event cal-event-event">Paddle Meetup</div>
+          </div>
+
+          <!-- Week 4 -->
+          <div class="cal-day">
+            <div class="cal-day-num">19</div>
+            <div class="cal-event cal-event-yoga">SUP Yoga 6pm</div>
+          </div>
+          <div class="cal-day"><div class="cal-day-num">20</div></div>
+          <div class="cal-day"><div class="cal-day-num">21</div></div>
+          <div class="cal-day"><div class="cal-day-num">22</div></div>
+          <div class="cal-day"><div class="cal-day-num">23</div></div>
+          <div class="cal-day">
+            <div class="cal-day-num">24</div>
+            <div class="cal-event cal-event-kayak">Kayak Fish 6am</div>
+          </div>
+          <div class="cal-day">
+            <div class="cal-day-num">25</div>
+            <div class="cal-event cal-event-yoga">SUP Yoga 7am</div>
+            <div class="cal-event cal-event-surf">Surf 9am</div>
+          </div>
+
+          <!-- Week 5 -->
+          <div class="cal-day">
+            <div class="cal-day-num">26</div>
+            <div class="cal-event cal-event-yoga">SUP Yoga 6pm</div>
+          </div>
+          <div class="cal-day"><div class="cal-day-num">27</div></div>
+          <div class="cal-day"><div class="cal-day-num">28</div></div>
+          <div class="cal-day"><div class="cal-day-num">29</div></div>
+          <div class="cal-day"><div class="cal-day-num">30</div></div>
+          <div class="cal-day empty"></div>
+          <div class="cal-day empty"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── UPCOMING EVENTS LIST ── -->
+  <section class="upcoming">
+    <div class="container">
+      <div class="section-label">Coming Up</div>
+      <h2 class="section-title">Upcoming Classes & Events</h2>
+      <p class="section-sub">Reserve your spot before they fill up.</p>
+
+      <div class="upcoming-list">
+        <div class="upcoming-card">
+          <div class="upcoming-date">
+            <div class="month">Apr</div>
+            <div class="day">5</div>
+            <div class="time">7:00 AM</div>
+          </div>
+          <div class="upcoming-info">
+            <h4>SUP Yoga — Sunrise Session</h4>
+            <p>Onslow Beach, CLJ-05 &bull; 60 min &bull; $35/person &bull; All equipment included</p>
+            <div class="spots">4 spots remaining</div>
+          </div>
+          <a href="#" class="btn btn-green btn-sm">Reserve</a>
+        </div>
+
+        <div class="upcoming-card">
+          <div class="upcoming-date">
+            <div class="month">Apr</div>
+            <div class="day">5</div>
+            <div class="time">9:00 AM</div>
+          </div>
+          <div class="upcoming-info">
+            <h4>Surf Lesson — Beginner</h4>
+            <p>Onslow Beach, CLJ-05 &bull; 90 min &bull; $45/person &bull; Board & wetsuit included</p>
+            <div class="spots">3 spots remaining</div>
+          </div>
+          <a href="#" class="btn btn-green btn-sm">Reserve</a>
+        </div>
+
+        <div class="upcoming-card">
+          <div class="upcoming-date">
+            <div class="month">Apr</div>
+            <div class="day">5</div>
+            <div class="time">6:00 PM</div>
+          </div>
+          <div class="upcoming-info">
+            <h4>SUP Yoga — Sunset Session</h4>
+            <p>Onslow Beach, CLJ-05 &bull; 60 min &bull; $35/person &bull; All equipment included</p>
+            <div class="spots low">2 spots remaining</div>
+          </div>
+          <a href="#" class="btn btn-green btn-sm">Reserve</a>
+        </div>
+
+        <div class="upcoming-card">
+          <div class="upcoming-date">
+            <div class="month">Apr</div>
+            <div class="day">10</div>
+            <div class="time">6:00 AM</div>
+          </div>
+          <div class="upcoming-info">
+            <h4>Kayak Fishing — Guided Trip</h4>
+            <p>New River Inlet &bull; 2-3 hrs &bull; $65/person &bull; Kayak & tackle included</p>
+            <div class="spots">4 spots remaining</div>
+          </div>
+          <a href="#" class="btn btn-green btn-sm">Reserve</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── YOUR GUIDES ── -->
+  <section class="instructors">
+    <div class="container">
+      <div class="section-label">Who You're With</div>
+      <h2 class="section-title">Meet Your Guides</h2>
+      <p class="section-sub">Experienced locals who genuinely love the water and want to share the stoke.</p>
+
+      <div class="instructor-grid">
+        <div class="instructor-card">
+          <div class="instructor-avatar">SP</div>
+          <h4>Shay Putnam</h4>
+          <p>Founder of DailyAdventureBox. Active-duty Marine. Years of surfing, paddling, and fishing up and down the East Coast.</p>
+        </div>
+        <div class="instructor-card">
+          <div class="instructor-avatar">+</div>
+          <h4>More Guides Coming</h4>
+          <p>We're always adding experienced friends and locals to lead sessions. Want to guide? Reach out.</p>
+        </div>
+      </div>
+
+      <!-- DISCLAIMER -->
+      <div style="max-width:700px;margin:40px auto 0;padding:20px 24px;background:var(--light);border:1px solid var(--border);border-radius:12px;text-align:center;">
+        <p style="font-size:12px;color:var(--text-mute);line-height:1.7;margin:0;">
+          <strong style="color:var(--charcoal);">Important:</strong> Our group sessions are led by experienced enthusiasts, not certified instructors. All participants must sign a liability waiver before joining any session. You are responsible for your own safety and comfort level in the water. Life jackets are available at every session.
+        </p>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>

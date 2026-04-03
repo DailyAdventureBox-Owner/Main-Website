@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DailyAdventureBox — Have a Location?</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --green: #74B93F; --sky: #5BBDD4; --yellow: #F9C926;
+    --charcoal: #2C2C2C; --dark: #1a1a1a; --light: #f9fafb;
+    --text: #1f2937; --text-mute: #6b7280; --border: #e5e7eb;
+    --radius: 16px; --shadow: 0 8px 30px rgba(0,0,0,0.08); --shadow-lg: 0 20px 60px rgba(0,0,0,0.12);
+  }
+  body { font-family: 'Inter', sans-serif; color: var(--text); background: #fff; line-height: 1.6; }
+  img { max-width: 100%; display: block; }
+  a { text-decoration: none; color: inherit; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 16px 32px; border-radius: 999px; font-family: 'Montserrat', sans-serif;
+    font-weight: 700; font-size: 14px; border: none; cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn-green { background: var(--green); color: #fff; box-shadow: 0 8px 24px rgba(116,185,63,0.35); }
+  .btn-sky { background: var(--sky); color: #fff; box-shadow: 0 8px 24px rgba(91,189,212,0.35); }
+  .btn-yellow { background: var(--yellow); color: var(--charcoal); box-shadow: 0 8px 24px rgba(249,201,38,0.35); }
+
+  /* ── HERO ── */
+  .page-hero {
+    position: relative; padding: 140px 0 80px;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: #fff; text-align: center; overflow: hidden;
+  }
+  .page-hero-bg {
+    position: absolute; inset: 0;
+    background: url('img/dji-drone-floats.jpg') center/cover no-repeat;
+    opacity: 0.15;
+  }
+  .page-hero .container { position: relative; z-index: 2; }
+  .page-hero h1 {
+    font-family: 'Bebas Neue', sans-serif; font-size: 64px;
+    letter-spacing: 2px; margin-bottom: 14px;
+  }
+  .page-hero h1 span { color: var(--yellow); }
+  .page-hero p {
+    font-size: 18px; color: rgba(255,255,255,0.65);
+    max-width: 580px; margin: 0 auto; line-height: 1.7;
+  }
+
+  .section-label {
+    font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700;
+    letter-spacing: 2.5px; text-transform: uppercase; color: var(--green);
+    text-align: center; margin-bottom: 10px;
+  }
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif; font-size: 46px; letter-spacing: 1px;
+    text-align: center; color: var(--charcoal); margin-bottom: 16px;
+  }
+  .section-sub {
+    text-align: center; font-size: 16px; color: var(--text-mute);
+    max-width: 580px; margin: 0 auto 48px; line-height: 1.7;
+  }
+
+  /* ── TWO PATHS ── */
+  .paths { padding: 80px 0; }
+  .paths-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 28px;
+  }
+  .path-card {
+    border-radius: var(--radius); border: 2px solid var(--border);
+    padding: 40px; transition: border-color 0.3s ease, transform 0.3s ease;
+  }
+  .path-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+  .path-img {
+    height: 200px; border-radius: 12px; overflow: hidden; margin-bottom: 20px;
+  }
+  .path-img img { width: 100%; height: 100%; object-fit: cover; }
+  .path-card.path-owner:hover { border-color: var(--green); }
+  .path-card.path-rep:hover { border-color: var(--sky); }
+  .path-num {
+    font-family: 'Bebas Neue', sans-serif; font-size: 48px; line-height: 1;
+    margin-bottom: 12px;
+  }
+  .path-owner .path-num { color: var(--green); }
+  .path-rep .path-num { color: var(--sky); }
+  .path-card h3 {
+    font-family: 'Bebas Neue', sans-serif; font-size: 32px;
+    color: var(--charcoal); margin-bottom: 12px; letter-spacing: 0.5px;
+  }
+  .path-card p {
+    font-size: 15px; color: var(--text-mute); line-height: 1.8; margin-bottom: 20px;
+  }
+  .path-list { list-style: none; padding: 0; margin-bottom: 24px; }
+  .path-list li {
+    padding: 8px 0; padding-left: 24px; position: relative;
+    font-size: 14px; color: var(--text); line-height: 1.6;
+  }
+  .path-list li::before {
+    content: '✓'; position: absolute; left: 0; font-weight: 700;
+  }
+  .path-owner .path-list li::before { color: var(--green); }
+  .path-rep .path-list li::before { color: var(--sky); }
+
+  /* ── HOW IT WORKS ── */
+  .process { padding: 80px 0; background: var(--light); }
+  .process-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; margin-top: 48px;
+  }
+  .process-col h3 {
+    font-family: 'Bebas Neue', sans-serif; font-size: 28px;
+    color: var(--charcoal); margin-bottom: 20px; letter-spacing: 0.5px;
+  }
+  .process-steps { display: flex; flex-direction: column; gap: 16px; }
+  .process-step {
+    display: flex; gap: 14px; align-items: flex-start;
+    padding: 16px; background: #fff; border-radius: var(--radius);
+    border: 1px solid var(--border);
+  }
+  .process-step-num {
+    width: 32px; height: 32px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Bebas Neue', sans-serif; font-size: 18px; color: #fff;
+    flex-shrink: 0;
+  }
+  .process-step h4 {
+    font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 700;
+    color: var(--charcoal); margin-bottom: 3px;
+  }
+  .process-step p { font-size: 12px; color: var(--text-mute); line-height: 1.5; margin: 0; }
+
+  /* ── FAQ ── */
+  .faq { padding: 80px 0; }
+  .faq-list { max-width: 700px; margin: 0 auto; }
+  .faq-item {
+    border-bottom: 1px solid var(--border); padding: 20px 0;
+  }
+  .faq-item h4 {
+    font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 700;
+    color: var(--charcoal); margin-bottom: 8px;
+  }
+  .faq-item p { font-size: 14px; color: var(--text-mute); line-height: 1.7; }
+
+  /* ── CONTACT FORM ── */
+  .contact-section { padding: 80px 0; background: var(--dark); color: #fff; }
+  .contact-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+  }
+  .contact-text h2 {
+    font-family: 'Bebas Neue', sans-serif; font-size: 46px; margin-bottom: 14px;
+  }
+  .contact-text p {
+    font-size: 15px; color: rgba(255,255,255,0.65); line-height: 1.7;
+  }
+  .contact-form {
+    display: flex; flex-direction: column; gap: 14px;
+  }
+  .contact-form input, .contact-form select, .contact-form textarea {
+    padding: 14px 18px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15);
+    background: rgba(255,255,255,0.06); color: #fff; font-family: 'Inter', sans-serif;
+    font-size: 14px; outline: none; transition: border-color 0.2s ease;
+  }
+  .contact-form input:focus, .contact-form select:focus, .contact-form textarea:focus {
+    border-color: var(--green);
+  }
+  .contact-form input::placeholder, .contact-form textarea::placeholder {
+    color: rgba(255,255,255,0.35);
+  }
+  .contact-form select { color: rgba(255,255,255,0.6); }
+  .contact-form select option { background: var(--dark); color: #fff; }
+  .contact-form textarea { resize: vertical; min-height: 100px; }
+
+  @media (max-width: 991px) {
+    .page-hero h1 { font-size: 48px; }
+    .paths-grid { grid-template-columns: 1fr; }
+    .process-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    .page-hero h1 { font-size: 38px; }
+    .section-title { font-size: 34px; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- ── HERO ── -->
+  <section class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="container">
+      <h1>Have a Location? <span>Let's Talk.</span></h1>
+      <p>Whether you own the property or just know a great spot — there's a way for you to earn with DailyAdventureBox.</p>
+      <div style="margin-top:24px;display:inline-flex;align-items:center;gap:10px;background:rgba(116,185,63,0.15);border:1px solid rgba(116,185,63,0.3);padding:14px 24px;border-radius:999px;">
+        <span style="font-family:Bebas Neue,sans-serif;font-size:24px;color:var(--green);">$0</span>
+        <span style="font-size:14px;color:rgba(255,255,255,0.8);font-weight:600;">We Cover All Costs — Equipment, Installation, Maintenance</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── TWO PATHS ── -->
+  <section class="paths">
+    <div class="container">
+      <div class="section-label">Two Ways to Work With Us</div>
+      <h2 class="section-title">Choose Your Path</h2>
+
+      <div class="paths-grid">
+        <!-- Property Owner -->
+        <div class="path-card path-owner">
+          <div class="path-img" style="background:linear-gradient(135deg,#e0f2fe,#bae6fd);display:flex;align-items:center;justify-content:center;">
+            <img src="img/screenshot-locker-open.png" alt="Beach resort location for DAB locker">
+          </div>
+          <div class="path-num">01</div>
+          <h3>I Own a Property</h3>
+          <p>Hotels, resorts, beaches, parks, campsites, military bases, recreation areas — if people recreate there, a DAB locker belongs there.</p>
+          <ul class="path-list">
+            <li><strong>We cover ALL costs</strong> — equipment, installation, and maintenance</li>
+            <li>Zero upfront investment, zero ongoing costs to you</li>
+            <li>You earn revenue share on every rental</li>
+            <li>Custom locker branding with your logo available</li>
+            <li>No staff required — lockers are fully automated</li>
+            <li>Attracts more visitors to your property</li>
+          </ul>
+          <a href="#contact" class="btn btn-green">Get Started</a>
+        </div>
+
+        <!-- Sales Rep -->
+        <div class="path-card path-rep">
+          <div class="path-img">
+            <img src="img/map-screenshot.png" alt="Camp Lejeune locker locations map">
+          </div>
+          <div class="path-num">02</div>
+          <h3>I Can Find Locations</h3>
+          <p>Know great spots for a DAB locker? Become a Sales Rep. You find the location, make the introduction, and earn revenue share for every site you bring in.</p>
+          <ul class="path-list">
+            <li>No experience required — we train you</li>
+            <li>Earn ongoing revenue share on your locations</li>
+            <li>Work on your own time, your own schedule</li>
+            <li>We handle contracts, installation, and operations</li>
+            <li>Perfect for service members, students, or side-hustlers</li>
+            <li>The more locations you find, the more you earn</li>
+          </ul>
+          <a href="#contact" class="btn btn-sky">Apply as Sales Rep</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PHOTO STRIP ── -->
+  <section style="padding:0;overflow:hidden;">
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;">
+      <div style="height:220px;overflow:hidden;"><img src="img/pfim3794.jpg" alt="Inspecting locker build" style="width:100%;height:100%;object-fit:cover;"></div>
+      <div style="height:220px;overflow:hidden;"><img src="img/screenshot-v2-locker.png" alt="Full locker setup at beach" style="width:100%;height:100%;object-fit:cover;"></div>
+      <div style="height:220px;overflow:hidden;"><img src="img/ocsj4353.jpg" alt="HDPE panels ready for assembly" style="width:100%;height:100%;object-fit:cover;"></div>
+      <div style="height:220px;overflow:hidden;"><img src="img/oftq5355.jpg" alt="Manufacturing floor with parts" style="width:100%;height:100%;object-fit:cover;"></div>
+    </div>
+  </section>
+
+  <!-- ── ZERO COST CALLOUT ── -->
+  <section style="padding:40px 0;background:var(--green);text-align:center;">
+    <div class="container">
+      <h2 style="font-family:Bebas Neue,sans-serif;font-size:36px;color:#fff;letter-spacing:1px;margin-bottom:6px;">We Cover All Costs. Period.</h2>
+      <p style="font-size:15px;color:rgba(255,255,255,0.85);max-width:500px;margin:0 auto;">Equipment, manufacturing, delivery, installation, maintenance, insurance — all on us. Your only job is providing the space.</p>
+    </div>
+  </section>
+
+  <!-- ── HOW IT WORKS ── -->
+  <section class="process">
+    <div class="container">
+      <div class="section-label">Simple Process</div>
+      <h2 class="section-title">How It Works</h2>
+
+      <div class="process-grid">
+        <div class="process-col">
+          <h3>For Property Owners</h3>
+          <div class="process-steps">
+            <div class="process-step">
+              <div class="process-step-num" style="background:var(--green);">1</div>
+              <div>
+                <h4>Tell Us About Your Location</h4>
+                <p>Fill out the form below. We'll review the site and reach out within 48 hours.</p>
+              </div>
+            </div>
+            <div class="process-step">
+              <div class="process-step-num" style="background:var(--green);">2</div>
+              <div>
+                <h4>We Handle Everything</h4>
+                <p>Contract, permits, manufacturing, delivery, and installation — all on us.</p>
+              </div>
+            </div>
+            <div class="process-step">
+              <div class="process-step-num" style="background:var(--green);">3</div>
+              <div>
+                <h4>Start Earning</h4>
+                <p>Locker goes live, rentals start, you earn your revenue share automatically.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="process-col">
+          <h3>For Sales Reps</h3>
+          <div class="process-steps">
+            <div class="process-step">
+              <div class="process-step-num" style="background:var(--sky);">1</div>
+              <div>
+                <h4>Apply & Get Approved</h4>
+                <p>Fill out the form, sign the Sales Rep Agreement, and you're in.</p>
+              </div>
+            </div>
+            <div class="process-step">
+              <div class="process-step-num" style="background:var(--sky);">2</div>
+              <div>
+                <h4>Find & Connect</h4>
+                <p>Scout locations and introduce us to the decision maker. We handle the pitch and contract.</p>
+              </div>
+            </div>
+            <div class="process-step">
+              <div class="process-step-num" style="background:var(--sky);">3</div>
+              <div>
+                <h4>Earn Revenue Share</h4>
+                <p>Every location you bring in earns you ongoing revenue. Passive income from your referrals.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FAQ ── -->
+  <section class="faq">
+    <div class="container">
+      <div class="section-label">Questions?</div>
+      <h2 class="section-title">Frequently Asked</h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <h4>How much does it cost to host a locker?</h4>
+          <p>Nothing. DAB covers all equipment, installation, and maintenance costs. You provide the physical space.</p>
+        </div>
+        <div class="faq-item">
+          <h4>What's the revenue share?</h4>
+          <p>Standard is 10% of rental revenue at your location. Higher rates available for premium placements.</p>
+        </div>
+        <div class="faq-item">
+          <h4>What if something breaks?</h4>
+          <p>We handle all maintenance and equipment replacement. You never touch the locker — it's fully managed by DAB.</p>
+        </div>
+        <div class="faq-item">
+          <h4>How big is the locker?</h4>
+          <p>Standard setup is one large locker (surfboards/SUPs) + one V2 small gear locker. Total footprint is about 4' x 6'. Custom configurations available.</p>
+        </div>
+        <div class="faq-item">
+          <h4>Do I need power or internet?</h4>
+          <p>No. Lockers are solar-powered with cellular connectivity. They operate completely independently.</p>
+        </div>
+        <div class="faq-item">
+          <h4>How much can I earn as a Sales Rep?</h4>
+          <p>You earn a percentage of revenue from every location you refer — for as long as that locker is active. The more locations, the more you earn.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CONTACT FORM ── -->
+  <section class="contact-section" id="contact">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-text">
+          <h2>Let's Get Started</h2>
+          <p>Fill out the form and we'll be in touch within 48 hours. Whether you own a property or want to become a Sales Rep — we want to hear from you.</p>
+        </div>
+        <form class="contact-form">
+          <input type="text" placeholder="Full Name" required>
+          <input type="email" placeholder="Email Address" required>
+          <input type="tel" placeholder="Phone Number">
+          <select>
+            <option value="" disabled selected>I am a...</option>
+            <option value="owner">Property Owner — I have a location for a locker</option>
+            <option value="rep">Sales Rep — I want to find locations and earn</option>
+            <option value="both">Both — I have a location AND want to find more</option>
+          </select>
+          <input type="text" placeholder="Location / Property Name (if applicable)">
+          <textarea placeholder="Tell us about the location or why you'd be a great Sales Rep..."></textarea>
+          <button type="submit" class="btn btn-green" style="width:100%;">Submit</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
