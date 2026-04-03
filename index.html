@@ -1799,9 +1799,19 @@
       }
     });
 
-    // Close dropdown when clicking a menu item
-    document.querySelectorAll('.nav-dropdown-menu a').forEach(function(a) {
-      a.addEventListener('click', function() {
+    // Handle anchor links — scroll parent window when in iframe
+    document.querySelectorAll('.nav-dropdown-menu a[href^="#"]').forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        var target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          var offset = target.getBoundingClientRect().top + window.scrollY;
+          if (window.self !== window.top) {
+            window.parent.postMessage({ type: 'scrollTo', offset: offset }, '*');
+          } else {
+            window.scrollTo({ top: offset - 80, behavior: 'smooth' });
+          }
+        }
         document.querySelector('.nav-dropdown').classList.remove('open');
       });
     });
