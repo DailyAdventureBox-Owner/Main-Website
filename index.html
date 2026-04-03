@@ -144,7 +144,8 @@
     z-index: 100;
     list-style: none;
   }
-  .nav-dropdown:hover .nav-dropdown-menu {
+  .nav-dropdown:hover .nav-dropdown-menu,
+  .nav-dropdown.open .nav-dropdown-menu {
     display: block;
   }
   .nav-dropdown-menu li a {
@@ -236,7 +237,7 @@
   }
   .hero-content {
     position: relative;
-    z-index: 2;
+    z-index: 4;
     width: 100%;
     margin: 0;
     padding: 140px 24px 80px 60px;
@@ -254,7 +255,7 @@
   .hero-sub {
     font-size: 19px;
     line-height: 1.7;
-    color: rgba(255,255,255,0.75);
+    color: rgba(255,255,255,0.95);
     margin-bottom: 32px;
     max-width: 500px;
   }
@@ -1212,7 +1213,7 @@
       <img class="nav-logo" src="img/dab-logo.png" alt="DailyAdventureBox">
       <ul class="nav-links">
         <li class="nav-dropdown">
-          <a href="#">Home Page</a>
+          <a href="#" onclick="this.parentElement.classList.toggle('open');return false;">Home Page</a>
           <ul class="nav-dropdown-menu">
             <li><a href="#how-it-works">How It Works</a></li>
             <li><a href="#locations">Locations</a></li>
@@ -1796,6 +1797,18 @@
       } else {
         nav.classList.remove('scrolled');
       }
+    });
+
+    // Close dropdown when clicking a menu item
+    document.querySelectorAll('.nav-dropdown-menu a').forEach(function(a) {
+      a.addEventListener('click', function() {
+        document.querySelector('.nav-dropdown').classList.remove('open');
+      });
+    });
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(e) {
+      var dd = document.querySelector('.nav-dropdown');
+      if (dd && !dd.contains(e.target)) dd.classList.remove('open');
     });
 
     // Fade-up on scroll (IntersectionObserver)
