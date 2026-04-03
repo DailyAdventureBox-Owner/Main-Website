@@ -1787,6 +1787,11 @@
        JAVASCRIPT — Scroll animations + sticky nav
   ============================================================ -->
   <script>
+    // Iframe detection — fix 100vh inside tall iframes
+    if (window.self !== window.top) {
+      document.querySelector('.hero').style.minHeight = '700px';
+    }
+
     // Sticky nav background on scroll
     window.addEventListener('scroll', function() {
       var nav = document.getElementById('mainNav');
