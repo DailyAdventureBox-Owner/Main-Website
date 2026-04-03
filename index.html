@@ -1788,10 +1788,9 @@
        JAVASCRIPT — Scroll animations + sticky nav
   ============================================================ -->
   <script>
-    // Iframe detection — fix 100vh + double scrollbar inside iframes
+    // Iframe detection — fix 100vh inside iframes
     if (window.self !== window.top) {
       document.querySelector('.hero').style.minHeight = '700px';
-      document.documentElement.style.overflow = 'hidden';
     }
 
     // Sticky nav background on scroll
