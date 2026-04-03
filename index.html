@@ -1175,13 +1175,15 @@
      RESPONSIVE
   ============================================================ */
   @media (max-width: 991px) {
-    .hero-content { grid-template-columns: 1fr; padding-top: 120px; }
+    .hero-content { grid-template-columns: 1fr; padding: 120px 24px 80px 24px; }
     .hero-visual { display: none; }
     .hero-text h1 { font-size: 58px; }
     .section-title { font-size: 40px; }
     .feature-row, .feature-row.reverse { grid-template-columns: 1fr; direction: ltr; }
+    .feature-img img { height: 280px; }
     .fa-grid { grid-template-columns: 1fr; }
     .about-grid { grid-template-columns: 1fr; }
+    .about-img img { height: 320px; }
     .bento-grid { grid-template-columns: 1fr 1fr; }
     .bento-tall { grid-row: span 1; min-height: 260px; }
     .footer-grid { grid-template-columns: 1fr 1fr; }
@@ -1212,22 +1214,56 @@
     .nav-hamburger { display: block; }
     .stats-row { grid-template-columns: 1fr 1fr; gap: 32px; }
     .hl-grid { grid-template-columns: 1fr; }
+    .hero-stats {
+      position: relative;
+      bottom: auto;
+      right: auto;
+      justify-content: center;
+      margin: -40px 24px 0;
+      z-index: 5;
+    }
+    .how-it-works, .equipment, .features, .classes,
+    .fund-adventure, .about, .partners, .have-location { padding: 70px 0; }
+    .partners-grid { grid-template-columns: 1fr; }
+    .hl-title { font-size: 42px; }
+    .fa-text h2 { font-size: 42px; }
+    .app-download h2 { font-size: 40px; }
   }
 
   @media (max-width: 640px) {
-    .hero-text h1 { font-size: 44px; }
-    .section-title { font-size: 34px; }
+    .hero-content { padding: 110px 16px 60px 16px; }
+    .hero-text h1 { font-size: 38px; }
+    .hero-sub { font-size: 16px; }
+    .section-title { font-size: 30px; }
+    .section-sub { font-size: 15px; margin-bottom: 40px; }
     .steps-grid { grid-template-columns: 1fr; }
     .classes-grid { grid-template-columns: 1fr; }
     .partners-grid { grid-template-columns: 1fr; }
     .bento-grid { grid-template-columns: 1fr; }
     .bento-wide { grid-column: span 1; }
     .fa-pricing { grid-template-columns: 1fr; }
-    .footer-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; gap: 24px; }
     .hero-buttons { flex-direction: column; }
     .btn { width: 100%; justify-content: center; }
     .stats-row { grid-template-columns: 1fr 1fr; }
-    .hero-stats { flex-wrap: wrap; gap: 20px; }
+    .hero-stats { flex-wrap: wrap; gap: 16px; margin: -30px 16px 0; padding: 14px 20px; }
+    .hero-stat strong { font-size: 32px; }
+    .hero-stat { font-size: 10px; }
+    .hero-bg-line::after { display: none; }
+    .how-it-works, .equipment, .features, .classes,
+    .fund-adventure, .about, .partners, .have-location { padding: 50px 0; }
+    .feature-row { gap: 30px; margin-bottom: 50px; }
+    .feature-text h3 { font-size: 28px; }
+    .feature-img img { height: 220px; }
+    .about-text h2 { font-size: 36px; }
+    .hl-title { font-size: 34px; }
+    .fa-text h2 { font-size: 36px; }
+    .app-download { padding: 60px 0; }
+    .app-download h2 { font-size: 34px; }
+    .locations-grid { grid-template-columns: 1fr; }
+    .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+    .social-proof { padding: 50px 0; }
+    .stat-item strong { font-size: 42px; }
   }
 </style>
 </head>
@@ -1274,10 +1310,6 @@
         <p class="hero-sub">
           Smart lockers loaded with surfboards, paddle boards, kayaks, and more — right where you recreate. Download the app, pick your gear, and the locker opens from your phone.
         </p>
-        <div class="hero-buttons">
-          <a href="https://www.dailyadventurebox.com/download-app" target="_top" class="btn btn-green">Get the App</a>
-          <a href="#locations" class="btn btn-outline">Explore Locations</a>
-        </div>
       </div>
     </div>
     <div class="hero-stats">
