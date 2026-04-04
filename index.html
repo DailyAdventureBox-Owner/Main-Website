@@ -1374,7 +1374,7 @@
       <div class="locations-grid">
         <div class="location-card">
           <div class="location-card-status"><div class="status-dot status-live"></div> Live</div>
-          <h4>CLJ-05 — Onslow Beach</h4>
+          <h4>Turtle Beach Volleyball Courts</h4>
           <p>Surfboards, paddle boards, body boards + V2 small gear locker</p>
           <div class="gear-tags">
             <span class="gear-tag">Surfboards</span>
@@ -1385,7 +1385,7 @@
         </div>
         <div class="location-card">
           <div class="location-card-status"><div class="status-dot status-live"></div> Live</div>
-          <h4>CLJ-03 — Onslow Beach</h4>
+          <h4>Onslow Beach Reservation Office</h4>
           <p>Body boards + V2 small gear locker</p>
           <div class="gear-tags">
             <span class="gear-tag">Body Boards</span>
@@ -1395,7 +1395,7 @@
         </div>
         <div class="location-card">
           <div class="location-card-status"><div class="status-dot status-live"></div> Live</div>
-          <h4>CLJ-07</h4>
+          <h4>Hospital Point Rec Area</h4>
           <p>V2 small gear locker — sports equipment, floats, games</p>
           <div class="gear-tags">
             <span class="gear-tag">Football</span>
@@ -1405,8 +1405,8 @@
         </div>
         <div class="location-card">
           <div class="location-card-status"><div class="status-dot status-coming"></div> Coming Soon</div>
-          <h4>CLJ-01, 02, 04, 06, 08</h4>
-          <p>5 additional locations in development across Camp Lejeune</p>
+          <h4>Coming Soon</h4>
+          <p>More locations coming to Camp Lejeune and beyond</p>
           <div class="gear-tags">
             <span class="gear-tag">Expanding</span>
           </div>
@@ -1570,7 +1570,7 @@
       <div class="classes-grid">
         <div class="class-card fade-up" style="opacity:0.6;">
           <div class="class-card-img">
-            <img src="img/sup-yoga.jpg" alt="Stand up paddle board yoga">
+            <img src="img/yoga-shot.jpg" alt="Stand up paddle board yoga">
             <span class="class-badge badge-yellow">Coming Soon</span>
           </div>
           <div class="class-card-body">
@@ -1584,7 +1584,7 @@
         </div>
         <div class="class-card fade-up" style="opacity:0.6;">
           <div class="class-card-img">
-            <img src="img/sup-gatorshell.jpg" alt="Surf and paddle at the beach">
+            <img src="img/surfing-shot.jpg" alt="Surfer catching a wave at Onslow Beach">
             <span class="class-badge badge-yellow">Coming Soon</span>
           </div>
           <div class="class-card-body">
@@ -1705,7 +1705,7 @@
             </div>
             <div class="timeline-item">
               <div class="timeline-year">2026</div>
-              <p><strong>Expansion</strong> — 8 CLJ locations, Fund Adventure portal, national base expansion plan</p>
+              <p><strong>Expansion</strong> — 8 Camp Lejeune locations, Fund Adventure portal, national base expansion plan</p>
             </div>
           </div>
         </div>
@@ -1926,7 +1926,7 @@
         var icon = loc.status === 'live' ? greenIcon : yellowIcon;
         var label = loc.status === 'live' ? '<span style="color:#74B93F;font-weight:700;">LIVE</span>' : '<span style="color:#F9C926;font-weight:700;">COMING SOON</span>';
         L.marker([loc.lat, loc.lng], { icon: icon }).addTo(map)
-          .bindPopup('<div style="font-family:Montserrat,sans-serif;"><strong style="font-size:13px;">' + loc.id + ' — ' + loc.name + '</strong><br><span style="font-size:11px;">' + label + '</span></div>');
+          .bindPopup('<div style="font-family:Montserrat,sans-serif;"><strong style="font-size:13px;">' + loc.name + '</strong><br><span style="font-size:11px;">' + label + '</span></div>');
       });
     })();
   </script>
