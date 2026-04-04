@@ -47,24 +47,44 @@
 
   /* ── HERO ── */
   .page-hero {
-    position: relative; padding: 140px 0 80px;
+    position: relative; padding: 0;
     background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-    color: #fff; text-align: center; overflow: hidden;
+    color: #fff; overflow: hidden;
   }
-  .page-hero-bg {
-    position: absolute; inset: 0;
-    background: url('img/bote-ad-example.png') center/cover no-repeat;
-    opacity: 0.2;
+  .hero-split {
+    display: grid; grid-template-columns: 1fr 1fr; min-height: 560px;
   }
-  .page-hero .container { position: relative; z-index: 2; }
+  .hero-text {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 80px 60px 80px 0; position: relative; z-index: 2;
+  }
+  .hero-photos {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0; position: relative;
+  }
+  .hero-photos::before {
+    content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 80px;
+    background: linear-gradient(to right, #1a1a2e, transparent); z-index: 2;
+  }
+  .hero-photo {
+    overflow: hidden; position: relative;
+  }
+  .hero-photo img {
+    width: 100%; height: 100%; object-fit: cover; min-height: 560px;
+  }
+  .hero-photo:first-child img { object-position: center; }
+  .hero-photo:last-child img { object-position: center; }
+  .hero-photo::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(26,26,46,0.2) 0%, rgba(26,26,46,0.05) 50%, rgba(26,26,46,0.3) 100%);
+  }
   .page-hero h1 {
-    font-family: 'Bebas Neue', sans-serif; font-size: 64px;
-    letter-spacing: 2px; margin-bottom: 14px;
+    font-family: 'Bebas Neue', sans-serif; font-size: 58px;
+    letter-spacing: 2px; margin-bottom: 14px; line-height: 1.05;
   }
   .page-hero h1 span { color: var(--yellow); }
   .page-hero p {
-    font-size: 18px; color: rgba(255,255,255,0.65);
-    max-width: 620px; margin: 0 auto; line-height: 1.7;
+    font-size: 17px; color: rgba(255,255,255,0.65);
+    max-width: 480px; line-height: 1.7;
   }
 
   /* ── STATS BAR ── */
@@ -231,6 +251,11 @@
   .contact-form textarea { resize: vertical; min-height: 100px; }
 
   @media (max-width: 991px) {
+    .hero-split { grid-template-columns: 1fr; }
+    .hero-text { padding: 80px 24px 40px; text-align: center; }
+    .hero-photos { min-height: 300px; }
+    .hero-photo img { min-height: 300px; }
+    .hero-photos::before { display: none; }
     .page-hero h1 { font-size: 48px; }
     .channels-grid { grid-template-columns: 1fr; }
     .showcase-grid { grid-template-columns: 1fr; }
@@ -253,13 +278,24 @@
 
   <!-- ── HERO ── -->
   <section class="page-hero">
-    <div class="page-hero-bg"></div>
-    <div class="container">
-      <h1>Advertise With <span>DailyAdventureBox</span></h1>
-      <p>Put your brand in front of active, outdoor-loving consumers — right where they recreate. On our lockers, in our app, and across our social media.</p>
-      <div style="margin-top:28px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-        <a href="#channels" class="btn btn-green">See Ad Channels</a>
-        <a href="#contact" class="btn btn-outline">Get in Touch</a>
+    <div class="hero-split">
+      <div style="display:flex;align-items:center;justify-content:flex-end;">
+        <div class="hero-text">
+          <h1>Advertise With<br><span>DailyAdventureBox</span></h1>
+          <p>Put your brand in front of active, outdoor-loving consumers — right where they recreate. On our lockers, in our app, and across our social media.</p>
+          <div style="margin-top:28px;display:flex;gap:12px;flex-wrap:wrap;">
+            <a href="#channels" class="btn btn-green">See Ad Channels</a>
+            <a href="#contact" class="btn btn-outline">Get in Touch</a>
+          </div>
+        </div>
+      </div>
+      <div class="hero-photos">
+        <div class="hero-photo">
+          <img src="img/bote-ad-example-2.jpeg" alt="BOTE branded ad panel for DAB smart locker">
+        </div>
+        <div class="hero-photo">
+          <img src="img/bote-wrapped-locker.png" alt="V2 smart locker with BOTE full wrap in production">
+        </div>
       </div>
     </div>
   </section>
@@ -355,7 +391,7 @@
     <div class="container">
       <div class="showcase-grid">
         <div class="showcase-img">
-          <img src="img/bote-ad-rendering.jpg" alt="BOTE branded DAB smart locker on the beach">
+          <img src="img/bote-wrapped-locker.png" alt="V2 smart locker with BOTE full wrap">
         </div>
         <div class="showcase-text">
           <div class="section-label" style="text-align:left;">Real Example</div>
@@ -375,9 +411,9 @@
   <!-- ── PHOTO STRIP ── -->
   <section style="padding:0;overflow:hidden;">
     <div class="photo-strip">
-      <div><img src="img/bote-ad-example.png" alt="BOTE branded panel on DAB equipment"></div>
-      <div><img src="img/bote-ad-rendering.jpg" alt="BOTE co-branded smart locker"></div>
-      <div><img src="img/bote-ad-example-2.jpeg" alt="BOTE QR code ad panel on locker"></div>
+      <div><img src="img/bote-ad-example-2.jpeg" alt="BOTE branded ad panel close-up" style="object-position:center top;"></div>
+      <div><img src="img/bote-wrapped-locker.png" alt="V2 locker with BOTE full wrap" style="object-position:center 20%;"></div>
+      <div><img src="img/bote-ad-example.png" alt="BOTE ad panel with SUP on beach" style="object-position:center top;"></div>
     </div>
   </section>
 
