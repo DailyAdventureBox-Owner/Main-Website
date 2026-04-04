@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DailyAdventureBox — Advertising Opportunities</title>
+<meta name="description" content="Advertise on smart lockers at beaches, military bases, and recreation areas. Reach active, outdoor-loving consumers where they recreate.">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --green: #74B93F; --sky: #5BBDD4; --yellow: #F9C926;
+    --charcoal: #2C2C2C; --dark: #1a1a1a; --light: #f9fafb;
+    --text: #1f2937; --text-mute: #6b7280; --border: #e5e7eb;
+    --radius: 16px; --shadow: 0 8px 30px rgba(0,0,0,0.08); --shadow-lg: 0 20px 60px rgba(0,0,0,0.12);
+  }
+  body { font-family: 'Inter', sans-serif; color: var(--text); background: #fff; line-height: 1.6; }
+  img { max-width: 100%; display: block; }
+  a { text-decoration: none; color: inherit; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 16px 32px; border-radius: 999px; font-family: 'Montserrat', sans-serif;
+    font-weight: 700; font-size: 14px; border: none; cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn-green { background: var(--green); color: #fff; box-shadow: 0 8px 24px rgba(116,185,63,0.35); }
+  .btn-sky { background: var(--sky); color: #fff; box-shadow: 0 8px 24px rgba(91,189,212,0.35); }
+  .btn-yellow { background: var(--yellow); color: var(--charcoal); box-shadow: 0 8px 24px rgba(249,201,38,0.35); }
+  .btn-outline { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.3); box-shadow: none; }
+  .btn-outline:hover { border-color: #fff; }
+
+  .section-label {
+    font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700;
+    letter-spacing: 2.5px; text-transform: uppercase; color: var(--green);
+    text-align: center; margin-bottom: 10px;
+  }
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif; font-size: 46px; letter-spacing: 1px;
+    text-align: center; color: var(--charcoal); margin-bottom: 16px;
+  }
+  .section-sub {
+    text-align: center; font-size: 16px; color: var(--text-mute);
+    max-width: 620px; margin: 0 auto 48px; line-height: 1.7;
+  }
+
+  /* ── HERO ── */
+  .page-hero {
+    position: relative; padding: 140px 0 80px;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: #fff; text-align: center; overflow: hidden;
+  }
+  .page-hero-bg {
+    position: absolute; inset: 0;
+    background: url('img/bote-ad-rendering.jpg') center/cover no-repeat;
+    opacity: 0.2;
+  }
+  .page-hero .container { position: relative; z-index: 2; }
+  .page-hero h1 {
+    font-family: 'Bebas Neue', sans-serif; font-size: 64px;
+    letter-spacing: 2px; margin-bottom: 14px;
+  }
+  .page-hero h1 span { color: var(--yellow); }
+  .page-hero p {
+    font-size: 18px; color: rgba(255,255,255,0.65);
+    max-width: 620px; margin: 0 auto; line-height: 1.7;
+  }
+
+  /* ── STATS BAR ── */
+  .stats-bar { padding: 40px 0; background: var(--charcoal); }
+  .stats-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; text-align: center;
+  }
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif; font-size: 42px; color: var(--green); line-height: 1;
+  }
+  .stat-label {
+    font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700;
+    letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-top: 6px;
+  }
+
+  /* ── AD CHANNELS ── */
+  .channels { padding: 80px 0; }
+  .channels-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .channel-card {
+    border: 2px solid var(--border); border-radius: var(--radius); padding: 40px 32px;
+    text-align: center; transition: border-color 0.3s ease, transform 0.3s ease;
+  }
+  .channel-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+  .channel-icon {
+    width: 64px; height: 64px; border-radius: 16px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px; margin: 0 auto 20px;
+  }
+  .channel-card h3 {
+    font-family: 'Bebas Neue', sans-serif; font-size: 28px;
+    color: var(--charcoal); margin-bottom: 12px; letter-spacing: 0.5px;
+  }
+  .channel-card p {
+    font-size: 14px; color: var(--text-mute); line-height: 1.7; margin-bottom: 20px;
+  }
+  .channel-features { list-style: none; padding: 0; text-align: left; margin-bottom: 24px; }
+  .channel-features li {
+    padding: 6px 0; padding-left: 22px; position: relative;
+    font-size: 13px; color: var(--text); line-height: 1.5;
+  }
+  .channel-features li::before {
+    content: ''; position: absolute; left: 0; top: 12px;
+    width: 8px; height: 8px; border-radius: 50%;
+  }
+  .channel-card:nth-child(1) .channel-features li::before { background: var(--green); }
+  .channel-card:nth-child(1):hover { border-color: var(--green); }
+  .channel-card:nth-child(2) .channel-features li::before { background: var(--sky); }
+  .channel-card:nth-child(2):hover { border-color: var(--sky); }
+  .channel-card:nth-child(3) .channel-features li::before { background: var(--yellow); }
+  .channel-card:nth-child(3):hover { border-color: var(--yellow); }
+  .channel-tag {
+    display: inline-block; font-family: 'Montserrat', sans-serif; font-size: 10px;
+    font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+    padding: 6px 14px; border-radius: 999px; margin-bottom: 16px;
+  }
+
+  /* ── SHOWCASE ── */
+  .showcase { padding: 80px 0; background: var(--light); }
+  .showcase-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center;
+  }
+  .showcase-img { border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-lg); }
+  .showcase-img img { width: 100%; height: 100%; object-fit: cover; }
+  .showcase-text h3 {
+    font-family: 'Bebas Neue', sans-serif; font-size: 36px;
+    color: var(--charcoal); margin-bottom: 16px; letter-spacing: 0.5px;
+  }
+  .showcase-text p { font-size: 15px; color: var(--text-mute); line-height: 1.8; margin-bottom: 16px; }
+  .showcase-text ul { list-style: none; padding: 0; }
+  .showcase-text ul li {
+    padding: 6px 0; padding-left: 22px; position: relative;
+    font-size: 14px; color: var(--text); line-height: 1.6;
+  }
+  .showcase-text ul li::before {
+    content: '✓'; position: absolute; left: 0; font-weight: 700; color: var(--green);
+  }
+
+  /* ── AUDIENCE ── */
+  .audience { padding: 80px 0; }
+  .audience-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .audience-card {
+    padding: 28px; border-radius: var(--radius); border: 1px solid var(--border);
+    text-align: center; transition: transform 0.2s ease;
+  }
+  .audience-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+  .audience-icon { font-size: 32px; margin-bottom: 12px; }
+  .audience-card h4 {
+    font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 700;
+    color: var(--charcoal); margin-bottom: 6px;
+  }
+  .audience-card p { font-size: 12px; color: var(--text-mute); line-height: 1.5; }
+
+  /* ── PHOTO STRIP ── */
+  .photo-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; }
+  .photo-strip div { height: 260px; overflow: hidden; }
+  .photo-strip img { width: 100%; height: 100%; object-fit: cover; }
+
+  /* ── PRICING ── */
+  .pricing { padding: 80px 0; background: var(--light); }
+  .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .pricing-card {
+    border-radius: var(--radius); border: 2px solid var(--border); padding: 36px;
+    background: #fff; text-align: center; transition: transform 0.3s ease, border-color 0.3s ease;
+  }
+  .pricing-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+  .pricing-card.featured { border-color: var(--green); position: relative; }
+  .pricing-card.featured::before {
+    content: 'MOST POPULAR'; position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+    background: var(--green); color: #fff; font-family: 'Montserrat', sans-serif;
+    font-size: 10px; font-weight: 700; letter-spacing: 1.5px; padding: 5px 16px;
+    border-radius: 999px;
+  }
+  .pricing-card h3 {
+    font-family: 'Bebas Neue', sans-serif; font-size: 28px;
+    color: var(--charcoal); margin-bottom: 8px;
+  }
+  .pricing-card .price {
+    font-family: 'Bebas Neue', sans-serif; font-size: 42px; color: var(--green);
+    line-height: 1; margin-bottom: 4px;
+  }
+  .pricing-card .price-sub {
+    font-size: 12px; color: var(--text-mute); margin-bottom: 20px;
+  }
+  .pricing-card .pricing-features { list-style: none; padding: 0; text-align: left; margin-bottom: 24px; }
+  .pricing-card .pricing-features li {
+    padding: 6px 0; padding-left: 22px; position: relative;
+    font-size: 13px; color: var(--text); line-height: 1.5;
+  }
+  .pricing-card .pricing-features li::before {
+    content: '✓'; position: absolute; left: 0; font-weight: 700; color: var(--green);
+  }
+
+  /* ── FAQ ── */
+  .faq { padding: 80px 0; }
+  .faq-list { max-width: 700px; margin: 0 auto; }
+  .faq-item { border-bottom: 1px solid var(--border); padding: 20px 0; }
+  .faq-item h4 {
+    font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 700;
+    color: var(--charcoal); margin-bottom: 8px;
+  }
+  .faq-item p { font-size: 14px; color: var(--text-mute); line-height: 1.7; }
+
+  /* ── CONTACT ── */
+  .contact-section { padding: 80px 0; background: var(--dark); color: #fff; }
+  .contact-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+  }
+  .contact-text h2 {
+    font-family: 'Bebas Neue', sans-serif; font-size: 46px; margin-bottom: 14px;
+  }
+  .contact-text p {
+    font-size: 15px; color: rgba(255,255,255,0.65); line-height: 1.7;
+  }
+  .contact-form { display: flex; flex-direction: column; gap: 14px; }
+  .contact-form input, .contact-form select, .contact-form textarea {
+    padding: 14px 18px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15);
+    background: rgba(255,255,255,0.06); color: #fff; font-family: 'Inter', sans-serif;
+    font-size: 14px; outline: none; transition: border-color 0.2s ease;
+  }
+  .contact-form input:focus, .contact-form select:focus, .contact-form textarea:focus { border-color: var(--green); }
+  .contact-form input::placeholder, .contact-form textarea::placeholder { color: rgba(255,255,255,0.35); }
+  .contact-form select { color: rgba(255,255,255,0.6); }
+  .contact-form select option { background: var(--dark); color: #fff; }
+  .contact-form textarea { resize: vertical; min-height: 100px; }
+
+  @media (max-width: 991px) {
+    .page-hero h1 { font-size: 48px; }
+    .channels-grid { grid-template-columns: 1fr; }
+    .showcase-grid { grid-template-columns: 1fr; }
+    .audience-grid { grid-template-columns: 1fr 1fr; }
+    .pricing-grid { grid-template-columns: 1fr; max-width: 440px; margin: 0 auto; }
+    .stats-grid { grid-template-columns: 1fr 1fr; gap: 20px; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .photo-strip { grid-template-columns: 1fr; }
+    .photo-strip div { height: 200px; }
+  }
+  @media (max-width: 640px) {
+    .page-hero h1 { font-size: 38px; }
+    .section-title { font-size: 34px; }
+    .audience-grid { grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- ── HERO ── -->
+  <section class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="container">
+      <h1>Advertise With <span>DailyAdventureBox</span></h1>
+      <p>Put your brand in front of active, outdoor-loving consumers — right where they recreate. On our lockers, in our app, and across our social media.</p>
+      <div style="margin-top:28px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+        <a href="#channels" class="btn btn-green">See Ad Channels</a>
+        <a href="#contact" class="btn btn-outline">Get in Touch</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── STATS ── -->
+  <section class="stats-bar">
+    <div class="container">
+      <div class="stats-grid">
+        <div>
+          <div class="stat-num">8</div>
+          <div class="stat-label">Locker Locations</div>
+        </div>
+        <div>
+          <div class="stat-num">24/7</div>
+          <div class="stat-label">Locker Visibility</div>
+        </div>
+        <div>
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Outdoor Audience</div>
+        </div>
+        <div>
+          <div class="stat-num">3</div>
+          <div class="stat-label">Ad Channels</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── AD CHANNELS ── -->
+  <section class="channels" id="channels">
+    <div class="container">
+      <div class="section-label">Advertising Channels</div>
+      <h2 class="section-title">Three Ways to Reach Our Audience</h2>
+      <p class="section-sub">Whether you want physical presence at the beach, digital placement in our app, or exposure across our social platforms — we have a channel for you.</p>
+
+      <div class="channels-grid">
+        <!-- LOCKER ADS -->
+        <div class="channel-card">
+          <div class="channel-icon" style="background:rgba(116,185,63,0.1);color:var(--green);">&#128230;</div>
+          <div class="channel-tag" style="background:rgba(116,185,63,0.1);color:var(--green);">Physical</div>
+          <h3>Locker Branding</h3>
+          <p>Your brand wrapped directly on our smart lockers — seen by every person who walks by, every single day.</p>
+          <ul class="channel-features">
+            <li>Full or partial locker wrap with your branding</li>
+            <li>QR code panel linking to your site or promotion</li>
+            <li>Placed at beaches, parks, and military recreation areas</li>
+            <li>24/7 visibility — lockers never close</li>
+            <li>High foot traffic locations near water and recreation</li>
+            <li>Custom design collaboration with our team</li>
+          </ul>
+          <a href="#contact" class="btn btn-green" style="width:100%;">Get Started</a>
+        </div>
+
+        <!-- APP ADS -->
+        <div class="channel-card">
+          <div class="channel-icon" style="background:rgba(91,189,212,0.1);color:var(--sky);">&#128241;</div>
+          <div class="channel-tag" style="background:rgba(91,189,212,0.1);color:var(--sky);">Digital</div>
+          <h3>In-App Placement</h3>
+          <p>Feature your brand inside the DailyAdventureBox app — seen by every renter before, during, and after their session.</p>
+          <ul class="channel-features">
+            <li>Sponsored banner on the home screen</li>
+            <li>Featured gear or product recommendation cards</li>
+            <li>Post-rental "You might also like" placements</li>
+            <li>Push notification sponsorship for local deals</li>
+            <li>Exclusive promo codes distributed to renters</li>
+            <li>Direct link to your website or landing page</li>
+          </ul>
+          <a href="#contact" class="btn btn-sky" style="width:100%;">Get Started</a>
+        </div>
+
+        <!-- SOCIAL ADS -->
+        <div class="channel-card">
+          <div class="channel-icon" style="background:rgba(249,201,38,0.1);color:var(--yellow);">&#127909;</div>
+          <div class="channel-tag" style="background:rgba(249,201,38,0.1);color:#c5960a;">Social</div>
+          <h3>Social Media</h3>
+          <p>Get your product or brand featured across our growing social media platforms — TikTok, Instagram, YouTube, and Facebook.</p>
+          <ul class="channel-features">
+            <li>Branded content — your product in our adventure videos</li>
+            <li>Dedicated product review or unboxing post</li>
+            <li>Story takeovers and sponsored posts</li>
+            <li>Your brand tagged and linked in every post</li>
+            <li>Cross-posted to TikTok, Reels, YouTube Shorts, Facebook</li>
+            <li>Authentic, adventure-focused content your audience trusts</li>
+          </ul>
+          <a href="#contact" class="btn btn-yellow" style="width:100%;">Get Started</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SHOWCASE ── -->
+  <section class="showcase">
+    <div class="container">
+      <div class="showcase-grid">
+        <div class="showcase-img">
+          <img src="img/bote-ad-rendering.jpg" alt="BOTE branded DAB smart locker on the beach">
+        </div>
+        <div class="showcase-text">
+          <div class="section-label" style="text-align:left;">Real Example</div>
+          <h3>BOTE x DailyAdventureBox</h3>
+          <p>BOTE — a premium paddle board and water gear brand — partnered with DAB to wrap our lockers with their branding. Every locker becomes a billboard that also holds their gear inside.</p>
+          <ul>
+            <li>Full locker wrap with BOTE branding and lifestyle imagery</li>
+            <li>QR code panel on the locker linking directly to BOTE's website</li>
+            <li>BOTE gear featured inside the locker for renters to experience firsthand</li>
+            <li>Brand visibility at every DAB beach location, 24/7</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PHOTO STRIP ── -->
+  <section style="padding:0;overflow:hidden;">
+    <div class="photo-strip">
+      <div><img src="img/bote-ad-example.png" alt="BOTE branded panel on DAB equipment"></div>
+      <div><img src="img/bote-ad-rendering.jpg" alt="BOTE co-branded smart locker"></div>
+      <div><img src="img/bote-ad-example-2.jpeg" alt="BOTE QR code ad panel on locker"></div>
+    </div>
+  </section>
+
+  <!-- ── WHO SEES YOUR AD ── -->
+  <section class="audience">
+    <div class="container">
+      <div class="section-label">Your Audience</div>
+      <h2 class="section-title">Who Sees Your Brand</h2>
+      <p class="section-sub">Our lockers are placed where active people spend their free time. Your brand gets seen by people who are already in the mindset to buy.</p>
+
+      <div class="audience-grid">
+        <div class="audience-card">
+          <div class="audience-icon">&#127946;</div>
+          <h4>Active Lifestyle</h4>
+          <p>Surfers, paddlers, kayakers, beach-goers — people who live outdoors and spend on gear.</p>
+        </div>
+        <div class="audience-card">
+          <div class="audience-icon">&#127894;</div>
+          <h4>Military Community</h4>
+          <p>Service members, families, and spouses at Camp Lejeune and expanding to bases nationwide.</p>
+        </div>
+        <div class="audience-card">
+          <div class="audience-icon">&#128106;</div>
+          <h4>Families & Groups</h4>
+          <p>Weekend beach-goers, family vacationers, and group outings looking for activities.</p>
+        </div>
+        <div class="audience-card">
+          <div class="audience-icon">&#127796;</div>
+          <h4>Tourists & Visitors</h4>
+          <p>Travelers at beach destinations who don't bring gear — the perfect demo for outdoor brands.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PRICING ── -->
+  <section class="pricing" id="pricing">
+    <div class="container">
+      <div class="section-label">Investment</div>
+      <h2 class="section-title">Advertising Packages</h2>
+      <p class="section-sub">Flexible packages for brands of every size. Start with one locker or go all-in across every channel.</p>
+
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <h3>Locker Starter</h3>
+          <div class="price">Custom</div>
+          <div class="price-sub">per locker / per month</div>
+          <ul class="pricing-features">
+            <li>QR code panel on one locker</li>
+            <li>Your logo and branding on panel</li>
+            <li>Link to your website or promo</li>
+            <li>Monthly performance report</li>
+          </ul>
+          <a href="#contact" class="btn btn-green" style="width:100%;">Contact Us</a>
+        </div>
+        <div class="pricing-card featured">
+          <h3>Brand Partner</h3>
+          <div class="price">Custom</div>
+          <div class="price-sub">per month — most brands start here</div>
+          <ul class="pricing-features">
+            <li>Full locker wrap at one location</li>
+            <li>In-app sponsored banner</li>
+            <li>2 social media posts per month</li>
+            <li>QR code panel with tracking</li>
+            <li>Monthly analytics and reach report</li>
+            <li>Custom design collaboration</li>
+          </ul>
+          <a href="#contact" class="btn btn-green" style="width:100%;">Contact Us</a>
+        </div>
+        <div class="pricing-card">
+          <h3>Full Partnership</h3>
+          <div class="price">Custom</div>
+          <div class="price-sub">per month — the complete package</div>
+          <ul class="pricing-features">
+            <li>Full locker wraps at all locations</li>
+            <li>In-app banner + product cards</li>
+            <li>4+ social media posts per month</li>
+            <li>Exclusive product placement in lockers</li>
+            <li>Co-branded content creation</li>
+            <li>Dedicated account manager</li>
+          </ul>
+          <a href="#contact" class="btn btn-green" style="width:100%;">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FAQ ── -->
+  <section class="faq">
+    <div class="container">
+      <div class="section-label">Questions?</div>
+      <h2 class="section-title">Frequently Asked</h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <h4>What types of brands work best with DAB?</h4>
+          <p>Outdoor recreation brands, sunscreen, surf/SUP brands, hydration products, sports gear, local businesses (restaurants, bars, hotels), fitness brands, and adventure tourism companies.</p>
+        </div>
+        <div class="faq-item">
+          <h4>How long are advertising commitments?</h4>
+          <p>Minimum 3 months recommended to see impact, but we offer month-to-month flexibility. Seasonal packages are also available for summer campaigns.</p>
+        </div>
+        <div class="faq-item">
+          <h4>Can I put my own products inside the lockers?</h4>
+          <p>Yes. Full Partnership includes product placement inside the lockers. Renters can try your gear firsthand — the best advertising is experience.</p>
+        </div>
+        <div class="faq-item">
+          <h4>Where are the lockers located?</h4>
+          <p>Currently at Camp Lejeune, NC — including Onslow Beach, Turtle Beach, and Hospital Point. Expanding to more bases and beaches nationwide in 2026-2027.</p>
+        </div>
+        <div class="faq-item">
+          <h4>Do you provide analytics?</h4>
+          <p>Yes. All packages include monthly reports with QR code scans, app impressions, social media reach, and engagement metrics.</p>
+        </div>
+        <div class="faq-item">
+          <h4>Who designs the locker wraps?</h4>
+          <p>Our team handles design and production. You provide your brand assets and we create the wrap. You approve everything before it goes on the locker.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CONTACT ── -->
+  <section class="contact-section" id="contact">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-text">
+          <h2>Let's Put Your Brand on the Beach</h2>
+          <p>Tell us about your brand and goals. We'll put together a custom advertising package that puts you in front of the right audience — where they live, play, and recreate.</p>
+          <div style="margin-top:24px;display:flex;flex-direction:column;gap:12px;">
+            <div style="display:flex;align-items:center;gap:10px;">
+              <span style="color:var(--green);font-weight:700;">&#9993;</span>
+              <span style="color:rgba(255,255,255,0.7);font-size:14px;">shay@dailyadventurebox.com</span>
+            </div>
+          </div>
+        </div>
+        <form class="contact-form">
+          <input type="text" placeholder="Full Name" required>
+          <input type="email" placeholder="Email Address" required>
+          <input type="text" placeholder="Company / Brand Name">
+          <select>
+            <option value="" disabled selected>I'm interested in...</option>
+            <option value="locker">Locker Branding</option>
+            <option value="app">In-App Advertising</option>
+            <option value="social">Social Media Sponsorship</option>
+            <option value="full">Full Partnership (All Channels)</option>
+            <option value="custom">Custom Package</option>
+          </select>
+          <textarea placeholder="Tell us about your brand and what you're looking for..."></textarea>
+          <button type="submit" class="btn btn-green" style="width:100%;">Send Inquiry</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+<script>
+  function sendHeight() {
+    window.parent.postMessage({ type: "resize", height: document.body.scrollHeight }, "*");
+  }
+  window.addEventListener("load", sendHeight);
+  window.addEventListener("resize", sendHeight);
+  setInterval(sendHeight, 500);
+</script>
+</body>
+</html>
