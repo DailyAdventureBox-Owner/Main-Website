@@ -71,8 +71,8 @@
   .hero-photo img {
     width: 100%; height: 100%; object-fit: cover; min-height: 560px;
   }
-  .hero-photo:first-child img { object-position: center; }
-  .hero-photo:last-child img { object-position: center; }
+  .hero-photo:first-child img { object-position: center center; }
+  .hero-photo:last-child img { object-position: center 30%; }
   .hero-photo::after {
     content: ''; position: absolute; inset: 0;
     background: linear-gradient(180deg, rgba(26,26,46,0.2) 0%, rgba(26,26,46,0.05) 50%, rgba(26,26,46,0.3) 100%);
@@ -146,8 +146,8 @@
   .showcase-grid {
     display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center;
   }
-  .showcase-img { border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-lg); }
-  .showcase-img img { width: 100%; height: 100%; object-fit: cover; }
+  .showcase-img { border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-lg); background: var(--light); display:flex; align-items:center; justify-content:center; }
+  .showcase-img img { width: 100%; height: auto; object-fit: contain; }
   .showcase-text h3 {
     font-family: 'Bebas Neue', sans-serif; font-size: 36px;
     color: var(--charcoal); margin-bottom: 16px; letter-spacing: 0.5px;
@@ -408,12 +408,15 @@
     </div>
   </section>
 
-  <!-- ── PHOTO STRIP ── -->
-  <section style="padding:0;overflow:hidden;">
-    <div class="photo-strip">
-      <div><img src="img/bote-ad-example-2.jpeg" alt="BOTE branded ad panel close-up" style="object-position:center top;"></div>
-      <div><img src="img/bote-wrapped-locker.png" alt="V2 locker with BOTE full wrap" style="object-position:center 20%;"></div>
-      <div><img src="img/bote-ad-example.png" alt="BOTE ad panel with SUP on beach" style="object-position:center top;"></div>
+  <!-- ── VIDEO ── -->
+  <section style="padding:60px 0;background:var(--light);">
+    <div class="container" style="max-width:900px;">
+      <div class="section-label">See It In Action</div>
+      <h2 class="section-title">Our Locker Locations</h2>
+      <p class="section-sub">See where DAB smart lockers are deployed — and where your brand could be.</p>
+      <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:var(--radius);box-shadow:var(--shadow-lg);">
+        <iframe src="https://www.youtube.com/embed/vHNUXZhQkwE" title="DAB Locker Locations" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+      </div>
     </div>
   </section>
 
