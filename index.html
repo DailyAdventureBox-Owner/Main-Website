@@ -1911,7 +1911,7 @@
         if (target) {
           var offset = target.getBoundingClientRect().top + window.scrollY;
           if (window.self !== window.top) {
-            window.parent.postMessage({ type: 'scrollTo', offset: offset }, '*');
+            window.parent.postMessage({ type: 'scrollTo', offset: offset }, 'https://www.dailyadventurebox.com');
           } else {
             window.scrollTo({ top: offset - 80, behavior: 'smooth' });
           }
@@ -1973,7 +1973,7 @@
 
   <script>
     function sendHeight() {
-      window.parent.postMessage({ type: 'resize', height: document.body.scrollHeight }, '*');
+      window.parent.postMessage({ type: 'resize', height: document.body.scrollHeight }, 'https://www.dailyadventurebox.com');
     }
     window.addEventListener('load', sendHeight);
     window.addEventListener('resize', sendHeight);

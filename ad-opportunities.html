@@ -684,7 +684,7 @@
 
 <script>
   function sendHeight() {
-    window.parent.postMessage({ type: "resize", height: document.body.scrollHeight }, "*");
+    window.parent.postMessage({ type: "resize", height: document.body.scrollHeight }, "https://www.dailyadventurebox.com");
   }
   window.addEventListener("load", sendHeight);
   window.addEventListener("resize", sendHeight);
