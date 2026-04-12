@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CLJ-05 Equipment — Mobile Mockup</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --green: #74B93F; --sky: #5BBDD4; --yellow: #F9C926;
+    --charcoal: #2C2C2C; --dark: #1a1a1a; --light: #f5f5f5;
+  }
+  body {
+    font-family: 'Inter', sans-serif; background: #c8c8c8;
+    display: flex; justify-content: center; align-items: flex-start;
+    min-height: 100vh; padding: 40px 20px;
+  }
+
+  /* iPhone frame */
+  .phone-frame {
+    width: 375px; height: 812px;
+    background: #fff; border-radius: 44px;
+    box-shadow: 0 20px 80px rgba(0,0,0,0.3), inset 0 0 0 3px #1a1a1a;
+    overflow: hidden; display: flex; flex-direction: column;
+  }
+
+  /* Notch */
+  .status-bar {
+    height: 50px; background: var(--yellow); flex-shrink: 0;
+    position: relative;
+  }
+  .status-bar::before {
+    content: ''; position: absolute; top: 8px; left: 50%; transform: translateX(-50%);
+    width: 120px; height: 28px; background: #000; border-radius: 20px;
+  }
+
+  /* ── KEEP: Yellow location header ── */
+  .location-header {
+    background: var(--yellow); padding: 0 20px 16px; flex-shrink: 0;
+  }
+  .location-back {
+    display: flex; align-items: center; gap: 10px; margin-bottom: 10px;
+  }
+  .location-back .arrow { font-size: 22px; color: var(--charcoal); }
+  .location-back span {
+    font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 700; color: var(--charcoal);
+  }
+  .location-meta { display: flex; align-items: center; gap: 12px; }
+  .location-icon {
+    width: 50px; height: 50px; background: rgba(255,255,255,0.4);
+    border-radius: 10px; display: flex; align-items: center; justify-content: center;
+    font-size: 26px;
+  }
+  .location-details p { font-size: 11px; color: var(--charcoal); line-height: 1.5; }
+
+  /* ── KEEP: Scan other unit ── */
+  .scan-row {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 12px 0; background: #fff; border-bottom: 1px solid #e5e7eb;
+    flex-shrink: 0;
+  }
+  .scan-row span { font-size: 13px; color: var(--charcoal); font-weight: 500; }
+  .qr-icon { font-size: 16px; }
+
+  /* ── KEEP: Rent from / Rent to ── */
+  .time-section { padding: 14px 20px; flex-shrink: 0; background: #fff; }
+  .time-label { font-size: 13px; font-weight: 600; color: var(--charcoal); margin-bottom: 8px; }
+  .time-row { display: flex; gap: 10px; margin-bottom: 14px; }
+  .time-input {
+    flex: 1; display: flex; align-items: center; justify-content: space-between;
+    padding: 10px 12px; background: #f3f4f6; border-radius: 10px;
+    font-size: 13px; color: #374151;
+  }
+  .time-input .icon { font-size: 16px; color: #6b7280; }
+
+  /* ── NEW: Available items header ── */
+  .items-header {
+    padding: 14px 20px 8px; background: #fff; flex-shrink: 0;
+    border-top: 1px solid #e5e7eb;
+  }
+  .items-header h3 {
+    font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 700; color: var(--charcoal);
+  }
+  .items-header p { font-size: 12px; color: #9ca3af; margin-top: 2px; }
+
+  /* ── NEW: Full-width photo cards ── */
+  .app-content {
+    flex: 1; overflow-y: auto; padding: 8px 16px 24px;
+    display: flex; flex-direction: column; gap: 12px;
+    background: #fff;
+  }
+  .app-content::-webkit-scrollbar { display: none; }
+
+  .equip-card {
+    position: relative; border-radius: 14px; overflow: hidden;
+    min-height: 160px; flex-shrink: 0;
+  }
+  .equip-card-img { position: absolute; inset: 0; }
+  .equip-card-img img { width: 100%; height: 100%; object-fit: cover; }
+  .equip-card-body {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.25) 55%, rgba(0,0,0,0.05) 100%);
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 14px 16px;
+  }
+  .equip-card-info h4 {
+    font-family: 'Bebas Neue', sans-serif; font-size: 22px; font-weight: 400;
+    color: #fff; letter-spacing: 0.5px; line-height: 1.1; margin-bottom: 1px;
+  }
+  .equip-card-info p {
+    font-size: 10px; color: rgba(255,255,255,0.5); line-height: 1.3; margin-bottom: 8px;
+  }
+  .equip-card-bottom {
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .equip-price {
+    font-family: 'Bebas Neue', sans-serif; font-size: 26px; color: var(--green); line-height: 1;
+  }
+  .equip-price span {
+    font-family: 'Inter', sans-serif; font-size: 9px; color: rgba(255,255,255,0.4);
+  }
+  .equip-rent-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 9px 22px; border-radius: 999px; border: none;
+    font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 12px;
+    background: var(--green); color: #fff;
+    box-shadow: 0 4px 12px rgba(116,185,63,0.4);
+    text-decoration: none;
+  }
+</style>
+</head>
+<body>
+
+  <div class="phone-frame">
+    <!-- Notch -->
+    <div class="status-bar"></div>
+
+    <!-- ── SAME: Yellow header ── -->
+    <div class="location-header">
+      <div class="location-back">
+        <span class="arrow">&#8249;</span>
+        <span>Turtle Beach Gazebo</span>
+      </div>
+      <div class="location-meta">
+        <div class="location-icon">&#127965;</div>
+        <div class="location-details">
+          <p>Turtle Beach Gazebo, Ocean Dr, Sneads Ferry,...</p>
+          <p>Works: 5 AM – 7:30 PM</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── SAME: Scan other unit ── -->
+    <div class="scan-row">
+      <span class="qr-icon">&#9641;&#9641;</span>
+      <span>Scan other unit</span>
+    </div>
+
+    <!-- ── SAME: Rent from / Rent to ── -->
+    <div class="time-section">
+      <div class="time-label">Rent from</div>
+      <div class="time-row">
+        <div class="time-input">04/04/2026 <span class="icon">&#128197;</span></div>
+        <div class="time-input">10:30 AM <span class="icon">&#128336;</span></div>
+      </div>
+      <div class="time-label">Rent to</div>
+      <div class="time-row" style="margin-bottom:0">
+        <div class="time-input">04/04/2026 <span class="icon">&#128197;</span></div>
+        <div class="time-input">11:30 AM <span class="icon">&#128336;</span></div>
+      </div>
+    </div>
+
+    <!-- ── SAME: Available items label ── -->
+    <div class="items-header">
+      <h3>Available Items (7)</h3>
+      <p>Choose one item to book your adventure</p>
+    </div>
+
+    <!-- ── NEW: Full-width photo cards ── -->
+    <div class="app-content">
+
+      <div class="equip-card">
+        <div class="equip-card-img">
+          <img src="img/surfing-shot-3.jpg" alt="Contour Surfboard">
+        </div>
+        <div class="equip-card-body">
+          <div class="equip-card-info">
+            <h4>Billabong Contour Surfboard</h4>
+            <p>6'2" performance shape for intermediate+ riders</p>
+          </div>
+          <div class="equip-card-bottom">
+            <div class="equip-price">$15 <span>+tax/hr</span></div>
+            <a href="#" class="equip-rent-btn">Rent</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="equip-card">
+        <div class="equip-card-img">
+          <img src="img/surfing-shot.jpg" alt="Wavestorm Surfboard">
+        </div>
+        <div class="equip-card-body">
+          <div class="equip-card-info">
+            <h4>Wavestorm Classic Surfboard</h4>
+            <p>8' soft-top foam board. Perfect for beginners.</p>
+          </div>
+          <div class="equip-card-bottom">
+            <div class="equip-price">$15 <span>+tax/hr</span></div>
+            <a href="#" class="equip-rent-btn">Rent</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="equip-card">
+        <div class="equip-card-img">
+          <img src="img/sup-rackham-fusion.png" alt="Thurso Body Board">
+        </div>
+        <div class="equip-card-body">
+          <div class="equip-card-info">
+            <h4>Thurso Body Board</h4>
+            <p>Lightweight foam board. Ride the shore break.</p>
+          </div>
+          <div class="equip-card-bottom">
+            <div class="equip-price">$10 <span>+tax/hr</span></div>
+            <a href="#" class="equip-rent-btn">Rent</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="equip-card">
+        <div class="equip-card-img">
+          <img src="img/sports-bundle.png" alt="Outdoor Sports">
+        </div>
+        <div class="equip-card-body">
+          <div class="equip-card-info">
+            <h4>Outdoor Sports</h4>
+            <p>Football, basketball, soccer — name-brand gear.</p>
+          </div>
+          <div class="equip-card-bottom">
+            <div class="equip-price">$5 <span>+tax/hr</span></div>
+            <a href="#" class="equip-rent-btn">Rent</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="equip-card">
+        <div class="equip-card-img">
+          <img src="img/b33i2873.jpg" alt="BOTE Hangout Chair">
+        </div>
+        <div class="equip-card-body">
+          <div class="equip-card-info">
+            <h4>BOTE Hangout Chair</h4>
+            <p>Inflatable floating chair. Relax on the water.</p>
+          </div>
+          <div class="equip-card-bottom">
+            <div class="equip-price">$5 <span>+tax/hr</span></div>
+            <a href="#" class="equip-rent-btn">Rent</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="equip-card">
+        <div class="equip-card-img">
+          <img src="img/clj03-02.png" alt="Spike Ball">
+        </div>
+        <div class="equip-card-body">
+          <div class="equip-card-info">
+            <h4>Spike Ball</h4>
+            <p>Competitive beach game. 2v2 or free-for-all.</p>
+          </div>
+          <div class="equip-card-bottom">
+            <div class="equip-price">$5 <span>+tax/hr</span></div>
+            <a href="#" class="equip-rent-btn">Rent</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="equip-card">
+        <div class="equip-card-img">
+          <img src="img/clj03-03.png" alt="Beach Chair">
+        </div>
+        <div class="equip-card-body">
+          <div class="equip-card-info">
+            <h4>Beach Chair + Shade</h4>
+            <p>Reclining chair with UV canopy. Set up in seconds.</p>
+          </div>
+          <div class="equip-card-bottom">
+            <div class="equip-price">$5 <span>+tax/hr</span></div>
+            <a href="#" class="equip-rent-btn">Rent</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>
