@@ -58,7 +58,6 @@
         <ul class="nav-dropdown-menu">\
           <li><a href="https://www.dailyadventurebox.com/equipment" target="_top">Equipment</a></li>\
           <li><a href="https://www.dailyadventurebox.com/experiences" target="_top">Experiences</a></li>\
-          <li><a href="https://www.dailyadventurebox.com/classes" target="_top">Classes</a></li>\
           <li><a href="https://www.dailyadventurebox.com/have-a-location" target="_top">Have a Location?</a></li>\
           <li><a href="https://www.dailyadventurebox.com/partnership-advertismentopportunities" target="_top">Advertise on Boxes</a></li>\
         </ul>\
