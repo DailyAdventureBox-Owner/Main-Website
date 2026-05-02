@@ -223,7 +223,7 @@
             <li>No staff required — lockers are fully automated</li>
             <li>Attracts more visitors to your property</li>
           </ul>
-          <a href="#contact" class="btn btn-green">Get Started</a>
+          <a href="#contact" class="btn btn-green" onclick="event.preventDefault();var el=document.getElementById('contact');if(el){var off=el.getBoundingClientRect().top+window.scrollY;window.parent.postMessage({type:'scrollTo',offset:off},'*');el.scrollIntoView({behavior:'smooth'});}">Get Started</a>
         </div>
 
         <!-- Sales Rep -->
@@ -242,7 +242,7 @@
             <li>Perfect for service members, students, or side-hustlers</li>
             <li>The more locations you find, the more you earn</li>
           </ul>
-          <a href="#contact" class="btn btn-sky">Apply as Sales Rep</a>
+          <a href="#contact" class="btn btn-sky" onclick="event.preventDefault();var el=document.getElementById('contact');if(el){var off=el.getBoundingClientRect().top+window.scrollY;window.parent.postMessage({type:'scrollTo',offset:off},'*');el.scrollIntoView({behavior:'smooth'});}">Apply as Sales Rep</a>
         </div>
       </div>
     </div>
