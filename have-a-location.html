@@ -406,7 +406,8 @@
               location_name: document.getElementById('lf_location').value.trim() || null,
               message:   document.getElementById('lf_message').value.trim() || null
             };
-            var {error} = await supa.from('location_leads').insert(payload);
+            payload.source = 'location';
+            var {error} = await supa.from('website_submissions').insert(payload);
             msg.style.display = 'block';
             if(error){
               msg.style.background = '#fee2e2'; msg.style.color = '#b91c1c';
