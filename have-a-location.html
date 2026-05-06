@@ -12,72 +12,89 @@
     body { font-family: 'Inter', sans-serif; color: #2C2C2C; background: #1a1a1a; }
 
     /* ── GATE ── */
-    html, body { height: 100%; background: #0a1a0a; }
+    html, body { height: 100%; background: #071407; }
     #gate {
-      background: #0d1a0d url('img/bote-lifestyle.jpg') center/cover no-repeat;
+      background: url('img/bote-lifestyle.jpg') center/cover no-repeat;
       min-height: 100vh;
-      padding: 60px 24px 80px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      padding: 48px 24px;
       position: relative;
     }
     #gate::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: rgba(0,0,0,0.28);
+      background: linear-gradient(160deg, rgba(0,0,0,0.55) 0%, rgba(0,20,0,0.45) 100%);
     }
     #gate-card {
-      position: relative; z-index: 1;
-      background: #fff;
-      border-radius: 18px;
-      padding: 44px 40px;
-      max-width: 420px;
+      position: relative;
+      z-index: 1;
       width: 100%;
+      max-width: 460px;
+      background: rgba(8, 22, 8, 0.72);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(116,185,63,0.25);
+      border-radius: 20px;
+      padding: 52px 44px 44px;
       text-align: center;
-      box-shadow: 0 32px 80px rgba(0,0,0,0.6);
+      box-shadow: 0 40px 80px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.06);
     }
-    #gate-card img { width: 68px; height: 68px; border-radius: 50%; margin-bottom: 20px; object-fit: cover; }
-    #gate-card h1 { font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 3px; color: #2C2C2C; margin-bottom: 8px; }
-    #gate-card .gate-sub { font-size: 13px; color: #888; margin-bottom: 28px; line-height: 1.6; }
-    .gate-divider { height: 1px; background: #f0f0f0; margin-bottom: 24px; }
-    .gate-input {
-      width: 100%;
-      padding: 13px 16px;
-      border: 1.5px solid #e8e8e8;
-      border-radius: 8px;
-      font-family: 'Inter', sans-serif;
-      font-size: 14px;
-      margin-bottom: 10px;
-      outline: none;
-      transition: border-color 0.2s;
-      color: #2C2C2C;
-      background: #fafafa;
+    .gate-logo-ring {
+      width: 80px; height: 80px; border-radius: 50%;
+      border: 2px solid rgba(116,185,63,0.4);
+      padding: 4px;
+      margin: 0 auto 20px;
+      box-shadow: 0 0 24px rgba(116,185,63,0.2);
     }
-    .gate-input:focus { border-color: #74B93F; background: #fff; }
-    #gate-btn {
-      width: 100%;
-      padding: 14px;
-      background: #74B93F;
-      color: #fff;
-      border: none;
-      border-radius: 8px;
+    .gate-logo-ring img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+    .gate-eyebrow {
       font-family: 'Montserrat', sans-serif;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      cursor: pointer;
-      margin-top: 6px;
-      transition: background 0.2s;
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 3px; text-transform: uppercase;
+      color: #74B93F; margin-bottom: 10px;
     }
-    #gate-btn:hover { background: #5ea32e; }
-    #gate-btn:disabled { background: #bbb; cursor: not-allowed; }
-    #gate-error { display: none; color: #c0392b; font-size: 13px; margin-top: 12px; line-height: 1.5; }
-    .gate-footer { margin-top: 20px; font-size: 11px; color: rgba(255,255,255,0.5); }
-    .gate-footer a { color: #8fd660; text-decoration: none; cursor: pointer; }
-    .gate-footer a:hover { text-decoration: underline; }
+    #gate-card h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 36px; letter-spacing: 3px;
+      color: #fff; margin-bottom: 10px; line-height: 1;
+    }
+    #gate-card .gate-sub {
+      font-size: 13px; color: rgba(255,255,255,0.5);
+      line-height: 1.65; margin-bottom: 32px;
+    }
+    .gate-divider { height: 1px; background: rgba(255,255,255,0.08); margin-bottom: 24px; }
+    .gate-input {
+      width: 100%; padding: 13px 16px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 10px;
+      font-family: 'Inter', sans-serif; font-size: 14px;
+      color: #fff; margin-bottom: 10px; outline: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .gate-input::placeholder { color: rgba(255,255,255,0.35); }
+    .gate-input:focus { border-color: #74B93F; background: rgba(116,185,63,0.08); }
+    #gate-btn {
+      width: 100%; padding: 15px;
+      background: #74B93F; color: #fff; border: none;
+      border-radius: 10px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px; font-weight: 700; letter-spacing: 1.5px;
+      cursor: pointer; margin-top: 6px;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(116,185,63,0.35);
+    }
+    #gate-btn:hover { background: #5ea32e; transform: translateY(-1px); box-shadow: 0 8px 28px rgba(116,185,63,0.45); }
+    #gate-btn:active { transform: translateY(0); }
+    #gate-btn:disabled { background: rgba(255,255,255,0.15); box-shadow: none; cursor: not-allowed; transform: none; }
+    #gate-error { display: none; color: #f87171; font-size: 13px; margin-top: 12px; line-height: 1.5; }
+    .gate-footer { margin-top: 22px; font-size: 12px; color: rgba(255,255,255,0.3); }
+    .gate-footer a { color: rgba(116,185,63,0.8); text-decoration: none; cursor: pointer; }
+    .gate-footer a:hover { color: #74B93F; }
 
     /* ── REQUEST ACCESS MODAL ── */
     #req-modal {
@@ -296,16 +313,19 @@
 <!-- ─────────────────── GATE ─────────────────── -->
 <div id="gate">
   <div id="gate-card">
-    <img src="https://dailyadventurebox-owner.github.io/Fund-Adventure/img/daily-adventure-box-circle-logo-webclip.png" alt="Daily Adventure Box">
-    <h1>PARTNER ACCESS PORTAL</h1>
-    <p class="gate-sub">This page is for invited location partners only.<br>Enter your info and password to continue.</p>
+    <div class="gate-logo-ring">
+      <img src="https://dailyadventurebox-owner.github.io/Fund-Adventure/img/daily-adventure-box-circle-logo-webclip.png" alt="Daily Adventure Box">
+    </div>
+    <div class="gate-eyebrow">Confidential · Partner Access</div>
+    <h1>PARTNER PORTAL</h1>
+    <p class="gate-sub">Invited location partners only. Enter your details and password to continue.</p>
     <div class="gate-divider"></div>
-    <input class="gate-input" id="g-name" type="text" placeholder="Your Full Name" autocomplete="name">
-    <input class="gate-input" id="g-email" type="email" placeholder="Your Email Address" autocomplete="email">
+    <input class="gate-input" id="g-name" type="text" placeholder="Full Name" autocomplete="name">
+    <input class="gate-input" id="g-email" type="email" placeholder="Email Address" autocomplete="email">
     <input class="gate-input" id="g-pass" type="password" placeholder="Access Password" autocomplete="current-password">
     <button id="gate-btn" onclick="handleAccess()">ACCESS PARTNER INFO →</button>
     <div id="gate-error"></div>
-    <p class="gate-footer">Don't have a password? <a onclick="openReqModal()">Request access</a></p>
+    <p class="gate-footer">No password? <a onclick="openReqModal()">Request access →</a></p>
   </div>
 </div>
 
