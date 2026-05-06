@@ -12,7 +12,7 @@
     body { font-family: 'Inter', sans-serif; color: #2C2C2C; background: #1a1a1a; }
 
     /* ── GATE ── */
-    html, body { height: 100%; background: #071407; }
+    html, body { background: #071407; }
     #gate {
       background: url('img/bote-lifestyle.jpg') center/cover no-repeat;
       min-height: 100vh;
@@ -685,6 +685,11 @@
     var h = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, 800);
     window.parent.postMessage({ type: 'resize', height: h }, '*');
   }
+
+  // Forward wheel/touch scroll events to parent so Webflow page scrolls
+  window.addEventListener('wheel', function(e) {
+    window.parent.postMessage({ type: 'wheel', deltaY: e.deltaY }, '*');
+  }, { passive: true });
 
   // Fire immediately, on load, and on any size change
   sendHeight();
