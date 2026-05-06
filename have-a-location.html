@@ -575,14 +575,14 @@
             <input id="lc_email" type="email" placeholder="Email Address" required style="padding:13px 16px;border-radius:8px;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.08);color:#fff;font-family:'Inter',sans-serif;font-size:14px;outline:none;">
           </div>
           <input id="lc_location" type="text" placeholder="Location name + city/state (e.g. Sunset Inn · Pensacola, FL)" style="padding:13px 16px;border-radius:8px;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.08);color:#fff;font-family:'Inter',sans-serif;font-size:14px;outline:none;">
-          <select id="lc_type" style="padding:13px 16px;border-radius:8px;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.6);font-family:'Inter',sans-serif;font-size:14px;outline:none;">
-            <option value="" disabled selected>Location type...</option>
-            <option value="hotel">Hotel / Resort</option>
-            <option value="beach">Public Beach / Park</option>
-            <option value="marina">Marina / Boat Club</option>
-            <option value="military">Military Base</option>
-            <option value="campground">RV Park / Campground</option>
-            <option value="other">Other</option>
+          <select id="lc_type" style="padding:13px 16px;border-radius:8px;border:1px solid rgba(255,255,255,0.2);background:#1a2a1a;color:#fff;font-family:'Inter',sans-serif;font-size:14px;outline:none;">
+            <option value="" disabled selected style="background:#1a2a1a;color:#aaa;">Location type...</option>
+            <option value="hotel" style="background:#1a2a1a;color:#fff;">Hotel / Resort</option>
+            <option value="beach" style="background:#1a2a1a;color:#fff;">Public Beach / Park</option>
+            <option value="marina" style="background:#1a2a1a;color:#fff;">Marina / Boat Club</option>
+            <option value="military" style="background:#1a2a1a;color:#fff;">Military Base</option>
+            <option value="campground" style="background:#1a2a1a;color:#fff;">RV Park / Campground</option>
+            <option value="other" style="background:#1a2a1a;color:#fff;">Other</option>
           </select>
           <textarea id="lc_message" placeholder="Anything else? (optional)" rows="3" style="padding:13px 16px;border-radius:8px;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.08);color:#fff;font-family:'Inter',sans-serif;font-size:14px;outline:none;resize:vertical;"></textarea>
           <button type="submit" id="lc_submit" class="btn-primary" style="padding:15px;border-radius:8px;font-size:13px;letter-spacing:1px;border:none;cursor:pointer;width:100%;">LET'S TALK →</button>
@@ -692,7 +692,7 @@
       var name = document.getElementById('lc_name').value.trim();
       var email = document.getElementById('lc_email').value.trim();
       var payload = {
-        source: 'location-partner',
+        source: 'location',
         full_name: name, email,
         company: document.getElementById('lc_location').value.trim() || null,
         type: document.getElementById('lc_type').value || null,
