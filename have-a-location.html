@@ -356,12 +356,12 @@
       <span>Daily Adventure Box</span>
     </a>
     <ul class="nav-links">
-      <li><a href="#" onclick="scrollTo('how-it-works');return false;">How It Works</a></li>
-      <li><a href="#" onclick="scrollTo('lockers');return false;">Our Lockers</a></li>
-      <li><a href="#" onclick="scrollTo('benefits');return false;">Benefits</a></li>
-      <li><a href="#" onclick="scrollTo('faq');return false;">FAQ</a></li>
+      <li><a href="#" onclick="scrollToSection('how-it-works');return false;">How It Works</a></li>
+      <li><a href="#" onclick="scrollToSection('lockers');return false;">Our Lockers</a></li>
+      <li><a href="#" onclick="scrollToSection('benefits');return false;">Benefits</a></li>
+      <li><a href="#" onclick="scrollToSection('faq');return false;">FAQ</a></li>
     </ul>
-    <a class="nav-cta" href="#" onclick="scrollTo('contact');return false;">GET STARTED</a>
+    <a class="nav-cta" href="#" onclick="scrollToSection('contact');return false;">GET STARTED</a>
   </nav>
 
   <section id="p-hero">
@@ -372,8 +372,8 @@
       <h1>BRING<br><span class="accent">ADVENTURE</span><br>TO YOUR LOCATION</h1>
       <p class="hero-sub">Add a premium amenity your guests will love. Earn passive revenue on every rental. $0 out-of-pocket — now and forever.</p>
       <div class="hero-ctas">
-        <a class="btn-primary" href="#" onclick="scrollTo('lockers');return false;">SEE OUR LOCKERS ↓</a>
-        <a class="btn-ghost" href="#" onclick="scrollTo('contact');return false;">LET'S TALK</a>
+        <a class="btn-primary" href="#" onclick="scrollToSection('lockers');return false;">SEE OUR LOCKERS ↓</a>
+        <a class="btn-ghost" href="#" onclick="scrollToSection('contact');return false;">LET'S TALK</a>
       </div>
     </div>
   </section>
@@ -629,7 +629,7 @@
     document.getElementById('gate').style.display = 'none';
     document.getElementById('content').style.display = 'block';
     document.body.style.background = '#fff';
-    window.scrollTo(0, 0);
+    window.scrollToSection(0, 0);
     sendHeight();
   }
 
@@ -666,7 +666,7 @@
     document.getElementById(id).addEventListener('keydown', e => { if (e.key === 'Enter') handleAccess(); });
   });
 
-  function scrollTo(sectionId) {
+  function scrollToSection(sectionId) { // renamed from scrollTo to avoid overwriting window.scrollTo
     var el = document.getElementById(sectionId) || document.querySelector('#' + sectionId);
     if (!el) return;
     var top = el.getBoundingClientRect().top + window.pageYOffset;
