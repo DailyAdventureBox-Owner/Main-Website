@@ -114,6 +114,11 @@
     #req-success p { color: #74B93F; font-weight: 600; font-size: 15px; margin: 0; }
     #req-close { margin-top: 16px; background: none; border: none; font-size: 12px; color: #aaa; cursor: pointer; }
     #req-close:hover { color: #555; }
+    #req-box .gate-input {
+      background: #f7f7f7; border: 1px solid #ddd; color: #2C2C2C;
+    }
+    #req-box .gate-input::placeholder { color: #aaa; }
+    #req-box .gate-input:focus { border-color: #74B93F; background: #fff; }
 
     /* ── CONTENT ── */
     #content { display: none; }
@@ -560,14 +565,29 @@
 
   <section id="contact">
     <div id="p-cta">
-      <div class="cta-inner">
+      <div class="cta-inner" style="max-width:640px;">
         <h2>READY TO ADD ADVENTURE?</h2>
-        <p class="cta-sub">You've seen what we bring to the table. Let's find the right locker for your location and get a deal on paper.</p>
-        <div class="cta-buttons">
-          <a class="btn-primary" id="cta-email-btn" href="mailto:support@dailyadventurebox.com?subject=Partner%20Inquiry%20%E2%80%94%20Location%20Partnership&body=Hi%20DAB%20Team%2C%0A%0AI%20viewed%20your%20partner%20portal%20and%20I%27m%20interested%20in%20hosting%20a%20locker%20at%20my%20location.%0A%0ALocation%20type%3A%0ALocation%20name%3A%0ACity%20%2F%20State%3A%0A%0ALooking%20forward%20to%20connecting.">EMAIL US NOW</a>
-          <a class="btn-sky" href="https://www.dailyadventurebox.com" target="_blank">LEARN MORE</a>
-        </div>
-        <p class="cta-contact">Questions? <a href="mailto:support@dailyadventurebox.com">support@dailyadventurebox.com</a></p>
+        <p class="cta-sub">Tell us about your location and we'll put a package together — zero cost, zero commitment to get started.</p>
+        <form id="locationContactForm" style="display:flex;flex-direction:column;gap:12px;text-align:left;margin-top:8px;">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+            <input id="lc_name" type="text" placeholder="Full Name" required style="padding:13px 16px;border-radius:8px;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.08);color:#fff;font-family:'Inter',sans-serif;font-size:14px;outline:none;">
+            <input id="lc_email" type="email" placeholder="Email Address" required style="padding:13px 16px;border-radius:8px;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.08);color:#fff;font-family:'Inter',sans-serif;font-size:14px;outline:none;">
+          </div>
+          <input id="lc_location" type="text" placeholder="Location name + city/state (e.g. Sunset Inn · Pensacola, FL)" style="padding:13px 16px;border-radius:8px;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.08);color:#fff;font-family:'Inter',sans-serif;font-size:14px;outline:none;">
+          <select id="lc_type" style="padding:13px 16px;border-radius:8px;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.6);font-family:'Inter',sans-serif;font-size:14px;outline:none;">
+            <option value="" disabled selected>Location type...</option>
+            <option value="hotel">Hotel / Resort</option>
+            <option value="beach">Public Beach / Park</option>
+            <option value="marina">Marina / Boat Club</option>
+            <option value="military">Military Base</option>
+            <option value="campground">RV Park / Campground</option>
+            <option value="other">Other</option>
+          </select>
+          <textarea id="lc_message" placeholder="Anything else? (optional)" rows="3" style="padding:13px 16px;border-radius:8px;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.08);color:#fff;font-family:'Inter',sans-serif;font-size:14px;outline:none;resize:vertical;"></textarea>
+          <button type="submit" id="lc_submit" class="btn-primary" style="padding:15px;border-radius:8px;font-size:13px;letter-spacing:1px;border:none;cursor:pointer;width:100%;">LET'S TALK →</button>
+          <div id="lc_msg" style="display:none;padding:12px 16px;border-radius:8px;font-size:14px;text-align:center;"></div>
+        </form>
+        <p class="cta-contact" style="margin-top:16px;">Questions? <a href="mailto:support@dailyadventurebox.com">support@dailyadventurebox.com</a></p>
       </div>
     </div>
   </section>
@@ -661,6 +681,43 @@
     document.getElementById('req-form-wrap').style.display = 'none';
     document.getElementById('req-success').style.display = 'block';
   }
+
+  // Location contact form
+  (function(){
+    var f = document.getElementById('locationContactForm');
+    if (!f) return;
+    f.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      var btn = document.getElementById('lc_submit');
+      var msg = document.getElementById('lc_msg');
+      btn.disabled = true; btn.textContent = 'Sending...';
+      var name = document.getElementById('lc_name').value.trim();
+      var email = document.getElementById('lc_email').value.trim();
+      var payload = {
+        source: 'location-partner',
+        full_name: name, email,
+        company: document.getElementById('lc_location').value.trim() || null,
+        type: document.getElementById('lc_type').value || null,
+        message: document.getElementById('lc_message').value.trim() || null
+      };
+      try {
+        await supa.from('website_submissions').insert(payload);
+        await supa.from('admin_alerts').insert({
+          alert_type: 'location_inquiry',
+          title: 'Location Partner Inquiry',
+          body: (name||'Someone') + ' (' + email + ') submitted a location partner inquiry for: ' + (payload.company||'unknown location'),
+          user_name: name, user_email: email
+        });
+        msg.style.display='block'; msg.style.background='rgba(116,185,63,0.15)'; msg.style.color='#9dd660';
+        msg.textContent = "Got it! We'll reach out within 48 hours.";
+        f.reset(); btn.textContent = "Sent ✓";
+      } catch(err) {
+        msg.style.display='block'; msg.style.background='rgba(239,68,68,0.15)'; msg.style.color='#f87171';
+        msg.textContent = 'Error sending — email support@dailyadventurebox.com';
+        btn.disabled = false; btn.textContent = "LET'S TALK →";
+      }
+    });
+  })();
 
   ['g-name','g-email','g-pass'].forEach(id => {
     document.getElementById(id).addEventListener('keydown', e => { if (e.key === 'Enter') handleAccess(); });
