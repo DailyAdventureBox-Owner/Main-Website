@@ -13,13 +13,21 @@
 
     /* ── GATE ── */
     #gate {
-      background: #1a1a1a;
+      background: #1a1a1a url('img/bote-lifestyle.jpg') center/cover no-repeat;
       padding: 60px 24px 80px;
       display: flex;
       flex-direction: column;
       align-items: center;
+      position: relative;
+    }
+    #gate::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.58);
     }
     #gate-card {
+      position: relative; z-index: 1;
       background: #fff;
       border-radius: 18px;
       padding: 44px 40px;
