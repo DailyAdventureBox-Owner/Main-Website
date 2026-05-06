@@ -12,19 +12,22 @@
     body { font-family: 'Inter', sans-serif; color: #2C2C2C; background: #1a1a1a; }
 
     /* ── GATE ── */
+    html, body { height: 100%; }
     #gate {
-      background: #1a1a1a url('img/bote-lifestyle.jpg') center/cover no-repeat;
+      background: #0d1a0d url('img/bote-lifestyle.jpg') center/cover no-repeat;
+      min-height: 100vh;
       padding: 60px 24px 80px;
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: center;
       position: relative;
     }
     #gate::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: rgba(0,0,0,0.58);
+      background: rgba(0,0,0,0.28);
     }
     #gate-card {
       position: relative; z-index: 1;
