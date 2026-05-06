@@ -12,7 +12,7 @@
     body { font-family: 'Inter', sans-serif; color: #2C2C2C; background: #1a1a1a; }
 
     /* ── GATE ── */
-    html, body { height: 100%; }
+    html, body { height: 100%; background: #0a1a0a; }
     #gate {
       background: #0d1a0d url('img/bote-lifestyle.jpg') center/cover no-repeat;
       min-height: 100vh;
@@ -75,10 +75,31 @@
     #gate-btn:hover { background: #5ea32e; }
     #gate-btn:disabled { background: #bbb; cursor: not-allowed; }
     #gate-error { display: none; color: #c0392b; font-size: 13px; margin-top: 12px; line-height: 1.5; }
-    .gate-footer { margin-top: 20px; font-size: 11px; color: #ccc; }
+    .gate-footer { margin-top: 20px; font-size: 11px; color: rgba(255,255,255,0.5); }
+    .gate-footer a { color: #8fd660; text-decoration: none; cursor: pointer; }
+    .gate-footer a:hover { text-decoration: underline; }
+
+    /* ── REQUEST ACCESS MODAL ── */
+    #req-modal {
+      display: none; position: fixed; inset: 0; z-index: 999;
+      background: rgba(0,0,0,0.7); align-items: center; justify-content: center; padding: 24px;
+      backdrop-filter: blur(4px);
+    }
+    #req-modal.open { display: flex; }
+    #req-box {
+      background: #fff; border-radius: 16px; padding: 40px 36px;
+      max-width: 400px; width: 100%; text-align: center;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.4);
+    }
+    #req-box h2 { font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: 2px; margin-bottom: 8px; }
+    #req-box p { font-size: 13px; color: #888; margin-bottom: 20px; line-height: 1.5; }
+    #req-success { display: none; }
+    #req-success p { color: #74B93F; font-weight: 600; font-size: 15px; margin: 0; }
+    #req-close { margin-top: 16px; background: none; border: none; font-size: 12px; color: #aaa; cursor: pointer; }
+    #req-close:hover { color: #555; }
 
     /* ── CONTENT ── */
-    #content { display: none; background: #fff; }
+    #content { display: none; }
 
     /* NAV — hidden when embedded in Webflow iframe */
     #p-nav { display: none; }
@@ -284,7 +305,25 @@
     <input class="gate-input" id="g-pass" type="password" placeholder="Access Password" autocomplete="current-password">
     <button id="gate-btn" onclick="handleAccess()">ACCESS PARTNER INFO →</button>
     <div id="gate-error"></div>
-    <p class="gate-footer">Don't have a password? <a href="mailto:support@dailyadventurebox.com" style="color:#74B93F;text-decoration:none;">Request access</a></p>
+    <p class="gate-footer">Don't have a password? <a onclick="openReqModal()">Request access</a></p>
+  </div>
+</div>
+
+<!-- REQUEST ACCESS MODAL -->
+<div id="req-modal">
+  <div id="req-box">
+    <div id="req-form-wrap">
+      <h2>REQUEST ACCESS</h2>
+      <p>Enter your name and email and we'll reach out with the password.</p>
+      <input class="gate-input" id="req-name" type="text" placeholder="Your Full Name">
+      <input class="gate-input" id="req-email" type="email" placeholder="Your Email Address">
+      <button id="gate-btn" style="margin-top:4px;" onclick="submitRequest()">SEND REQUEST →</button>
+      <div id="req-error" style="display:none;color:#c0392b;font-size:13px;margin-top:10px;"></div>
+    </div>
+    <div id="req-success">
+      <p>✓ Request sent! We'll be in touch shortly.</p>
+    </div>
+    <button id="req-close" onclick="closeReqModal()">Close</button>
   </div>
 </div>
 
@@ -548,6 +587,23 @@
 
   function showErr(msg) { const el = document.getElementById('gate-error'); el.textContent = msg; el.style.display = 'block'; }
   function hideErr() { document.getElementById('gate-error').style.display = 'none'; }
+
+  function openReqModal() { document.getElementById('req-modal').classList.add('open'); }
+  function closeReqModal() { document.getElementById('req-modal').classList.remove('open'); }
+
+  async function submitRequest() {
+    const name  = document.getElementById('req-name').value.trim();
+    const email = document.getElementById('req-email').value.trim();
+    const errEl = document.getElementById('req-error');
+    errEl.style.display = 'none';
+    if (!name)  { errEl.textContent = 'Please enter your name.'; errEl.style.display = 'block'; return; }
+    if (!email || !email.includes('@')) { errEl.textContent = 'Please enter a valid email.'; errEl.style.display = 'block'; return; }
+    const btn = document.querySelector('#req-box #gate-btn');
+    btn.disabled = true; btn.textContent = 'Sending...';
+    await supa.from('partner_access_requests').insert({ name, email });
+    document.getElementById('req-form-wrap').style.display = 'none';
+    document.getElementById('req-success').style.display = 'block';
+  }
 
   ['g-name','g-email','g-pass'].forEach(id => {
     document.getElementById(id).addEventListener('keydown', e => { if (e.key === 'Enter') handleAccess(); });
