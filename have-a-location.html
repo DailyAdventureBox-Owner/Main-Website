@@ -575,6 +575,15 @@
       return;
     }
     try { await supa.from('partner_page_views').insert({ name, email }); } catch(_) {}
+    try {
+      await supa.from('admin_alerts').insert({
+        alert_type: 'partner_login',
+        title: 'Partner Portal Viewed',
+        body: name + ' (' + email + ') unlocked the partner portal.',
+        user_name: name,
+        user_email: email
+      });
+    } catch(_) {}
     const subj = encodeURIComponent('Partner Inquiry — Location Partnership');
     const body = encodeURIComponent('Hi Shay,\n\nI viewed the DAB partner portal and I\'m interested in hosting a locker at my location.\n\nMy name: ' + name + '\nLocation type:\nLocation name:\nCity / State:\n\nLooking forward to connecting.');
     document.getElementById('cta-email-btn').href = 'mailto:support@dailyadventurebox.com?subject=' + subj + '&body=' + body;
@@ -601,6 +610,15 @@
     const btn = document.querySelector('#req-box #gate-btn');
     btn.disabled = true; btn.textContent = 'Sending...';
     await supa.from('partner_access_requests').insert({ name, email });
+    try {
+      await supa.from('admin_alerts').insert({
+        alert_type: 'partner_access_request',
+        title: 'Partner Access Requested',
+        body: name + ' (' + email + ') is requesting the partner portal password.',
+        user_name: name,
+        user_email: email
+      });
+    } catch(_) {}
     document.getElementById('req-form-wrap').style.display = 'none';
     document.getElementById('req-success').style.display = 'block';
   }
