@@ -643,9 +643,6 @@
         user_email: email
       });
     } catch(_) {}
-    const subj = encodeURIComponent('Partner Inquiry — Location Partnership');
-    const body = encodeURIComponent('Hi Shay,\n\nI viewed the DAB partner portal and I\'m interested in hosting a locker at my location.\n\nMy name: ' + name + '\nLocation type:\nLocation name:\nCity / State:\n\nLooking forward to connecting.');
-    document.getElementById('cta-email-btn').href = 'mailto:support@dailyadventurebox.com?subject=' + subj + '&body=' + body;
     document.getElementById('gate').style.display = 'none';
     document.getElementById('content').style.display = 'block';
     document.body.style.background = '#fff';
