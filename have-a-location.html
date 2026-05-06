@@ -356,12 +356,12 @@
       <span>Daily Adventure Box</span>
     </a>
     <ul class="nav-links">
-      <li><a href="#how-it-works">How It Works</a></li>
-      <li><a href="#lockers">Our Lockers</a></li>
-      <li><a href="#benefits">Benefits</a></li>
-      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#" onclick="scrollTo('how-it-works');return false;">How It Works</a></li>
+      <li><a href="#" onclick="scrollTo('lockers');return false;">Our Lockers</a></li>
+      <li><a href="#" onclick="scrollTo('benefits');return false;">Benefits</a></li>
+      <li><a href="#" onclick="scrollTo('faq');return false;">FAQ</a></li>
     </ul>
-    <a class="nav-cta" href="#contact">GET STARTED</a>
+    <a class="nav-cta" href="#" onclick="scrollTo('contact');return false;">GET STARTED</a>
   </nav>
 
   <section id="p-hero">
@@ -372,8 +372,8 @@
       <h1>BRING<br><span class="accent">ADVENTURE</span><br>TO YOUR LOCATION</h1>
       <p class="hero-sub">Add a premium amenity your guests will love. Earn passive revenue on every rental. $0 out-of-pocket — now and forever.</p>
       <div class="hero-ctas">
-        <a class="btn-primary" href="#lockers">SEE OUR LOCKERS ↓</a>
-        <a class="btn-ghost" href="#contact">LET'S TALK</a>
+        <a class="btn-primary" href="#" onclick="scrollTo('lockers');return false;">SEE OUR LOCKERS ↓</a>
+        <a class="btn-ghost" href="#" onclick="scrollTo('contact');return false;">LET'S TALK</a>
       </div>
     </div>
   </section>
@@ -501,7 +501,7 @@
       <p style="color:rgba(255,255,255,0.5);font-size:14px;margin-bottom:28px;">Inventory is curated for your location — beach, lake, mountain, or anywhere in between.</p>
       <div class="gear-scroll">
         <div class="gear-item"><img src="https://dailyadventurebox-owner.github.io/Fund-Adventure/img/clj-05-05.png" alt="Sports Pack"><span>Sports Pack</span></div>
-        <div class="gear-item"><img src="https://dailyadventurebox-owner.github.io/Fund-Adventure/img/clj-03-05.png" alt="Water Sports"><span>Water Sports</span></div>
+        <div class="gear-item"><img src="https://dailyadventurebox-owner.github.io/Fund-Adventure/img/clj-03-05.png" alt="Beach Shade"><span>Beach Shade</span></div>
         <div class="gear-item"><img src="https://dailyadventurebox-owner.github.io/Fund-Adventure/img/clj-05-07.png" alt="Beach Games"><span>Beach Games</span></div>
         <div class="gear-item"><img src="https://dailyadventurebox-owner.github.io/Fund-Adventure/img/clj-03-06.png" alt="Body Board"><span>Body Board</span></div>
         <div class="gear-item"><img src="https://dailyadventurebox-owner.github.io/Fund-Adventure/img/clj-07-02.png" alt="Spike Ball"><span>Spike Ball</span></div>
@@ -665,6 +665,13 @@
   ['g-name','g-email','g-pass'].forEach(id => {
     document.getElementById(id).addEventListener('keydown', e => { if (e.key === 'Enter') handleAccess(); });
   });
+
+  function scrollTo(sectionId) {
+    var el = document.getElementById(sectionId) || document.querySelector('#' + sectionId);
+    if (!el) return;
+    var top = el.getBoundingClientRect().top + window.pageYOffset;
+    window.parent.postMessage({ type: 'scrollTo', top: top }, '*');
+  }
 
   function switchModel(id, tab) {
     document.querySelectorAll('.model-tab').forEach(t => t.classList.remove('active'));
