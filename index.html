@@ -952,6 +952,126 @@
   }
 
   /* ============================================================
+     SECTION 9B: HISTORY TIMELINE
+  ============================================================ */
+  .history {
+    padding: 100px 0;
+    background: var(--charcoal);
+    overflow: hidden;
+  }
+  .history-heading {
+    text-align: center;
+    margin-bottom: 64px;
+  }
+  .history-heading h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 52px;
+    color: #fff;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+  }
+  .history-heading p {
+    color: rgba(255,255,255,0.45);
+    font-size: 15px;
+    max-width: 540px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+  .history-track {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    max-width: 780px;
+    margin: 0 auto;
+  }
+  .history-track::before {
+    content: '';
+    position: absolute;
+    left: 68px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, transparent, rgba(116,185,63,0.4) 8%, rgba(116,185,63,0.4) 92%, transparent);
+  }
+  .history-item {
+    display: flex;
+    gap: 28px;
+    align-items: flex-start;
+    padding: 20px 0;
+  }
+  .history-year-col {
+    min-width: 56px;
+    text-align: right;
+    flex-shrink: 0;
+  }
+  .history-year {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    color: var(--green);
+    line-height: 1.2;
+  }
+  .history-dot {
+    width: 28px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: flex-start;
+    padding-top: 4px;
+    justify-content: center;
+  }
+  .history-dot::after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--green);
+    border: 2px solid var(--charcoal);
+    box-shadow: 0 0 0 3px rgba(116,185,63,0.25);
+    flex-shrink: 0;
+  }
+  .history-item.current .history-dot::after {
+    background: var(--green);
+    box-shadow: 0 0 0 4px rgba(116,185,63,0.35), 0 0 12px rgba(116,185,63,0.4);
+  }
+  .history-content {
+    flex: 1;
+    padding-bottom: 8px;
+  }
+  .history-content h4 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    color: #fff;
+    letter-spacing: 0.3px;
+    margin-bottom: 6px;
+    line-height: 1.1;
+  }
+  .history-content p {
+    font-size: 13px;
+    color: rgba(255,255,255,0.52);
+    line-height: 1.75;
+    margin: 0;
+  }
+  .history-tag {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .tag-live { background: rgba(116,185,63,0.15); color: var(--green); }
+  .tag-upcoming { background: rgba(249,201,38,0.12); color: #c9a200; }
+  @media (max-width: 600px) {
+    .history-track::before { left: 48px; }
+    .history-year-col { min-width: 38px; }
+    .history-year { font-size: 16px; }
+    .history-content h4 { font-size: 18px; }
+  }
+
+  /* ============================================================
      SECTION 10: PARTNERS
   ============================================================ */
   .partners {
@@ -1734,6 +1854,81 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 9B: HISTORY
+  ============================================================ -->
+  <section class="history" id="history">
+    <div class="container">
+      <div class="history-heading">
+        <div class="section-label" style="color:var(--green);">The DAB Story</div>
+        <h2>From One Locker<br>to a Growing Network.</h2>
+        <p>A Marine Captain's idea — built in a garage, tested on a beach, contracted onto a military base, and now scaling nationwide.</p>
+      </div>
+
+      <div class="history-track">
+
+        <div class="history-item">
+          <div class="history-year-col"><div class="history-year">2022</div></div>
+          <div class="history-dot"></div>
+          <div class="history-content">
+            <h4>The Idea</h4>
+            <p>Shay Putnam, an active-duty U.S. Marine Captain, keeps seeing the same problem at every base and beach: people want to get on the water but don't own gear, can't haul it, or can't afford to rent it the traditional way. He starts sketching a smart locker that lives at the beach and unlocks from your phone.</p>
+          </div>
+        </div>
+
+        <div class="history-item">
+          <div class="history-year-col"><div class="history-year">2023</div></div>
+          <div class="history-dot"></div>
+          <div class="history-content">
+            <h4>First Locker. First Rentals.</h4>
+            <p>The first DAB locker is built by hand and deployed at Pensacola Beach, FL. It rents surfboards, paddle boards, and beach gear to real customers. The model works — gear goes out, comes back, revenue flows. Patent application filed.</p>
+            <span class="history-tag tag-live">Proof of concept</span>
+          </div>
+        </div>
+
+        <div class="history-item">
+          <div class="history-year-col"><div class="history-year">2024</div></div>
+          <div class="history-dot"></div>
+          <div class="history-content">
+            <h4>The Rebuild</h4>
+            <p>Real-world deployment exposed gaps in hardware and software. The entire system is rebuilt from scratch — new locker chassis, new circuit boards, new app, new backend. Version 2 is stronger, smarter, and designed to scale. More Pensacola Beach locations added during the rebuild.</p>
+          </div>
+        </div>
+
+        <div class="history-item">
+          <div class="history-year-col"><div class="history-year">2025</div></div>
+          <div class="history-dot"></div>
+          <div class="history-content">
+            <h4>Camp Lejeune Contract</h4>
+            <p>DAB signs a contract with MCCS (Marine Corps Community Services) at Camp Lejeune, NC — the largest Marine base on the East Coast. Site selection, base credentialing, and installation prep begin across Onslow Beach, Hospital Point, Courthouse Bay, and New River Marina.</p>
+            <span class="history-tag tag-live">MCCS contract signed</span>
+          </div>
+        </div>
+
+        <div class="history-item current">
+          <div class="history-year-col"><div class="history-year">2026</div></div>
+          <div class="history-dot"></div>
+          <div class="history-content">
+            <h4>8 Locations Live — Camp Lejeune</h4>
+            <p>All 8 Camp Lejeune locations go operational across four venues: Onslow Beach, Hospital Point Rec Area, Courthouse Bay Dock, and New River Marina. The Fund Adventure portal launches, bringing in the first micro-owners. BOTE gear — SUPs, kayaks, and water equipment — is loaded into the lockers.</p>
+            <span class="history-tag tag-live">● Live now</span>
+          </div>
+        </div>
+
+        <div class="history-item">
+          <div class="history-year-col"><div class="history-year">2027</div></div>
+          <div class="history-dot"></div>
+          <div class="history-content">
+            <h4>National Rollout</h4>
+            <p>Expanding to USMC installations nationwide via an MCCS master contract. Target: 200+ locations across military bases and beaches in NC, FL, VA, SC, HI, AZ, GA, CA, and beyond. Franchise and partner tiers open to outside operators.</p>
+            <span class="history-tag tag-upcoming">Coming 2027</span>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
