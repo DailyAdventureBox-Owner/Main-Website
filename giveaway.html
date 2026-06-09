@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BOTE Hangout Hammock Giveaway — Daily Adventure Box</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{--green:#74B93F;--sky:#5BBDD4;--yellow:#F9C926;--coal:#2C2C2C;--ocean:#0d2a3a;--offwhite:#F5F2EC;}
+body{font-family:'Inter',sans-serif;background:#0d2a3a;color:white;-webkit-font-smoothing:antialiased;}
+
+/* NAV */
+.gw-nav{background:rgba(13,42,58,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.08);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+.gw-nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.gw-nav-logo img{height:36px;}
+.gw-nav-logo span{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:2px;color:white;}
+.gw-nav-back{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:white;font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:8px 16px;border-radius:8px;text-decoration:none;transition:background .2s;}
+.gw-nav-back:hover{background:rgba(255,255,255,.15);}
+
+/* HERO */
+.gw-hero{position:relative;height:420px;overflow:hidden;}
+.gw-hero-img{width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;}
+.gw-hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.5) 0%,rgba(0,0,0,.05) 35%,rgba(13,42,58,.75) 70%,rgba(13,42,58,1) 100%);}
+.gw-hero-content{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:32px 28px;}
+.gw-hero-pill{display:inline-block;background:var(--yellow);color:var(--coal);font-family:'Montserrat',sans-serif;font-size:9px;font-weight:900;letter-spacing:2px;text-transform:uppercase;padding:5px 14px;border-radius:20px;margin-bottom:12px;align-self:flex-start;}
+.gw-hero-sub{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:900;letter-spacing:3px;color:var(--sky);text-transform:uppercase;margin-bottom:6px;}
+.gw-hero-hed{font-family:'Bebas Neue',sans-serif;font-size:clamp(72px,12vw,110px);letter-spacing:4px;line-height:.85;color:white;}
+.gw-hero-hed em{color:var(--yellow);font-style:normal;}
+.gw-hero-hed span{color:var(--sky);}
+.gw-prize-badge{position:absolute;top:24px;right:24px;background:var(--yellow);color:var(--coal);font-family:'Bebas Neue',sans-serif;text-align:center;padding:12px 18px;border-radius:10px;line-height:1;box-shadow:0 6px 24px rgba(0,0,0,.5);}
+.gw-prize-badge .pb-win{font-size:11px;letter-spacing:2px;opacity:.65;display:block;}
+.gw-prize-badge .pb-val{font-size:52px;line-height:.88;display:block;}
+.gw-prize-badge .pb-lbl{font-size:10px;letter-spacing:2px;opacity:.65;display:block;}
+
+/* MECHANIC STRIP */
+.gw-mech-strip{background:var(--green);padding:14px 28px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.gw-mech-left{display:flex;align-items:center;gap:14px;}
+.gw-mech-num{background:white;color:var(--green);font-family:'Bebas Neue',sans-serif;font-size:48px;padding:2px 14px;border-radius:8px;line-height:1;}
+.gw-mech-txt{font-family:'Montserrat',sans-serif;font-size:13px;font-weight:800;color:white;text-transform:uppercase;letter-spacing:.5px;line-height:1.4;}
+.gw-mech-txt em{color:var(--yellow);font-style:normal;}
+.gw-mech-right{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;color:rgba(255,255,255,.8);text-align:right;line-height:1.6;}
+
+/* BODY SECTIONS */
+.gw-page{max-width:760px;margin:0 auto;padding:0 20px 60px;}
+
+.gw-section{padding:36px 0 0;}
+.gw-section-hed{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:4px;color:var(--green);margin-bottom:20px;border-bottom:1px solid rgba(255,255,255,.08);padding-bottom:10px;}
+
+/* Entry cards */
+.gw-entry-cards{display:flex;flex-direction:column;gap:14px;}
+.gw-entry-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:18px;display:flex;gap:14px;align-items:flex-start;}
+.gw-entry-card.primary{border-color:rgba(116,185,63,.4);background:rgba(116,185,63,.06);}
+.gw-entry-card.bonus{border-color:rgba(91,189,212,.3);background:rgba(91,189,212,.05);}
+.gw-entry-card.free{border-color:rgba(249,201,38,.25);background:rgba(249,201,38,.04);}
+.gw-entry-ico{width:44px;height:44px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:20px;}
+.gw-entry-ico.g{background:var(--green);}
+.gw-entry-ico.s{background:var(--sky);}
+.gw-entry-ico.y{background:rgba(249,201,38,.15);border:2px solid var(--yellow);}
+.gw-entry-body{flex:1;}
+.gw-entry-label{font-family:'Montserrat',sans-serif;font-size:9px;font-weight:900;letter-spacing:2px;text-transform:uppercase;margin-bottom:5px;display:block;}
+.gw-entry-label.g{color:var(--green);}
+.gw-entry-label.s{color:var(--sky);}
+.gw-entry-label.y{color:var(--yellow);}
+.gw-entry-title{font-family:'Montserrat',sans-serif;font-size:14px;font-weight:800;color:white;margin-bottom:6px;line-height:1.3;}
+.gw-entry-desc{font-family:'Inter',sans-serif;font-size:13px;color:rgba(255,255,255,.65);line-height:1.6;}
+.gw-entry-note{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:600;color:rgba(255,255,255,.35);margin-top:6px;display:block;}
+
+/* Download App */
+.gw-app-card{background:rgba(91,189,212,.08);border:1px solid rgba(91,189,212,.25);border-radius:12px;padding:20px;display:flex;align-items:center;gap:16px;}
+.gw-app-icon{font-size:36px;flex-shrink:0;}
+.gw-app-info{flex:1;}
+.gw-app-info strong{font-family:'Montserrat',sans-serif;font-size:14px;font-weight:900;color:white;display:block;margin-bottom:4px;}
+.gw-app-info p{font-size:13px;color:rgba(255,255,255,.55);line-height:1.5;}
+.gw-app-btn{background:var(--sky);color:white;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:900;letter-spacing:.5px;text-transform:uppercase;text-decoration:none;padding:12px 20px;border-radius:8px;white-space:nowrap;flex-shrink:0;display:block;text-align:center;transition:background .2s;}
+.gw-app-btn:hover{background:#43a8be;}
+
+/* Locations */
+.gw-locs-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.gw-loc-area-label{font-family:'Montserrat',sans-serif;font-size:9px;font-weight:900;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.3);grid-column:1/-1;margin-top:6px;}
+.gw-loc-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:12px 14px;display:flex;align-items:flex-start;gap:10px;}
+.gw-loc-dot{width:8px;height:8px;border-radius:50%;background:var(--green);flex-shrink:0;margin-top:4px;}
+.gw-loc-card-txt strong{font-family:'Montserrat',sans-serif;font-size:12px;font-weight:800;color:white;display:block;margin-bottom:2px;}
+.gw-loc-card-txt span{font-size:11px;color:rgba(255,255,255,.45);}
+.gw-loc-full{grid-column:1/-1;}
+
+/* Drawing callout */
+.gw-draw-card{background:rgba(249,201,38,.06);border:1px solid rgba(249,201,38,.3);border-radius:12px;padding:22px 24px;display:flex;gap:18px;align-items:flex-start;}
+.gw-draw-cal{font-size:32px;flex-shrink:0;}
+.gw-draw-info strong{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:2px;color:var(--yellow);display:block;margin-bottom:4px;}
+.gw-draw-info p{font-family:'Inter',sans-serif;font-size:13px;color:rgba(255,255,255,.6);line-height:1.6;}
+.gw-draw-info em{font-style:normal;color:rgba(255,255,255,.35);font-size:12px;display:block;margin-top:6px;}
+
+/* Main CTA */
+.gw-main-cta{display:block;width:100%;background:var(--green);color:white;text-decoration:none;font-family:'Montserrat',sans-serif;font-size:15px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;text-align:center;padding:18px;border-radius:10px;margin-top:28px;transition:background .2s;}
+.gw-main-cta:hover{background:#5fa32e;}
+
+/* Legal */
+.gw-legal{background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:22px 24px;margin-top:32px;}
+.gw-legal-hed{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:3px;color:rgba(255,255,255,.3);margin-bottom:14px;}
+.gw-legal-body{font-family:'Inter',sans-serif;font-size:11px;color:rgba(255,255,255,.28);line-height:1.8;}
+.gw-legal-body p{margin-bottom:8px;}
+.gw-legal-body strong{color:rgba(255,255,255,.45);font-weight:700;}
+
+/* Mobile */
+@media(max-width:600px){
+  .gw-hero{height:300px;}
+  .gw-hero-content{padding:20px 18px;}
+  .gw-prize-badge{top:14px;right:14px;padding:8px 12px;}
+  .gw-prize-badge .pb-val{font-size:36px;}
+  .gw-mech-strip{padding:12px 18px;flex-wrap:wrap;gap:10px;}
+  .gw-mech-num{font-size:36px;}
+  .gw-mech-right{text-align:left;}
+  .gw-page{padding:0 14px 40px;}
+  .gw-entry-card{flex-direction:column;gap:10px;}
+  .gw-entry-ico{width:36px;height:36px;font-size:16px;}
+  .gw-locs-grid{grid-template-columns:1fr;}
+  .gw-loc-full{grid-column:1;}
+  .gw-draw-card{flex-direction:column;gap:10px;}
+  .gw-draw-info strong{font-size:22px;}
+  .gw-app-card{flex-direction:column;}
+  .gw-app-btn{width:100%;text-align:center;}
+  .gw-nav-logo span{display:none;}
+}
+</style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav class="gw-nav">
+  <a class="gw-nav-logo" href="https://www.dailyadventurebox.com" target="_top">
+    <img src="https://dailyadventurebox-owner.github.io/Fund-Adventure/daily-adventure-box-circle-logo-webclip.png" alt="DAB">
+    <span>Daily Adventure Box</span>
+  </a>
+  <a class="gw-nav-back" href="https://www.dailyadventurebox.com" target="_top">← Back to Home</a>
+</nav>
+
+<!-- Hero -->
+<div class="gw-hero">
+  <img class="gw-hero-img" src="https://dailyadventurebox-owner.github.io/Fund-Adventure/bote_hangout_water_hammock_.jpg" alt="BOTE 7' Hangout Hammock">
+  <div class="gw-hero-overlay"></div>
+  <div class="gw-prize-badge">
+    <span class="pb-win">WIN A</span>
+    <span class="pb-val">$949</span>
+    <span class="pb-lbl">PRIZE VALUE</span>
+  </div>
+  <div class="gw-hero-content">
+    <div class="gw-hero-pill">DAB × BOTE Giveaway</div>
+    <div class="gw-hero-sub">7' BOTE Hangout Hammock</div>
+    <div class="gw-hero-hed">RENT.<br><em>EARN.</em><br><span>WIN.</span></div>
+  </div>
+</div>
+
+<!-- Mechanic strip -->
+<div class="gw-mech-strip">
+  <div class="gw-mech-left">
+    <div class="gw-mech-num">1</div>
+    <div class="gw-mech-txt">Rental hour<br>= <em>1 entry</em></div>
+  </div>
+  <div class="gw-mech-right">Auto-tracked in your DAB account<br>No forms · No sign-up needed</div>
+</div>
+
+<div class="gw-page">
+
+  <!-- How to Enter -->
+  <div class="gw-section">
+    <div class="gw-section-hed">How to Enter</div>
+    <div class="gw-entry-cards">
+
+      <div class="gw-entry-card primary">
+        <div class="gw-entry-ico g">🔑</div>
+        <div class="gw-entry-body">
+          <span class="gw-entry-label g">Rent — Automatic Entry</span>
+          <div class="gw-entry-title">Every rental hour = 1 automatic entry</div>
+          <div class="gw-entry-desc">Rent any gear from a Daily Adventure Box locker and your hours are tracked automatically in your DAB account. No forms, no extra steps. The more you rent, the more entries you earn.</div>
+          <span class="gw-entry-note">Hours accumulate across all 8 locations and multiple visits · Entries awarded in whole completed hours only</span>
+        </div>
+      </div>
+
+      <div class="gw-entry-card bonus">
+        <div class="gw-entry-ico s">📸</div>
+        <div class="gw-entry-body">
+          <span class="gw-entry-label s">Bonus Entry</span>
+          <div class="gw-entry-title">Post a photo at any DAB location</div>
+          <div class="gw-entry-desc">Post an original photo at any Daily Adventure Box location — photo must include a visible DAB locker — and tag <strong>@dailyadventurebox</strong> on Instagram to earn 1 bonus entry.</div>
+          <span class="gw-entry-note">1 bonus entry per calendar week (Mon–Sun) · Instagram account must be public · Photo must show a visible DAB locker</span>
+        </div>
+      </div>
+
+      <div class="gw-entry-card free">
+        <div class="gw-entry-ico y">🆓</div>
+        <div class="gw-entry-body">
+          <span class="gw-entry-label y">Free Entry — No Rental Required</span>
+          <div class="gw-entry-title">Complete all 4 steps to enter free</div>
+          <div class="gw-entry-desc">
+            <strong style="color:rgba(255,255,255,.7);">(1)</strong> Follow <strong>@dailyadventurebox</strong> on Instagram<br>
+            <strong style="color:rgba(255,255,255,.7);">(2)</strong> Share the active giveaway post to your Instagram story<br>
+            <strong style="color:rgba(255,255,255,.7);">(3)</strong> Tag 3 friends in the comments of the giveaway post<br>
+            <strong style="color:rgba(255,255,255,.7);">(4)</strong> DM a screenshot of all completed steps to @dailyadventurebox AND email <strong>support@dailyadventurebox.com</strong> with subject "BOTE Free Entry" including your full name and DAB account email
+          </div>
+          <span class="gw-entry-note">All 4 steps required · Limit 1 free entry per person · Screenshot must be sent within 24 hrs of sharing to story</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Download App -->
+  <div class="gw-section">
+    <div class="gw-section-hed">Download the App</div>
+    <div class="gw-app-card">
+      <div class="gw-app-icon">📱</div>
+      <div class="gw-app-info">
+        <strong>Daily Adventure Box App</strong>
+        <p>Find all 8 locker locations · Track your rental hours · Monitor your giveaway entries · Book experiences</p>
+      </div>
+      <a class="gw-app-btn" href="https://www.dailyadventurebox.com/download-app" target="_top">Download →</a>
+    </div>
+  </div>
+
+  <!-- Locations -->
+  <div class="gw-section">
+    <div class="gw-section-hed">8 Locations on Base</div>
+    <div class="gw-locs-grid">
+
+      <div class="gw-loc-area-label">Onslow Beach</div>
+      <div class="gw-loc-card">
+        <div class="gw-loc-dot"></div>
+        <div class="gw-loc-card-txt"><strong>Starfish Pavilion</strong><span>Onslow Beach, NC</span></div>
+      </div>
+      <div class="gw-loc-card">
+        <div class="gw-loc-dot"></div>
+        <div class="gw-loc-card-txt"><strong>Reservation Office</strong><span>Onslow Beach, NC</span></div>
+      </div>
+      <div class="gw-loc-card">
+        <div class="gw-loc-dot"></div>
+        <div class="gw-loc-card-txt"><strong>Turtle Beach Gazebo</strong><span>Onslow Beach, NC</span></div>
+      </div>
+      <div class="gw-loc-card">
+        <div class="gw-loc-dot"></div>
+        <div class="gw-loc-card-txt"><strong>Sand Dollar Pavilion</strong><span>N. Topsail Beach, NC</span></div>
+      </div>
+
+      <div class="gw-loc-area-label">Camp Lejeune &amp; Jacksonville</div>
+      <div class="gw-loc-card">
+        <div class="gw-loc-dot"></div>
+        <div class="gw-loc-card-txt"><strong>Courthouse Bay</strong><span>Camp Lejeune, NC</span></div>
+      </div>
+      <div class="gw-loc-card">
+        <div class="gw-loc-dot"></div>
+        <div class="gw-loc-card-txt"><strong>Hospital Point Rec.</strong><span>Jacksonville, NC</span></div>
+      </div>
+      <div class="gw-loc-card gw-loc-full">
+        <div class="gw-loc-dot"></div>
+        <div class="gw-loc-card-txt"><strong>New River Marina</strong><span>2800 Perimeter Rd, Jacksonville, NC</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Drawing -->
+  <div class="gw-section">
+    <div class="gw-section-hed">Drawing Details</div>
+    <div class="gw-draw-card">
+      <div class="gw-draw-cal">📅</div>
+      <div class="gw-draw-info">
+        <strong>July 31 – August 31, 2026</strong>
+        <p>Drawing date selected by Daily Adventure Box based on participation rates. Open to authorized Camp Lejeune base personnel 18 and older. One winner selected by random drawing from all eligible entries.</p>
+        <em>No purchase necessary to enter or win</em>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <a class="gw-main-cta" href="https://www.dailyadventurebox.com" target="_top">Find My Nearest Locker →</a>
+
+  <!-- Legal -->
+  <div class="gw-legal">
+    <div class="gw-legal-hed">Official Giveaway Rules</div>
+    <div class="gw-legal-body">
+      <p><strong>NO PURCHASE NECESSARY TO ENTER OR WIN.</strong> A purchase does not improve your chances of winning. Void where prohibited by law.</p>
+      <p><strong>ELIGIBILITY:</strong> Open only to individuals with valid access to Camp Lejeune, NC (including active duty military, dependents, DoD civilians, contractors, and other authorized base access holders) who are 18 years of age or older at time of entry. Place of permanent residence is not a factor; eligibility is based solely on valid base access and age. Employees of Daily Adventure Box Inc. ("Sponsor"), MCCS Camp Lejeune, BOTE, Kent Outdoors, and their respective immediate family members and household members are not eligible.</p>
+      <p><strong>PROMOTION PERIOD:</strong> Giveaway begins June 8, 2026 and ends when the drawing is held. Drawing will occur between July 31, 2026 and August 31, 2026, at a date determined solely by Sponsor based on participation rates. Sponsor reserves the right to extend or modify the promotion period at any time.</p>
+      <p><strong>DAB ACCOUNT REQUIREMENT:</strong> A free Daily Adventure Box account is required. Create one free at dailyadventurebox.com. Limit one (1) account per person. Multiple accounts used to accumulate entries will result in disqualification.</p>
+      <p><strong>HOW TO ENTER — PAID METHOD (AUTOMATIC):</strong> Every 1 (one) complete hour of locker rental time earns 1 (one) automatic entry. Entries are awarded in whole completed hours only; partial hours do not earn entries (e.g., 90 min = 1 entry; 2 hrs = 2 entries). Hours tracked automatically in your DAB account and accumulate across all 8 locations and multiple visits.</p>
+      <p><strong>HOW TO ENTER — BONUS METHOD:</strong> Post an original photo taken at a Daily Adventure Box location to Instagram — photo must visibly include a DAB locker — and tag @dailyadventurebox. Account must be public. Limit 1 (one) bonus entry per person per calendar week (Monday 12:00 AM ET through Sunday 11:59 PM ET). Photos not taken at a DAB location or not showing a visible locker will not qualify.</p>
+      <p><strong>HOW TO ENTER — FREE METHOD (NO PURCHASE REQUIRED):</strong> Complete ALL four (4) steps: (1) Follow @dailyadventurebox on Instagram; (2) Share the active DAB BOTE Giveaway post to your Instagram story — screenshot must be submitted within 24 hours as stories expire; (3) Tag three (3) different individuals in the giveaway post comments; AND (4) DM a screenshot of all completed steps to @dailyadventurebox AND email support@dailyadventurebox.com with subject "BOTE Free Entry" including your full legal name and DAB account email. Limit one (1) free entry per person.</p>
+      <p><strong>ENTRY LIMITS &amp; INTEGRITY:</strong> No limit on paid entries. Bonus: 1/week. Free: 1/promotion. Non-transferable. Entries via automated means are void. Fraud or duplicate accounts result in disqualification. Sponsor's decisions are final.</p>
+      <p><strong>DRAWING:</strong> One (1) winner selected by random drawing between July 31–August 31, 2026. Odds depend on total eligible entries at time of drawing.</p>
+      <p><strong>PRIZE:</strong> One (1) 7' BOTE Hangout Water Hammock, ARV $949.00 USD. Non-transferable; no cash alternative. Fulfillment by in-person pickup or U.S. shipment at Sponsor's discretion, shipping included. All taxes are winner's sole responsibility. Because ARV exceeds $600, winner may be required to provide a completed IRS Form W-9 prior to fulfillment or prize is forfeited.</p>
+      <p><strong>WINNER NOTIFICATION:</strong> Notified via DAB account email and/or Instagram DM within 7 days of drawing. Must respond within 7 days or prize is forfeited and an alternate winner will be selected.</p>
+      <p><strong>MILITARY BASE &amp; UCMJ NOTICE:</strong> This is a sweepstakes, not a lottery. A free method of entry exists; no purchase is necessary to win. Operated solely by Daily Adventure Box Inc. in compliance with applicable DoD, MCCS, and UCMJ guidelines. Not affiliated with or endorsed by the U.S. Marine Corps, DoD, or MCCS Camp Lejeune.</p>
+      <p><strong>GENERAL CONDITIONS:</strong> Sponsor reserves the right to cancel, suspend, or modify this promotion at any time. Sponsor is not responsible for lost, late, or incomplete entries.</p>
+      <p><strong>SPONSOR:</strong> Daily Adventure Box Inc., 2884 NC Highway 210, Smithfield, NC 27577. Questions: support@dailyadventurebox.com</p>
+      <p>Not sponsored, endorsed, or administered by Meta Platforms Inc. (Instagram/Facebook), BOTE, or Kent Outdoors. Subject to all applicable federal, state, and local laws.</p>
+    </div>
+  </div>
+
+</div><!-- /gw-page -->
+</body>
+</html>

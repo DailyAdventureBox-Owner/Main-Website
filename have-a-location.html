@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Partner Access — Daily Adventure Box</title>
+  <title>Partner Access â€” Daily Adventure Box</title>
   <meta name="robots" content="noindex, nofollow">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
   <style>
@@ -11,7 +11,7 @@
     html { scroll-behavior: smooth; }
     body { font-family: 'Inter', sans-serif; color: #2C2C2C; background: #1a1a1a; }
 
-    /* ── GATE ── */
+    /* â”€â”€ GATE â”€â”€ */
     html, body { background: #071407; }
     #gate {
       background: url('img/bote-lifestyle.jpg') center/cover no-repeat;
@@ -96,7 +96,7 @@
     .gate-footer a { color: rgba(116,185,63,0.8); text-decoration: none; cursor: pointer; }
     .gate-footer a:hover { color: #74B93F; }
 
-    /* ── REQUEST ACCESS MODAL ── */
+    /* â”€â”€ REQUEST ACCESS MODAL â”€â”€ */
     #req-modal {
       display: none; position: fixed; inset: 0; z-index: 999;
       background: rgba(0,0,0,0.7); align-items: center; justify-content: center; padding: 24px;
@@ -120,10 +120,10 @@
     #req-box .gate-input::placeholder { color: #aaa; }
     #req-box .gate-input:focus { border-color: #74B93F; background: #fff; }
 
-    /* ── CONTENT ── */
+    /* â”€â”€ CONTENT â”€â”€ */
     #content { display: none; }
 
-    /* NAV — hidden when embedded in Webflow iframe */
+    /* NAV â€” hidden when embedded in Webflow iframe */
     #p-nav { display: none; }
 
     /* HERO */
@@ -318,22 +318,22 @@
 </head>
 <body>
 
-<!-- ─────────────────── GATE ─────────────────── -->
+<!-- â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ GATE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
 <div id="gate">
   <div id="gate-card">
     <div class="gate-logo-ring">
       <img src="https://dailyadventurebox-owner.github.io/Fund-Adventure/img/daily-adventure-box-circle-logo-webclip.png" alt="Daily Adventure Box">
     </div>
-    <div class="gate-eyebrow">Confidential · Partner Access</div>
+    <div class="gate-eyebrow">Confidential Â· Partner Access</div>
     <h1>PARTNER PORTAL</h1>
     <p class="gate-sub">Invited location partners only. Enter your details and password to continue.</p>
     <div class="gate-divider"></div>
     <input class="gate-input" id="g-name" type="text" placeholder="Full Name" autocomplete="name">
     <input class="gate-input" id="g-email" type="email" placeholder="Email Address" autocomplete="email">
     <input class="gate-input" id="g-pass" type="password" placeholder="Access Password" autocomplete="current-password">
-    <button id="gate-btn" onclick="handleAccess()">ACCESS PARTNER INFO →</button>
+    <button id="gate-btn" onclick="handleAccess()">ACCESS PARTNER INFO â†’</button>
     <div id="gate-error"></div>
-    <p class="gate-footer">No password? <a onclick="openReqModal()">Request access →</a></p>
+    <p class="gate-footer">No password? <a onclick="openReqModal()">Request access â†’</a></p>
   </div>
 </div>
 
@@ -345,17 +345,17 @@
       <p>Enter your name and email and we'll reach out with the password.</p>
       <input class="gate-input" id="req-name" type="text" placeholder="Your Full Name">
       <input class="gate-input" id="req-email" type="email" placeholder="Your Email Address">
-      <button id="gate-btn" style="margin-top:4px;" onclick="submitRequest()">SEND REQUEST →</button>
+      <button id="gate-btn" style="margin-top:4px;" onclick="submitRequest()">SEND REQUEST â†’</button>
       <div id="req-error" style="display:none;color:#c0392b;font-size:13px;margin-top:10px;"></div>
     </div>
     <div id="req-success">
-      <p>✓ Request sent! We'll be in touch shortly.</p>
+      <p>âœ“ Request sent! We'll be in touch shortly.</p>
     </div>
     <button id="req-close" onclick="closeReqModal()">Close</button>
   </div>
 </div>
 
-<!-- ─────────────────── CONTENT ─────────────────── -->
+<!-- â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ CONTENT â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
 <div id="content">
 
   <nav id="p-nav">
@@ -369,7 +369,7 @@
       <li><a href="#" onclick="scrollToSection('benefits');return false;">Benefits</a></li>
       <li><a href="#" onclick="scrollToSection('faq');return false;">FAQ</a></li>
     </ul>
-    <button class="nav-giveaway" onclick="openGiveaway()">🎉 BOTE Hammock Giveaway</button>
+    <a href="giveaway.html" class="nav-giveaway" style="text-decoration:none;">ðŸŽ‰ BOTE Hammock Giveaway</a>
     <a class="nav-cta" href="#" onclick="scrollToSection('contact');return false;">GET STARTED</a>
   </nav>
 
@@ -377,11 +377,11 @@
     <div id="hero-bg"></div>
     <div id="hero-gradient"></div>
     <div class="hero-inner">
-      <div class="hero-badge">⚡ PARTNER PROGRAM</div>
+      <div class="hero-badge">âš¡ PARTNER PROGRAM</div>
       <h1>BRING<br><span class="accent">ADVENTURE</span><br>TO YOUR LOCATION</h1>
-      <p class="hero-sub">Add a premium amenity your guests will love. Earn passive revenue on every rental. $0 out-of-pocket — now and forever.</p>
+      <p class="hero-sub">Add a premium amenity your guests will love. Earn passive revenue on every rental. $0 out-of-pocket â€” now and forever.</p>
       <div class="hero-ctas">
-        <a class="btn-primary" href="#" onclick="scrollToSection('lockers');return false;">SEE OUR LOCKERS ↓</a>
+        <a class="btn-primary" href="#" onclick="scrollToSection('lockers');return false;">SEE OUR LOCKERS â†“</a>
         <a class="btn-ghost" href="#" onclick="scrollToSection('contact');return false;">LET'S TALK</a>
       </div>
     </div>
@@ -398,13 +398,13 @@
     <div class="section-inner">
       <div class="section-tag">The Process</div>
       <h2>HOW IT WORKS</h2>
-      <p class="section-sub">From first conversation to first payout — here's what the partnership looks like.</p>
+      <p class="section-sub">From first conversation to first payout â€” here's what the partnership looks like.</p>
       <div class="steps">
         <div class="step"><div class="step-num">1</div><h3>Connect</h3><p>We talk through your location, guest traffic, and available space. No commitment required.</p></div>
         <div class="step"><div class="step-num">2</div><h3>Agree on Terms</h3><p>We build a custom revenue-share deal specific to your property. Fair, transparent, in writing.</p></div>
         <div class="step"><div class="step-num">3</div><h3>We Install</h3><p>We deliver, place, and set up the locker at your location. Typically done in under a day.</p></div>
         <div class="step"><div class="step-num">4</div><h3>Guests Rent</h3><p>Guests discover the locker, scan the QR code, and rent premium adventure gear instantly from their phone.</p></div>
-        <div class="step"><div class="step-num">5</div><h3>You Get Paid</h3><p>Your revenue share is paid out on a recurring schedule. We handle everything else — always.</p></div>
+        <div class="step"><div class="step-num">5</div><h3>You Get Paid</h3><p>Your revenue share is paid out on a recurring schedule. We handle everything else â€” always.</p></div>
       </div>
     </div>
   </section>
@@ -415,9 +415,9 @@
       <h2>OUR LOCKER MODELS</h2>
       <p class="section-sub">Three configurations built for different spaces and traffic volumes. We'll match the right unit to your location.</p>
       <div class="model-tabs">
-        <div class="model-tab active" onclick="switchModel('clj03',this)">CLJ-03 &nbsp;·&nbsp; Compact</div>
-        <div class="model-tab" onclick="switchModel('clj05',this)">CLJ-05 &nbsp;·&nbsp; Mid-Size</div>
-        <div class="model-tab" onclick="switchModel('clj07',this)">CLJ-07 &nbsp;·&nbsp; Smallest</div>
+        <div class="model-tab active" onclick="switchModel('clj03',this)">CLJ-03 &nbsp;Â·&nbsp; Compact</div>
+        <div class="model-tab" onclick="switchModel('clj05',this)">CLJ-05 &nbsp;Â·&nbsp; Mid-Size</div>
+        <div class="model-tab" onclick="switchModel('clj07',this)">CLJ-07 &nbsp;Â·&nbsp; Smallest</div>
       </div>
 
       <div class="model-panel active" id="m-clj03">
@@ -429,14 +429,14 @@
           <img class="gallery-thumb" src="https://dailyadventurebox-owner.github.io/Fund-Adventure/img/clj-03-04.png" alt="CLJ-03">
         </div>
         <div class="model-info">
-          <h3>CLJ-03</h3><span class="model-badge">COMPACT · 3-DOOR</span>
-          <p class="model-desc">Our compact unit is ideal for tighter spaces — a lobby corner, pool deck, or marina dock. Three independently locked compartments stocked with premium gear.</p>
+          <h3>CLJ-03</h3><span class="model-badge">COMPACT Â· 3-DOOR</span>
+          <p class="model-desc">Our compact unit is ideal for tighter spaces â€” a lobby corner, pool deck, or marina dock. Three independently locked compartments stocked with premium gear.</p>
           <ul class="model-specs">
-            <li><span class="spec-check">✓</span> 3 independently secured compartments</li>
-            <li><span class="spec-check">✓</span> Self-serve QR code unlock — no keys, no staff</li>
-            <li><span class="spec-check">✓</span> Weather-sealed for indoor or outdoor placement</li>
-            <li><span class="spec-check">✓</span> Smallest footprint — fits almost anywhere</li>
-            <li><span class="spec-check">✓</span> Ideal for boutique hotels, vacation rentals, small marinas</li>
+            <li><span class="spec-check">âœ“</span> 3 independently secured compartments</li>
+            <li><span class="spec-check">âœ“</span> Self-serve QR code unlock â€” no keys, no staff</li>
+            <li><span class="spec-check">âœ“</span> Weather-sealed for indoor or outdoor placement</li>
+            <li><span class="spec-check">âœ“</span> Smallest footprint â€” fits almost anywhere</li>
+            <li><span class="spec-check">âœ“</span> Ideal for boutique hotels, vacation rentals, small marinas</li>
           </ul>
         </div>
       </div>
@@ -450,14 +450,14 @@
           <img class="gallery-thumb" src="https://dailyadventurebox-owner.github.io/Fund-Adventure/img/clj-05-04.png" alt="CLJ-05">
         </div>
         <div class="model-info">
-          <h3>CLJ-05</h3><span class="model-badge">MID-SIZE · 5-DOOR · MOST POPULAR</span>
+          <h3>CLJ-05</h3><span class="model-badge">MID-SIZE Â· 5-DOOR Â· MOST POPULAR</span>
           <p class="model-desc">Our most popular configuration. Five compartments cover a full gear selection for properties with moderate to high guest traffic.</p>
           <ul class="model-specs">
-            <li><span class="spec-check">✓</span> 5 independently secured compartments</li>
-            <li><span class="spec-check">✓</span> Self-serve QR code unlock — no keys, no staff</li>
-            <li><span class="spec-check">✓</span> Holds a full gear lineup for multiple guests at once</li>
-            <li><span class="spec-check">✓</span> Ideal for hotel pools, resort areas, campgrounds</li>
-            <li><span class="spec-check">✓</span> Best balance of inventory and footprint</li>
+            <li><span class="spec-check">âœ“</span> 5 independently secured compartments</li>
+            <li><span class="spec-check">âœ“</span> Self-serve QR code unlock â€” no keys, no staff</li>
+            <li><span class="spec-check">âœ“</span> Holds a full gear lineup for multiple guests at once</li>
+            <li><span class="spec-check">âœ“</span> Ideal for hotel pools, resort areas, campgrounds</li>
+            <li><span class="spec-check">âœ“</span> Best balance of inventory and footprint</li>
           </ul>
         </div>
       </div>
@@ -470,14 +470,14 @@
           <img class="gallery-thumb" src="https://dailyadventurebox-owner.github.io/Fund-Adventure/img/clj-07-03.png" alt="CLJ-07">
         </div>
         <div class="model-info">
-          <h3>CLJ-07</h3><span class="model-badge">V2 STANDALONE · SMALLEST FOOTPRINT</span>
-          <p class="model-desc">Our smallest unit. The V2 standalone packs premium adventure gear into a slim, self-contained locker that fits almost anywhere — indoors or outdoors. Less space than a mini-fridge footprint.</p>
+          <h3>CLJ-07</h3><span class="model-badge">V2 STANDALONE Â· SMALLEST FOOTPRINT</span>
+          <p class="model-desc">Our smallest unit. The V2 standalone packs premium adventure gear into a slim, self-contained locker that fits almost anywhere â€” indoors or outdoors. Less space than a mini-fridge footprint.</p>
           <ul class="model-specs">
-            <li><span class="spec-check">✓</span> <strong>30" W × 21" D × 50.75" H</strong> — fits in virtually any space</li>
-            <li><span class="spec-check">✓</span> Self-serve QR code unlock — no keys, no staff</li>
-            <li><span class="spec-check">✓</span> Indoor or outdoor rated — weather-sealed construction</li>
-            <li><span class="spec-check">✓</span> Fits hallways, patios, pool decks, docks, and corners</li>
-            <li><span class="spec-check">✓</span> Ideal for boutique hotels, vacation rentals, retail shops</li>
+            <li><span class="spec-check">âœ“</span> <strong>30" W Ã— 21" D Ã— 50.75" H</strong> â€” fits in virtually any space</li>
+            <li><span class="spec-check">âœ“</span> Self-serve QR code unlock â€” no keys, no staff</li>
+            <li><span class="spec-check">âœ“</span> Indoor or outdoor rated â€” weather-sealed construction</li>
+            <li><span class="spec-check">âœ“</span> Fits hallways, patios, pool decks, docks, and corners</li>
+            <li><span class="spec-check">âœ“</span> Ideal for boutique hotels, vacation rentals, retail shops</li>
           </ul>
         </div>
       </div>
@@ -489,7 +489,7 @@
     <div class="section-inner" style="text-align:center;max-width:1000px;">
       <div class="section-tag">See It In Action</div>
       <h2>LIVE AT PENSACOLA BEACH</h2>
-      <p class="section-sub" style="margin:0 auto 36px;text-align:center;">Three hotel locations running DAB lockers at Pensacola Beach, FL — real guests, real gear, real revenue.</p>
+      <p class="section-sub" style="margin:0 auto 36px;text-align:center;">Three hotel locations running DAB lockers at Pensacola Beach, FL â€” real guests, real gear, real revenue.</p>
       <div style="position:relative;width:100%;margin:0 auto;border-radius:20px;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,0.18),0 0 0 1px rgba(0,0,0,0.06);aspect-ratio:16/9;background:#000;">
         <iframe
           src="https://www.youtube-nocookie.com/embed/vHNUXZhQkwE?rel=0&modestbranding=1&color=white&vq=hd1080"
@@ -508,7 +508,7 @@
     <div class="gear-strip-inner">
       <div class="section-tag" style="margin-bottom:16px;">What's Inside</div>
       <h2 style="color:#fff;margin-bottom:8px;">PREMIUM ADVENTURE GEAR</h2>
-      <p style="color:rgba(255,255,255,0.5);font-size:14px;margin-bottom:28px;">Inventory is curated for your location — beach, lake, mountain, or anywhere in between.</p>
+      <p style="color:rgba(255,255,255,0.5);font-size:14px;margin-bottom:28px;">Inventory is curated for your location â€” beach, lake, mountain, or anywhere in between.</p>
       <div class="gear-scroll">
         <div class="gear-item"><img src="https://dailyadventurebox-owner.github.io/Fund-Adventure/img/clj-05-05.png" alt="Sports Pack"><span>Sports Pack</span></div>
         <div class="gear-item"><img src="https://dailyadventurebox-owner.github.io/Fund-Adventure/img/clj-03-05.png" alt="Beach Shade"><span>Beach Shade</span></div>
@@ -526,12 +526,12 @@
       <h2>WHAT YOU GET</h2>
       <p class="section-sub">We've built this program so the only thing you need to do is say yes and pick a spot for the locker.</p>
       <div class="benefits-grid">
-        <div class="benefit-card featured"><span class="b-icon">💰</span><h3>Revenue Share — Every Rental</h3><p>Earn a percentage of every rental transaction at your location. The split is negotiated per deal — we work with your numbers to make it worth your while.</p></div>
-        <div class="benefit-card"><span class="b-icon">🔧</span><h3>$0 Installation Cost</h3><p>We cover all hardware, delivery, and setup. No capital expenditure — you put no money in and start earning from day one.</p></div>
-        <div class="benefit-card"><span class="b-icon">🛡️</span><h3>Fully Insured</h3><p>Our commercial insurance covers all equipment and every rental. Your property is not liable for damage, loss, or theft. Period.</p></div>
-        <div class="benefit-card"><span class="b-icon">📦</span><h3>We Handle Everything</h3><p>Restocking, maintenance, cleaning, customer support — 100% our responsibility. Your team does absolutely nothing to keep it running.</p></div>
-        <div class="benefit-card"><span class="b-icon">⭐</span><h3>Standout Guest Amenity</h3><p>Give guests something to talk about. A DAB locker drives positive reviews, social posts, and return visits — a differentiator competitors don't have.</p></div>
-        <div class="benefit-card"><span class="b-icon">📱</span><h3>Zero Staff Involvement</h3><p>Guests scan a QR code, pay on their phone, and get their gear — all without touching your front desk or involving any staff member.</p></div>
+        <div class="benefit-card featured"><span class="b-icon">ðŸ’°</span><h3>Revenue Share â€” Every Rental</h3><p>Earn a percentage of every rental transaction at your location. The split is negotiated per deal â€” we work with your numbers to make it worth your while.</p></div>
+        <div class="benefit-card"><span class="b-icon">ðŸ”§</span><h3>$0 Installation Cost</h3><p>We cover all hardware, delivery, and setup. No capital expenditure â€” you put no money in and start earning from day one.</p></div>
+        <div class="benefit-card"><span class="b-icon">ðŸ›¡ï¸</span><h3>Fully Insured</h3><p>Our commercial insurance covers all equipment and every rental. Your property is not liable for damage, loss, or theft. Period.</p></div>
+        <div class="benefit-card"><span class="b-icon">ðŸ“¦</span><h3>We Handle Everything</h3><p>Restocking, maintenance, cleaning, customer support â€” 100% our responsibility. Your team does absolutely nothing to keep it running.</p></div>
+        <div class="benefit-card"><span class="b-icon">â­</span><h3>Standout Guest Amenity</h3><p>Give guests something to talk about. A DAB locker drives positive reviews, social posts, and return visits â€” a differentiator competitors don't have.</p></div>
+        <div class="benefit-card"><span class="b-icon">ðŸ“±</span><h3>Zero Staff Involvement</h3><p>Guests scan a QR code, pay on their phone, and get their gear â€” all without touching your front desk or involving any staff member.</p></div>
       </div>
     </div>
   </section>
@@ -540,14 +540,14 @@
     <div class="section-inner">
       <div class="section-tag">Ideal Partners</div>
       <h2>WHO IT'S BUILT FOR</h2>
-      <p class="section-sub">If guests at your location spend any time near water, trails, or the outdoors — you're a great fit.</p>
+      <p class="section-sub">If guests at your location spend any time near water, trails, or the outdoors â€” you're a great fit.</p>
       <div class="fit-grid">
-        <div class="fit-card"><span class="fit-icon">🏨</span><h3>Hotels &amp; Resorts</h3></div>
-        <div class="fit-card"><span class="fit-icon">🏡</span><h3>Vacation Rentals</h3></div>
-        <div class="fit-card"><span class="fit-icon">⛵</span><h3>Marinas &amp; Boat Clubs</h3></div>
-        <div class="fit-card"><span class="fit-icon">🏕️</span><h3>RV Parks &amp; Campgrounds</h3></div>
-        <div class="fit-card"><span class="fit-icon">🏖️</span><h3>Beach Properties</h3></div>
-        <div class="fit-card"><span class="fit-icon">🛍️</span><h3>Outdoor Retailers</h3></div>
+        <div class="fit-card"><span class="fit-icon">ðŸ¨</span><h3>Hotels &amp; Resorts</h3></div>
+        <div class="fit-card"><span class="fit-icon">ðŸ¡</span><h3>Vacation Rentals</h3></div>
+        <div class="fit-card"><span class="fit-icon">â›µ</span><h3>Marinas &amp; Boat Clubs</h3></div>
+        <div class="fit-card"><span class="fit-icon">ðŸ•ï¸</span><h3>RV Parks &amp; Campgrounds</h3></div>
+        <div class="fit-card"><span class="fit-icon">ðŸ–ï¸</span><h3>Beach Properties</h3></div>
+        <div class="fit-card"><span class="fit-icon">ðŸ›ï¸</span><h3>Outdoor Retailers</h3></div>
       </div>
     </div>
   </section>
@@ -557,13 +557,13 @@
       <div class="section-tag">Questions</div>
       <h2>FREQUENTLY ASKED</h2>
       <div class="faq-list">
-        <details><summary>What type of gear is in the lockers? <span class="faq-icon"><span class="faq-icon-open">+</span><span class="faq-icon-close">−</span></span></summary><p>Each locker is stocked with premium adventure and outdoor recreation gear — paddleboards, kayak gear, snorkel sets, beach chairs, water hammocks, recreation equipment, and more. We curate the inventory specifically for your location's environment and guest profile.</p></details>
-        <details><summary>How much revenue will I earn? <span class="faq-icon"><span class="faq-icon-open">+</span><span class="faq-icon-close">−</span></span></summary><p>There's no one-size-fits-all rate. We negotiate revenue share on a per-location basis based on your expected traffic, location type, and locker size. We'll present clear numbers before anything is signed — no surprises.</p></details>
-        <details><summary>Do I need to do anything after it's installed? <span class="faq-icon"><span class="faq-icon-open">+</span><span class="faq-icon-close">−</span></span></summary><p>No. Daily Adventure Box handles all restocking, gear maintenance, sanitization between rentals, and customer support. Your only responsibility is having a designated space for the locker.</p></details>
-        <details><summary>What if gear gets damaged or stolen? <span class="faq-icon"><span class="faq-icon-open">+</span><span class="faq-icon-close">−</span></span></summary><p>All equipment is covered under our commercial insurance policy. Renters agree to our terms of service at checkout. Any damage, loss, or theft is handled entirely by us — your property carries zero liability.</p></details>
-        <details><summary>How much space does it take up? <span class="faq-icon"><span class="faq-icon-open">+</span><span class="faq-icon-close">−</span></span></summary><p>Our smallest unit — the CLJ-07 V2 Standalone — is just <strong>30" wide × 21" deep × 50.75" tall</strong>. That's a footprint smaller than a mini-fridge. It can be installed indoors or outdoors. We'll do a site walkthrough before installation and confirm the right placement for your space.</p></details>
-        <details><summary>What does the contract look like? <span class="faq-icon"><span class="faq-icon-open">+</span><span class="faq-icon-close">−</span></span></summary><p>We work out terms on a per-location basis. Our standard agreement covers installation, revenue split, maintenance responsibilities, insurance, and exit terms. It's straightforward and written to protect both parties.</p></details>
-        <details><summary>Can I see a demo or visit an existing location? <span class="faq-icon"><span class="faq-icon-open">+</span><span class="faq-icon-close">−</span></span></summary><p>Yes — contact us and we'll arrange a product walkthrough, connect you with an existing partner, or bring a unit directly to your property for a hands-on look.</p></details>
+        <details><summary>What type of gear is in the lockers? <span class="faq-icon"><span class="faq-icon-open">+</span><span class="faq-icon-close">âˆ’</span></span></summary><p>Each locker is stocked with premium adventure and outdoor recreation gear â€” paddleboards, kayak gear, snorkel sets, beach chairs, water hammocks, recreation equipment, and more. We curate the inventory specifically for your location's environment and guest profile.</p></details>
+        <details><summary>How much revenue will I earn? <span class="faq-icon"><span class="faq-icon-open">+</span><span class="faq-icon-close">âˆ’</span></span></summary><p>There's no one-size-fits-all rate. We negotiate revenue share on a per-location basis based on your expected traffic, location type, and locker size. We'll present clear numbers before anything is signed â€” no surprises.</p></details>
+        <details><summary>Do I need to do anything after it's installed? <span class="faq-icon"><span class="faq-icon-open">+</span><span class="faq-icon-close">âˆ’</span></span></summary><p>No. Daily Adventure Box handles all restocking, gear maintenance, sanitization between rentals, and customer support. Your only responsibility is having a designated space for the locker.</p></details>
+        <details><summary>What if gear gets damaged or stolen? <span class="faq-icon"><span class="faq-icon-open">+</span><span class="faq-icon-close">âˆ’</span></span></summary><p>All equipment is covered under our commercial insurance policy. Renters agree to our terms of service at checkout. Any damage, loss, or theft is handled entirely by us â€” your property carries zero liability.</p></details>
+        <details><summary>How much space does it take up? <span class="faq-icon"><span class="faq-icon-open">+</span><span class="faq-icon-close">âˆ’</span></span></summary><p>Our smallest unit â€” the CLJ-07 V2 Standalone â€” is just <strong>30" wide Ã— 21" deep Ã— 50.75" tall</strong>. That's a footprint smaller than a mini-fridge. It can be installed indoors or outdoors. We'll do a site walkthrough before installation and confirm the right placement for your space.</p></details>
+        <details><summary>What does the contract look like? <span class="faq-icon"><span class="faq-icon-open">+</span><span class="faq-icon-close">âˆ’</span></span></summary><p>We work out terms on a per-location basis. Our standard agreement covers installation, revenue split, maintenance responsibilities, insurance, and exit terms. It's straightforward and written to protect both parties.</p></details>
+        <details><summary>Can I see a demo or visit an existing location? <span class="faq-icon"><span class="faq-icon-open">+</span><span class="faq-icon-close">âˆ’</span></span></summary><p>Yes â€” contact us and we'll arrange a product walkthrough, connect you with an existing partner, or bring a unit directly to your property for a hands-on look.</p></details>
       </div>
     </div>
   </section>
@@ -572,13 +572,13 @@
     <div id="p-cta">
       <div class="cta-inner" style="max-width:640px;">
         <h2>READY TO ADD ADVENTURE?</h2>
-        <p class="cta-sub">Tell us about your location and we'll put a package together — zero cost, zero commitment to get started.</p>
+        <p class="cta-sub">Tell us about your location and we'll put a package together â€” zero cost, zero commitment to get started.</p>
         <form id="locationContactForm" style="display:flex;flex-direction:column;gap:12px;text-align:left;margin-top:8px;">
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
             <input id="lc_name" type="text" placeholder="Full Name" required style="padding:13px 16px;border-radius:8px;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.08);color:#fff;font-family:'Inter',sans-serif;font-size:14px;outline:none;">
             <input id="lc_email" type="email" placeholder="Email Address" required style="padding:13px 16px;border-radius:8px;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.08);color:#fff;font-family:'Inter',sans-serif;font-size:14px;outline:none;">
           </div>
-          <input id="lc_location" type="text" placeholder="Location name + city/state (e.g. Sunset Inn · Pensacola, FL)" style="padding:13px 16px;border-radius:8px;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.08);color:#fff;font-family:'Inter',sans-serif;font-size:14px;outline:none;">
+          <input id="lc_location" type="text" placeholder="Location name + city/state (e.g. Sunset Inn Â· Pensacola, FL)" style="padding:13px 16px;border-radius:8px;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.08);color:#fff;font-family:'Inter',sans-serif;font-size:14px;outline:none;">
           <select id="lc_type" style="padding:13px 16px;border-radius:8px;border:1px solid rgba(255,255,255,0.2);background:#1a2a1a;color:#fff;font-family:'Inter',sans-serif;font-size:14px;outline:none;">
             <option value="" disabled selected style="background:#1a2a1a;color:#aaa;">Location type...</option>
             <option value="hotel" style="background:#1a2a1a;color:#fff;">Hotel / Resort</option>
@@ -589,7 +589,7 @@
             <option value="other" style="background:#1a2a1a;color:#fff;">Other</option>
           </select>
           <textarea id="lc_message" placeholder="Anything else? (optional)" rows="3" style="padding:13px 16px;border-radius:8px;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.08);color:#fff;font-family:'Inter',sans-serif;font-size:14px;outline:none;resize:vertical;"></textarea>
-          <button type="submit" id="lc_submit" class="btn-primary" style="padding:15px;border-radius:8px;font-size:13px;letter-spacing:1px;border:none;cursor:pointer;width:100%;">LET'S TALK →</button>
+          <button type="submit" id="lc_submit" class="btn-primary" style="padding:15px;border-radius:8px;font-size:13px;letter-spacing:1px;border:none;cursor:pointer;width:100%;">LET'S TALK â†’</button>
           <div id="lc_msg" style="display:none;padding:12px 16px;border-radius:8px;font-size:14px;text-align:center;"></div>
         </form>
         <p class="cta-contact" style="margin-top:16px;">Questions? <a href="mailto:support@dailyadventurebox.com">support@dailyadventurebox.com</a></p>
@@ -602,7 +602,7 @@
       <img src="https://dailyadventurebox-owner.github.io/Fund-Adventure/img/daily-adventure-box-circle-logo-webclip.png" alt="DAB">
       <span>Daily Adventure Box</span>
     </div>
-    <p>© 2026 Daily Adventure Box LLC · Partner Portal · Confidential — Do Not Distribute</p>
+    <p>Â© 2026 Daily Adventure Box LLC Â· Partner Portal Â· Confidential â€” Do Not Distribute</p>
   </footer>
 
 </div>
@@ -635,7 +635,7 @@
     if (hash !== PASS_HASH) {
       showErr('Incorrect password. Contact us if you need access.');
       btn.disabled = false;
-      btn.textContent = 'ACCESS PARTNER INFO →';
+      btn.textContent = 'ACCESS PARTNER INFO â†’';
       return;
     }
     try { await supa.from('partner_page_views').insert({ name, email }); } catch(_) {}
@@ -712,11 +712,11 @@
         });
         msg.style.display='block'; msg.style.background='rgba(116,185,63,0.15)'; msg.style.color='#9dd660';
         msg.textContent = "Got it! We'll reach out within 48 hours.";
-        f.reset(); btn.textContent = "Sent ✓";
+        f.reset(); btn.textContent = "Sent âœ“";
       } catch(err) {
         msg.style.display='block'; msg.style.background='rgba(239,68,68,0.15)'; msg.style.color='#f87171';
-        msg.textContent = 'Error sending — email support@dailyadventurebox.com';
-        btn.disabled = false; btn.textContent = "LET'S TALK →";
+        msg.textContent = 'Error sending â€” email support@dailyadventurebox.com';
+        btn.disabled = false; btn.textContent = "LET'S TALK â†’";
       }
     });
   })();
@@ -758,129 +758,5 @@
   new ResizeObserver(sendHeight).observe(document.body);
 </script>
 
-<!-- ── BOTE GIVEAWAY POPUP ──────────────────────────────────────── -->
-<style>
-#dab-gw-overlay{position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.82);display:flex;align-items:center;justify-content:center;padding:16px;box-sizing:border-box;}
-@keyframes dab-gw-in{from{opacity:0}to{opacity:1}}
-#dab-gw-modal{width:100%;max-width:500px;background:#0d2a3a;border-radius:14px;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,.7);max-height:90vh;overflow-y:auto;position:relative;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.15) transparent;animation:dab-gw-in .3s ease forwards;}
-#dab-gw-modal *{box-sizing:border-box;}
-#dab-gw-modal::-webkit-scrollbar{width:3px}
-#dab-gw-modal::-webkit-scrollbar-thumb{background:rgba(255,255,255,.18);border-radius:2px}
-#dab-gw-close{position:absolute;top:10px;right:10px;z-index:10;width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,.6);border:none;cursor:pointer;color:white;font-size:16px;display:flex;align-items:center;justify-content:center;line-height:1;padding:0;}
-#dab-gw-close:hover{background:rgba(0,0,0,.9)}
-#dab-gw-modal .gw-hero{position:relative;height:200px;overflow:hidden;display:block;}
-#dab-gw-modal .gw-hero img{width:100%;height:100%;object-fit:cover;object-position:center 28%;display:block;max-width:none;}
-#dab-gw-modal .gw-hero-ov{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.5) 0%,rgba(0,0,0,0) 30%,rgba(13,42,58,.7) 65%,rgba(13,42,58,1) 100%);}
-#dab-gw-modal .gw-toprow{position:absolute;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:12px 14px;z-index:2;}
-#dab-gw-modal .gw-toprow img{height:32px;width:auto;max-width:none;filter:drop-shadow(0 1px 6px rgba(0,0,0,.6));}
-#dab-gw-modal .gw-pill{background:#F9C926;color:#2C2C2C;font-family:'Montserrat',sans-serif;font-size:8px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;padding:4px 10px;border-radius:20px;}
-#dab-gw-modal .gw-badge{position:absolute;top:50px;right:14px;z-index:2;background:#F9C926;color:#2C2C2C;font-family:'Bebas Neue',sans-serif;text-align:center;padding:7px 12px;border-radius:8px;line-height:1;box-shadow:0 4px 18px rgba(0,0,0,.55);}
-#dab-gw-modal .gw-badge .bw{font-size:9px;letter-spacing:2px;opacity:.65;display:block;}
-#dab-gw-modal .gw-badge .bv{font-size:34px;line-height:.9;display:block;}
-#dab-gw-modal .gw-badge .bl{font-size:8px;letter-spacing:2px;opacity:.65;display:block;}
-#dab-gw-modal .gw-hero-txt{position:absolute;bottom:10px;left:14px;z-index:2;}
-#dab-gw-modal .gw-pname{font-family:'Montserrat',sans-serif;font-size:9px;font-weight:900;letter-spacing:2.5px;color:#5BBDD4;text-transform:uppercase;margin-bottom:2px;display:block;}
-#dab-gw-modal .gw-hed{font-family:'Bebas Neue',sans-serif;font-size:52px;letter-spacing:3px;color:white;line-height:.87;display:block;}
-#dab-gw-modal .gw-hed em{color:#F9C926;font-style:normal;}
-#dab-gw-modal .gw-hed span{color:#5BBDD4;}
-#dab-gw-modal .gw-mech{background:#74B93F;display:flex;align-items:center;justify-content:space-between;padding:9px 16px;}
-#dab-gw-modal .gw-mech-l{display:flex;align-items:center;gap:10px;}
-#dab-gw-modal .gw-mech-num{background:white;color:#74B93F;font-family:'Bebas Neue',sans-serif;font-size:34px;padding:0 9px;border-radius:5px;line-height:1;display:block;}
-#dab-gw-modal .gw-mech-txt{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:800;color:white;text-transform:uppercase;line-height:1.4;}
-#dab-gw-modal .gw-mech-txt em{color:#F9C926;font-style:normal;}
-#dab-gw-modal .gw-mech-r{font-family:'Montserrat',sans-serif;font-size:8.5px;font-weight:700;color:rgba(255,255,255,.8);text-align:right;line-height:1.55;}
-#dab-gw-modal .gw-body{padding:16px 16px 0;}
-#dab-gw-modal .gw-sh{font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:3px;color:#74B93F;margin-bottom:10px;display:block;}
-#dab-gw-modal .gw-div{height:1px;background:rgba(255,255,255,.1);margin:12px 0;}
-#dab-gw-modal .gw-entries{display:flex;flex-direction:column;gap:10px;}
-#dab-gw-modal .gw-entry{display:flex;align-items:flex-start;gap:10px;}
-#dab-gw-modal .gw-ico{width:30px;height:30px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:13px;}
-#dab-gw-modal .gw-ico.g{background:#74B93F;}
-#dab-gw-modal .gw-ico.s{background:#5BBDD4;}
-#dab-gw-modal .gw-ico.y{background:rgba(249,201,38,.12);border:1.5px solid #F9C926;}
-#dab-gw-modal .gw-etxt{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;color:white;line-height:1.45;}
-#dab-gw-modal .gw-etxt .elb{display:block;font-size:8px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:2px;}
-#dab-gw-modal .elb.g{color:#74B93F;}
-#dab-gw-modal .elb.s{color:#5BBDD4;}
-#dab-gw-modal .elb.y{color:#F9C926;}
-#dab-gw-modal .gw-etxt .esb{font-size:9px;color:rgba(255,255,255,.4);font-weight:600;margin-top:2px;display:block;}
-#dab-gw-modal .gw-app-block{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:12px 14px;display:flex;align-items:center;gap:12px;}
-#dab-gw-modal .gw-app-icon{font-size:26px;flex-shrink:0;}
-#dab-gw-modal .gw-app-info{flex:1;min-width:0;}
-#dab-gw-modal .gw-app-info .at{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:900;color:white;letter-spacing:.5px;display:block;margin-bottom:2px;}
-#dab-gw-modal .gw-app-info .as{font-family:'Montserrat',sans-serif;font-size:9px;font-weight:600;color:rgba(255,255,255,.45);line-height:1.4;display:block;}
-#dab-gw-modal .gw-app-btn{background:#5BBDD4;color:white;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:900;letter-spacing:.5px;text-transform:uppercase;text-decoration:none;padding:9px 14px;border-radius:7px;white-space:nowrap;flex-shrink:0;display:block;text-align:center;}
-#dab-gw-modal .gw-app-btn:hover{background:#43a8be;}
-#dab-gw-modal .gw-locs{display:flex;flex-direction:column;gap:4px;}
-#dab-gw-modal .gw-loc-group{margin-bottom:6px;}
-#dab-gw-modal .gw-loc-area{font-family:'Montserrat',sans-serif;font-size:8px;font-weight:900;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:5px;display:block;}
-#dab-gw-modal .gw-loc-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px 10px;}
-#dab-gw-modal .gw-loc{display:flex;align-items:flex-start;gap:8px;}
-#dab-gw-modal .gw-loc .dot{width:7px;height:7px;border-radius:50%;background:#74B93F;flex-shrink:0;margin-top:4px;}
-#dab-gw-modal .gw-loc-name{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;color:rgba(255,255,255,.88);line-height:1.3;}
-#dab-gw-modal .gw-loc-name small{display:block;font-size:8px;font-weight:600;color:rgba(255,255,255,.4);margin-top:1px;}
-#dab-gw-modal .gw-loc-full{grid-column:1/-1;}
-#dab-gw-modal .gw-draw{background:rgba(249,201,38,.08);border:1px solid rgba(249,201,38,.25);border-radius:8px;padding:12px 14px;display:flex;gap:12px;align-items:flex-start;}
-#dab-gw-modal .gw-draw-ico{font-size:20px;flex-shrink:0;margin-top:1px;}
-#dab-gw-modal .gw-draw-txt{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;color:rgba(255,255,255,.75);line-height:1.55;}
-#dab-gw-modal .gw-draw-txt strong{color:#F9C926;font-size:12px;display:block;margin-bottom:2px;}
-#dab-gw-modal .gw-draw-txt em{font-style:normal;color:rgba(255,255,255,.42);font-size:8.5px;display:block;margin-top:2px;}
-#dab-gw-modal .gw-cta{display:block;width:100%;background:#74B93F;color:white;text-decoration:none;font-family:'Montserrat',sans-serif;font-size:13px;font-weight:900;letter-spacing:1px;text-transform:uppercase;text-align:center;padding:14px 20px;border-radius:8px;border:none;cursor:pointer;}
-#dab-gw-modal .gw-cta:hover{background:#5fa32e;}
-#dab-gw-modal .gw-legal-block{background:rgba(0,0,0,.25);border-top:1px solid rgba(255,255,255,.08);padding:14px 16px 16px;margin-top:12px;}
-#dab-gw-modal .gw-legal-hed{font-family:'Bebas Neue',sans-serif;font-size:11px;letter-spacing:3px;color:rgba(255,255,255,.3);margin-bottom:8px;display:block;}
-#dab-gw-modal .gw-legal-txt{font-family:'Montserrat',sans-serif;font-size:7px;font-weight:500;color:rgba(255,255,255,.28);line-height:1.75;}
-#dab-gw-modal .gw-legal-txt p{margin:0 0 5px;}
-#dab-gw-modal .gw-legal-txt strong{color:rgba(255,255,255,.45);font-weight:700;}
-@media(max-width:480px){
-  #dab-gw-overlay{padding:8px;align-items:flex-end;}
-  #dab-gw-modal{max-height:88vh;border-radius:14px 14px 8px 8px;}
-  #dab-gw-modal .gw-hero{height:160px;}
-  #dab-gw-modal .gw-hed{font-size:40px;}
-  #dab-gw-modal .gw-badge .bv{font-size:26px;}
-  #dab-gw-modal .gw-mech-num{font-size:28px;}
-  #dab-gw-modal .gw-mech-txt{font-size:9px;}
-  #dab-gw-modal .gw-body{padding:12px 12px 0;}
-  #dab-gw-modal .gw-app-block{flex-wrap:wrap;}
-  #dab-gw-modal .gw-app-btn{width:100%;margin-top:6px;}
-  #dab-gw-modal .gw-loc-grid{grid-template-columns:1fr;}
-  #dab-gw-modal .gw-loc-full{grid-column:1;}
-  #dab-gw-modal .gw-etxt{font-size:10px;}
-  #dab-gw-modal .gw-cta{font-size:12px;padding:13px;}
-}
-</style>
-<div id="dab-gw-overlay" style="display:none">
-  <div id="dab-gw-modal" role="dialog" aria-modal="true" aria-label="BOTE Hangout Hammock Giveaway">
-    <button id="dab-gw-close" aria-label="Close">✕</button>
-    <div class="gw-hero"><img src="https://dailyadventurebox-owner.github.io/Fund-Adventure/bote_hangout_water_hammock_.jpg" alt="BOTE 7' Hangout Hammock"><div class="gw-hero-ov"></div><div class="gw-toprow"><img src="https://dailyadventurebox-owner.github.io/Fund-Adventure/daily-adventure-box-circle-logo-webclip.png" alt="DAB"><div class="gw-pill">DAB × BOTE Giveaway</div></div><div class="gw-badge"><div class="bw">WIN A</div><div class="bv">$949</div><div class="bl">PRIZE VALUE</div></div><div class="gw-hero-txt"><div class="gw-pname">7' BOTE Hangout Hammock</div><div class="gw-hed">RENT.<br><em>EARN.</em><br><span>WIN.</span></div></div></div>
-    <div class="gw-mech"><div class="gw-mech-l"><div class="gw-mech-num">1</div><div class="gw-mech-txt">Rental hour<br>= <em>1 entry</em></div></div><div class="gw-mech-r">Auto-tracked in your<br>DAB account<br>No forms needed</div></div>
-    <div class="gw-body">
-      <div class="gw-sh">How to Enter</div>
-      <div class="gw-entries">
-        <div class="gw-entry"><div class="gw-ico g">🔑</div><div class="gw-etxt"><span class="elb g">Rent — Automatic Entry</span>Every hour of locker rental earns 1 automatic entry, tracked in your DAB account.<div class="esb">Accumulate across all 8 locations &amp; multiple visits</div></div></div>
-        <div class="gw-entry"><div class="gw-ico s">📸</div><div class="gw-etxt"><span class="elb s">Bonus Entry</span>Post a photo at any DAB location showing a visible DAB locker and tag @dailyadventurebox<div class="esb">1 bonus entry per calendar week · Account must be public</div></div></div>
-        <div class="gw-entry"><div class="gw-ico y">🆓</div><div class="gw-etxt"><span class="elb y">Free Entry — No Rental Required</span>(1) Follow @dailyadventurebox · (2) Share giveaway post to your IG story · (3) Tag 3 friends in comments · (4) DM screenshot + email support@dailyadventurebox.com subject "BOTE Free Entry"<div class="esb">All 4 steps required · Limit 1/person · Screenshot within 24hrs</div></div></div>
-      </div>
-      <div class="gw-div"></div>
-      <div class="gw-sh">Download the App</div>
-      <div class="gw-app-block"><div class="gw-app-icon">📱</div><div class="gw-app-info"><span class="at">Daily Adventure Box App</span><span class="as">Find all locations · Track your rental hours · Monitor your entries · Book experiences</span></div><a class="gw-app-btn" href="https://www.dailyadventurebox.com/download-app" target="_top">Download →</a></div>
-      <div class="gw-div"></div>
-      <div class="gw-sh">8 Locations on Base</div>
-      <div class="gw-locs">
-        <div class="gw-loc-group"><div class="gw-loc-area">Onslow Beach</div><div class="gw-loc-grid"><div class="gw-loc"><div class="dot"></div><div class="gw-loc-name">Starfish Pavilion<small>Onslow Beach, NC</small></div></div><div class="gw-loc"><div class="dot"></div><div class="gw-loc-name">Reservation Office<small>Onslow Beach, NC</small></div></div><div class="gw-loc"><div class="dot"></div><div class="gw-loc-name">Turtle Beach Gazebo<small>Onslow Beach, NC</small></div></div><div class="gw-loc"><div class="dot"></div><div class="gw-loc-name">Sand Dollar Pavilion<small>N. Topsail Beach, NC</small></div></div></div></div>
-        <div class="gw-loc-group"><div class="gw-loc-area">Camp Lejeune &amp; Jacksonville</div><div class="gw-loc-grid"><div class="gw-loc"><div class="dot"></div><div class="gw-loc-name">Courthouse Bay<small>Camp Lejeune, NC</small></div></div><div class="gw-loc"><div class="dot"></div><div class="gw-loc-name">Hospital Point Rec.<small>Jacksonville, NC</small></div></div><div class="gw-loc gw-loc-full"><div class="dot"></div><div class="gw-loc-name">New River Marina<small>2800 Perimeter Rd, Jacksonville, NC</small></div></div></div></div>
-      </div>
-      <div class="gw-div"></div>
-      <div class="gw-draw" style="margin-bottom:14px"><div class="gw-draw-ico">📅</div><div class="gw-draw-txt"><strong>Drawing: July 31 – August 31, 2026</strong>Date selected by DAB based on participation · Open to authorized base personnel 18+<em>No purchase necessary to enter or win</em></div></div>
-      <a class="gw-cta" href="https://www.dailyadventurebox.com" target="_top">Find My Nearest Locker →</a>
-    </div>
-    <div class="gw-legal-block"><div class="gw-legal-hed">Official Giveaway Rules</div><div class="gw-legal-txt"><p><strong>NO PURCHASE NECESSARY TO ENTER OR WIN.</strong> A purchase does not improve your chances of winning. Void where prohibited.</p><p><strong>ELIGIBILITY:</strong> Open to individuals with valid Camp Lejeune access, 18+. Employees of Daily Adventure Box Inc., MCCS, BOTE, Kent Outdoors and their household members are not eligible.</p><p><strong>PROMOTION PERIOD:</strong> Begins June 8, 2026. Drawing between July 31–August 31, 2026 at Sponsor's sole discretion.</p><p><strong>PAID ENTRY:</strong> Every 1 complete rental hour = 1 entry, auto-tracked. Partial hours do not earn entries.</p><p><strong>BONUS ENTRY:</strong> Post original photo at DAB location showing a visible locker, tag @dailyadventurebox. Account must be public. Limit 1/week.</p><p><strong>FREE ENTRY:</strong> (1) Follow @dailyadventurebox; (2) Share active giveaway post to IG story — screenshot within 24hrs; (3) Tag 3 friends in comments; (4) DM screenshot + email support@dailyadventurebox.com subject "BOTE Free Entry". Limit 1/person.</p><p><strong>PRIZE:</strong> One (1) 7' BOTE Hangout Water Hammock, ARV $949. Non-transferable; no cash alternative. Winner may be required to provide IRS Form W-9.</p><p><strong>WINNER:</strong> Selected by random drawing. Notified within 7 days. Must respond within 7 days or prize forfeited and alternate winner selected.</p><p><strong>SPONSOR:</strong> Daily Adventure Box Inc., 2884 NC Highway 210, Smithfield, NC 27577. support@dailyadventurebox.com. Not affiliated with Meta, BOTE, or Kent Outdoors.</p></div></div>
-  </div>
-</div>
-<script>
-function openGiveaway(){var o=document.getElementById('dab-gw-overlay');o.style.transition='';o.style.opacity='1';o.style.display='flex';}
-(function(){var K='dab_gw_v2',o=document.getElementById('dab-gw-overlay'),c=document.getElementById('dab-gw-close');function d(){sessionStorage.setItem(K,'1');o.style.transition='opacity .25s ease';o.style.opacity='0';setTimeout(function(){o.style.display='none';},260);}if(sessionStorage.getItem(K))return;setTimeout(function(){o.style.display='flex';},1500);c.addEventListener('click',d);o.addEventListener('click',function(e){if(e.target===o)d();});document.addEventListener('keydown',function(e){if(e.key==='Escape')d();});})();
-</script>
-<!-- ── END BOTE GIVEAWAY POPUP ───────────────────────────────────── -->
 </body>
 </html>
