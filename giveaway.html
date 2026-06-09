@@ -12,7 +12,7 @@
   --coal:#2C2C2C; --ocean:#0d2a3a; --navy:#0a2233;
 }
 html{scroll-behavior:smooth;}
-body{font-family:'Inter',sans-serif;background:var(--ocean);color:white;-webkit-font-smoothing:antialiased;}
+body{font-family:'Inter',sans-serif;background:var(--ocean);color:white;-webkit-font-smoothing:antialiased;height:fit-content;}
 img{display:block;max-width:100%;}
 
 /* ── NAV ─────────────────────────────────────────────────────────── */
@@ -419,11 +419,15 @@ function toggleLegal(btn){
   sendHeight();
 }
 function sendHeight(){
-  window.parent.postMessage({type:'resize',height:document.body.scrollHeight},'https://www.dailyadventurebox.com');
+  var h=document.body.scrollHeight;
+  window.parent.postMessage({type:'resize',height:h},'https://www.dailyadventurebox.com');
 }
+sendHeight();
+document.addEventListener('DOMContentLoaded',sendHeight);
 window.addEventListener('load',sendHeight);
 window.addEventListener('resize',sendHeight);
 setInterval(sendHeight,500);
+new ResizeObserver(sendHeight).observe(document.body);
 </script>
 </body>
 </html>
