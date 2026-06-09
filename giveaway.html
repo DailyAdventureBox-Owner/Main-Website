@@ -7,6 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html,body{overflow-x:hidden;}
 :root{
   --g:#74B93F; --sky:#5BBDD4; --yel:#F9C926;
   --coal:#2C2C2C; --ocean:#0d2a3a; --navy:#0a2233;
@@ -357,8 +358,8 @@ img{display:block;max-width:100%;}
   <!-- Photo strip -->
   <div class="photo-strip">
     <img class="ps-main" src="https://dailyadventurebox-owner.github.io/Fund-Adventure/Brand_assets/bote_hangout_water_hammock_.jpg" alt="BOTE Hangout Hammock on water">
-    <img class="ps-b" src="https://dailyadventurebox-owner.github.io/Fund-Adventure/Brand_assets/BOTE_Hangout_D4_032243341.jpg" alt="BOTE Hangout product">
-    <img class="ps-c" src="https://dailyadventurebox-owner.github.io/Fund-Adventure/Brand_assets/BOTE_Venice_Murphy_Leica_0824252038.jpg" alt="BOTE lifestyle">
+    <img class="ps-b" src="https://dailyadventurebox-owner.github.io/Fund-Adventure/Brand_assets/BOTE_30ALifestyle_8-195286.jpg" alt="BOTE beach lifestyle" style="object-position:center 40%;">
+    <img class="ps-c" src="https://dailyadventurebox-owner.github.io/Fund-Adventure/Brand_assets/BOTE_Vali_Kayak_Lifestyle.jpg" alt="BOTE kayak lifestyle" style="object-position:center 30%;">
   </div>
 
   <!-- Locations + App + Drawing -->
@@ -439,7 +440,16 @@ function toggleLegal(btn){
   var open=body.classList.toggle('visible');
   btn.classList.toggle('open',open);
   btn.setAttribute('aria-expanded',open);
+  sendHeight();
 }
+function sendHeight(){
+  var h=document.documentElement.scrollHeight;
+  window.parent.postMessage({type:'setHeight',height:h},'*');
+  window.top.postMessage({type:'setHeight',height:h},'*');
+}
+window.addEventListener('load',sendHeight);
+window.addEventListener('resize',sendHeight);
+new ResizeObserver(sendHeight).observe(document.body);
 </script>
 </body>
 </html>
