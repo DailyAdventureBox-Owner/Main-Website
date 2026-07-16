@@ -10,9 +10,29 @@
 <meta property="og:description" content="Smart lockers loaded with adventure gear — right where you recreate. Download the app, pick your gear, and go.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.dailyadventurebox.com">
+<meta property="og:image" content="https://www.dailyadventurebox.com/img/dab-logo.png">
+<link rel="icon" type="image/png" href="img/dab-logo.png">
+<link rel="apple-touch-icon" href="img/dab-logo.png">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Daily Adventure Box",
+  "alternateName": "DailyAdventureBox",
+  "url": "https://www.dailyadventurebox.com",
+  "logo": "https://www.dailyadventurebox.com/img/dab-logo.png",
+  "description": "Smart lockers loaded with adventure gear — surfboards, paddle boards, kayaks, and more — right where people recreate.",
+  "foundingDate": "2021-07-16",
+  "founder": {
+    "@type": "Person",
+    "name": "Shay Putnam"
+  },
+  "areaServed": "US"
+}
+</script>
 <style>
   /* ============================================================
      RESET & BASE
@@ -1567,7 +1587,7 @@
     <div class="container">
       <div class="section-label">Where to Find Us</div>
       <h2 class="section-title">Locker Locations</h2>
-      <p class="section-sub">8 locations live at Camp Lejeune, NC — 200+ coming to bases and beaches nationwide.</p>
+      <p class="section-sub">100+ locations coming online at bases and beaches nationwide.</p>
 
       <div class="locations-grid">
         <div class="location-card">
@@ -1653,8 +1673,8 @@
         </div>
         <div class="location-card">
           <div class="location-card-status"><div class="status-dot status-coming"></div> Coming Soon</div>
-          <h4>200+ Locations Planned</h4>
-          <p>Expanding to military bases and beaches nationwide through 2027</p>
+          <h4>Hundreds of Locations in the Pipeline</h4>
+          <p>Active site selection underway across military bases, beaches, campgrounds, and resort properties nationwide — new markets launching on a rolling basis through 2027</p>
           <div class="gear-tags">
             <span class="gear-tag">Expanding</span>
           </div>
@@ -1662,6 +1682,36 @@
       </div>
 
       <div id="locationsMap"></div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 3B: WHY WE'RE BUILT TO SCALE
+  ============================================================ -->
+  <section style="padding:80px 0;background:var(--off-white);">
+    <div class="container">
+      <div class="section-label">Why We're Built to Scale</div>
+      <h2 class="section-title">Fast-Growing. Fully Backed.</h2>
+      <p class="section-sub">Not a garage project — a company with the contract, the capacity, and the pipeline to move fast.</p>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;margin-top:40px;">
+        <div style="background:#fff;border:1px solid var(--border);border-radius:14px;padding:26px;">
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--green);margin-bottom:8px;">Signed Government Contract</div>
+          <p style="font-size:13px;color:#666;line-height:1.65;">MCCS master contract with the U.S. Marine Corps — the legal and operational foundation to install DAB lockers across military installations nationwide.</p>
+        </div>
+        <div style="background:#fff;border:1px solid var(--border);border-radius:14px;padding:26px;">
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--sky);margin-bottom:8px;">Manufacturing Ready</div>
+          <p style="font-size:13px;color:#666;line-height:1.65;">Production partner already lined up to manufacture the next wave of locker units for the national rollout — hardware capacity is not the bottleneck.</p>
+        </div>
+        <div style="background:#fff;border:1px solid var(--border);border-radius:14px;padding:26px;">
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--yellow);margin-bottom:8px;">Deep Expansion Pipeline</div>
+          <p style="font-size:13px;color:#666;line-height:1.65;">Hundreds of locations in active review across military bases, campgrounds, and hospitality properties nationwide.</p>
+        </div>
+        <div style="background:#fff;border:1px solid var(--border);border-radius:14px;padding:26px;">
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--charcoal);margin-bottom:8px;">Proven Operator</div>
+          <p style="font-size:13px;color:#666;line-height:1.65;">Live and generating revenue at Camp Lejeune, NC — a validated model, ready to replicate at every new site.</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -1694,9 +1744,6 @@
           <div class="gear-item"><img src="img/yoga-shot.jpg" alt="SUP yoga"><div class="gear-item-label">SUP Yoga</div></div>
           <div class="gear-item"><img src="img/dji-drone-floats.jpg" alt="Life on the water"><div class="gear-item-label">Life on the Water</div></div>
         </div>
-      </div>
-      <div style="text-align:center;margin-top:32px;">
-        <a href="https://www.dailyadventurebox.com/experiences" target="_top" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:16px 36px;border-radius:999px;background:var(--sky);color:#fff;font-family:'Montserrat',sans-serif;font-weight:700;font-size:14px;letter-spacing:0.5px;box-shadow:0 8px 24px rgba(91,189,212,0.35);text-decoration:none;">&#128666; Want something delivered to you?</a>
       </div>
     </div>
   </section>
@@ -1820,19 +1867,15 @@
     <div class="container">
       <div class="stats-row">
         <div class="stat-item fade-up">
-          <strong>8</strong>
-          <span>Locations</span>
+          <strong>100+</strong>
+          <span>Locations Coming Soon</span>
         </div>
         <div class="stat-item fade-up">
           <strong>40+</strong>
           <span>Gear Options</span>
         </div>
         <div class="stat-item fade-up">
-          <strong>9</strong>
-          <span>Micro-Owners</span>
-        </div>
-        <div class="stat-item fade-up">
-          <strong>2023</strong>
+          <strong>2021</strong>
           <span>Founded</span>
         </div>
       </div>
@@ -1937,7 +1980,7 @@
           <div class="history-dot"></div>
           <div class="history-content">
             <h4>8 Locations Live — Camp Lejeune</h4>
-            <p>All 8 Camp Lejeune locations go operational across four venues: Onslow Beach, Hospital Point Rec Area, Courthouse Bay Dock, and New River Marina. The first micro-owners come on board. BOTE gear — SUPs, kayaks, and water equipment — is loaded into the lockers.</p>
+            <p>All 8 Camp Lejeune locations go operational across four venues: Onslow Beach, Hospital Point Rec Area, Courthouse Bay Dock, and New River Marina. BOTE gear — SUPs, kayaks, and water equipment — is loaded into the lockers.</p>
             <span class="history-tag tag-live">● Live now</span>
           </div>
         </div>
@@ -1968,7 +2011,7 @@
       <div class="partners-grid">
         <div class="partner-card fade-up">
           <h3>Host a Locker</h3>
-          <p>Hotels, resorts, beaches, parks, military bases — if people recreate there, DAB belongs there. We supply the locker, equipment, and maintenance. You provide the space.</p>
+          <p>Hotels, resorts, campgrounds, beaches, parks, military bases — if people recreate there, DAB belongs there. We supply the locker, equipment, and maintenance. You provide the space. Zero cost to you, revenue share on every rental.</p>
           <a href="https://www.dailyadventurebox.com/have-a-location" target="_top" class="btn btn-green">Learn More</a>
         </div>
         <div class="partner-card fade-up">
@@ -1989,7 +2032,7 @@
         <div class="hl-text">
           <div class="section-label" style="text-align:left;color:var(--yellow);">Earn With Us</div>
           <h2 class="hl-title">Have a Location?<br><span>Let's Put a Locker There.</span></h2>
-          <p>Know a beach, hotel, resort, park, campsite, or recreation area that needs a DAB locker? We cover all costs — equipment, installation, and maintenance. Two ways to get involved:</p>
+          <p>Know a beach, hotel, resort, campground, or recreation area that needs a DAB locker? We already operate under a signed contract with the U.S. Marine Corps (MCCS) at Camp Lejeune — the same install-and-manage model comes to your property. We cover all costs — equipment, installation, and maintenance. Two ways to get involved:</p>
 
           <div class="hl-options">
             <div class="hl-option">
@@ -2021,6 +2064,7 @@
             <div class="hl-card-item"><span class="hl-check">&#10003;</span> We handle equipment & maintenance</div>
             <div class="hl-card-item"><span class="hl-check">&#10003;</span> Attract more visitors to your location</div>
             <div class="hl-card-item"><span class="hl-check">&#10003;</span> Custom locker branding available</div>
+            <div class="hl-card-item"><span class="hl-check">&#10003;</span> Every renter accepts a liability waiver before unlocking gear</div>
             <div class="hl-card-item"><span class="hl-check">&#10003;</span> Sales reps: earn on every location you refer</div>
           </div>
         </div>
@@ -2047,7 +2091,7 @@
           <h3 style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--charcoal);margin-bottom:6px;">CAPT. SHAY PUTNAM, USMC</h3>
           <div style="font-family:'Montserrat',sans-serif;font-weight:600;font-size:11px;color:#888;letter-spacing:0.06em;margin-bottom:14px;">USMC Captain · Founder · Camp Lejeune, NC</div>
           <p style="font-size:14px;color:#555;line-height:1.75;margin-bottom:10px;">Marine Captain. I built DAB because Marines and families were missing out on the beach right outside their barracks — gear-rental options were broken. DAB lockers are open 24/7, unlocked from your phone, stocked with BOTE boards, Shibumi shades, and games.</p>
-          <p style="font-size:14px;color:#555;line-height:1.75;">First units live at Camp Lejeune in March 2026. MCCS contract scaffolds the path to every USMC installation and beyond.</p>
+          <p style="font-size:14px;color:#555;line-height:1.75;">First units live since 2023 — now scaling through the MCCS contract at Camp Lejeune and beyond.</p>
         </div>
       </div>
 
@@ -2062,13 +2106,7 @@
             <div style="width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--green),#5a9430);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:22px;margin-bottom:12px;">MG</div>
             <h4 style="font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--charcoal);margin-bottom:4px;">MAX GALKIN</h4>
             <div style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:10px;color:var(--green);letter-spacing:0.1em;margin-bottom:8px;">CTO · APP &amp; PLATFORM</div>
-            <p style="font-size:12px;color:#666;line-height:1.65;">Engineering lead on the DAB app and rental platform. Drives technical architecture — auth, payments, IoT, scaling.</p>
-          </div>
-          <div style="background:#fff;border:1px solid var(--border);border-radius:14px;padding:22px;">
-            <div style="width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--sky),#3899b1);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:22px;margin-bottom:12px;">A</div>
-            <h4 style="font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--charcoal);margin-bottom:4px;">ANDREW</h4>
-            <div style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:10px;color:var(--sky);letter-spacing:0.1em;margin-bottom:8px;">HEAD OF HARDWARE</div>
-            <p style="font-size:12px;color:#666;line-height:1.65;">Owns the locker hardware stack. Retired Senior Google Developer. Field-installed every unit himself.</p>
+            <p style="font-size:12px;color:#666;line-height:1.65;">Engineering lead on the DAB app and rental platform. Senior Google Developer. Drives technical architecture — auth, payments, IoT, scaling.</p>
           </div>
           <div style="background:#fff;border:1px solid var(--border);border-radius:14px;padding:22px;">
             <div style="width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--yellow),#d4ac1f);color:var(--charcoal);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:22px;margin-bottom:12px;">JR</div>
@@ -2108,7 +2146,7 @@
             <div style="width:52px;height:52px;border-radius:50%;background:var(--light);color:var(--charcoal);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:18px;margin-bottom:12px;">RC</div>
             <h4 style="font-family:'Bebas Neue',sans-serif;font-size:18px;color:var(--charcoal);margin-bottom:4px;">RYAN CHRISTOPHER</h4>
             <div style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:10px;color:#888;letter-spacing:0.08em;margin-bottom:8px;">ANGEL INVESTOR</div>
-            <p style="font-size:12px;color:#666;line-height:1.65;">Pensacola Beach hospitality executive. Operates Margaritaville, Hilton, Marriott, and Holiday Inn properties.</p>
+            <p style="font-size:12px;color:#666;line-height:1.65;">Pensacola Beach hospitality executive. Former owner of Lazy Days Beach Service, now merged with La Dolce Vita Beach Service.</p>
           </div>
         </div>
       </div>
