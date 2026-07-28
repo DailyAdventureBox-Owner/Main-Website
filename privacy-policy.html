@@ -95,10 +95,12 @@
   <thead><tr><th>Provider</th><th>Purpose</th><th>Data Shared</th></tr></thead>
   <tbody>
     <tr><td><strong>Stripe, Inc.</strong></td><td>Payment processing</td><td>Name, email, payment method, transaction amounts</td></tr>
-    <tr><td><strong>Supabase, Inc.</strong></td><td>Database, authentication, data storage</td><td>Account data, rental/ownership records, transactions</td></tr>
-    <tr><td><strong>Google LLC / Firebase</strong></td><td>Analytics, social login, push notifications</td><td>Device info, usage metrics, auth tokens</td></tr>
-    <tr><td><strong>Apple Inc. / Meta Platforms</strong></td><td>Social login (optional)</td><td>Auth tokens, name, email (as authorized by you)</td></tr>
-    <tr><td><strong>GitHub, Inc.</strong></td><td>Fund Adventure Portal hosting (static)</td><td>No personal data stored</td></tr>
+    <tr><td><strong>Amazon Web Services, Inc. (AWS)</strong></td><td>Cloud hosting, database storage, file storage, and transactional email for the rental App/account system</td><td>Account data, rental/order records, uploaded photos, email delivery metadata</td></tr>
+    <tr><td><strong>Supabase, Inc.</strong></td><td>Website contact/inquiry forms, event calendar, and Operator/contractor onboarding documents (a separate system from the rental App)</td><td>Contact-form submissions, calendar data, Operator tax and identity documents</td></tr>
+    <tr><td><strong>Twilio Inc.</strong></td><td>SMS delivery for one-time account verification codes</td><td>Phone number, verification code</td></tr>
+    <tr><td><strong>Google LLC</strong></td><td>Social login (Google Sign-In)</td><td>Auth tokens, name, email (as authorized by you)</td></tr>
+    <tr><td><strong>Apple Inc.</strong></td><td>Social login (Sign in with Apple), optional</td><td>Auth tokens, name, email (as authorized by you)</td></tr>
+    <tr><td><strong>GitHub, Inc.</strong></td><td>Website hosting (static)</td><td>No personal data stored</td></tr>
   </tbody>
 </table>
 
@@ -149,13 +151,13 @@
 <h2>8. Cookies &amp; Tracking Technologies</h2>
 <ul>
   <li><strong>Essential cookies:</strong> Authentication, session management, security (required).</li>
-  <li><strong>Analytics cookies:</strong> Anonymized usage data via Google Analytics/Firebase.</li>
+  <li><strong>Analytics cookies:</strong> We do not currently use third-party analytics or tracking cookies. If this changes, we will update this Policy.</li>
   <li><strong>Preference cookies:</strong> Language, region, display preferences.</li>
 </ul>
 <p>We do not use advertising trackers or sell data to advertisers. Our Services do not currently respond to Do Not Track (DNT) browser signals, as no uniform standard exists.</p>
 
 <h2>9. Data Security</h2>
-<p>We implement industry-standard measures including: TLS/SSL encryption in transit and at rest; secure API communications; row-level security (RLS) in Supabase; regular security monitoring and auditing; PCI DSS compliance via Stripe. No system is fully immune to threats, but we continuously monitor and test our infrastructure.</p>
+<p>We implement industry-standard measures including: TLS/SSL encryption in transit; AES-256 encryption at rest (AWS KMS-managed) for our database and file storage; secure API communications; PCI DSS compliance via Stripe. No system is fully immune to threats, but we continuously monitor and test our infrastructure.</p>
 
 <h2>10. Data Breach Notification</h2>
 <p>In the event of a data breach affecting your personal information, DAB will: (a) notify affected users via email within seventy-two (72) hours of confirming the breach, or as otherwise required by applicable state or federal law; (b) notify applicable state authorities as required; and (c) provide information about the breach scope, data affected, and steps taken to mitigate harm.</p>
