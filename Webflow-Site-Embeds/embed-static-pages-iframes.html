@@ -8,14 +8,48 @@
 <!-- Webflow page: Home -->
 <iframe src="https://dailyadventurebox-owner.github.io/Main-Website/index.html" style="width:100%;min-height:100vh;border:none;" title="Daily Adventure Box — Home"></iframe>
 
+<!--
+  2026-08-01: the Federal Terms, General Terms, and Privacy Policy iframes below were
+  updated to auto-resize to their content's real height via postMessage (the matching
+  script was added to the bottom of each source .html file in this repo). Without this,
+  the iframe was pinned to a fixed one-viewport-tall box and the long legal doc scrolled
+  in a cramped nested scrollbar inside it — this is what made the page feel "slim" and
+  slow to scroll on phones. Each snippet below is now iframe + listener script together;
+  paste the whole block into that page's Code Embed, replacing what's there now.
+-->
+
 <!-- Webflow page: Federal - Terms and Conditions -->
-<iframe src="https://dailyadventurebox-owner.github.io/Main-Website/federal-terms-and-conditions.html" style="width:100%;min-height:100vh;border:none;" title="Federal Terms and Conditions"></iframe>
+<iframe id="dab-frame-federal-terms" src="https://dailyadventurebox-owner.github.io/Main-Website/federal-terms-and-conditions.html" style="width:100%;height:100vh;border:none;display:block;" title="Federal Terms and Conditions"></iframe>
+<script>
+window.addEventListener('message',function(e){
+  if(e && e.data && typeof e.data.dabIframeHeight==='number'){
+    var f=document.getElementById('dab-frame-federal-terms');
+    if(f) f.style.height=e.data.dabIframeHeight+'px';
+  }
+});
+</script>
 
 <!-- Webflow page: General - Terms and Conditions -->
-<iframe src="https://dailyadventurebox-owner.github.io/Main-Website/general-terms-and-conditions.html" style="width:100%;min-height:100vh;border:none;" title="General Terms and Conditions"></iframe>
+<iframe id="dab-frame-general-terms" src="https://dailyadventurebox-owner.github.io/Main-Website/general-terms-and-conditions.html" style="width:100%;height:100vh;border:none;display:block;" title="General Terms and Conditions"></iframe>
+<script>
+window.addEventListener('message',function(e){
+  if(e && e.data && typeof e.data.dabIframeHeight==='number'){
+    var f=document.getElementById('dab-frame-general-terms');
+    if(f) f.style.height=e.data.dabIframeHeight+'px';
+  }
+});
+</script>
 
 <!-- Webflow page: Privacy Policy -->
-<iframe src="https://dailyadventurebox-owner.github.io/Main-Website/privacy-policy.html" style="width:100%;min-height:100vh;border:none;" title="Privacy Policy"></iframe>
+<iframe id="dab-frame-privacy-policy" src="https://dailyadventurebox-owner.github.io/Main-Website/privacy-policy.html" style="width:100%;height:100vh;border:none;display:block;" title="Privacy Policy"></iframe>
+<script>
+window.addEventListener('message',function(e){
+  if(e && e.data && typeof e.data.dabIframeHeight==='number'){
+    var f=document.getElementById('dab-frame-privacy-policy');
+    if(f) f.style.height=e.data.dabIframeHeight+'px';
+  }
+});
+</script>
 
 <!-- Webflow page: delete-account -->
 <iframe src="https://dailyadventurebox-owner.github.io/Main-Website/delete-account.html" style="width:100%;min-height:100vh;border:none;" title="Delete Account"></iframe>

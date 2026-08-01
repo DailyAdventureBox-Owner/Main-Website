@@ -24,6 +24,20 @@
   .legal-highlight{background:#f6faf2;border:1.5px solid #c8e6a8;border-radius:6px;padding:16px 20px;margin:20px 0;}
   .doc-footer{margin-top:48px;padding-top:20px;border-top:2px solid #2C2C2C;text-align:center;font-size:11px;color:#999;font-family:'Montserrat',sans-serif;line-height:1.8;}
   .doc-footer strong{color:#2C2C2C;}
+  img{max-width:100%;height:auto;}
+  .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:16px 0;}
+  .table-wrap table{margin:0;min-width:520px;}
+  @media (max-width:640px){
+    body{padding:32px 20px;font-size:15px;}
+    .doc-header img{height:60px;}
+    .doc-title{font-size:19px;}
+    .doc-subtitle{font-size:11px;}
+    .doc-meta{flex-direction:column;gap:4px;text-align:center;}
+    h2{font-size:14.5px;}
+    h3{font-size:13px;}
+    table{font-size:12.5px;}
+    th,td{padding:8px;}
+  }
   @media print{body{padding:24px;font-size:12px;}}
 </style>
 </head>
@@ -91,6 +105,7 @@
 
 <p>We share limited data with the following service providers under strict confidentiality agreements and data processing addenda:</p>
 
+<div class="table-wrap">
 <table>
   <thead><tr><th>Provider</th><th>Purpose</th><th>Data Shared</th></tr></thead>
   <tbody>
@@ -102,6 +117,7 @@
     <tr><td><strong>GitHub, Inc.</strong></td><td>Website hosting (static)</td><td>No personal data stored</td></tr>
   </tbody>
 </table>
+</div>
 
 <p>We may also disclose personal data if required by law, court order, subpoena, or government investigation, or to protect the rights, property, or safety of DAB, our users, or the public.</p>
 
@@ -177,6 +193,7 @@
 
 <h2>14. Mobile App Store Disclosures (Apple App Store &amp; Google Play)</h2>
 <p>This Section 14 summarizes, in the format required by Apple's App Privacy details and Google Play's Data Safety section, the categories of data our app collects, restating what's already described above rather than describing anything new:</p>
+<div class="table-wrap">
 <table>
   <thead><tr><th>Data Category</th><th>Collected?</th><th>Linked to You?</th><th>Used For</th></tr></thead>
   <tbody>
@@ -190,6 +207,7 @@
     <tr><td>Advertising Data</td><td>No</td><td>N/A</td><td>We do not use advertising trackers or sell data (Section 3, Section 8)</td></tr>
 </tbody>
 </table>
+</div>
 <p>We do not use App Tracking Transparency ("ATT")-governed tracking (as defined by Apple) for cross-app or cross-site advertising purposes, and accordingly do not currently present an ATT permission prompt. If this changes, we will update this Policy and our App Store/Google Play listings before doing so, and will present any legally required consent prompt.</p>
 
 <h2>15. Contact &amp; Data Requests</h2>
@@ -211,6 +229,20 @@
   support@dailyadventurebox.com &bull; www.dailyadventurebox.com<br>
   <span style="font-size:10px;color:#ccc;">DAB-PP-2026-02 &bull; Version 3.0 &bull; Last Updated July 2026</span>
 </div>
+
+<script>
+(function(){
+  function postHeight(){
+    if(window.parent!==window){
+      window.parent.postMessage({dabIframeHeight:document.documentElement.scrollHeight},'*');
+    }
+  }
+  window.addEventListener('load',postHeight);
+  window.addEventListener('resize',postHeight);
+  if(window.ResizeObserver){new ResizeObserver(postHeight).observe(document.body);}
+  else{setInterval(postHeight,500);}
+})();
+</script>
 
 </body>
 </html>

@@ -21,6 +21,16 @@
   .legal-highlight{background:#f1f9fb;border:1.5px solid #b2dfe7;border-radius:6px;padding:16px 20px;margin:20px 0;}
   .doc-footer{margin-top:48px;padding-top:20px;border-top:2px solid #2C2C2C;text-align:center;font-size:11px;color:#999;font-family:'Montserrat',sans-serif;line-height:1.8;}
   .doc-footer strong{color:#2C2C2C;}
+  img{max-width:100%;height:auto;}
+  @media (max-width:640px){
+    body{padding:32px 20px;font-size:15px;}
+    .doc-header img{height:60px;}
+    .doc-title{font-size:19px;}
+    .doc-subtitle{font-size:11px;}
+    .doc-meta{flex-direction:column;gap:4px;text-align:center;}
+    h2{font-size:14.5px;}
+    h3{font-size:13px;}
+  }
   @media print{body{padding:24px;font-size:12px;}}
 </style>
 </head>
@@ -127,6 +137,20 @@
   <p>www.dailyadventurebox.com &nbsp;|&nbsp; support@dailyadventurebox.com</p>
   <p>CLM25-K-0001 &nbsp;|&nbsp; Document ID: DAB-FT-2026-04 &nbsp;|&nbsp; Version 4.2 &nbsp;|&nbsp; Effective July 11, 2026</p>
 </div>
+
+<script>
+(function(){
+  function postHeight(){
+    if(window.parent!==window){
+      window.parent.postMessage({dabIframeHeight:document.documentElement.scrollHeight},'*');
+    }
+  }
+  window.addEventListener('load',postHeight);
+  window.addEventListener('resize',postHeight);
+  if(window.ResizeObserver){new ResizeObserver(postHeight).observe(document.body);}
+  else{setInterval(postHeight,500);}
+})();
+</script>
 
 </body>
 </html>

@@ -23,6 +23,17 @@
   .doc-footer strong{color:#2C2C2C;}
   .signature-block{margin-top:24px;padding:18px;border:1px dashed #999;background:#fafafa;font-size:12.5px;}
   .minor-notice-heading{font-family:'Montserrat',sans-serif;font-weight:800;font-size:21px;text-transform:uppercase;letter-spacing:0.03em;text-align:center;margin:20px 0 10px;color:#2C2C2C;}
+  img{max-width:100%;height:auto;}
+  @media (max-width:640px){
+    body{padding:32px 20px;font-size:15px;}
+    .doc-header img{height:60px;}
+    .doc-title{font-size:19px;}
+    .doc-subtitle{font-size:11px;}
+    .doc-meta{flex-direction:column;gap:4px;text-align:center;}
+    h2{font-size:14.5px;}
+    h3{font-size:13px;}
+    .minor-notice-heading{font-size:17px;}
+  }
   @media print{body{padding:24px;font-size:12px;}}
 </style>
 </head>
@@ -358,6 +369,20 @@ BY ACCESSING AND/OR USING THE APP, AND/OR RENTING, PURCHASING, OR STORING VIA A 
   <p>www.dailyadventurebox.com &nbsp;|&nbsp; support@dailyadventurebox.com</p>
   <p>Document ID: DAB-GT-2026-04 &nbsp;|&nbsp; Version 4.2 &nbsp;|&nbsp; Effective July 11, 2026</p>
 </div>
+
+<script>
+(function(){
+  function postHeight(){
+    if(window.parent!==window){
+      window.parent.postMessage({dabIframeHeight:document.documentElement.scrollHeight},'*');
+    }
+  }
+  window.addEventListener('load',postHeight);
+  window.addEventListener('resize',postHeight);
+  if(window.ResizeObserver){new ResizeObserver(postHeight).observe(document.body);}
+  else{setInterval(postHeight,500);}
+})();
+</script>
 
 </body>
 </html>
