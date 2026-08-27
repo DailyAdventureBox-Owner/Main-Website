@@ -9,6 +9,10 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
+    .sr-only {
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+    }
     body { font-family: 'Inter', sans-serif; color: #2C2C2C; background: #1a1a1a; }
 
     /* â”€â”€ GATE â”€â”€ */
@@ -78,7 +82,7 @@
     }
     .gate-input::placeholder { color: rgba(255,255,255,0.35); }
     .gate-input:focus { border-color: #74B93F; background: rgba(116,185,63,0.08); }
-    #gate-btn {
+    .gate-btn {
       width: 100%; padding: 15px;
       background: #74B93F; color: #fff; border: none;
       border-radius: 10px;
@@ -88,9 +92,10 @@
       transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
       box-shadow: 0 4px 20px rgba(116,185,63,0.35);
     }
-    #gate-btn:hover { background: #5ea32e; transform: translateY(-1px); box-shadow: 0 8px 28px rgba(116,185,63,0.45); }
-    #gate-btn:active { transform: translateY(0); }
-    #gate-btn:disabled { background: rgba(255,255,255,0.15); box-shadow: none; cursor: not-allowed; transform: none; }
+    .gate-btn:hover { background: #5ea32e; transform: translateY(-1px); box-shadow: 0 8px 28px rgba(116,185,63,0.45); }
+    .gate-btn:active { transform: translateY(0); }
+    .gate-btn:disabled { background: rgba(255,255,255,0.15); box-shadow: none; cursor: not-allowed; transform: none; }
+    .gate-btn:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
     #gate-error { display: none; color: #f87171; font-size: 13px; margin-top: 12px; line-height: 1.5; }
     .gate-footer { margin-top: 22px; font-size: 12px; color: rgba(255,255,255,0.3); }
     .gate-footer a { color: rgba(116,185,63,0.8); text-decoration: none; cursor: pointer; }
@@ -325,11 +330,14 @@
     <h1>PARTNER PORTAL</h1>
     <p class="gate-sub">Invited location partners only. Enter your details and password to continue.</p>
     <div class="gate-divider"></div>
+    <label class="sr-only" for="g-name">Full Name</label>
     <input class="gate-input" id="g-name" type="text" placeholder="Full Name" autocomplete="name">
+    <label class="sr-only" for="g-email">Email Address</label>
     <input class="gate-input" id="g-email" type="email" placeholder="Email Address" autocomplete="email">
+    <label class="sr-only" for="g-pass">Access Password</label>
     <input class="gate-input" id="g-pass" type="password" placeholder="Access Password" autocomplete="current-password">
-    <button id="gate-btn" onclick="handleAccess()">ACCESS PARTNER INFO â†’</button>
-    <div id="gate-error"></div>
+    <button id="gate-btn" class="gate-btn" onclick="handleAccess()">ACCESS PARTNER INFO â†’</button>
+    <div id="gate-error" role="alert"></div>
     <p class="gate-footer">No password? <a onclick="openReqModal()">Request access â†’</a></p>
   </div>
 </div>
@@ -340,10 +348,12 @@
     <div id="req-form-wrap">
       <h2>REQUEST ACCESS</h2>
       <p>Enter your name and email and we'll reach out with the password.</p>
+      <label class="sr-only" for="req-name">Your Full Name</label>
       <input class="gate-input" id="req-name" type="text" placeholder="Your Full Name">
+      <label class="sr-only" for="req-email">Your Email Address</label>
       <input class="gate-input" id="req-email" type="email" placeholder="Your Email Address">
-      <button id="gate-btn" style="margin-top:4px;" onclick="submitRequest()">SEND REQUEST â†’</button>
-      <div id="req-error" style="display:none;color:#c0392b;font-size:13px;margin-top:10px;"></div>
+      <button id="req-btn" class="gate-btn" style="margin-top:4px;" onclick="submitRequest()">SEND REQUEST â†’</button>
+      <div id="req-error" role="alert" style="display:none;color:#c0392b;font-size:13px;margin-top:10px;"></div>
     </div>
     <div id="req-success">
       <p>âœ“ Request sent! We'll be in touch shortly.</p>
@@ -571,10 +581,18 @@
         <p class="cta-sub">Tell us about your location and we'll put a package together â€” zero cost, zero commitment to get started.</p>
         <form id="locationContactForm" style="display:flex;flex-direction:column;gap:12px;text-align:left;margin-top:8px;">
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-            <input id="lc_name" type="text" placeholder="Full Name" required style="padding:13px 16px;border-radius:8px;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.08);color:#fff;font-family:'Inter',sans-serif;font-size:14px;outline:none;">
-            <input id="lc_email" type="email" placeholder="Email Address" required style="padding:13px 16px;border-radius:8px;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.08);color:#fff;font-family:'Inter',sans-serif;font-size:14px;outline:none;">
+            <div>
+              <label class="sr-only" for="lc_name">Full Name</label>
+              <input id="lc_name" type="text" placeholder="Full Name" required style="width:100%;padding:13px 16px;border-radius:8px;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.08);color:#fff;font-family:'Inter',sans-serif;font-size:14px;outline:none;">
+            </div>
+            <div>
+              <label class="sr-only" for="lc_email">Email Address</label>
+              <input id="lc_email" type="email" placeholder="Email Address" required style="width:100%;padding:13px 16px;border-radius:8px;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.08);color:#fff;font-family:'Inter',sans-serif;font-size:14px;outline:none;">
+            </div>
           </div>
+          <label class="sr-only" for="lc_location">Location name and city/state</label>
           <input id="lc_location" type="text" placeholder="Location name + city/state (e.g. Sunset Inn Â· Pensacola, FL)" style="padding:13px 16px;border-radius:8px;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.08);color:#fff;font-family:'Inter',sans-serif;font-size:14px;outline:none;">
+          <label class="sr-only" for="lc_type">Location type</label>
           <select id="lc_type" style="padding:13px 16px;border-radius:8px;border:1px solid rgba(255,255,255,0.2);background:#1a2a1a;color:#fff;font-family:'Inter',sans-serif;font-size:14px;outline:none;">
             <option value="" disabled selected style="background:#1a2a1a;color:#aaa;">Location type...</option>
             <option value="hotel" style="background:#1a2a1a;color:#fff;">Hotel / Resort</option>
@@ -584,9 +602,10 @@
             <option value="campground" style="background:#1a2a1a;color:#fff;">RV Park / Campground</option>
             <option value="other" style="background:#1a2a1a;color:#fff;">Other</option>
           </select>
+          <label class="sr-only" for="lc_message">Anything else? (optional)</label>
           <textarea id="lc_message" placeholder="Anything else? (optional)" rows="3" style="padding:13px 16px;border-radius:8px;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.08);color:#fff;font-family:'Inter',sans-serif;font-size:14px;outline:none;resize:vertical;"></textarea>
           <button type="submit" id="lc_submit" class="btn-primary" style="padding:15px;border-radius:8px;font-size:13px;letter-spacing:1px;border:none;cursor:pointer;width:100%;">LET'S TALK â†’</button>
-          <div id="lc_msg" style="display:none;padding:12px 16px;border-radius:8px;font-size:14px;text-align:center;"></div>
+          <div id="lc_msg" style="display:none;padding:12px 16px;border-radius:8px;font-size:14px;text-align:center;" role="status" aria-live="polite"></div>
         </form>
         <p class="cta-contact" style="margin-top:16px;">Questions? <a href="mailto:support@dailyadventurebox.com">support@dailyadventurebox.com</a></p>
       </div>
@@ -664,7 +683,7 @@
     errEl.style.display = 'none';
     if (!name)  { errEl.textContent = 'Please enter your name.'; errEl.style.display = 'block'; return; }
     if (!email || !email.includes('@')) { errEl.textContent = 'Please enter a valid email.'; errEl.style.display = 'block'; return; }
-    const btn = document.querySelector('#req-box #gate-btn');
+    const btn = document.getElementById('req-btn');
     btn.disabled = true; btn.textContent = 'Sending...';
     await supa.from('partner_access_requests').insert({ name, email });
     try {
