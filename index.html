@@ -2281,26 +2281,27 @@
       }
     });
 
-    // Handle anchor links — scroll parent window when in iframe
+    // Handle anchor links — always scroll within this window (scrolling
+    // happens inside the iframe itself on the live site, same as the sticky-
+    // nav scroll listener above; there is no parent-page listener for a
+    // postMessage scrollTo, so that branch never actually navigated anywhere).
     document.querySelectorAll('.nav-dropdown-menu a[href^="#"]').forEach(function(a) {
       a.addEventListener('click', function(e) {
         e.preventDefault();
         var target = document.querySelector(this.getAttribute('href'));
         if (target) {
           var offset = target.getBoundingClientRect().top + window.scrollY;
-          if (window.self !== window.top) {
-            window.parent.postMessage({ type: 'scrollTo', offset: offset }, 'https://www.dailyadventurebox.com');
-          } else {
-            window.scrollTo({ top: offset - 80, behavior: 'smooth' });
-          }
+          window.scrollTo({ top: offset - 80, behavior: 'smooth' });
         }
-        document.querySelector('.nav-dropdown').classList.remove('open');
+        var dd = this.closest('.nav-dropdown');
+        if (dd) dd.classList.remove('open');
       });
     });
-    // Close dropdown when clicking outside
+    // Close dropdowns when clicking outside
     document.addEventListener('click', function(e) {
-      var dd = document.querySelector('.nav-dropdown');
-      if (dd && !dd.contains(e.target)) dd.classList.remove('open');
+      if (!e.target.closest('.nav-dropdown')) {
+        document.querySelectorAll('.nav-dropdown.open').forEach(function(dd) { dd.classList.remove('open'); });
+      }
     });
 
     // Fade-up on scroll (IntersectionObserver)
@@ -2322,8 +2323,8 @@
       var mapEl = document.getElementById('locationsMap');
       if (!mapEl) return;
       var map = L.map('locationsMap', { center: [34.60, -77.33], zoom: 11, scrollWheelZoom: false });
-      L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-        attribution: '&copy; OpenStreetMap &copy; CARTO', maxZoom: 19
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors', maxZoom: 19
       }).addTo(map);
 
       var locs = [

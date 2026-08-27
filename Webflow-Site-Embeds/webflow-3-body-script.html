@@ -1,0 +1,686 @@
+<script>
+/* ============================================================
+   LOCATIONS DATA
+============================================================ */
+const locations=[
+{id:'CLJ-01',name:'Starfish Pavilion',venue:'Camp Lejeune – Onslow Beach',city:'Jacksonville',state:'NC',address:'Starfish Pavilion Ocean Dr, Sneads Ferry, NC 28460',spot:'Pavillon Left Beach, pavillon deck',lat:34.5770,lng:-77.2610,status:'available',img:'Brand_assets/ChatGPT Image Dec 11, 2025, 08_42_10 PM.png',rentals:42,dailyRev:87,buybackTarget:3633},
+{id:'CLJ-02',name:'Starfish Pavilion (Ground)',venue:'Camp Lejeune – Onslow Beach',city:'Jacksonville',state:'NC',address:'Starfish Pavilion Ocean Dr, Sneads Ferry, NC 28460',spot:'Pavillon Left Beach, ground near parking lot',lat:34.5770,lng:-77.2612,status:'available',img:'Brand_assets/ChatGPT Image Dec 11, 2025, 08_55_16 PM.png',rentals:38,dailyRev:72,buybackTarget:3374},
+{id:'CLJ-03',name:'Onslow Beach Reservation Office',venue:'Camp Lejeune – Onslow Beach',city:'Jacksonville',state:'NC',address:'Onslow Beach Reservation Office, Beach Rd, Camp Lejeune, NC 28547',spot:'Main office, left side of porch',lat:34.5721,lng:-77.2688,status:'available',img:'Brand_assets/bote_hangout_water_hammock_.jpg',rentals:55,dailyRev:103,buybackTarget:4781},
+{id:'CLJ-04',name:'Sand Dollar Pavilion',venue:'Camp Lejeune – Onslow Beach',city:'Jacksonville',state:'NC',address:'Sand Dollar Pavilion, North Topsail Beach, NC 28460',spot:'Middle Pavillon, concrete pad',lat:34.5711,lng:-77.2698,status:'available',img:'Brand_assets/BOTE_Hangout_D4_032243341.jpg',rentals:47,dailyRev:91,buybackTarget:3780},
+{id:'CLJ-05',name:'Turtle Beach Gazebo',venue:'Camp Lejeune – Onslow Beach',city:'Jacksonville',state:'NC',address:'Turtle Beach Gazebo, Ocean Dr, Sneads Ferry, NC 28460',spot:'Next to basketball court and wood benches',lat:34.5681,lng:-77.2752,status:'available',img:'Brand_assets/outdoor_sports_1.jpg',rentals:33,dailyRev:65,buybackTarget:4839},
+{id:'CLJ-06',name:'Courthouse Bay Dock',venue:'Camp Lejeune – Court House Bay',city:'Jacksonville',state:'NC',address:'Courthouse Bay, NC 28547',spot:'Broken wooden structure next to dock',lat:34.5829,lng:-77.3724,status:'available',img:'Brand_assets/BOTE_Venice_Murphy_Leica_0824252038.jpg',rentals:29,dailyRev:54,buybackTarget:5488},
+{id:'CLJ-07',name:'Hospital Point Recreation',venue:'Camp Lejeune – Hospital Point',city:'Jacksonville',state:'NC',address:'Hospital Point Recreation Facility, Jacksonville, NC 28540',spot:'On concrete pad, under covered porch',lat:34.6764,lng:-77.3738,status:'available',img:'Brand_assets/103A4700.jpg',rentals:36,dailyRev:78,buybackTarget:3233},
+{id:'CLJ-08',name:'New River Marina',venue:'New River Air Station – Marina',city:'Jacksonville',state:'NC',address:'New River Marina, 2800 Perimeter Rd, Jacksonville, NC 28540',spot:'Against building restroom',lat:34.6980,lng:-77.4302,status:'available',img:'Brand_assets/BOTE_30ALifestyle_8-195286.jpg',rentals:31,dailyRev:68,buybackTarget:6364},
+{id:'PNS-01',name:'Holiday Inn',venue:'Holiday Inn Pensacola Beach',city:'Pensacola Beach',state:'FL',address:'14 Via De Luna Dr, Pensacola Beach, FL 32561',spot:'Pool Deck',lat:30.3282,lng:-87.1356,status:'available',img:'Brand_assets/Holiday Inn 5.JPG',rentals:68,dailyRev:142,buybackTarget:2188},
+{id:'PNS-02',name:'Hilton Pensacola Beach',venue:'Hilton Pensacola Beach',city:'Pensacola Beach',state:'FL',address:'12 Via De Luna Dr, Pensacola Beach, FL 32561',spot:'Pool Deck',lat:30.3279,lng:-87.1365,status:'available',img:'Brand_assets/BOTE_Hangout_D4_032243341.jpg',rentals:89,dailyRev:187,buybackTarget:2188},
+{id:'PNS-03',name:'Fairfield Inn & Suites',venue:'Fairfield Inn and Suites',city:'Pensacola Beach',state:'FL',address:'16 Via De Luna Dr, Pensacola Beach, FL 32561',spot:'Pool Deck',lat:30.3285,lng:-87.1348,status:'available',img:'Brand_assets/bote_hangout_chair_1.png',rentals:57,dailyRev:118,buybackTarget:1750},
+{id:'PNS-04',name:'Hampton Inn',venue:'Hampton Inn Pensacola Beach',city:'Pensacola Beach',state:'FL',address:'2 Via De Luna Dr, Pensacola Beach, FL 32561',spot:'Pool Deck',lat:30.3275,lng:-87.1382,status:'available',img:'Brand_assets/shibumi_shade_1.jpg',rentals:61,dailyRev:129,buybackTarget:1750},
+{id:'PNS-05',name:'Water Pig Beach Bar',venue:'Water Pig Pensacola Beach',city:'Pensacola Beach',state:'FL',address:'5-K Via De Luna Dr, Pensacola Beach, FL 32561',spot:'Against Stair wall',lat:30.3288,lng:-87.1374,status:'available',img:'Brand_assets/ChatGPT Image Dec 11, 2025, 08_42_10 PM.png',rentals:74,dailyRev:155,buybackTarget:875}
+];
+
+/* ============================================================
+   BOX INVENTORY — 60 boxes across 13 locations ($350 each)
+============================================================ */
+const locationBoxes={
+'CLJ-01':[ /* Shared: $800+$1200+$120=$2120 / 6 boxes = $353.33/box | Total: $2,906 */
+{id:'CLJ-01-01',boxType:'V2 Small',category:'Games',item:'Football, Volley Ball, Frisbee',price:414.33},
+{id:'CLJ-01-02',boxType:'V2 Small',category:'Games',item:'Spike Ball',price:418.33},
+{id:'CLJ-01-03',boxType:'V2 Small',category:'Miscellaneous',item:'Cessi Full Face Snorkel + Fins + Shark Banz',price:583.33},
+{id:'CLJ-01-04',boxType:'V2 Small',category:'Tent and Shades',item:'Shibumi Shade',price:583.33},
+{id:'CLJ-01-05',boxType:'V1 Body Board',category:'Body Board',item:'Thurso Body Board',price:433.33},
+{id:'CLJ-01-06',boxType:'V1 Body Board',category:'Skim Board',item:'Sandfish Skimboard',price:473.35}
+],
+'CLJ-02':[ /* Shared: $800+$1200+$40=$2040 / 2 boxes = $1020/box | Total: $2,699 */
+{id:'CLJ-02-01',boxType:'V1 SUP',category:'Surf Board',item:'Wavestorm Classic Surfboard',price:1279},
+{id:'CLJ-02-02',boxType:'V1 SUP',category:'Inflatable SUP',item:'BOTE Wulf Aero',price:1420}
+],
+'CLJ-03':[ /* Shared: $800+$1200+$140=$2140 / 7 boxes = $305.71/box | Total: $3,825 */
+{id:'CLJ-03-01',boxType:'V2 Small',category:'Games',item:'Professional Sandcastle Building Kit',price:445.71},
+{id:'CLJ-03-02',boxType:'V2 Small',category:'Games',item:'Spike Ball',price:370.71},
+{id:'CLJ-03-03',boxType:'V2 Small',category:'Miscellaneous',item:'Cessi Full Face Snorkel + Fins + Shark Banz',price:535.71},
+{id:'CLJ-03-04',boxType:'V2 Small',category:'Tent and Shades',item:'Neso Grande Beach Shade',price:535.71},
+{id:'CLJ-03-05',boxType:'V2 Extra Large',category:'Hangout Float',item:'BOTE Hangout Water Hammock',price:1165.71},
+{id:'CLJ-03-06',boxType:'V1 Body Board',category:'Body Board',item:'Thurso Body Board',price:385.71},
+{id:'CLJ-03-07',boxType:'V1 Body Board',category:'Skim Board',item:'Thurso Body Board',price:385.74}
+],
+'CLJ-04':[ /* Shared: $800+$1200+$120=$2120 / 6 boxes = $353.33/box | Total: $3,024 */
+{id:'CLJ-04-01',boxType:'V1 SUP',category:'Surf Board',item:'Thurso Surf Lancer',price:552.33},
+{id:'CLJ-04-02',boxType:'V1 SUP',category:'Surf Board',item:'Thurso Surf 7ft',price:593.33},
+{id:'CLJ-04-03',boxType:'V1 Body Board',category:'Body Board',item:'Thurso Body Board',price:433.33},
+{id:'CLJ-04-04',boxType:'V1 Body Board',category:'Body Board',item:'Thurso Body Board',price:433.33},
+{id:'CLJ-04-05',boxType:'V2 Medium',category:'Games',item:'Volley Ball With Net',price:448.33},
+{id:'CLJ-04-06',boxType:'V2 Medium',category:'Games',item:'BOTE Bag Toss',price:563.35}
+],
+'CLJ-05':[ /* Shared: $800+$1200+$160=$2160 / 8 boxes = $270/box | Total: $3,871 */
+{id:'CLJ-05-01',boxType:'V1 SUP',category:'Surf Board',item:'Billabong Contour Surfboard',price:605},
+{id:'CLJ-05-02',boxType:'V1 SUP',category:'Surf Board',item:'BOTE Breeze Aero Floral',price:770},
+{id:'CLJ-05-03',boxType:'V1 Body Board',category:'Body Board',item:'Thurso Body Board',price:350},
+{id:'CLJ-05-04',boxType:'V1 Body Board',category:'Body Board',item:'Thurso Body Board',price:350},
+{id:'CLJ-05-05',boxType:'V2 Small',category:'Games',item:'Football, Volley Ball, Frisbee',price:331},
+{id:'CLJ-05-06',boxType:'V2 Small',category:'Chairs',item:'BOTE Hangout Chair',price:630},
+{id:'CLJ-05-07',boxType:'V2 Small',category:'Games',item:'Spike Ball',price:335},
+{id:'CLJ-05-08',boxType:'V2 Small',category:'Tent and Shades',item:'Shibumi Shade',price:500}
+],
+'CLJ-06':[ /* Shared: $800+$1200+$40=$2040 / 2 boxes = $1020/box | Total: $4,390 */
+{id:'CLJ-06-01',boxType:'V1 Horizontal',category:'Inflatable SUP',item:"BOTE Rackham Aero 12'4\"",price:2320},
+{id:'CLJ-06-02',boxType:'V1 Horizontal',category:'Inflatable Kayak',item:"BOTE Zeppelin Aero 12'6\"",price:2070}
+],
+'CLJ-07':[ /* Shared: $800+$1200+$60=$2060 / 3 boxes = $686.67/box | Total: $2,586 */
+{id:'CLJ-07-01',boxType:'V2 Small',category:'Games',item:'Football, Volley Ball, Frisbee',price:747.67},
+{id:'CLJ-07-02',boxType:'V2 Small',category:'Miscellaneous',item:'Spike Ball',price:751.67},
+{id:'CLJ-07-03',boxType:'V2 Medium',category:'Chairs',item:'BOTE Hangout Chair',price:1086.66}
+],
+'CLJ-08':[ /* Shared: $800+$1200+$120=$2120 / 6 boxes = $353.33/box | Total: $5,091 */
+{id:'CLJ-08-01',boxType:'V2 Large',category:'Hangout Float',item:'BOTE Hangout Water Hammock',price:1213.33},
+{id:'CLJ-08-02',boxType:'V2 Small',category:'Music',item:'Turtle Box Speaker',price:753.33},
+{id:'CLJ-08-03',boxType:'V2 Extra Large',category:'Hangout Dock',item:'BOTE 240 Hangout Dock',price:893.33},
+{id:'CLJ-08-04',boxType:'V2 Extra Large',category:'Inflatable SUP',item:'BOTE HD Aero',price:1253.33},
+{id:'CLJ-08-05',boxType:'V2 Large',category:'Games',item:'BOTE Bag Toss',price:563.33},
+{id:'CLJ-08-06',boxType:'V2 Small',category:'Games',item:'Football, Volley Ball, Frisbee',price:414.35}
+],
+'PNS-01':[
+{id:'PNS-01-01',boxType:'V1 Body Board',category:'Body Board',item:'Thurso Body Board',price:350},
+{id:'PNS-01-02',boxType:'V1 Body Board',category:'Body Board',item:'Thurso Body Board',price:350},
+{id:'PNS-01-03',boxType:'V2 Medium',category:'Cooler',item:'BOTE Kula 5',price:350},
+{id:'PNS-01-04',boxType:'V2 Small',category:'Miscellaneous',item:'Wekapo Air Lounge',price:350},
+{id:'PNS-01-05',boxType:'V2 Small',category:'Tent and Shades',item:'Goruch Beach Tent',price:350}
+],
+'PNS-02':[
+{id:'PNS-02-01',boxType:'V1 Body Board',category:'Body Board',item:'Thurso Body Board',price:350},
+{id:'PNS-02-02',boxType:'V1 Body Board',category:'Body Board',item:'Thurso Body Board',price:350},
+{id:'PNS-02-03',boxType:'V2 Medium',category:'Cooler',item:'BOTE Kula 10',price:350},
+{id:'PNS-02-04',boxType:'V2 Small',category:'Games',item:'Spike Ball',price:350},
+{id:'PNS-02-05',boxType:'V2 Small',category:'Chairs',item:'BOTE Hangout Sling Chair',price:350}
+],
+'PNS-03':[
+{id:'PNS-03-01',boxType:'V1 Body Board',category:'Body Board',item:'Sandfish Skim Board',price:350},
+{id:'PNS-03-02',boxType:'V1 Body Board',category:'Body Board',item:'Thurso Body Board',price:350},
+{id:'PNS-03-03',boxType:'V2 Large',category:'Inflatable SUP',item:'BOTE Wulf Aero',price:350},
+{id:'PNS-03-04',boxType:'V2 Small',category:'Tent and Shades',item:'Shibumi Shade',price:350}
+],
+'PNS-04':[
+{id:'PNS-04-01',boxType:'V1 Body Board',category:'Body Board',item:'Thurso Body Board',price:350},
+{id:'PNS-04-02',boxType:'V1 Body Board',category:'Body Board',item:'Thurso Body Board',price:350},
+{id:'PNS-04-03',boxType:'V2 Large',category:'Games',item:'BOTE Bag Toss',price:350},
+{id:'PNS-04-04',boxType:'V2 Small',category:'Chairs',item:'BOTE AeroRondak Chair',price:350}
+],
+'PNS-05':[
+{id:'PNS-05-01',boxType:'V1 SUP',category:'Inflatable SUP',item:'BOTE Wulf Aero',price:350},
+{id:'PNS-05-02',boxType:'V1 SUP',category:'Inflatable SUP',item:'BOTE Breeze Aero',price:350}
+]
+};
+
+/* Calendar events — fetched from Supabase calendar_events table */
+let gcalEvents={};
+
+/* ============================================================
+   STATE
+============================================================ */
+let currentUser=null, cart=[], ownedBoxIds=[], accountBalance=1000,
+    currentFilter='all', searchQuery='', map=null, markers={}, currentModalLoc=null,
+    portfolioOpen=true, locationsOpen=true,
+    calendarActive=false, gcalConnected=false, calendarDate=new Date(2026,2,1);
+
+/* ============================================================
+   HELPERS
+============================================================ */
+function getLocId(boxId){ return boxId.split('-').slice(0,2).join('-'); }
+function getCatColor(c){
+  c=c.toLowerCase();
+  if(c.includes('game'))return'#74B93F';if(c.includes('chair'))return'#F9C926';
+  if(c.includes('tent')||c.includes('shade'))return'#5BBDD4';if(c.includes('cooler'))return'#3B8CE8';
+  if(c.includes('sup')||c.includes('surf')||c.includes('kayak'))return'#4A90D9';
+  if(c.includes('board'))return'#8B6914';if(c.includes('float')||c.includes('dock'))return'#6B48C8';
+  if(c.includes('music'))return'#E87520';if(c.includes('misc'))return'#E87520';return'#888';
+}
+
+/* ============================================================
+   AUTH — desktop
+============================================================ */
+function showAuth(tab){
+  if(window.innerWidth<=1024){ openMobileAuth(tab); return; }
+  document.getElementById('tabSignin').classList.toggle('active',tab==='signin');
+  document.getElementById('tabSignup').classList.toggle('active',tab==='signup');
+  document.getElementById('formSignin').style.display=tab==='signin'?'block':'none';
+  document.getElementById('formSignup').style.display=tab==='signup'?'block':'none';
+  document.getElementById('authCard').scrollIntoView({behavior:'smooth',block:'center'});
+}
+function doSignIn(){
+  const email=document.getElementById('siEmail').value.trim();
+  const pass=document.getElementById('siPass').value;
+  if(!email||!pass){alert('Please enter your email and password.');return;}
+  currentUser={name:email.split('@')[0],email}; enterPortal();
+}
+function doSignUp(){
+  const first=document.getElementById('suFirst').value.trim(),last=document.getElementById('suLast').value.trim();
+  const email=document.getElementById('suEmail').value.trim(),pass=document.getElementById('suPass').value,pass2=document.getElementById('suPass2').value;
+  if(!first||!last||!email||!pass){alert('Please fill in all fields.');return;}
+  if(pass!==pass2){alert('Passwords do not match.');return;}
+  if(pass.length<8){alert('Password must be at least 8 characters.');return;}
+  if(!document.getElementById('suAge').checked){alert('You must confirm you are at least 18 years of age.');return;}
+  currentUser={name:first+' '+last,email}; openNDA();
+}
+
+/* ============================================================
+   AUTH — mobile modal
+============================================================ */
+function openMobileAuth(tab){
+  const m=document.getElementById('mobileAuthModal');
+  m.style.display='flex';
+  setTimeout(()=>m.classList.add('open'),10);
+  switchMobileAuth(tab);
+}
+function closeMobileAuth(){
+  const m=document.getElementById('mobileAuthModal');
+  m.classList.remove('open'); m.style.display='none';
+}
+function switchMobileAuth(tab){
+  document.getElementById('mTabSignin').classList.toggle('active',tab==='signin');
+  document.getElementById('mTabSignup').classList.toggle('active',tab==='signup');
+  document.getElementById('mFormSignin').style.display=tab==='signin'?'block':'none';
+  document.getElementById('mFormSignup').style.display=tab==='signup'?'block':'none';
+}
+function doMobileSignIn(){
+  const email=document.getElementById('msiEmail').value.trim();
+  const pass=document.getElementById('msiPass').value;
+  if(!email||!pass){alert('Please enter your email and password.');return;}
+  currentUser={name:email.split('@')[0],email}; closeMobileAuth(); enterPortal();
+}
+function doMobileSignUp(){
+  const first=document.getElementById('msuFirst').value.trim(),last=document.getElementById('msuLast').value.trim();
+  const email=document.getElementById('msuEmail').value.trim(),pass=document.getElementById('msuPass').value,pass2=document.getElementById('msuPass2').value;
+  if(!first||!last||!email||!pass){alert('Please fill in all fields.');return;}
+  if(pass!==pass2){alert('Passwords do not match.');return;}
+  if(pass.length<8){alert('Password must be at least 8 characters.');return;}
+  if(!document.getElementById('msuAge').checked){alert('You must confirm you are at least 18 years of age.');return;}
+  currentUser={name:first+' '+last,email}; closeMobileAuth(); openNDA();
+}
+
+/* ============================================================
+   NDA
+============================================================ */
+function openNDA(){const m=document.getElementById('ndaModal');m.style.display='flex';m.classList.add('open');}
+function closeNDA(){const m=document.getElementById('ndaModal');m.style.display='none';m.classList.remove('open');}
+function agreeNDA(){
+  if(!document.getElementById('ndaSignature').value.trim()){alert('Please type your full legal name as a digital signature.');return;}
+  if(!document.getElementById('ndaAgree').checked){alert('Please check the agreement checkbox to continue.');return;}
+  closeNDA(); enterPortal();
+}
+
+/* ============================================================
+   PORTAL ENTER / EXIT
+============================================================ */
+function enterPortal(){
+  document.getElementById('publicPage').style.display='none';
+  document.getElementById('portalPage').classList.add('active');
+  document.getElementById('profileBtn').textContent=currentUser.name.charAt(0).toUpperCase();
+  const isFirstLogin=!transactions.length;
+  if(isFirstLogin){addTransaction('signup','Account created — Welcome to Fund Adventure!','—');addNotification('Welcome to Fund Adventure!','Your account is active. Browse locations to purchase your first DAB box.','🎉');}
+  setTimeout(()=>{initMap();renderLocationList();updatePortfolioStats();if(isFirstLogin)showWelcome();},150);
+}
+function doLogout(){
+  document.getElementById('portalPage').classList.remove('active');
+  document.getElementById('publicPage').style.display='flex';
+  currentUser=null;cart=[];ownedBoxIds=[];accountBalance=1000;searchQuery='';transactions=[];notifications=[];
+  document.getElementById('profileOverlay').classList.remove('active');
+  document.getElementById('notifPanel').style.display='none';
+  document.getElementById('notifBadge').style.display='none';
+  calendarActive=false;gcalConnected=false;calendarDate=new Date(2026,2,1);
+  portfolioOpen=true;locationsOpen=true;
+  if(map){map.remove();map=null;markers={};}
+  document.getElementById('map').style.display='block';
+  document.getElementById('calendarView').classList.remove('active');
+  document.getElementById('mapSearch').style.display='block';
+  document.getElementById('mapFilterTabs').style.display='flex';
+  document.getElementById('portfolioBody').classList.remove('collapsed');
+  document.getElementById('portfolioChevron').classList.remove('closed');
+  document.getElementById('locationsBody').classList.remove('collapsed');
+  document.getElementById('locationsChevron').classList.remove('closed');
+  document.querySelector('.fa-data-panel').classList.remove('mobile-open');
+  document.getElementById('mobilePanelOverlay').classList.remove('active');
+  const cb=document.getElementById('calBtn');
+  cb.style.background='rgba(255,255,255,0.07)';cb.style.borderColor='rgba(255,255,255,0.14)';cb.style.color='rgba(255,255,255,0.7)';
+  updateCartBadge();
+}
+
+/* ============================================================
+   MAP
+============================================================ */
+function createPin(status){
+  const c=status==='purchased'?'#5BBDD4':'#74B93F';
+  return L.divIcon({
+    html:'<svg width="28" height="36" viewBox="0 0 28 36" xmlns="http://www.w3.org/2000/svg"><path d="M14 0C6.268 0 0 6.268 0 14c0 10.5 14 22 14 22S28 24.5 28 14C28 6.268 21.732 0 14 0z" fill="'+c+'" filter="drop-shadow(0 2px 5px rgba(0,0,0,0.35))"/><circle cx="14" cy="14" r="6" fill="white" opacity="0.9"/></svg>',
+    className:'',iconAnchor:[14,36],popupAnchor:[0,-36]
+  });
+}
+function initMap(){
+  if(map)return;
+  map=L.map('map',{center:[32.5,-82],zoom:6});
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+    attribution:'&copy; OpenStreetMap contributors',maxZoom:19
+  }).addTo(map);
+  locations.forEach(loc=>{
+    const boxes=locationBoxes[loc.id]||[];
+    const m=L.marker([loc.lat,loc.lng],{icon:createPin('available')}).addTo(map);
+    m.on('click',()=>openLocModal(loc));
+    m.bindTooltip('<strong style="font-family:Montserrat,sans-serif;font-size:12px;">'+loc.id+' — '+loc.name+'</strong><br><span style="font-size:11px;color:#666;">'+loc.city+', '+loc.state+' · '+boxes.length+' boxes</span>',{direction:'top',offset:[0,-36]});
+    markers[loc.id]=m;
+  });
+}
+
+/* ============================================================
+   SEARCH + FILTER
+============================================================ */
+function filterBySearch(q){ searchQuery=q.toLowerCase().trim(); filterLocations(currentFilter); }
+function filterLocations(filter){
+  currentFilter=filter;
+  ['ftAll','ftAvail','ftOwned'].forEach(id=>document.getElementById(id).classList.remove('active'));
+  document.getElementById(filter==='all'?'ftAll':filter==='available'?'ftAvail':'ftOwned').classList.add('active');
+  locations.forEach(loc=>{
+    const m=markers[loc.id]; if(!m||!map)return;
+    const boxes=locationBoxes[loc.id]||[];
+    const ownedHere=boxes.filter(b=>ownedBoxIds.includes(b.id)).length;
+    const hasOwned=ownedHere>0, hasAvail=ownedHere<boxes.length;
+    const matchF=filter==='all'||(filter==='available'&&hasAvail)||(filter==='purchased'&&hasOwned);
+    const q=searchQuery;
+    const matchS=!q||loc.name.toLowerCase().includes(q)||loc.id.toLowerCase().includes(q)||loc.city.toLowerCase().includes(q)||loc.state.toLowerCase().includes(q)||loc.address.toLowerCase().includes(q);
+    if(matchF&&matchS){map.addLayer(m);m.setIcon(createPin(hasOwned?'purchased':'available'));}
+    else map.removeLayer(m);
+  });
+  renderLocationList();
+}
+
+/* ============================================================
+   LOCATION LIST
+============================================================ */
+function renderLocationList(){
+  const el=document.getElementById('locationList');
+  const q=searchQuery;
+  let list=locations.filter(loc=>{
+    const boxes=locationBoxes[loc.id]||[];
+    const ownedHere=boxes.filter(b=>ownedBoxIds.includes(b.id)).length;
+    const hasOwned=ownedHere>0, hasAvail=ownedHere<boxes.length;
+    const matchF=currentFilter==='all'||(currentFilter==='available'&&hasAvail)||(currentFilter==='purchased'&&hasOwned);
+    const matchS=!q||loc.name.toLowerCase().includes(q)||loc.id.toLowerCase().includes(q)||loc.city.toLowerCase().includes(q)||loc.state.toLowerCase().includes(q)||loc.address.toLowerCase().includes(q);
+    return matchF&&matchS;
+  });
+  if(!list.length){el.innerHTML='<div style="text-align:center;padding:30px 16px;color:#bbb;font-size:13px;font-family:Montserrat,sans-serif;font-weight:600;">No locations found</div>';return;}
+  el.innerHTML=list.map(loc=>{
+    const boxes=locationBoxes[loc.id]||[];
+    const ownedHere=boxes.filter(b=>ownedBoxIds.includes(b.id)).length;
+    const hasOwned=ownedHere>0;
+    const statusText=ownedHere===0?'AVAILABLE':ownedHere===boxes.length?'FULLY OWNED':'PARTIAL';
+    const locTot=boxes.reduce((s,b)=>s+b.price,0);
+    return '<div class="fa-loc-item '+(hasOwned?'purchased':'available')+'" onclick="openLocModal(locations.find(l=>l.id===\''+loc.id+'\'));if(map&&!calendarActive)map.setView(['+loc.lat+','+loc.lng+'],14)"><div style="display:flex;justify-content:space-between;align-items:center;gap:8px;"><div style="flex:1;min-width:0;"><div style="display:flex;align-items:center;gap:5px;margin-bottom:1px;"><span style="font-family:Montserrat,sans-serif;font-weight:700;font-size:9px;color:'+(hasOwned?'#5BBDD4':'#74B93F')+';">'+loc.id+'</span><span style="font-size:9px;color:#ccc;">'+loc.city+', '+loc.state+'</span></div><div style="font-family:Bebas Neue,sans-serif;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">'+loc.name+'</div><div style="font-size:10px;color:#bbb;">'+boxes.length+' box'+(boxes.length!==1?'es':'')+(ownedHere>0?' · '+ownedHere+' owned':'')+'</div></div><div style="text-align:right;flex-shrink:0;"><div style="font-family:Bebas Neue,sans-serif;font-size:15px;color:'+(hasOwned?'#5BBDD4':'#74B93F')+';">$'+locTot.toLocaleString()+'</div><div style="font-size:9px;color:#bbb;font-family:Montserrat,sans-serif;font-weight:600;">'+statusText+'</div></div></div></div>';
+  }).join('');
+}
+
+/* ============================================================
+   LOCATION MODAL — box display
+============================================================ */
+function openLocModal(loc){
+  currentModalLoc=loc;
+  const modal=document.getElementById('locModal');modal.style.display='flex';
+  document.getElementById('locModalImgEl').src=loc.img;
+  document.getElementById('locModalId').textContent=loc.id+' · '+loc.venue;
+  document.getElementById('locModalName').textContent=loc.name;
+  document.getElementById('locModalAddr').textContent=loc.address+' — '+loc.spot;
+  const boxes=locationBoxes[loc.id]||[];
+  const locTotal=boxes.reduce((s,b)=>s+b.price,0);
+  document.getElementById('locModalPrice').textContent='$'+locTotal.toLocaleString();
+  const ownedHere=boxes.filter(b=>ownedBoxIds.includes(b.id)).length;
+  const badge=document.getElementById('locModalStatusBadge');
+  if(ownedHere===0){badge.textContent='AVAILABLE';badge.style.background='rgba(116,185,63,0.9)';badge.style.color='#fff';}
+  else if(ownedHere===boxes.length){badge.textContent='FULLY OWNED';badge.style.background='rgba(91,189,212,0.9)';badge.style.color='#fff';}
+  else{badge.textContent=ownedHere+'/'+boxes.length+' OWNED';badge.style.background='rgba(249,201,38,0.9)';badge.style.color='#2C2C2C';}
+  document.getElementById('locModalRentals').textContent=loc.rentals;
+  document.getElementById('locModalRevenue').textContent='$'+loc.dailyRev;
+  document.getElementById('locModalTarget').textContent='$'+(loc.buybackTarget||0).toLocaleString();
+  const actEl=document.getElementById('locModalActivity');
+  const actDays=['Today','Yesterday','2 days ago','3 days ago','5 days ago'];
+  const actTypes=['Beach Gear Rental','SUP Rental','Chair & Shade Rental','Full Day Package','Half Day Rental'];
+  actEl.innerHTML=actDays.slice(0,Math.min(5,Math.max(2,Math.floor(loc.rentals/10)))).map((d,i)=>'<div style="display:flex;justify-content:space-between;align-items:center;padding:6px 10px;background:#fafaf8;border-radius:6px;border:1px solid #f0ede6;"><div style="display:flex;align-items:center;gap:6px;"><span style="font-size:12px;">🏖️</span><span style="font-size:12px;color:#555;">'+actTypes[i%actTypes.length]+'</span></div><div style="display:flex;align-items:center;gap:8px;"><span style="font-family:Montserrat,sans-serif;font-weight:700;font-size:11px;color:var(--g);">$'+(15+Math.floor(Math.random()*45))+'</span><span style="font-size:10px;color:#bbb;">'+d+'</span></div></div>').join('');
+  document.getElementById('locModalPriceInfo').textContent=boxes.length+' boxes · Total: $'+locTotal.toLocaleString();
+  const capInfo=document.getElementById('locModalCapInfo');
+  capInfo.innerHTML='Purchase all '+boxes.length+' boxes for <strong style="color:var(--g);">$'+locTotal.toLocaleString()+'</strong> — each box includes the unit + gear inside. Market the location, drive rentals, and reach the revenue threshold to trigger <strong style="color:var(--g);">DAB Buyback</strong>';
+  document.getElementById('locModalBoxList').innerHTML=boxes.map(box=>{
+    const isOwned=ownedBoxIds.includes(box.id), isInCart=cart.some(c=>c.boxId===box.id);
+    const catCol=getCatColor(box.category);
+    let btn='';
+    if(isOwned) btn='<button class="fa-box-add-btn owned-btn" disabled>Owned</button>';
+    else if(isInCart) btn='<button class="fa-box-add-btn in-cart" onclick="event.stopPropagation();removeFromCart(\''+box.id+'\')">In Cart ×</button>';
+    else btn='<button class="fa-box-add-btn" onclick="event.stopPropagation();addBoxToCart(\''+box.id+'\')">$'+box.price+' +</button>';
+    return '<div class="fa-box-row '+(isOwned?'owned':isInCart?'in-cart':'')+'"><div style="flex:1;min-width:0;"><div style="display:flex;align-items:center;gap:5px;margin-bottom:3px;"><span class="fa-box-id">'+box.id+'</span><span style="font-size:10px;color:#aaa;font-family:Montserrat,sans-serif;font-weight:600;">'+box.boxType+'</span></div><div style="font-size:13px;color:#2C2C2C;line-height:1.35;">'+box.item+'</div><div style="display:inline-block;margin-top:3px;font-size:9px;font-family:Montserrat,sans-serif;font-weight:700;padding:1px 6px;border-radius:3px;color:#fff;background:'+catCol+';letter-spacing:0.04em;">'+box.category.toUpperCase()+'</div></div><div style="flex-shrink:0;text-align:right;">'+btn+'</div></div>';
+  }).join('');
+}
+function closeLocModal(){document.getElementById('locModal').style.display='none';currentModalLoc=null;}
+
+/* ============================================================
+   CART — individual box purchasing
+============================================================ */
+function addBoxToCart(boxId){
+  const locId=getLocId(boxId);
+  const loc=locations.find(l=>l.id===locId);
+  const boxes=locationBoxes[locId]||[];
+  const box=boxes.find(b=>b.id===boxId);
+  if(!box||ownedBoxIds.includes(boxId)||cart.some(c=>c.boxId===boxId))return;
+  cart.push({boxId:box.id,locId:locId,locName:loc?loc.name:locId,locCity:loc?loc.city:'',locState:loc?loc.state:'',locImg:loc?loc.img:'',item:box.item,category:box.category,boxType:box.boxType,price:box.price});
+  updateCartBadge();
+  if(currentModalLoc&&currentModalLoc.id===locId) openLocModal(currentModalLoc);
+}
+function removeFromCart(boxId){
+  cart=cart.filter(c=>c.boxId!==boxId);
+  updateCartBadge(); renderCart();
+  if(currentModalLoc){ const lid=getLocId(boxId); if(currentModalLoc.id===lid) openLocModal(currentModalLoc); }
+}
+function updateCartBadge(){
+  const b=document.getElementById('cartBadge');
+  if(cart.length>0){b.style.display='flex';b.textContent=cart.length;}else b.style.display='none';
+}
+function toggleCart(){document.getElementById('cartDrawer').classList.toggle('open');renderCart();}
+function renderCart(){
+  const el=document.getElementById('cartItems');
+  if(!cart.length){
+    el.innerHTML='<div style="text-align:center;padding:48px 20px;color:#ccc;"><div style="font-size:40px;margin-bottom:12px;">🛒</div><div style="font-family:Montserrat,sans-serif;font-weight:600;font-size:13px;color:#aaa;">Cart is empty</div><div style="font-size:12px;margin-top:6px;color:#bbb;">Open a location to add boxes</div></div>';
+    document.getElementById('cartTotal').textContent='$0';document.getElementById('cartReturn').textContent='$0';return;
+  }
+  const total=cart.reduce((s,b)=>s+b.price,0);
+  const grouped={};
+  cart.forEach(b=>{if(!grouped[b.locId])grouped[b.locId]={locId:b.locId,locName:b.locName,locCity:b.locCity,locState:b.locState,locImg:b.locImg,boxes:[]};grouped[b.locId].boxes.push(b);});
+  el.innerHTML=Object.values(grouped).map(g=>'<div style="border:1px solid #f0ede6;border-radius:12px;overflow:hidden;margin-bottom:10px;"><img src="'+g.locImg+'" style="width:100%;height:60px;object-fit:cover;" onerror="this.src=\'https://placehold.co/360x60/2C2C2C/74B93F?text=DAB\'"><div style="padding:10px 12px;"><div style="font-family:Montserrat,sans-serif;font-weight:700;font-size:10px;color:#74B93F;margin-bottom:2px;">'+g.locId+'</div><div style="font-family:Bebas Neue,sans-serif;font-size:16px;line-height:1.1;">'+g.locName+'</div><div style="font-size:10px;color:#999;margin-bottom:8px;">'+g.locCity+', '+g.locState+'</div>'+g.boxes.map(b=>'<div style="display:flex;justify-content:space-between;align-items:center;padding:5px 8px;background:#f9f7f3;border-radius:6px;margin-bottom:3px;"><div style="min-width:0;flex:1;"><span style="font-family:Montserrat,sans-serif;font-weight:700;font-size:9px;background:#2C2C2C;color:#fff;padding:1px 5px;border-radius:3px;">'+b.boxId+'</span> <span style="font-size:11px;color:#555;">'+b.item+'</span></div><div style="display:flex;align-items:center;gap:6px;flex-shrink:0;"><span style="font-family:Bebas Neue,sans-serif;font-size:16px;color:#74B93F;">$'+b.price+'</span><button onclick="removeFromCart(\''+b.boxId+'\')" style="font-size:14px;color:#f44;background:none;border:none;cursor:pointer;font-weight:700;padding:2px 4px;">×</button></div></div>').join('')+'<div style="text-align:right;margin-top:6px;font-family:Bebas Neue,sans-serif;font-size:14px;color:#999;">'+g.boxes.length+' box'+(g.boxes.length!==1?'es':'')+' · $'+g.boxes.reduce((s,b)=>s+b.price,0).toLocaleString()+'</div></div></div>').join('');
+  document.getElementById('cartTotal').textContent='$'+total.toLocaleString();
+  document.getElementById('cartReturn').textContent='$'+(total*1.25).toFixed(0);
+}
+function checkoutCart(){
+  if(!cart.length){alert('Add boxes to your cart first.');return;}
+  const total=cart.reduce((s,b)=>s+b.price,0);
+  if(total>accountBalance){alert('Insufficient funds. Balance: $'+accountBalance.toFixed(2)+', Order total: $'+total+'. Please add funds.');return;}
+  accountBalance-=total;
+  const grouped={};
+  cart.forEach(b=>{if(!grouped[b.locId])grouped[b.locId]={name:b.locName,count:0,total:0};grouped[b.locId].count++;grouped[b.locId].total+=b.price;ownedBoxIds.push(b.boxId);});
+  Object.values(grouped).forEach(g=>{addTransaction('purchase',g.count+' box'+(g.count>1?'es':'')+' at '+g.name,'$'+g.total.toLocaleString());addNotification('Purchase Complete',g.count+' box'+(g.count>1?'es':'')+' at '+g.name+' — start marketing to drive revenue!','📦');});
+  cart=[];updateCartBadge();renderCart();
+  document.getElementById('cartDrawer').classList.remove('open');
+  document.getElementById('balanceDisplay').textContent='$'+accountBalance.toFixed(2);
+  filterLocations(currentFilter);updatePortfolioStats();
+  showCheckoutConfirm(grouped,total);
+}
+
+/* ============================================================
+   PORTFOLIO STATS
+============================================================ */
+function updatePortfolioStats(){
+  const total=ownedBoxIds.reduce((sum,bId)=>{const lid=getLocId(bId);const boxes=locationBoxes[lid]||[];const box=boxes.find(b=>b.id===bId);return sum+(box?box.price:0);},0);
+  const projected=total*1.25;
+  const monthly=ownedBoxIds.reduce((sum,bId)=>{
+    const lid=getLocId(bId);const loc=locations.find(l=>l.id===lid);
+    const boxCount=(locationBoxes[lid]||[]).length;
+    if(loc&&boxCount)return sum+(loc.dailyRev/boxCount*30*0.05);return sum;
+  },0);
+  const profit=projected-total;
+  const progress=profit>0?Math.min(Math.round((monthly/profit)*100*3),100):0;
+  document.getElementById('emptyPortfolioCta').style.display=ownedBoxIds.length?'none':'block';
+  document.getElementById('portfolioStats').style.display=ownedBoxIds.length?'block':'none';
+  const sNote=document.getElementById('seasonalNote');
+  if(ownedBoxIds.length){sNote.style.display='block';const mo=new Date().getMonth();if(mo>=2&&mo<=8){document.getElementById('seasonLabel').textContent='PEAK SEASON';document.getElementById('seasonLabel').style.color='var(--g)';document.getElementById('seasonDesc').textContent='Beach locations see highest traffic Mar–Sep. Rentals are strong — keep marketing to maximize revenue.';}else{document.getElementById('seasonLabel').textContent='OFF-SEASON';document.getElementById('seasonLabel').style.color='var(--yel)';document.getElementById('seasonDesc').textContent='Oct–Feb is slower for beach rentals. This is normal — use this time to build your marketing strategy for spring.';}}else{sNote.style.display='none';}
+  document.getElementById('statOwned').textContent=ownedBoxIds.length;
+  document.getElementById('statInvested').textContent='$'+total.toLocaleString();
+  document.getElementById('statReturn').textContent='$'+projected.toLocaleString();
+  document.getElementById('statMonthly').textContent='$'+monthly.toFixed(2);
+  document.getElementById('statProgress').textContent=progress+'%';
+  document.getElementById('progressBar').style.width=progress+'%';
+}
+
+/* ============================================================
+   COLLAPSIBLE PANELS
+============================================================ */
+function togglePortfolio(){
+  portfolioOpen=!portfolioOpen;
+  document.getElementById('portfolioBody').classList.toggle('collapsed',!portfolioOpen);
+  document.getElementById('portfolioChevron').classList.toggle('closed',!portfolioOpen);
+}
+function toggleLocations(){
+  locationsOpen=!locationsOpen;
+  document.getElementById('locationsBody').classList.toggle('collapsed',!locationsOpen);
+  document.getElementById('locationsChevron').classList.toggle('closed',!locationsOpen);
+}
+
+/* ============================================================
+   MOBILE DATA PANEL
+============================================================ */
+function toggleMobilePanel(){
+  document.querySelector('.fa-data-panel').classList.toggle('mobile-open');
+  document.getElementById('mobilePanelOverlay').classList.toggle('active');
+}
+
+/* ============================================================
+   CALENDAR VIEW
+============================================================ */
+function toggleCalendar(){
+  calendarActive=!calendarActive;
+  document.getElementById('map').style.display=calendarActive?'none':'block';
+  document.getElementById('calendarView').classList.toggle('active',calendarActive);
+  document.getElementById('mapSearch').style.display=calendarActive?'none':'block';
+  document.getElementById('mapFilterTabs').style.display=calendarActive?'none':'flex';
+  const btn=document.getElementById('calBtn');
+  if(calendarActive){
+    btn.style.background='rgba(116,185,63,0.2)';btn.style.borderColor='rgba(116,185,63,0.5)';btn.style.color='#74B93F';
+    renderCalendar();
+  }else{
+    btn.style.background='rgba(255,255,255,0.07)';btn.style.borderColor='rgba(255,255,255,0.14)';btn.style.color='rgba(255,255,255,0.7)';
+    if(map)setTimeout(()=>map.invalidateSize(),100);
+  }
+}
+async function prevMonth(){calendarDate.setMonth(calendarDate.getMonth()-1);if(gcalConnected)await fetchCalendarEvents();renderCalendar();}
+async function nextMonth(){calendarDate.setMonth(calendarDate.getMonth()+1);if(gcalConnected)await fetchCalendarEvents();renderCalendar();}
+async function loadDABEvents(){
+  if(gcalConnected){gcalConnected=false;gcalEvents={};renderCalendar();return;}
+  const gb=document.getElementById('gcalBtn');
+  gb.textContent='Loading events...';
+  gcalConnected=true;
+  await fetchCalendarEvents();
+  renderCalendar();
+}
+async function fetchCalendarEvents(){
+  if(typeof supa==='undefined')return;
+  const y=calendarDate.getFullYear(),m=calendarDate.getMonth();
+  const start=new Date(y,m,1).toISOString().split('T')[0];
+  const end=new Date(y,m+1,0).toISOString().split('T')[0];
+  try{
+    const{data,error}=await supa.from('calendar_events').select('*').gte('event_date',start).lte('event_date',end).order('start_time',{ascending:true});
+    if(error)throw error;
+    gcalEvents={};
+    if(data){
+      data.forEach(ev=>{
+        const d=new Date(ev.event_date+'T00:00:00');
+        const key=d.getFullYear()+'-'+d.getMonth()+'-'+d.getDate();
+        if(!gcalEvents[key])gcalEvents[key]=[];
+        const title=ev.title||'DAB Event';
+        let time='All day';
+        if(!ev.all_day&&ev.start_time){
+          const [h,mi]=ev.start_time.split(':');
+          const hr=parseInt(h);
+          time=((hr%12)||12)+':'+mi+(hr>=12?' PM':' AM');
+        }
+        gcalEvents[key].push({title:title,time:time,color:ev.color||'#74B93F',link:ev.meeting_link||''});
+      });
+    }
+  }catch(e){console.warn('Calendar fetch error:',e);}
+}
+function renderCalendar(){
+  const y=calendarDate.getFullYear(),m=calendarDate.getMonth();
+  const mName=calendarDate.toLocaleString('en-US',{month:'long'});
+  document.getElementById('calMonthLabel').textContent=mName.toUpperCase()+' '+y;
+  const firstDow=new Date(y,m,1).getDay();
+  const days=new Date(y,m+1,0).getDate();
+  const today=new Date();
+  let h='';
+  ['SUN','MON','TUE','WED','THU','FRI','SAT'].forEach(d=>{h+='<div class="cal-dow">'+d+'</div>';});
+  for(let i=0;i<firstDow;i++)h+='<div class="cal-cell empty"></div>';
+  for(let d=1;d<=days;d++){
+    const isToday=d===today.getDate()&&m===today.getMonth()&&y===today.getFullYear();
+    const key=y+'-'+m+'-'+d;
+    const evts=(gcalConnected&&gcalEvents[key])||[];
+    const evH=evts.map(e=>'<span class="cal-event-pill" style="background:'+e.color+'22;color:'+e.color+';">'+e.title+'</span>').join('');
+    h+='<div class="cal-cell '+(isToday?'today':'')+'"><div class="cal-cell-num">'+d+'</div>'+evH+'</div>';
+  }
+  document.getElementById('calGrid').innerHTML=h;
+  const gb=document.getElementById('gcalBtn');
+  if(gcalConnected){gb.textContent='✓ DAB Events Loaded';gb.classList.add('connected');}
+  else{gb.innerHTML='<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Load DAB Events';gb.classList.remove('connected');}
+}
+
+/* ============================================================
+   WELCOME ONBOARDING
+============================================================ */
+function showWelcome(){
+  document.getElementById('welcomeName').textContent='Welcome, '+currentUser.name+'! Here\'s how Fund Adventure works.';
+  const m=document.getElementById('welcomeModal');m.style.display='flex';setTimeout(()=>m.classList.add('open'),10);
+}
+function closeWelcome(){const m=document.getElementById('welcomeModal');m.classList.remove('open');m.style.display='none';}
+
+/* ============================================================
+   CHECKOUT CONFIRMATION
+============================================================ */
+function showCheckoutConfirm(grouped,total){
+  let html='<div style="margin-bottom:12px;">';
+  Object.values(grouped).forEach(g=>{
+    html+='<div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #f0ede6;"><div><div style="font-family:Montserrat,sans-serif;font-weight:700;font-size:12px;color:var(--g);">'+g.name+'</div><div style="font-size:12px;color:#999;">'+g.count+' box'+(g.count>1?'es':'')+'</div></div><div style="font-family:Bebas Neue,sans-serif;font-size:20px;color:var(--coal);">$'+g.total.toLocaleString()+'</div></div>';
+  });
+  html+='<div style="display:flex;justify-content:space-between;align-items:center;padding:14px 0;"><div style="font-family:Montserrat,sans-serif;font-weight:700;font-size:14px;">Total Purchased</div><div style="font-family:Bebas Neue,sans-serif;font-size:28px;color:var(--g);">$'+total.toLocaleString()+'</div></div>';
+  html+='</div>';
+  document.getElementById('checkoutSummary').innerHTML=html;
+  const m=document.getElementById('checkoutConfirmModal');m.style.display='flex';setTimeout(()=>m.classList.add('open'),10);
+}
+function closeCheckoutConfirm(){const m=document.getElementById('checkoutConfirmModal');m.classList.remove('open');m.style.display='none';}
+
+/* ============================================================
+   PROFILE / ACCOUNT OVERLAY
+============================================================ */
+let transactions=[];
+function openProfile(){
+  document.getElementById('profileOverlay').classList.add('active');
+  if(currentUser){
+    document.getElementById('profName').value=currentUser.name||'';
+    document.getElementById('profEmail').value=currentUser.email||'';
+    document.getElementById('profSince').value='March 2026';
+  }
+  const total=ownedBoxIds.reduce((sum,bId)=>{const lid=getLocId(bId);const boxes=locationBoxes[lid]||[];const box=boxes.find(b=>b.id===bId);return sum+(box?box.price:0);},0);
+  document.getElementById('profBoxes').textContent=ownedBoxIds.length;
+  document.getElementById('profInvested').textContent='$'+total.toLocaleString();
+  document.getElementById('profReturn').textContent='$'+(total*1.25).toLocaleString(); /* buyback value */
+  document.getElementById('profBalance').textContent='$'+accountBalance.toFixed(2);
+  renderTransactions();
+  renderDocuments();
+  showProfTab('account');
+}
+function closeProfile(){document.getElementById('profileOverlay').classList.remove('active');}
+function showProfTab(tab){
+  ['account','transactions','documents','guidelines','marketing'].forEach(t=>{
+    document.getElementById('prof'+t.charAt(0).toUpperCase()+t.slice(1)).style.display=t===tab?'block':'none';
+  });
+  document.querySelectorAll('.prof-tab').forEach(el=>{
+    el.classList.toggle('active',el.textContent.toLowerCase()===tab);
+  });
+}
+function addTransaction(type,desc,amount){
+  const now=new Date();
+  const dateStr=now.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+  const timeStr=now.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'});
+  transactions.unshift({type,desc,amount,date:dateStr,time:timeStr,timestamp:now.getTime()});
+}
+function renderTransactions(){
+  const el=document.getElementById('txnList');
+  if(!transactions.length){el.innerHTML='<div style="text-align:center;padding:24px;color:#bbb;font-size:13px;">No transactions yet. Purchase boxes to see your activity here.</div>';return;}
+  el.innerHTML=transactions.map(t=>{
+    const isPos=t.type==='purchase';
+    const icon=isPos?'<div class="txn-icon" style="background:rgba(116,185,63,0.1);color:var(--g);">📦</div>'
+      :t.type==='signup'?'<div class="txn-icon" style="background:rgba(91,189,212,0.1);color:var(--sky);">✓</div>'
+      :'<div class="txn-icon" style="background:rgba(249,201,38,0.1);color:var(--yel);">💰</div>';
+    let coolOff='';
+    if(isPos&&t.timestamp){const days=Math.max(0,7-Math.floor((Date.now()-t.timestamp)/(86400000)));if(days>0)coolOff='<div style="margin-top:4px;display:inline-block;padding:2px 8px;border-radius:4px;background:rgba(249,201,38,0.1);border:1px solid rgba(249,201,38,0.25);font-size:10px;font-family:Montserrat,sans-serif;font-weight:700;color:#b8860b;">'+days+'-day cooling-off remaining</div>';else coolOff='<div style="margin-top:4px;display:inline-block;padding:2px 8px;border-radius:4px;background:rgba(116,185,63,0.08);border:1px solid rgba(116,185,63,0.18);font-size:10px;font-family:Montserrat,sans-serif;font-weight:700;color:var(--g);">Purchase finalized</div>';}
+    return '<div class="txn-row">'+icon+'<div style="flex:1;min-width:0;"><div style="font-family:Montserrat,sans-serif;font-weight:700;font-size:13px;color:var(--coal);">'+t.desc+'</div><div style="font-size:11px;color:#aaa;margin-top:2px;">'+t.date+' at '+t.time+'</div>'+coolOff+'</div><div style="font-family:Bebas Neue,sans-serif;font-size:20px;color:'+(isPos?'var(--g)':'var(--coal)')+';">'+t.amount+'</div></div>';
+  }).join('');
+}
+function renderDocuments(){
+  const signedEl=document.getElementById('docSignedList');
+  const receiptEl=document.getElementById('docReceiptList');
+  if(currentUser){
+    signedEl.innerHTML='<div class="doc-row"><div><div style="font-family:Montserrat,sans-serif;font-weight:700;font-size:13px;color:var(--coal);">Non-Disclosure Agreement (NDA)</div><div style="font-size:11px;color:#aaa;margin-top:2px;">Signed on account creation</div></div><button class="doc-download-btn">View</button></div><div class="doc-row"><div><div style="font-family:Montserrat,sans-serif;font-weight:700;font-size:13px;color:var(--coal);">Non-Compete Agreement</div><div style="font-size:11px;color:#aaa;margin-top:2px;">Signed on account creation</div></div><button class="doc-download-btn">View</button></div><div class="doc-row"><div><div style="font-family:Montserrat,sans-serif;font-weight:700;font-size:13px;color:var(--coal);">Membership Terms & Disclaimer</div><div style="font-size:11px;color:#aaa;margin-top:2px;">Signed on account creation</div></div><button class="doc-download-btn">View</button></div>';
+  }
+  const purchaseTxns=transactions.filter(t=>t.type==='purchase');
+  if(purchaseTxns.length){
+    receiptEl.innerHTML=purchaseTxns.map(t=>'<div class="doc-row"><div><div style="font-family:Montserrat,sans-serif;font-weight:700;font-size:13px;color:var(--coal);">'+t.desc+'</div><div style="font-size:11px;color:#aaa;margin-top:2px;">'+t.date+'</div></div><div style="font-family:Bebas Neue,sans-serif;font-size:18px;color:var(--g);">'+t.amount+'</div></div>').join('');
+  } else {
+    receiptEl.innerHTML='<div style="color:#999;font-size:14px;">Receipts will appear here after your first purchase.</div>';
+  }
+}
+
+/* ============================================================
+   SUPPORT MODAL
+============================================================ */
+function openSupportModal(){
+  document.getElementById('supportName').value=currentUser?currentUser.name:'';
+  document.getElementById('supportEmail').value=currentUser?currentUser.email:'';
+  document.getElementById('supportMessage').value='';
+  document.getElementById('supportSubject').selectedIndex=0;
+  const m=document.getElementById('supportModal');m.style.display='flex';setTimeout(()=>m.classList.add('open'),10);
+}
+function closeSupportModal(){const m=document.getElementById('supportModal');m.classList.remove('open');m.style.display='none';}
+function submitSupport(){
+  const msg=document.getElementById('supportMessage').value.trim();
+  if(!msg){alert('Please describe your issue or question.');return;}
+  const name=document.getElementById('supportName').value;
+  const email=document.getElementById('supportEmail').value;
+  const subject=document.getElementById('supportSubject').value;
+  const body=encodeURIComponent('Name: '+name+'\nEmail: '+email+'\nSubject: '+subject+'\n\n'+msg);
+  window.open('mailto:support@dailyadventurebox.com?subject='+encodeURIComponent('[Fund Adventure] '+subject)+' &body='+body);
+  closeSupportModal();
+  addNotification('Support Request Sent','Your message has been sent to DAB support. We\'ll respond within 24 hours.','📩');
+}
+document.getElementById('supportModal').addEventListener('click',e=>{if(e.target===document.getElementById('supportModal'))closeSupportModal();});
+
+/* ============================================================
+   NOTIFICATIONS
+============================================================ */
+let notifications=[];
+function addNotification(title,body,icon){
+  notifications.unshift({title,body,icon:icon||'📌',time:new Date().toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'})});
+  const b=document.getElementById('notifBadge');
+  b.style.display='flex';b.textContent=notifications.length>9?'9+':notifications.length;
+}
+function toggleNotifications(){
+  const p=document.getElementById('notifPanel');
+  const isOpen=p.style.display==='block';
+  p.style.display=isOpen?'none':'block';
+  if(!isOpen)renderNotifications();
+}
+function renderNotifications(){
+  const el=document.getElementById('notifList');
+  if(!notifications.length){el.innerHTML='<div style="text-align:center;padding:24px;color:#bbb;font-size:13px;">No notifications yet</div>';return;}
+  el.innerHTML=notifications.map(n=>'<div style="display:flex;gap:10px;padding:10px;border-radius:8px;margin-bottom:4px;transition:background 0.15s;cursor:default;" onmouseover="this.style.background=\'#f9f7f3\'" onmouseout="this.style.background=\'transparent\'"><div style="font-size:18px;flex-shrink:0;">'+n.icon+'</div><div style="flex:1;min-width:0;"><div style="font-family:Montserrat,sans-serif;font-weight:700;font-size:12px;color:var(--coal);">'+n.title+'</div><div style="font-size:11px;color:#999;line-height:1.5;margin-top:2px;">'+n.body+'</div><div style="font-size:9px;color:#ccc;margin-top:3px;">'+n.time+'</div></div></div>').join('');
+}
+function clearNotifications(){
+  notifications=[];
+  document.getElementById('notifBadge').style.display='none';
+  renderNotifications();
+}
+
+/* ============================================================
+   FAQ ACCORDION
+============================================================ */
+function toggleFaq(el){
+  const item=el.parentElement;
+  item.classList.toggle('open');
+}
+
+/* ============================================================
+   BACKDROP CLOSE HANDLERS
+============================================================ */
+document.getElementById('locModal').addEventListener('click',e=>{if(e.target===document.getElementById('locModal'))closeLocModal();});
+document.getElementById('mobileAuthModal').addEventListener('click',e=>{if(e.target===document.getElementById('mobileAuthModal'))closeMobileAuth();});
+document.addEventListener('click',e=>{
+  const d=document.getElementById('cartDrawer');
+  if(d.classList.contains('open')&&!d.contains(e.target)&&!e.target.closest('[onclick*="toggleCart"]'))d.classList.remove('open');
+});
+</script>
