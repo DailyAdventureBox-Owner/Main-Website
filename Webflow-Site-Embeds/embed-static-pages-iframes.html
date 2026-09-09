@@ -51,5 +51,16 @@ window.addEventListener('message',function(e){
 });
 </script>
 
+<!-- Webflow page: Membership Terms (added 2026-09-09) -->
+<iframe id="dab-frame-membership-terms" src="https://dailyadventurebox-owner.github.io/Main-Website/membership-terms.html" style="width:100%;height:100vh;border:none;display:block;" title="Membership Terms"></iframe>
+<script>
+window.addEventListener('message',function(e){
+  if(e && e.data && typeof e.data.dabIframeHeight==='number'){
+    var f=document.getElementById('dab-frame-membership-terms');
+    if(f) f.style.height=e.data.dabIframeHeight+'px';
+  }
+});
+</script>
+
 <!-- Webflow page: delete-account -->
 <iframe src="https://dailyadventurebox-owner.github.io/Main-Website/delete-account.html" style="width:100%;min-height:100vh;border:none;" title="Delete Account"></iframe>
