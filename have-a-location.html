@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Partner Access â€” Daily Adventure Box</title>
+  <title>Partner Access — Daily Adventure Box</title>
   <meta name="robots" content="noindex, nofollow">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
   <style>
@@ -15,7 +15,7 @@
     }
     body { font-family: 'Inter', sans-serif; color: #2C2C2C; background: #1a1a1a; }
 
-    /* â”€â”€ GATE â”€â”€ */
+    /* ── GATE ── */
     html, body { background: #071407; }
     #gate {
       background: url('img/bote-lifestyle.jpg') center/cover no-repeat;
@@ -101,7 +101,7 @@
     .gate-footer a { color: rgba(116,185,63,0.8); text-decoration: none; cursor: pointer; }
     .gate-footer a:hover { color: #74B93F; }
 
-    /* â”€â”€ REQUEST ACCESS MODAL â”€â”€ */
+    /* ── REQUEST ACCESS MODAL ── */
     #req-modal {
       display: none; position: fixed; inset: 0; z-index: 999;
       background: rgba(0,0,0,0.7); align-items: center; justify-content: center; padding: 24px;
@@ -125,10 +125,10 @@
     #req-box .gate-input::placeholder { color: #aaa; }
     #req-box .gate-input:focus { border-color: #74B93F; background: #fff; }
 
-    /* â”€â”€ CONTENT â”€â”€ */
+    /* ── CONTENT ── */
     #content { display: none; }
 
-    /* NAV â€” hidden when embedded in Webflow iframe */
+    /* NAV — hidden when embedded in Webflow iframe */
     #p-nav { display: none; }
 
     /* HERO */
@@ -320,13 +320,13 @@
 </head>
 <body>
 
-<!-- â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ GATE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
+<!-- ─────────────────── GATE ─────────────────── -->
 <div id="gate">
   <div id="gate-card">
     <div class="gate-logo-ring">
       <img src="https://dailyadventurebox-owner.github.io/Fund-Adventure/img/daily-adventure-box-circle-logo-webclip.png" alt="Daily Adventure Box">
     </div>
-    <div class="gate-eyebrow">Confidential Â· Partner Access</div>
+    <div class="gate-eyebrow">Confidential · Partner Access</div>
     <h1>PARTNER PORTAL</h1>
     <p class="gate-sub">Invited location partners only. Enter your details and password to continue.</p>
     <div class="gate-divider"></div>
@@ -336,9 +336,9 @@
     <input class="gate-input" id="g-email" type="email" placeholder="Email Address" autocomplete="email">
     <label class="sr-only" for="g-pass">Access Password</label>
     <input class="gate-input" id="g-pass" type="password" placeholder="Access Password" autocomplete="current-password">
-    <button id="gate-btn" class="gate-btn" onclick="handleAccess()">ACCESS PARTNER INFO â†’</button>
+    <button id="gate-btn" class="gate-btn" onclick="handleAccess()">ACCESS PARTNER INFO →</button>
     <div id="gate-error" role="alert"></div>
-    <p class="gate-footer">No password? <a onclick="openReqModal()">Request access â†’</a></p>
+    <p class="gate-footer">No password? <a onclick="openReqModal()">Request access →</a></p>
   </div>
 </div>
 
@@ -352,17 +352,17 @@
       <input class="gate-input" id="req-name" type="text" placeholder="Your Full Name">
       <label class="sr-only" for="req-email">Your Email Address</label>
       <input class="gate-input" id="req-email" type="email" placeholder="Your Email Address">
-      <button id="req-btn" class="gate-btn" style="margin-top:4px;" onclick="submitRequest()">SEND REQUEST â†’</button>
+      <button id="req-btn" class="gate-btn" style="margin-top:4px;" onclick="submitRequest()">SEND REQUEST →</button>
       <div id="req-error" role="alert" style="display:none;color:#c0392b;font-size:13px;margin-top:10px;"></div>
     </div>
     <div id="req-success">
-      <p>âœ“ Request sent! We'll be in touch shortly.</p>
+      <p>✓ Request sent! We'll be in touch shortly.</p>
     </div>
     <button id="req-close" onclick="closeReqModal()">Close</button>
   </div>
 </div>
 
-<!-- â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ CONTENT â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
+<!-- ─────────────────── CONTENT ─────────────────── -->
 <div id="content">
 
   <nav id="p-nav">
@@ -383,11 +383,11 @@
     <div id="hero-bg"></div>
     <div id="hero-gradient"></div>
     <div class="hero-inner">
-      <div class="hero-badge">âš¡ PARTNER PROGRAM</div>
+      <div class="hero-badge">⚡ PARTNER PROGRAM</div>
       <h1>BRING<br><span class="accent">ADVENTURE</span><br>TO YOUR LOCATION</h1>
-      <p class="hero-sub">Add a premium amenity your guests will love. Earn passive revenue on every rental. $0 out-of-pocket â€” now and forever.</p>
+      <p class="hero-sub">Add a premium amenity your guests will love. Earn passive revenue on every rental. $0 out-of-pocket — now and forever.</p>
       <div class="hero-ctas">
-        <a class="btn-primary" href="#" onclick="scrollToSection('lockers');return false;">SEE OUR LOCKERS â†“</a>
+        <a class="btn-primary" href="#" onclick="scrollToSection('lockers');return false;">SEE OUR LOCKERS ↓</a>
         <a class="btn-ghost" href="#" onclick="scrollToSection('contact');return false;">LET'S TALK</a>
       </div>
     </div>
@@ -404,13 +404,13 @@
     <div class="section-inner">
       <div class="section-tag">The Process</div>
       <h2>HOW IT WORKS</h2>
-      <p class="section-sub">From first conversation to first payout â€” here's what the partnership looks like.</p>
+      <p class="section-sub">From first conversation to first payout — here's what the partnership looks like.</p>
       <div class="steps">
         <div class="step"><div class="step-num">1</div><h3>Connect</h3><p>We talk through your location, guest traffic, and available space. No commitment required.</p></div>
         <div class="step"><div class="step-num">2</div><h3>Agree on Terms</h3><p>We build a custom revenue-share deal specific to your property. Fair, transparent, in writing.</p></div>
         <div class="step"><div class="step-num">3</div><h3>We Install</h3><p>We deliver, place, and set up the locker at your location. Typically done in under a day.</p></div>
         <div class="step"><div class="step-num">4</div><h3>Guests Rent</h3><p>Guests discover the locker, scan the QR code, and rent premium adventure gear instantly from their phone.</p></div>
-        <div class="step"><div class="step-num">5</div><h3>You Get Paid</h3><p>Your revenue share is paid out on a recurring schedule. We handle everything else â€” always.</p></div>
+        <div class="step"><div class="step-num">5</div><h3>You Get Paid</h3><p>Your revenue share is paid out on a recurring schedule. We handle everything else — always.</p></div>
       </div>
     </div>
   </section>
@@ -421,9 +421,9 @@
       <h2>OUR LOCKER MODELS</h2>
       <p class="section-sub">Three configurations built for different spaces and traffic volumes. We'll match the right unit to your location.</p>
       <div class="model-tabs">
-        <div class="model-tab active" onclick="switchModel('clj03',this)">CLJ-03 &nbsp;Â·&nbsp; Compact</div>
-        <div class="model-tab" onclick="switchModel('clj05',this)">CLJ-05 &nbsp;Â·&nbsp; Mid-Size</div>
-        <div class="model-tab" onclick="switchModel('clj07',this)">CLJ-07 &nbsp;Â·&nbsp; Smallest</div>
+        <div class="model-tab active" onclick="switchModel('clj03',this)">CLJ-03 &nbsp;·&nbsp; Compact</div>
+        <div class="model-tab" onclick="switchModel('clj05',this)">CLJ-05 &nbsp;·&nbsp; Mid-Size</div>
+        <div class="model-tab" onclick="switchModel('clj07',this)">CLJ-07 &nbsp;·&nbsp; Smallest</div>
       </div>
 
       <div class="model-panel active" id="m-clj03">
@@ -435,14 +435,14 @@
           <img class="gallery-thumb" src="https://dailyadventurebox-owner.github.io/Fund-Adventure/img/clj-03-04.png" alt="CLJ-03">
         </div>
         <div class="model-info">
-          <h3>CLJ-03</h3><span class="model-badge">COMPACT Â· 3-DOOR</span>
-          <p class="model-desc">Our compact unit is ideal for tighter spaces â€” a lobby corner, pool deck, or marina dock. Three independently locked compartments stocked with premium gear.</p>
+          <h3>CLJ-03</h3><span class="model-badge">COMPACT · 3-DOOR</span>
+          <p class="model-desc">Our compact unit is ideal for tighter spaces — a lobby corner, pool deck, or marina dock. Three independently locked compartments stocked with premium gear.</p>
           <ul class="model-specs">
-            <li><span class="spec-check">âœ“</span> 3 independently secured compartments</li>
-            <li><span class="spec-check">âœ“</span> Self-serve QR code unlock â€” no keys, no staff</li>
-            <li><span class="spec-check">âœ“</span> Weather-sealed for indoor or outdoor placement</li>
-            <li><span class="spec-check">âœ“</span> Smallest footprint â€” fits almost anywhere</li>
-            <li><span class="spec-check">âœ“</span> Ideal for boutique hotels, vacation rentals, small marinas</li>
+            <li><span class="spec-check">✓</span> 3 independently secured compartments</li>
+            <li><span class="spec-check">✓</span> Self-serve QR code unlock — no keys, no staff</li>
+            <li><span class="spec-check">✓</span> Weather-sealed for indoor or outdoor placement</li>
+            <li><span class="spec-check">✓</span> Smallest footprint — fits almost anywhere</li>
+            <li><span class="spec-check">✓</span> Ideal for boutique hotels, vacation rentals, small marinas</li>
           </ul>
         </div>
       </div>
@@ -456,14 +456,14 @@
           <img class="gallery-thumb" src="https://dailyadventurebox-owner.github.io/Fund-Adventure/img/clj-05-04.png" alt="CLJ-05">
         </div>
         <div class="model-info">
-          <h3>CLJ-05</h3><span class="model-badge">MID-SIZE Â· 5-DOOR Â· MOST POPULAR</span>
+          <h3>CLJ-05</h3><span class="model-badge">MID-SIZE · 5-DOOR · MOST POPULAR</span>
           <p class="model-desc">Our most popular configuration. Five compartments cover a full gear selection for properties with moderate to high guest traffic.</p>
           <ul class="model-specs">
-            <li><span class="spec-check">âœ“</span> 5 independently secured compartments</li>
-            <li><span class="spec-check">âœ“</span> Self-serve QR code unlock â€” no keys, no staff</li>
-            <li><span class="spec-check">âœ“</span> Holds a full gear lineup for multiple guests at once</li>
-            <li><span class="spec-check">âœ“</span> Ideal for hotel pools, resort areas, campgrounds</li>
-            <li><span class="spec-check">âœ“</span> Best balance of inventory and footprint</li>
+            <li><span class="spec-check">✓</span> 5 independently secured compartments</li>
+            <li><span class="spec-check">✓</span> Self-serve QR code unlock — no keys, no staff</li>
+            <li><span class="spec-check">✓</span> Holds a full gear lineup for multiple guests at once</li>
+            <li><span class="spec-check">✓</span> Ideal for hotel pools, resort areas, campgrounds</li>
+            <li><span class="spec-check">✓</span> Best balance of inventory and footprint</li>
           </ul>
         </div>
       </div>
@@ -476,14 +476,14 @@
           <img class="gallery-thumb" src="https://dailyadventurebox-owner.github.io/Fund-Adventure/img/clj-07-03.png" alt="CLJ-07">
         </div>
         <div class="model-info">
-          <h3>CLJ-07</h3><span class="model-badge">V2 STANDALONE Â· SMALLEST FOOTPRINT</span>
-          <p class="model-desc">Our smallest unit. The V2 standalone packs premium adventure gear into a slim, self-contained locker that fits almost anywhere â€” indoors or outdoors. Less space than a mini-fridge footprint.</p>
+          <h3>CLJ-07</h3><span class="model-badge">V2 STANDALONE · SMALLEST FOOTPRINT</span>
+          <p class="model-desc">Our smallest unit. The V2 standalone packs premium adventure gear into a slim, self-contained locker that fits almost anywhere — indoors or outdoors. Less space than a mini-fridge footprint.</p>
           <ul class="model-specs">
-            <li><span class="spec-check">âœ“</span> <strong>30" W Ã— 21" D Ã— 50.75" H</strong> â€” fits in virtually any space</li>
-            <li><span class="spec-check">âœ“</span> Self-serve QR code unlock â€” no keys, no staff</li>
-            <li><span class="spec-check">âœ“</span> Indoor or outdoor rated â€” weather-sealed construction</li>
-            <li><span class="spec-check">âœ“</span> Fits hallways, patios, pool decks, docks, and corners</li>
-            <li><span class="spec-check">âœ“</span> Ideal for boutique hotels, vacation rentals, retail shops</li>
+            <li><span class="spec-check">✓</span> <strong>30" W × 21" D × 50.75" H</strong> — fits in virtually any space</li>
+            <li><span class="spec-check">✓</span> Self-serve QR code unlock — no keys, no staff</li>
+            <li><span class="spec-check">✓</span> Indoor or outdoor rated — weather-sealed construction</li>
+            <li><span class="spec-check">✓</span> Fits hallways, patios, pool decks, docks, and corners</li>
+            <li><span class="spec-check">✓</span> Ideal for boutique hotels, vacation rentals, retail shops</li>
           </ul>
         </div>
       </div>
@@ -495,7 +495,7 @@
     <div class="section-inner" style="text-align:center;max-width:1000px;">
       <div class="section-tag">See It In Action</div>
       <h2>LIVE AT PENSACOLA BEACH</h2>
-      <p class="section-sub" style="margin:0 auto 36px;text-align:center;">Three hotel locations running DAB lockers at Pensacola Beach, FL â€” real guests, real gear, real revenue.</p>
+      <p class="section-sub" style="margin:0 auto 36px;text-align:center;">Three hotel locations running DAB lockers at Pensacola Beach, FL — real guests, real gear, real revenue.</p>
       <div style="position:relative;width:100%;margin:0 auto;border-radius:20px;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,0.18),0 0 0 1px rgba(0,0,0,0.06);aspect-ratio:16/9;background:#000;">
         <iframe
           src="https://www.youtube-nocookie.com/embed/vHNUXZhQkwE?rel=0&modestbranding=1&color=white&vq=hd1080"
@@ -514,7 +514,7 @@
     <div class="gear-strip-inner">
       <div class="section-tag" style="margin-bottom:16px;">What's Inside</div>
       <h2 style="color:#fff;margin-bottom:8px;">PREMIUM ADVENTURE GEAR</h2>
-      <p style="color:rgba(255,255,255,0.5);font-size:14px;margin-bottom:28px;">Inventory is curated for your location â€” beach, lake, mountain, or anywhere in between.</p>
+      <p style="color:rgba(255,255,255,0.5);font-size:14px;margin-bottom:28px;">Inventory is curated for your location — beach, lake, mountain, or anywhere in between.</p>
       <div class="gear-scroll">
         <div class="gear-item"><img src="https://dailyadventurebox-owner.github.io/Fund-Adventure/img/clj-05-05.png" alt="Sports Pack"><span>Sports Pack</span></div>
         <div class="gear-item"><img src="https://dailyadventurebox-owner.github.io/Fund-Adventure/img/clj-03-05.png" alt="Beach Shade"><span>Beach Shade</span></div>
@@ -532,12 +532,12 @@
       <h2>WHAT YOU GET</h2>
       <p class="section-sub">We've built this program so the only thing you need to do is say yes and pick a spot for the locker.</p>
       <div class="benefits-grid">
-        <div class="benefit-card featured"><span class="b-icon">ðŸ’°</span><h3>Revenue Share â€” Every Rental</h3><p>Earn a percentage of every rental transaction at your location. The split is negotiated per deal â€” we work with your numbers to make it worth your while.</p></div>
-        <div class="benefit-card"><span class="b-icon">ðŸ”§</span><h3>$0 Installation Cost</h3><p>We cover all hardware, delivery, and setup. No capital expenditure â€” you put no money in and start earning from day one.</p></div>
-        <div class="benefit-card"><span class="b-icon">ðŸ›¡ï¸</span><h3>Fully Insured</h3><p>Our commercial insurance covers all equipment and every rental. Your property is not liable for damage, loss, or theft. Period.</p></div>
-        <div class="benefit-card"><span class="b-icon">ðŸ“¦</span><h3>We Handle Everything</h3><p>Restocking, maintenance, cleaning, customer support â€” 100% our responsibility. Your team does absolutely nothing to keep it running.</p></div>
-        <div class="benefit-card"><span class="b-icon">â­</span><h3>Standout Guest Amenity</h3><p>Give guests something to talk about. A DAB locker drives positive reviews, social posts, and return visits â€” a differentiator competitors don't have.</p></div>
-        <div class="benefit-card"><span class="b-icon">ðŸ“±</span><h3>Zero Staff Involvement</h3><p>Guests scan a QR code, pay on their phone, and get their gear â€” all without touching your front desk or involving any staff member.</p></div>
+        <div class="benefit-card featured"><span class="b-icon">💰</span><h3>Revenue Share — Every Rental</h3><p>Earn a percentage of every rental transaction at your location. The split is negotiated per deal — we work with your numbers to make it worth your while.</p></div>
+        <div class="benefit-card"><span class="b-icon">🔧</span><h3>$0 Installation Cost</h3><p>We cover all hardware, delivery, and setup. No capital expenditure — you put no money in and start earning from day one.</p></div>
+        <div class="benefit-card"><span class="b-icon">🛡️</span><h3>Fully Insured</h3><p>Our commercial insurance covers all equipment and every rental. Your property is not liable for damage, loss, or theft. Period.</p></div>
+        <div class="benefit-card"><span class="b-icon">📦</span><h3>We Handle Everything</h3><p>Restocking, maintenance, cleaning, customer support — 100% our responsibility. Your team does absolutely nothing to keep it running.</p></div>
+        <div class="benefit-card"><span class="b-icon">⭐</span><h3>Standout Guest Amenity</h3><p>Give guests something to talk about. A DAB locker drives positive reviews, social posts, and return visits — a differentiator competitors don't have.</p></div>
+        <div class="benefit-card"><span class="b-icon">📱</span><h3>Zero Staff Involvement</h3><p>Guests scan a QR code, pay on their phone, and get their gear — all without touching your front desk or involving any staff member.</p></div>
       </div>
     </div>
   </section>
@@ -546,14 +546,14 @@
     <div class="section-inner">
       <div class="section-tag">Ideal Partners</div>
       <h2>WHO IT'S BUILT FOR</h2>
-      <p class="section-sub">If guests at your location spend any time near water, trails, or the outdoors â€” you're a great fit.</p>
+      <p class="section-sub">If guests at your location spend any time near water, trails, or the outdoors — you're a great fit.</p>
       <div class="fit-grid">
-        <div class="fit-card"><span class="fit-icon">ðŸ¨</span><h3>Hotels &amp; Resorts</h3></div>
-        <div class="fit-card"><span class="fit-icon">ðŸ¡</span><h3>Vacation Rentals</h3></div>
-        <div class="fit-card"><span class="fit-icon">â›µ</span><h3>Marinas &amp; Boat Clubs</h3></div>
-        <div class="fit-card"><span class="fit-icon">ðŸ•ï¸</span><h3>RV Parks &amp; Campgrounds</h3></div>
-        <div class="fit-card"><span class="fit-icon">ðŸ–ï¸</span><h3>Beach Properties</h3></div>
-        <div class="fit-card"><span class="fit-icon">ðŸ›ï¸</span><h3>Outdoor Retailers</h3></div>
+        <div class="fit-card"><span class="fit-icon">🏨</span><h3>Hotels &amp; Resorts</h3></div>
+        <div class="fit-card"><span class="fit-icon">🏡</span><h3>Vacation Rentals</h3></div>
+        <div class="fit-card"><span class="fit-icon">⛵</span><h3>Marinas &amp; Boat Clubs</h3></div>
+        <div class="fit-card"><span class="fit-icon">🏕️</span><h3>RV Parks &amp; Campgrounds</h3></div>
+        <div class="fit-card"><span class="fit-icon">🏖️</span><h3>Beach Properties</h3></div>
+        <div class="fit-card"><span class="fit-icon">🛍️</span><h3>Outdoor Retailers</h3></div>
       </div>
     </div>
   </section>
@@ -563,13 +563,13 @@
       <div class="section-tag">Questions</div>
       <h2>FREQUENTLY ASKED</h2>
       <div class="faq-list">
-        <details><summary>What type of gear is in the lockers? <span class="faq-icon"><span class="faq-icon-open">+</span><span class="faq-icon-close">âˆ’</span></span></summary><p>Each locker is stocked with premium adventure and outdoor recreation gear â€” paddleboards, kayak gear, snorkel sets, beach chairs, water hammocks, recreation equipment, and more. We curate the inventory specifically for your location's environment and guest profile.</p></details>
-        <details><summary>How much revenue will I earn? <span class="faq-icon"><span class="faq-icon-open">+</span><span class="faq-icon-close">âˆ’</span></span></summary><p>There's no one-size-fits-all rate. We negotiate revenue share on a per-location basis based on your expected traffic, location type, and locker size. We'll present clear numbers before anything is signed â€” no surprises.</p></details>
-        <details><summary>Do I need to do anything after it's installed? <span class="faq-icon"><span class="faq-icon-open">+</span><span class="faq-icon-close">âˆ’</span></span></summary><p>No. Daily Adventure Box handles all restocking, gear maintenance, sanitization between rentals, and customer support. Your only responsibility is having a designated space for the locker.</p></details>
-        <details><summary>What if gear gets damaged or stolen? <span class="faq-icon"><span class="faq-icon-open">+</span><span class="faq-icon-close">âˆ’</span></span></summary><p>All equipment is covered under our commercial insurance policy. Renters agree to our terms of service at checkout. Any damage, loss, or theft is handled entirely by us â€” your property carries zero liability.</p></details>
-        <details><summary>How much space does it take up? <span class="faq-icon"><span class="faq-icon-open">+</span><span class="faq-icon-close">âˆ’</span></span></summary><p>Our smallest unit â€” the CLJ-07 V2 Standalone â€” is just <strong>30" wide Ã— 21" deep Ã— 50.75" tall</strong>. That's a footprint smaller than a mini-fridge. It can be installed indoors or outdoors. We'll do a site walkthrough before installation and confirm the right placement for your space.</p></details>
-        <details><summary>What does the contract look like? <span class="faq-icon"><span class="faq-icon-open">+</span><span class="faq-icon-close">âˆ’</span></span></summary><p>We work out terms on a per-location basis. Our standard agreement covers installation, revenue split, maintenance responsibilities, insurance, and exit terms. It's straightforward and written to protect both parties.</p></details>
-        <details><summary>Can I see a demo or visit an existing location? <span class="faq-icon"><span class="faq-icon-open">+</span><span class="faq-icon-close">âˆ’</span></span></summary><p>Yes â€” contact us and we'll arrange a product walkthrough, connect you with an existing partner, or bring a unit directly to your property for a hands-on look.</p></details>
+        <details><summary>What type of gear is in the lockers? <span class="faq-icon"><span class="faq-icon-open">+</span><span class="faq-icon-close">−</span></span></summary><p>Each locker is stocked with premium adventure and outdoor recreation gear — paddleboards, kayak gear, snorkel sets, beach chairs, water hammocks, recreation equipment, and more. We curate the inventory specifically for your location's environment and guest profile.</p></details>
+        <details><summary>How much revenue will I earn? <span class="faq-icon"><span class="faq-icon-open">+</span><span class="faq-icon-close">−</span></span></summary><p>There's no one-size-fits-all rate. We negotiate revenue share on a per-location basis based on your expected traffic, location type, and locker size. We'll present clear numbers before anything is signed — no surprises.</p></details>
+        <details><summary>Do I need to do anything after it's installed? <span class="faq-icon"><span class="faq-icon-open">+</span><span class="faq-icon-close">−</span></span></summary><p>No. Daily Adventure Box handles all restocking, gear maintenance, sanitization between rentals, and customer support. Your only responsibility is having a designated space for the locker.</p></details>
+        <details><summary>What if gear gets damaged or stolen? <span class="faq-icon"><span class="faq-icon-open">+</span><span class="faq-icon-close">−</span></span></summary><p>All equipment is covered under our commercial insurance policy. Renters agree to our terms of service at checkout. Any damage, loss, or theft is handled entirely by us — your property carries zero liability.</p></details>
+        <details><summary>How much space does it take up? <span class="faq-icon"><span class="faq-icon-open">+</span><span class="faq-icon-close">−</span></span></summary><p>Our smallest unit — the CLJ-07 V2 Standalone — is just <strong>30" wide × 21" deep × 50.75" tall</strong>. That's a footprint smaller than a mini-fridge. It can be installed indoors or outdoors. We'll do a site walkthrough before installation and confirm the right placement for your space.</p></details>
+        <details><summary>What does the contract look like? <span class="faq-icon"><span class="faq-icon-open">+</span><span class="faq-icon-close">−</span></span></summary><p>We work out terms on a per-location basis. Our standard agreement covers installation, revenue split, maintenance responsibilities, insurance, and exit terms. It's straightforward and written to protect both parties.</p></details>
+        <details><summary>Can I see a demo or visit an existing location? <span class="faq-icon"><span class="faq-icon-open">+</span><span class="faq-icon-close">−</span></span></summary><p>Yes — contact us and we'll arrange a product walkthrough, connect you with an existing partner, or bring a unit directly to your property for a hands-on look.</p></details>
       </div>
     </div>
   </section>
@@ -578,7 +578,7 @@
     <div id="p-cta">
       <div class="cta-inner" style="max-width:640px;">
         <h2>READY TO ADD ADVENTURE?</h2>
-        <p class="cta-sub">Tell us about your location and we'll put a package together â€” zero cost, zero commitment to get started.</p>
+        <p class="cta-sub">Tell us about your location and we'll put a package together — zero cost, zero commitment to get started.</p>
         <form id="locationContactForm" style="display:flex;flex-direction:column;gap:12px;text-align:left;margin-top:8px;">
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
             <div>
@@ -591,7 +591,7 @@
             </div>
           </div>
           <label class="sr-only" for="lc_location">Location name and city/state</label>
-          <input id="lc_location" type="text" placeholder="Location name + city/state (e.g. Sunset Inn Â· Pensacola, FL)" style="padding:13px 16px;border-radius:8px;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.08);color:#fff;font-family:'Inter',sans-serif;font-size:14px;outline:none;">
+          <input id="lc_location" type="text" placeholder="Location name + city/state (e.g. Sunset Inn · Pensacola, FL)" style="padding:13px 16px;border-radius:8px;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.08);color:#fff;font-family:'Inter',sans-serif;font-size:14px;outline:none;">
           <label class="sr-only" for="lc_type">Location type</label>
           <select id="lc_type" style="padding:13px 16px;border-radius:8px;border:1px solid rgba(255,255,255,0.2);background:#1a2a1a;color:#fff;font-family:'Inter',sans-serif;font-size:14px;outline:none;">
             <option value="" disabled selected style="background:#1a2a1a;color:#aaa;">Location type...</option>
@@ -604,7 +604,7 @@
           </select>
           <label class="sr-only" for="lc_message">Anything else? (optional)</label>
           <textarea id="lc_message" placeholder="Anything else? (optional)" rows="3" style="padding:13px 16px;border-radius:8px;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.08);color:#fff;font-family:'Inter',sans-serif;font-size:14px;outline:none;resize:vertical;"></textarea>
-          <button type="submit" id="lc_submit" class="btn-primary" style="padding:15px;border-radius:8px;font-size:13px;letter-spacing:1px;border:none;cursor:pointer;width:100%;">LET'S TALK â†’</button>
+          <button type="submit" id="lc_submit" class="btn-primary" style="padding:15px;border-radius:8px;font-size:13px;letter-spacing:1px;border:none;cursor:pointer;width:100%;">LET'S TALK →</button>
           <div id="lc_msg" style="display:none;padding:12px 16px;border-radius:8px;font-size:14px;text-align:center;" role="status" aria-live="polite"></div>
         </form>
         <p class="cta-contact" style="margin-top:16px;">Questions? <a href="mailto:support@dailyadventurebox.com">support@dailyadventurebox.com</a></p>
@@ -617,7 +617,7 @@
       <img src="https://dailyadventurebox-owner.github.io/Fund-Adventure/img/daily-adventure-box-circle-logo-webclip.png" alt="DAB">
       <span>Daily Adventure Box</span>
     </div>
-    <p>Â© 2026 Daily Adventure Box LLC Â· Partner Portal Â· Confidential â€” Do Not Distribute</p>
+    <p>© 2026 Daily Adventure Box Inc. · Partner Portal · Confidential — Do Not Distribute</p>
   </footer>
 
 </div>
@@ -650,7 +650,7 @@
     if (hash !== PASS_HASH) {
       showErr('Incorrect password. Contact us if you need access.');
       btn.disabled = false;
-      btn.textContent = 'ACCESS PARTNER INFO â†’';
+      btn.textContent = 'ACCESS PARTNER INFO →';
       return;
     }
     try { await supa.from('partner_page_views').insert({ name, email }); } catch(_) {}
@@ -727,11 +727,11 @@
         });
         msg.style.display='block'; msg.style.background='rgba(116,185,63,0.15)'; msg.style.color='#9dd660';
         msg.textContent = "Got it! We'll reach out within 48 hours.";
-        f.reset(); btn.textContent = "Sent âœ“";
+        f.reset(); btn.textContent = "Sent ✓";
       } catch(err) {
         msg.style.display='block'; msg.style.background='rgba(239,68,68,0.15)'; msg.style.color='#f87171';
-        msg.textContent = 'Error sending â€” email support@dailyadventurebox.com';
-        btn.disabled = false; btn.textContent = "LET'S TALK â†’";
+        msg.textContent = 'Error sending — email support@dailyadventurebox.com';
+        btn.disabled = false; btn.textContent = "LET'S TALK →";
       }
     });
   })();
