@@ -1,95 +1,541 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Delete Your Account &amp; Data — Daily Adventure Box Inc.</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Montserrat:wght@600;700;800&display=swap');
-  *{margin:0;padding:0;box-sizing:border-box;}
-  body{font-family:'Inter',sans-serif;color:#2C2C2C;line-height:1.85;max-width:820px;margin:0 auto;padding:48px 32px;font-size:13.5px;}
-  .doc-header{text-align:center;padding-bottom:28px;border-bottom:3px solid #2C2C2C;margin-bottom:32px;}
-  .doc-header img{height:80px;margin-bottom:16px;}
-  .doc-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:22px;color:#2C2C2C;letter-spacing:0.02em;text-transform:uppercase;margin-bottom:4px;}
-  .doc-subtitle{font-family:'Montserrat',sans-serif;font-weight:600;font-size:12px;color:#74B93F;letter-spacing:0.12em;text-transform:uppercase;}
-  .doc-meta{display:flex;justify-content:space-between;font-size:11px;color:#999;font-family:'Montserrat',sans-serif;font-weight:600;margin-top:16px;padding-top:12px;border-top:1px solid #eee;flex-wrap:wrap;gap:8px;}
-  h2{font-family:'Montserrat',sans-serif;font-size:13px;font-weight:800;color:#2C2C2C;margin:28px 0 10px;text-transform:uppercase;letter-spacing:0.04em;padding-bottom:6px;border-bottom:1px solid #eee;}
-  h3{font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;color:#555;margin:16px 0 6px;}
-  p{margin-bottom:10px;}
-  ol,ul{margin:0 0 12px 24px;}
-  li{margin-bottom:6px;}
-  table{width:100%;border-collapse:collapse;font-size:13px;margin:16px 0;}
-  th{text-align:left;padding:10px 12px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:11px;border-bottom:2px solid #eee;color:#555;letter-spacing:0.04em;text-transform:uppercase;}
-  td{padding:10px 12px;border-bottom:1px solid #f0f0f0;}
-  .legal-highlight{background:#f6faf2;border:1.5px solid #c8e6a8;border-radius:6px;padding:16px 20px;margin:20px 0;}
-  .doc-footer{margin-top:48px;padding-top:20px;border-top:2px solid #2C2C2C;text-align:center;font-size:11px;color:#999;font-family:'Montserrat',sans-serif;line-height:1.8;}
-  .doc-footer strong{color:#2C2C2C;}
-  @media print{body{padding:24px;font-size:12px;}}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src https://api.dailyadventurebox.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self';">
+  <title>Delete Your Account — Daily Adventure Box</title>
+  <meta name="description" content="Permanently delete your Daily Adventure Box account and personal data from the web: enter your login email, confirm with the emailed code, done. No phone call or support ticket needed.">
+  <link rel="icon" type="image/png" href="img/dab-logo.png">
+  <link rel="apple-touch-icon" href="img/dab-logo.png">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    :root {
+      --green: #74B93F;
+      --green-dark: #5ea32e;
+      --charcoal: #2C2C2C;
+      --dark: #1a1a1a;
+      --off-white: #F5F2EC;
+      --text: #1f2937;
+      --text-mute: #666;
+      --danger: #e05252;
+      --danger-dark: #c73e3e;
+    }
+    body { font-family: 'Inter', sans-serif; color: var(--text); background: #ffffff; line-height: 1.6; overflow-x: hidden; }
+    img { max-width: 100%; }
+    a { color: var(--green-dark); }
+    .sr-only {
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+    }
+
+    /* ── HERO ── */
+    #p-hero {
+      position: relative; min-height: 460px;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden; background: #111;
+      padding: 128px 24px 72px;
+    }
+    #hero-bg {
+      position: absolute; inset: 0;
+      background: url('img/bote-lifestyle.jpg') center/cover no-repeat;
+      opacity: 0.28;
+    }
+    #hero-gradient {
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.15) 50%, rgba(0,0,0,0.78) 100%);
+    }
+    .hero-inner { position: relative; z-index: 1; text-align: center; max-width: 760px; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(116,185,63,0.15); border: 1px solid rgba(116,185,63,0.5);
+      color: #8fd660; font-family: 'Montserrat', sans-serif; font-size: 11px;
+      font-weight: 700; letter-spacing: 2.5px; padding: 7px 18px;
+      border-radius: 100px; margin-bottom: 26px;
+    }
+    #p-hero h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(46px, 8vw, 88px);
+      line-height: 0.95; color: #fff; letter-spacing: 2px; margin-bottom: 20px;
+    }
+    #p-hero h1 .accent { color: var(--green); }
+    #p-hero .hero-sub {
+      font-size: clamp(15px, 2vw, 18px); color: rgba(255,255,255,0.75);
+      line-height: 1.65; max-width: 580px; margin: 0 auto;
+    }
+
+    /* ── SECTIONS ── */
+    .section { padding: 80px 24px; }
+    .section-alt { background: var(--off-white); }
+    .section-inner { max-width: 1080px; margin: 0 auto; }
+    .section-tag { font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--green); margin-bottom: 10px; }
+    h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(32px, 5vw, 50px); letter-spacing: 1.5px; line-height: 1; margin-bottom: 14px; color: var(--charcoal); }
+    .section-sub { font-size: 15px; line-height: 1.75; color: var(--text-mute); max-width: 620px; margin-bottom: 44px; }
+
+    /* ── INFO + FORM GRID ── */
+    .delete-grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: 44px; align-items: start; }
+    .info-card { background: #fff; border: 1.5px solid #ececec; border-radius: 14px; padding: 24px 26px; margin-bottom: 16px; }
+    .info-card h3 { font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--charcoal); margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+    .info-card h3 .dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+    .dot-del { background: var(--danger); box-shadow: 0 0 0 4px rgba(224,82,82,0.15); }
+    .dot-keep { background: var(--green); box-shadow: 0 0 0 4px rgba(116,185,63,0.18); }
+    .info-card p { font-size: 13.5px; color: var(--text-mute); line-height: 1.65; margin-bottom: 8px; }
+    .info-card ul { list-style: none; }
+    .info-card li { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: #444; padding: 9px 0; border-bottom: 1px solid #f2f2f2; line-height: 1.5; }
+    .info-card li:last-child { border-bottom: 0; }
+    .mark { font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+    .mark-del { color: var(--danger); }
+    .mark-keep { color: var(--green); }
+    .info-note { background: #f6faf2; border: 1.5px solid #c8e6a8; border-radius: 10px; padding: 14px 16px; font-size: 13.5px; color: #3d5a2a; line-height: 1.6; }
+
+    /* ── FORM CARD ── */
+    .form-card {
+      position: sticky; top: 96px;
+      background: rgba(10, 24, 10, 0.96);
+      border: 1px solid rgba(116,185,63,0.28);
+      border-radius: 20px;
+      padding: 36px 34px 32px;
+      color: #fff;
+      box-shadow: 0 32px 70px rgba(0,0,0,0.28), inset 0 1px 0 rgba(255,255,255,0.06);
+    }
+    .steps { list-style: none; display: flex; gap: 8px; margin-bottom: 24px; }
+    .step { flex: 1; display: flex; align-items: center; gap: 8px; font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.35); padding-bottom: 10px; border-bottom: 2px solid rgba(255,255,255,0.1); }
+    .step span { width: 22px; height: 22px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 11px; background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.5); }
+    .step.active { color: #fff; border-bottom-color: var(--green); }
+    .step.active span { background: var(--green); color: #fff; }
+    .step.done { color: rgba(116,185,63,0.9); border-bottom-color: rgba(116,185,63,0.5); }
+    .step.done span { background: rgba(116,185,63,0.25); color: #9dd660; }
+    .form-card h3 { font-family: 'Bebas Neue', sans-serif; font-size: 32px; letter-spacing: 2px; line-height: 1; margin-bottom: 10px; color: #fff; }
+    .form-card .help { font-size: 13.5px; color: rgba(255,255,255,0.58); line-height: 1.6; margin-bottom: 8px; }
+    .form-card .help strong { color: #fff; font-weight: 600; word-break: break-all; }
+    .form-card label { display: block; font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.6); margin: 18px 0 8px; }
+    .gate-input {
+      width: 100%; padding: 13px 16px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 10px;
+      font-family: 'Inter', sans-serif; font-size: 15px;
+      color: #fff; outline: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .gate-input::placeholder { color: rgba(255,255,255,0.35); }
+    .gate-input:focus { border-color: var(--green); background: rgba(116,185,63,0.08); }
+    .code-input { font-family: 'Courier New', monospace; font-size: 26px; letter-spacing: 10px; text-align: center; padding: 14px 8px 14px 18px; }
+    .code-input::placeholder { letter-spacing: 6px; }
+    .gate-btn {
+      width: 100%; padding: 15px;
+      background: var(--green); color: #fff; border: none;
+      border-radius: 10px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px; font-weight: 700; letter-spacing: 1.5px;
+      cursor: pointer; margin-top: 16px;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(116,185,63,0.35);
+    }
+    .gate-btn:hover { background: var(--green-dark); transform: translateY(-1px); box-shadow: 0 8px 28px rgba(116,185,63,0.45); }
+    .gate-btn:active { transform: translateY(0); }
+    .gate-btn:disabled { background: rgba(255,255,255,0.15); box-shadow: none; cursor: not-allowed; transform: none; }
+    .gate-btn:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+    .gate-btn-danger { background: var(--danger); box-shadow: 0 4px 20px rgba(224,82,82,0.35); }
+    .gate-btn-danger:hover { background: var(--danger-dark); box-shadow: 0 8px 28px rgba(224,82,82,0.45); }
+    .warn { font-size: 12.5px; color: #f3b9b9; margin-top: 12px; line-height: 1.5; }
+    .alert { display: none; padding: 12px 14px; border-radius: 10px; font-size: 13px; line-height: 1.5; margin-top: 14px; }
+    .alert-error { background: rgba(248,113,113,0.12); color: #f8a0a0; border: 1px solid rgba(248,113,113,0.3); }
+    .alert-success { background: rgba(116,185,63,0.12); color: #9dd660; border: 1px solid rgba(116,185,63,0.3); }
+    .links { margin-top: 18px; font-size: 12.5px; color: rgba(255,255,255,0.3); text-align: center; }
+    .link-btn { background: none; border: none; color: rgba(116,185,63,0.85); cursor: pointer; font-family: 'Inter', sans-serif; font-size: 12.5px; text-decoration: underline; text-underline-offset: 3px; padding: 4px 2px; }
+    .link-btn:hover { color: var(--green); }
+    .link-btn:focus-visible { outline: 2px solid #fff; outline-offset: 2px; border-radius: 4px; }
+    .panel { display: none; }
+    .panel.active { display: block; }
+    .done-icon { width: 64px; height: 64px; border-radius: 50%; background: rgba(116,185,63,0.15); border: 2px solid var(--green); display: flex; align-items: center; justify-content: center; font-size: 28px; color: var(--green); margin: 6px auto 18px; }
+    #donePanel, #blockedPanel { text-align: center; }
+    .reasons { list-style: none; text-align: left; margin: 14px 0 6px; }
+    .reasons li { display: flex; gap: 10px; align-items: flex-start; font-size: 13.5px; line-height: 1.55; color: rgba(255,255,255,0.8); padding: 10px 12px; background: rgba(249,201,38,0.08); border: 1px solid rgba(249,201,38,0.25); border-radius: 10px; margin-bottom: 8px; }
+    .reasons li::before { content: '!'; flex-shrink: 0; width: 18px; height: 18px; border-radius: 50%; background: #F9C926; color: #1a1a1a; font-weight: 700; font-size: 12px; display: inline-flex; align-items: center; justify-content: center; margin-top: 2px; }
+    noscript .alert { display: block; }
+
+    /* ── OTHER WAYS ── */
+    .note-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .note-card { background: #fff; border: 1.5px solid #ececec; border-radius: 14px; padding: 28px 26px; }
+    .note-card h3 { font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 700; color: var(--charcoal); margin-bottom: 8px; }
+    .note-card p { font-size: 14px; color: var(--text-mute); line-height: 1.7; }
+    .note-card p + p { margin-top: 8px; }
+
+    /* ── FOOTER ── */
+    #p-footer { background: #111; padding: 28px 48px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; border-top: 1px solid rgba(255,255,255,0.06); }
+    #p-footer p { font-size: 12px; color: rgba(255,255,255,0.3); }
+    .footer-logo { display: flex; align-items: center; gap: 8px; }
+    .footer-logo img { width: 24px; height: 24px; border-radius: 50%; object-fit: cover; opacity: 0.6; }
+    .footer-logo span { font-family: 'Bebas Neue', sans-serif; font-size: 14px; letter-spacing: 2px; color: rgba(255,255,255,0.3); }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 4px 18px; }
+    .footer-links a { font-size: 12px; color: rgba(255,255,255,0.45); text-decoration: none; }
+    .footer-links a:hover { color: var(--green); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .section { padding: 60px 16px; }
+      .delete-grid { grid-template-columns: 1fr; gap: 28px; }
+      .form-card { position: static; }
+      .note-grid { grid-template-columns: 1fr; }
+      #p-footer { padding: 24px 16px; flex-direction: column; text-align: center; }
+      .footer-links { justify-content: center; }
+    }
+    @media (max-width: 560px) {
+      #p-hero { padding: 112px 16px 56px; min-height: 0; }
+      .form-card { padding: 28px 20px 24px; border-radius: 16px; }
+      .step { font-size: 9px; letter-spacing: 1px; gap: 6px; }
+      .code-input { font-size: 22px; letter-spacing: 8px; }
+    }
+  </style>
 </head>
 <body>
+<script src="nav.js"></script>
 
-<div class="doc-header">
-  <img src="https://cdn.prod.website-files.com/69350280681b80943e2764f7/69350280681b80943e276574_daily-adventure-box-circle-logo-01.avif" alt="Daily Adventure Box">
-  <div class="doc-title">Delete Your Account &amp; Data</div>
-  <div class="doc-subtitle">Daily Adventure Box, Inc.</div>
-  <div class="doc-meta">
-    <span>Document ID: DAB-DA-2026-01</span>
-    <span>Version: 1.0</span>
-    <span>Effective: July 2026</span>
+<!-- ─────────────────── HERO ─────────────────── -->
+<section id="p-hero">
+  <div id="hero-bg"></div>
+  <div id="hero-gradient"></div>
+  <div class="hero-inner">
+    <div class="hero-badge">ACCOUNT &amp; DATA</div>
+    <h1>DELETE YOUR<br><span class="accent">ACCOUNT</span></h1>
+    <p class="hero-sub">Permanently delete your Daily Adventure Box account and the personal data that goes with it. Enter your login email, confirm with the code we send you, and it's done — no phone call, no support ticket.</p>
   </div>
-</div>
+</section>
 
-<p>You can request deletion of your Daily Adventure Box ("<strong>DAB</strong>") account and associated personal data at any time. This page explains how to submit a request, what happens to your data, and how long it takes.</p>
+<!-- ─────────────────── WHAT HAPPENS + FORM ─────────────────── -->
+<section class="section" id="delete">
+  <div class="section-inner">
+    <div class="section-tag">What Happens</div>
+    <h2>WHAT GETS DELETED, WHAT STAYS</h2>
+    <p class="section-sub">Deletion removes your account and personal profile right away. A small set of records is kept for a limited time because the law and our payment processor require it — exactly as described in our <a href="https://www.dailyadventurebox.com/privacy-policy" target="_top">Privacy Policy</a>.</p>
 
-<h2>1. How to Request Deletion</h2>
-<p>Email <strong>privacy@dailyadventurebox.com</strong> from the email address associated with your account and include the subject line "Delete My Account." If you no longer have access to that inbox, contact <strong>support@dailyadventurebox.com</strong> and we will help verify your identity another way.</p>
+    <div class="delete-grid">
+      <div class="delete-info">
+        <div class="info-card">
+          <h3><span class="dot dot-del"></span>Deleted when you confirm</h3>
+          <ul>
+            <li><span class="mark mark-del">&minus;</span>Your login and every way to sign in to it: email and password, Sign in with Apple, Sign in with Google, and any active sessions</li>
+            <li><span class="mark mark-del">&minus;</span>Your profile: name, date of birth, phone number, and the physical details used for gear sizing</li>
+            <li><span class="mark mark-del">&minus;</span>Payment methods saved to your profile, your membership and any membership waitlist spot, loyalty points, referral links and promo-code redemptions</li>
+            <li><span class="mark mark-del">&minus;</span>Your cart, support chat history, open problem reports, and parent or guardian consent details on file</li>
+          </ul>
+        </div>
 
-<h2>2. Verification</h2>
-<p>To protect your data from unauthorized deletion, we verify that the request came from the account owner using the email of record plus a secondary factor (a code sent to the phone number on file, or a detail from a prior rental/transaction). No data is deleted until verification clears.</p>
+        <div class="info-card">
+          <h3><span class="dot dot-keep"></span>Kept for a limited time, as described in our Privacy Policy</h3>
+          <ul>
+            <li><span class="mark mark-keep">&#10003;</span>Rental and transaction records (receipts, charges, deposits, refunds), held by us and by our payment processor, Stripe, for tax, accounting and fraud-prevention purposes, and no longer linked to a login</li>
+            <li><span class="mark mark-keep">&#10003;</span>Legal records such as signed rental agreements and waivers, for the retention period in the Privacy Policy</li>
+            <li><span class="mark mark-keep">&#10003;</span>Security and fraud-prevention logs for a short period, and anonymized analytics that cannot identify you</li>
+          </ul>
+          <p style="margin-top:12px;">Retention periods and the legal basis for each are listed in the <a href="https://www.dailyadventurebox.com/privacy-policy" target="_top">Privacy Policy</a>. Once a period ends, the record is permanently deleted.</p>
+        </div>
 
-<h2>3. What Gets Deleted</h2>
-<ul>
-  <li>Your account profile (name, phone, date of birth, address)</li>
-  <li>Login credentials and stored authentication tokens</li>
-  <li>Marketing preferences and communication opt-in/opt-out records (after the retention window below)</li>
-  <li>Geolocation and locker-unlock event history</li>
-</ul>
+        <div class="info-note">
+          <strong>Before you start:</strong> deletion is blocked while you have an active rental or an unpaid balance. Return the gear or settle the balance in the app first — this page will tell you if that applies to your account.
+        </div>
+      </div>
 
-<h2>4. What We Retain, and Why</h2>
-<p>Some records must be retained for a limited period even after account deletion, to meet tax, financial, and legal obligations:</p>
-<table>
-  <thead><tr><th>Data</th><th>Retained For</th><th>Reason</th></tr></thead>
-  <tbody>
-    <tr><td>Stripe transaction records &amp; receipts</td><td>7 years</td><td>IRS recordkeeping requirements</td></tr>
-    <tr><td>Rental activity (aggregated)</td><td>3 years</td><td>Dispute resolution &amp; fraud prevention</td></tr>
-    <tr><td>Signed agreements / e-signature records</td><td>7 years</td><td>Contract dispute statute of limitations</td></tr>
-    <tr><td>Security event logs</td><td>90 days (email hashed after 30)</td><td>Fraud &amp; abuse prevention</td></tr>
-  </tbody>
-</table>
-<p>Once the applicable retention window closes, this data is permanently and irreversibly deleted, including from backups (backups roll off within 30 days of the live record's deletion).</p>
+      <div class="form-card" id="deleteCard">
+        <ol class="steps" aria-label="Progress">
+          <li class="step active" id="s1"><span>1</span>Email</li>
+          <li class="step" id="s2"><span>2</span>Code</li>
+          <li class="step" id="s3"><span>3</span>Done</li>
+        </ol>
 
-<h2>5. Timeline</h2>
-<ol>
-  <li>We acknowledge your request within <strong>10 business days</strong>.</li>
-  <li>We complete deletion within <strong>45 calendar days</strong> of verification (extendable by 45 additional days for complex requests, with written notice explaining why).</li>
-  <li>We send written confirmation of what was deleted and what was retained, along with the legal basis for any retention.</li>
-</ol>
+        <noscript>
+          <div class="alert alert-error">This page needs JavaScript to send your request. You can also delete your account in the app under <strong>Profile &rarr; Delete account</strong>, or email <strong>support@dailyadventurebox.com</strong>.</div>
+        </noscript>
 
-<div class="legal-highlight">
-Deleting your account also cancels any active rentals or holds. If you have an open rental or an outstanding balance, resolve it before requesting deletion, or contact support first.
-</div>
+        <!-- STEP 1: EMAIL -->
+        <form id="emailForm" class="panel active" novalidate>
+          <h3>START DELETION</h3>
+          <p class="help">Enter the email you sign in with. If it has an account, we'll email it a 6-digit code. Nothing is deleted until you enter that code.</p>
+          <label for="email">Account email</label>
+          <input class="gate-input" id="email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="you@example.com" required>
+          <button type="submit" id="emailBtn" class="gate-btn" data-label="EMAIL ME A CODE &rarr;">EMAIL ME A CODE &rarr;</button>
+          <div class="alert" id="emailAlert" role="alert"></div>
+        </form>
 
-<h2>6. Questions</h2>
-<p>See our full <a href="https://www.dailyadventurebox.com/privacy-policy" target="_top">Privacy Policy</a> for more detail on how your data is collected, used, and protected. For anything not covered here, email <strong>support@dailyadventurebox.com</strong>.</p>
+        <!-- STEP 2: CODE -->
+        <form id="codeForm" class="panel" novalidate>
+          <h3>ENTER YOUR CODE</h3>
+          <p class="help">If <strong id="sentTo"></strong> has an account, a 6-digit code is on its way. It expires in 15 minutes. Check your spam folder if it doesn't show up.</p>
+          <label for="code">6-digit code</label>
+          <input class="gate-input code-input" id="code" name="code" type="text" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{6}" maxlength="6" placeholder="000000" required>
+          <p class="warn">This permanently deletes your account. It cannot be undone.</p>
+          <button type="submit" id="codeBtn" class="gate-btn gate-btn-danger" data-label="DELETE MY ACCOUNT">DELETE MY ACCOUNT</button>
+          <div class="alert" id="codeAlert" role="alert"></div>
+          <div class="links">
+            <button type="button" class="link-btn" id="resendBtn">Resend code</button>
+            &nbsp;&middot;&nbsp;
+            <button type="button" class="link-btn" id="changeEmailBtn">Use a different email</button>
+          </div>
+        </form>
 
-<div class="doc-footer">
-  <img src="https://cdn.prod.website-files.com/69350280681b80943e2764f7/69350280681b80943e276574_daily-adventure-box-circle-logo-01.avif" alt="DAB" style="height:40px;margin-bottom:8px;opacity:0.4;"><br>
-  <strong>Daily Adventure Box, Inc.</strong><br>
-  2884 North Carolina Highway 210, Smithfield, NC 27577<br>
-  support@dailyadventurebox.com &bull; www.dailyadventurebox.com<br>
-  <span style="font-size:10px;color:#ccc;">DAB-DA-2026-01 &bull; Version 1.0 &bull; Effective July 2026</span>
-</div>
+        <!-- STEP 3: DONE -->
+        <div id="donePanel" class="panel" role="status" aria-live="polite">
+          <div class="done-icon">&#10003;</div>
+          <h3>YOUR ACCOUNT IS DELETED</h3>
+          <p class="help">Your login and profile are gone. Anything we are required to keep stays only for the periods described in our <a href="https://www.dailyadventurebox.com/privacy-policy" target="_top" style="color:#9dd660;">Privacy Policy</a>. You can close this page.</p>
+          <p class="help">Changed your mind later? You're welcome back any time — just create a new account in the app.</p>
+        </div>
+
+        <!-- BLOCKED -->
+        <div id="blockedPanel" class="panel" role="status" aria-live="polite">
+          <h3>WE CAN'T DELETE YET</h3>
+          <p class="help">Your code was correct, but your account can't be deleted until this is sorted out:</p>
+          <ul class="reasons" id="blockedReasons"></ul>
+          <p class="help">Fix it in the app, then come back and request a new code.</p>
+          <button type="button" class="gate-btn" id="startOverBtn">START OVER</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────── OTHER WAYS ─────────────────── -->
+<section class="section section-alt" id="other-ways">
+  <div class="section-inner">
+    <div class="section-tag">Other Ways</div>
+    <h2>SIGNED IN? DELETE FROM THE APP</h2>
+    <p class="section-sub">This page exists so you can delete your account without signing in. If you still have the app, the same deletion is one tap away.</p>
+    <div class="note-grid">
+      <div class="note-card">
+        <h3>In the Daily Adventure Box app</h3>
+        <p>Open the app, go to <strong>Profile</strong>, and choose <strong>Delete account</strong>. You'll be asked to confirm by typing DELETE. It removes exactly the same data as this page.</p>
+      </div>
+      <div class="note-card">
+        <h3>Lost access to your email?</h3>
+        <p>If you can no longer read the email address on your account, write to <a href="mailto:support@dailyadventurebox.com">support@dailyadventurebox.com</a> from any address and we'll verify it's you another way.</p>
+        <p>Questions about what we keep and why? See the <a href="https://www.dailyadventurebox.com/privacy-policy" target="_top">Privacy Policy</a>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="p-footer">
+  <div class="footer-logo">
+    <img src="img/dab-logo.png" alt="DAB">
+    <span>Daily Adventure Box</span>
+  </div>
+  <div class="footer-links">
+    <a href="https://www.dailyadventurebox.com/general-terms-and-conditions" target="_top">General Terms</a>
+    <a href="https://www.dailyadventurebox.com/federal-terms-and-conditions" target="_top">Federal Terms</a>
+    <a href="https://www.dailyadventurebox.com/privacy-policy" target="_top">Privacy Policy</a>
+    <a href="https://www.dailyadventurebox.com/support" target="_top">Support</a>
+  </div>
+  <p>&copy; 2026 Daily Adventure Box&#174;, Inc. All rights reserved.</p>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  // The two anonymous endpoints behind this page (see dab-backend AuthController):
+  //   POST /Auth/deletion-request {email}        -> 202 always (code emailed only if an account exists)
+  //   POST /Auth/deletion-confirm {email, code}  -> 200 {data.canDelete, data.reasons, ...} | 400 | 404 | 429 | 503
+  var API_BASE = 'https://api.dailyadventurebox.com';
+  var REQUEST_PATH = '/Auth/deletion-request';
+  var CONFIRM_PATH = '/Auth/deletion-confirm';
+  var SUPPORT = 'support@dailyadventurebox.com';
+  var NETWORK_ERROR = "We couldn't reach our servers. Check your connection and try again.";
+
+  var email = '';
+
+  function $(id) { return document.getElementById(id); }
+
+  function pick(obj, camel, pascal) {
+    if (!obj) return undefined;
+    return obj[camel] !== undefined ? obj[camel] : obj[pascal];
+  }
+
+  function setStep(n) {
+    [1, 2, 3].forEach(function (i) {
+      var el = $('s' + i);
+      el.classList.toggle('active', i === n);
+      el.classList.toggle('done', i < n);
+    });
+  }
+
+  function show(panelId) {
+    ['emailForm', 'codeForm', 'donePanel', 'blockedPanel'].forEach(function (id) {
+      $(id).classList.toggle('active', id === panelId);
+    });
+    setStep(panelId === 'emailForm' ? 1 : panelId === 'codeForm' ? 2 : 3);
+    sendHeight();
+  }
+
+  function alertBox(id, kind, message) {
+    var el = $(id);
+    if (!message) { el.style.display = 'none'; el.textContent = ''; el.className = 'alert'; return; }
+    el.className = 'alert alert-' + kind;
+    el.textContent = message;
+    el.style.display = 'block';
+    sendHeight();
+  }
+
+  function busy(btn, isBusy, label) {
+    btn.disabled = isBusy;
+    if (isBusy) { btn.textContent = label; } else { btn.innerHTML = btn.getAttribute('data-label'); }
+  }
+
+  async function post(path, body) {
+    var res = await fetch(API_BASE + path, {
+      method: 'POST',
+      mode: 'cors',
+      credentials: 'omit',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(body)
+    });
+    var data = null;
+    try { data = await res.json(); } catch (_) { /* non-JSON body (e.g. a gateway error page) */ }
+    return { status: res.status, ok: res.ok, data: data };
+  }
+
+  function errorText(r) {
+    var serverMessage = pick(r.data, 'message', 'Message');
+    if (r.status === 429) return 'Too many attempts. Please wait a while and try again.';
+    if (r.status === 400 || r.status === 404) return serverMessage || 'Please check what you entered and try again.';
+    if (r.status === 503) return serverMessage || "We can't verify codes right now. Please try again in a few minutes.";
+    return 'Something went wrong (HTTP ' + r.status + '). Please try again, or email ' + SUPPORT + '.';
+  }
+
+  function validEmail(value) {
+    return value.length <= 254 && /^[^\s@]+@[^\s@]+$/.test(value);
+  }
+
+  async function requestCode(address, onAccepted, alertId) {
+    var r = await post(REQUEST_PATH, { email: address });
+    if (r.status === 202 || (r.ok && pick(r.data, 'success', 'Success') !== false)) {
+      onAccepted();
+    } else {
+      alertBox(alertId, 'error', errorText(r));
+    }
+  }
+
+  // Step 1: ask for a code
+  $('emailForm').addEventListener('submit', async function (e) {
+    e.preventDefault();
+    alertBox('emailAlert', 'error', '');
+    var value = $('email').value.trim();
+    if (!validEmail(value)) { alertBox('emailAlert', 'error', 'Enter a valid email address.'); $('email').focus(); return; }
+    var btn = $('emailBtn');
+    busy(btn, true, 'Sending…');
+    try {
+      await requestCode(value, function () {
+        email = value;
+        $('sentTo').textContent = value.toLowerCase();
+        $('code').value = '';
+        alertBox('codeAlert', 'error', '');
+        show('codeForm');
+        $('code').focus();
+      }, 'emailAlert');
+    } catch (_) {
+      alertBox('emailAlert', 'error', NETWORK_ERROR);
+    } finally {
+      busy(btn, false);
+    }
+  });
+
+  // Step 2: confirm with the code
+  $('codeForm').addEventListener('submit', async function (e) {
+    e.preventDefault();
+    alertBox('codeAlert', 'error', '');
+    var code = $('code').value.replace(/\s+/g, '');
+    if (!/^[0-9]{6}$/.test(code)) { alertBox('codeAlert', 'error', 'Enter the 6-digit code from your email.'); $('code').focus(); return; }
+    var btn = $('codeBtn');
+    busy(btn, true, 'Deleting…');
+    try {
+      var r = await post(CONFIRM_PATH, { email: email, code: code });
+      var body = r.data || {};
+      var data = pick(body, 'data', 'Data');
+      var canDelete = pick(data, 'canDelete', 'CanDelete');
+      if (r.ok && pick(body, 'success', 'Success') !== false && canDelete === true) {
+        show('donePanel');
+      } else if (r.ok && canDelete === false) {
+        renderBlocked(data);
+        show('blockedPanel');
+      } else {
+        alertBox('codeAlert', 'error', errorText(r));
+      }
+    } catch (_) {
+      alertBox('codeAlert', 'error', NETWORK_ERROR);
+    } finally {
+      busy(btn, false);
+    }
+  });
+
+  $('resendBtn').addEventListener('click', async function () {
+    alertBox('codeAlert', 'error', '');
+    var btn = $('resendBtn');
+    btn.disabled = true;
+    try {
+      await requestCode(email, function () {
+        alertBox('codeAlert', 'success', 'We sent a new code if that address has an account. Only the newest code works.');
+      }, 'codeAlert');
+    } catch (_) {
+      alertBox('codeAlert', 'error', NETWORK_ERROR);
+    } finally {
+      btn.disabled = false;
+    }
+  });
+
+  $('changeEmailBtn').addEventListener('click', function () { show('emailForm'); $('email').focus(); });
+  $('startOverBtn').addEventListener('click', function () { $('email').value = ''; show('emailForm'); $('email').focus(); });
+
+  $('code').addEventListener('input', function () {
+    this.value = this.value.replace(/[^0-9]/g, '').slice(0, 6);
+  });
+
+  function formatMoney(amount, currency) {
+    try { return new Intl.NumberFormat('en-US', { style: 'currency', currency: currency }).format(amount); }
+    catch (_) { return amount.toFixed(2) + ' ' + currency; }
+  }
+
+  function renderBlocked(data) {
+    var list = $('blockedReasons');
+    list.innerHTML = '';
+    var reasons = pick(data, 'reasons', 'Reasons') || [];
+    var rentals = pick(data, 'activeRentals', 'ActiveRentals') || [];
+    var balance = pick(data, 'balanceDue', 'BalanceDue');
+    function add(text) { var li = document.createElement('li'); li.textContent = text; list.appendChild(li); }
+
+    reasons.forEach(function (reason) {
+      if (reason === 'active_rental') {
+        var names = rentals.map(function (x) {
+          return [pick(x, 'itemName', 'ItemName'), pick(x, 'unitName', 'UnitName')].filter(Boolean).join(' at ');
+        }).filter(Boolean);
+        add('You have an active rental' + (names.length ? ' (' + names.join(', ') + ')' : '') + '. Return the gear and finish the rental in the app first.');
+      } else if (reason === 'unpaid_balance') {
+        var total = balance ? pick(balance, 'totalAmount', 'TotalAmount') : null;
+        var currency = (balance && pick(balance, 'currency', 'Currency')) || 'USD';
+        add('There is an unpaid balance on your account' + (typeof total === 'number' ? ' (' + formatMoney(total, currency) + ')' : '') + '. Settle it in the app under My Rentals, then try again.');
+      } else {
+        add("Your account can't be deleted right now (" + reason + '). Email ' + SUPPORT + " and we'll help.");
+      }
+    });
+    if (!reasons.length) add("Your account can't be deleted right now. Email " + SUPPORT + " and we'll help.");
+  }
+
+  // Same embed bridge as the other pages on this site: when shown inside the marketing site's
+  // iframe, tell the parent page how tall we are and forward scrolling. Harmless when standalone.
+  function sendHeight() {
+    var h = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, 800);
+    if (window.parent !== window) { window.parent.postMessage({ type: 'resize', height: h }, '*'); }
+  }
+  window.addEventListener('wheel', function (e) {
+    if (window.parent !== window) { window.parent.postMessage({ type: 'wheel', deltaY: e.deltaY }, '*'); }
+  }, { passive: true });
+  window.addEventListener('load', sendHeight);
+  window.addEventListener('resize', sendHeight);
+  if (window.ResizeObserver) { new ResizeObserver(sendHeight).observe(document.body); }
+  sendHeight();
+})();
+</script>
 
 </body>
 </html>
