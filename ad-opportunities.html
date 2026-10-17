@@ -657,46 +657,26 @@
     <div class="contact-grid">
       <div class="contact-text">
         <h2>Let's Put Your Brand on the Beach</h2>
-        <p>Tell us about your brand and what you're after. We'll put together a custom package and send you numbers — no commitment required to get the conversation started.</p>
+        <p>Email us about your brand and what you're after. We'll put together a custom package and send you numbers — no commitment required to get the conversation started.</p>
         <div style="margin-top:24px;display:flex;flex-direction:column;gap:12px;">
           <div style="display:flex;align-items:center;gap:10px;">
             <span style="color:var(--green);font-weight:700;">&#9993;</span>
-            <span style="color:rgba(255,255,255,0.7);font-size:14px;">shay@dailyadventurebox.com</span>
+            <a href="mailto:support@dailyadventurebox.com?subject=Advertising%20on%20DAB%20lockers" style="color:rgba(255,255,255,0.85);font-size:14px;">support@dailyadventurebox.com</a>
           </div>
           <div style="margin-top:8px;padding:16px 20px;background:rgba(249,201,38,0.08);border:1px solid rgba(249,201,38,0.2);border-radius:10px;">
             <p style="font-size:13px;color:rgba(255,255,255,0.6);line-height:1.6;">Early partners get first right of renewal at every new location we open — locking in placement at a national scale before the price reflects it.</p>
           </div>
         </div>
       </div>
-      <form class="contact-form" id="adInquiryForm">
-        <label class="sr-only" for="ad_name">Full Name</label>
-        <input type="text" id="ad_name" placeholder="Full Name" required>
-        <label class="sr-only" for="ad_email">Email Address</label>
-        <input type="email" id="ad_email" placeholder="Email Address" required>
-        <label class="sr-only" for="ad_company">Company / Brand Name</label>
-        <input type="text" id="ad_company" placeholder="Company / Brand Name">
-        <label class="sr-only" for="ad_type">What describes your brand best?</label>
-        <select id="ad_type">
-          <option value="" disabled selected>What describes your brand best?</option>
-          <option value="sunscreen">Sunscreen / Skincare</option>
-          <option value="surf-sup">Surf / SUP / Water Brand</option>
-          <option value="outdoor-apparel">Outdoor Apparel / Footwear</option>
-          <option value="hydration">Hydration / Sports Nutrition</option>
-          <option value="app">Outdoor / Travel App</option>
-          <option value="hotel">Hotel / Restaurant / Local Business</option>
-          <option value="national">National Brand / Major Sponsor</option>
-          <option value="other">Other</option>
-        </select>
-        <label class="sr-only" for="ad_message">Tell us about your brand and what you're looking for</label>
-        <textarea id="ad_message" placeholder="Tell us about your brand and what you're looking for..."></textarea>
-        <button type="submit" id="ad_submit" class="btn btn-green" style="width:100%;border-radius:10px;">Send Inquiry →</button>
-        <div id="ad_msg" style="display:none;margin-top:12px;padding:12px 16px;border-radius:8px;font-size:14px;text-align:center;" role="status" aria-live="polite"></div>
-      </form>
+      <div class="contact-email" style="text-align:center;">
+        <p style="font-size:15px;color:rgba(255,255,255,0.75);line-height:1.7;margin-bottom:12px;">Email us at <a href="mailto:support@dailyadventurebox.com?subject=Advertising%20on%20DAB%20lockers" style="color:var(--green);font-weight:600;">support@dailyadventurebox.com</a> with any questions.</p>
+        <p style="font-size:15px;color:rgba(255,255,255,0.75);line-height:1.7;margin-bottom:24px;">If you have a location or want lockers, reach out to <a href="mailto:support@dailyadventurebox.com?subject=I%20have%20a%20location%20%2F%20I%20want%20lockers" style="color:var(--green);font-weight:600;">support@dailyadventurebox.com</a>.</p>
+        <a href="mailto:support@dailyadventurebox.com?subject=Advertising%20on%20DAB%20lockers" class="btn btn-green" style="border-radius:10px;">Email Us &#8594;</a>
+      </div>
     </div>
   </div>
 </section>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
   function sendHeight() {
     var h = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, 800);
@@ -719,45 +699,6 @@
     try { el.scrollIntoView({ behavior: 'smooth', block: 'start' }); } catch(e) {}
   }
 
-  (function(){
-    var SUPA_URL = 'https://tyhsfxrsexprsfveeprk.supabase.co';
-    var SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR5aHNmeHJzZXhwcnNmdmVlcHJrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM4ODQ2MTAsImV4cCI6MjA4OTQ2MDYxMH0.HfQQiwsvjBMqqvME1IksZSFiZwkBo_oNwxqxBSdRcBk';
-    var supa = window.supabase.createClient(SUPA_URL, SUPA_KEY);
-
-    document.getElementById('adInquiryForm').addEventListener('submit', async function(e) {
-      e.preventDefault();
-      var btn = document.getElementById('ad_submit');
-      var msg = document.getElementById('ad_msg');
-      btn.disabled = true; btn.textContent = 'Sending...';
-      var payload = {
-        source:    'advertising',
-        full_name: document.getElementById('ad_name').value.trim(),
-        email:     document.getElementById('ad_email').value.trim(),
-        company:   document.getElementById('ad_company').value.trim() || null,
-        type:      document.getElementById('ad_type').value || null,
-        message:   document.getElementById('ad_message').value.trim() || null
-      };
-      try {
-        await supa.from('website_submissions').insert(payload);
-        await supa.from('admin_alerts').insert({
-          alert_type: 'ad_inquiry',
-          title: 'Ad Partnership Inquiry',
-          body: (payload.full_name || 'Someone') + ' (' + payload.email + ') from ' + (payload.company || 'unknown') + ' inquired about advertising.',
-          user_name: payload.full_name,
-          user_email: payload.email
-        });
-        msg.style.display = 'block';
-        msg.style.background = '#dcfce7'; msg.style.color = '#166534';
-        msg.textContent = "Got it! We'll be in touch within 48 hours.";
-        e.target.reset(); btn.textContent = 'Sent ✓';
-      } catch(err) {
-        msg.style.display = 'block';
-        msg.style.background = '#fee2e2'; msg.style.color = '#b91c1c';
-        msg.textContent = 'Something went wrong — email us at shay@dailyadventurebox.com';
-        btn.disabled = false; btn.textContent = 'Send Inquiry →';
-      }
-    });
-  })();
 </script>
 </body>
 </html>

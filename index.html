@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com data:; img-src 'self' data: https: blob:; connect-src 'self' https://*.supabase.co; frame-src https://www.youtube.com https://youtube.com https://www.youtube-nocookie.com;">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com data:; img-src 'self' data: https: blob:; connect-src 'self'; frame-src https://www.youtube.com https://youtube.com https://www.youtube-nocookie.com;">
 <title>DailyAdventureBox — Adventure Gear On Demand</title>
 <meta name="description" content="Smart lockers loaded with adventure gear — water sports, sports equipment, and more — right where you recreate. Download the app, pick your gear, and the locker opens from your phone.">
 <meta property="og:title" content="DailyAdventureBox — Adventure Gear On Demand">
@@ -1935,7 +1935,7 @@
         <div class="partner-card fade-up">
           <h3>Host a Locker</h3>
           <p>Hotels, resorts, campgrounds, beaches, parks, military bases — if people recreate there, DAB belongs there. We supply the locker, equipment, and maintenance. You provide the space. Zero cost to you, revenue share on every rental.</p>
-          <a href="https://www.dailyadventurebox.com/have-a-location" target="_top" class="btn btn-green">Learn More</a>
+          <a href="mailto:support@dailyadventurebox.com?subject=I%20have%20a%20location%20%2F%20I%20want%20lockers" class="btn btn-green">Email Us</a>
         </div>
         <div class="partner-card fade-up">
           <h3>Brand Partnerships</h3>
@@ -1975,8 +1975,8 @@
           </div>
 
           <div class="hl-buttons">
-            <a href="https://www.dailyadventurebox.com/have-a-location" target="_top" class="btn btn-green">I Have a Property</a>
-            <a href="https://www.dailyadventurebox.com/contact" target="_top" class="btn btn-sky">Become a Sales Rep</a>
+            <a href="mailto:support@dailyadventurebox.com?subject=I%20have%20a%20location%20%2F%20I%20want%20lockers" class="btn btn-green">I Have a Property</a>
+            <a href="mailto:support@dailyadventurebox.com?subject=Sales%20Rep%20interest" class="btn btn-sky">Become a Sales Rep</a>
           </div>
         </div>
         <div class="hl-visual">
@@ -2118,7 +2118,7 @@
         <div class="footer-col">
           <h4>Company</h4>
           <a href="#about">Our Story</a>
-          <a href="https://www.dailyadventurebox.com/have-a-location" target="_top">Have a Location?</a>
+          <a href="mailto:support@dailyadventurebox.com?subject=I%20have%20a%20location%20%2F%20I%20want%20lockers">Have a Location?</a>
           <a href="https://www.dailyadventurebox.com/partnership-advertismentopportunities" target="_top">Advertise on Boxes</a>
           <a href="https://www.dailyadventurebox.com/support" target="_top">Support</a>
         </div>
@@ -2198,76 +2198,17 @@
   </script>
 
   <!-- ============================================================
-       BRAND CONTACT FORM
+       CONTACT — email only
   ============================================================ -->
   <section id="brand-contact" style="padding:80px 0;background:var(--charcoal);">
-    <div class="container" style="max-width:700px;">
-      <div style="text-align:center;margin-bottom:40px;">
-        <div class="section-label" style="color:var(--green);">Brand Partnerships</div>
-        <h2 class="section-title" style="color:#fff;">Get in Touch</h2>
-        <p style="font-size:15px;color:rgba(255,255,255,0.6);line-height:1.7;">Tell us about your brand and what you're after — advertising on our lockers, featuring products inside, or both. We'll respond within 48 hours.</p>
-      </div>
-      <form id="brandContactForm" style="display:flex;flex-direction:column;gap:14px;">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
-          <input id="bc_name" type="text" placeholder="Full Name" required style="padding:14px 18px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.06);color:#fff;font-family:'Inter',sans-serif;font-size:14px;outline:none;">
-          <input id="bc_email" type="email" placeholder="Email Address" required style="padding:14px 18px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.06);color:#fff;font-family:'Inter',sans-serif;font-size:14px;outline:none;">
-        </div>
-        <input id="bc_company" type="text" placeholder="Company / Brand Name" style="padding:14px 18px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.06);color:#fff;font-family:'Inter',sans-serif;font-size:14px;outline:none;">
-        <select id="bc_type" style="padding:14px 18px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.6);font-family:'Inter',sans-serif;font-size:14px;outline:none;">
-          <option value="" disabled selected>What are you interested in?</option>
-          <option value="locker-ad">Advertising on locker panels</option>
-          <option value="product-feature">Featuring products inside lockers</option>
-          <option value="both">Both advertising + product placement</option>
-          <option value="other">Other / General inquiry</option>
-        </select>
-        <textarea id="bc_message" placeholder="Tell us about your brand and what you're looking for..." rows="4" style="padding:14px 18px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.06);color:#fff;font-family:'Inter',sans-serif;font-size:14px;outline:none;resize:vertical;"></textarea>
-        <button type="submit" id="bc_submit" style="padding:15px;border-radius:10px;background:var(--green);color:#fff;font-family:'Montserrat',sans-serif;font-weight:700;font-size:13px;letter-spacing:1px;border:none;cursor:pointer;">SEND INQUIRY →</button>
-        <div id="bc_msg" style="display:none;padding:12px 16px;border-radius:8px;font-size:14px;text-align:center;"></div>
-      </form>
+    <div class="container" style="max-width:700px;text-align:center;">
+      <div class="section-label" style="color:var(--green);">Contact Us</div>
+      <h2 class="section-title" style="color:#fff;">Get in Touch</h2>
+      <p style="font-size:15px;color:rgba(255,255,255,0.7);line-height:1.7;margin-bottom:12px;">Email us at <a href="mailto:support@dailyadventurebox.com?subject=Question%20for%20DailyAdventureBox" style="color:var(--green);font-weight:600;">support@dailyadventurebox.com</a> with any questions.</p>
+      <p style="font-size:15px;color:rgba(255,255,255,0.7);line-height:1.7;margin-bottom:28px;">If you have a location or want lockers, reach out to <a href="mailto:support@dailyadventurebox.com?subject=I%20have%20a%20location%20%2F%20I%20want%20lockers" style="color:var(--green);font-weight:600;">support@dailyadventurebox.com</a>.</p>
+      <a href="mailto:support@dailyadventurebox.com?subject=Question%20for%20DailyAdventureBox" style="display:inline-block;padding:15px 34px;border-radius:10px;background:var(--green);color:#fff;font-family:'Montserrat',sans-serif;font-weight:700;font-size:13px;letter-spacing:1px;text-decoration:none;">EMAIL US &#8594;</a>
     </div>
   </section>
-
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script>
-    (function(){
-      var supa = window.supabase.createClient(
-        'https://tyhsfxrsexprsfveeprk.supabase.co',
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR5aHNmeHJzZXhwcnNmdmVlcHJrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM4ODQ2MTAsImV4cCI6MjA4OTQ2MDYxMH0.HfQQiwsvjBMqqvME1IksZSFiZwkBo_oNwxqxBSdRcBk'
-      );
-      document.getElementById('brandContactForm').addEventListener('submit', async function(e) {
-        e.preventDefault();
-        var btn = document.getElementById('bc_submit');
-        var msg = document.getElementById('bc_msg');
-        btn.disabled = true; btn.textContent = 'Sending...';
-        var name = document.getElementById('bc_name').value.trim();
-        var email = document.getElementById('bc_email').value.trim();
-        var payload = {
-          source: 'brand-partnership',
-          full_name: name,
-          email: email,
-          company: document.getElementById('bc_company').value.trim() || null,
-          type: document.getElementById('bc_type').value || null,
-          message: document.getElementById('bc_message').value.trim() || null
-        };
-        try {
-          await supa.from('website_submissions').insert(payload);
-          await supa.from('admin_alerts').insert({
-            alert_type: 'brand_inquiry',
-            title: 'Brand Partnership Inquiry',
-            body: (name || 'Someone') + ' (' + email + ') from ' + (payload.company || 'unknown') + ' submitted a brand partnership inquiry.',
-            user_name: name, user_email: email
-          });
-          msg.style.display='block'; msg.style.background='#dcfce7'; msg.style.color='#166534';
-          msg.textContent = "Got it! We'll be in touch within 48 hours.";
-          e.target.reset(); btn.textContent = 'Sent ✓';
-        } catch(err) {
-          msg.style.display='block'; msg.style.background='#fee2e2'; msg.style.color='#b91c1c';
-          msg.textContent = 'Something went wrong — email shay@dailyadventurebox.com';
-          btn.disabled = false; btn.textContent = 'SEND INQUIRY →';
-        }
-      });
-    })();
-  </script>
 
   <script>
     function sendHeight() {
