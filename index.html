@@ -3,2216 +3,363 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com data:; img-src 'self' data: https: blob:; connect-src 'self'; frame-src https://www.youtube.com https://youtube.com https://www.youtube-nocookie.com;">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self'; frame-src https://www.youtube.com https://www.youtube-nocookie.com; media-src 'self' https:;">
 <title>DailyAdventureBox — Adventure Gear On Demand</title>
-<meta name="description" content="Smart lockers loaded with adventure gear — water sports, sports equipment, and more — right where you recreate. Download the app, pick your gear, and the locker opens from your phone.">
+<meta name="description" content="Smart lockers stocked with surfboards, paddle boards, kayaks, beach gear and games, right where you play. Open the app, pick your gear, and the locker unlocks from your phone.">
 <meta property="og:title" content="DailyAdventureBox — Adventure Gear On Demand">
-<meta property="og:description" content="Smart lockers loaded with adventure gear — right where you recreate. Download the app, pick your gear, and go.">
+<meta property="og:description" content="Smart lockers stocked with surfboards, paddle boards, kayaks, beach gear and games, right where you play. Open the app, pick your gear, and the locker unlocks from your phone.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://www.dailyadventurebox.com">
-<meta property="og:image" content="https://www.dailyadventurebox.com/img/dab-logo.png">
-<link rel="icon" type="image/png" href="img/dab-logo.png">
-<link rel="apple-touch-icon" href="img/dab-logo.png">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+<meta property="og:image" content="https://dailyadventurebox-owner.github.io/Main-Website/media/clj05-wide-bluesky-md.webp">
+<link rel="icon" type="image/png" href="media/dab-logo.png">
+<link rel="apple-touch-icon" href="media/dab-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Daily Adventure Box",
-  "alternateName": "DailyAdventureBox",
-  "url": "https://www.dailyadventurebox.com",
-  "logo": "https://www.dailyadventurebox.com/img/dab-logo.png",
-  "description": "Smart lockers loaded with adventure gear — water sports, sports equipment, and more — right where people recreate.",
-  "foundingDate": "2021-07-16",
-  "founder": {
-    "@type": "Person",
-    "name": "Shay Putnam"
-  },
-  "areaServed": "US"
-}
+{"@context":"https://schema.org","@type":"Organization","name":"Daily Adventure Box","alternateName":"DailyAdventureBox","url":"https://www.dailyadventurebox.com","logo":"https://www.dailyadventurebox.com/img/dab-logo.png","description":"Smart lockers stocked with adventure gear, right where people play. Open the app, pick your gear, and the locker unlocks from your phone.","foundingDate":"2021-07-16","founder":{"@type":"Person","name":"Shay Putnam"},"areaServed":"US","email":"support@dailyadventurebox.com"}
 </script>
-<style>
-  /* ============================================================
-     RESET & BASE
-  ============================================================ */
-  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-  :root {
-    --green: #74B93F;
-    --green-dark: #5a9630;
-    --sky: #5BBDD4;
-    --yellow: #F9C926;
-    --charcoal: #2C2C2C;
-    --dark: #1a1a1a;
-    --off-white: #F5F2EC;
-    --light: #f9fafb;
-    --text: #1f2937;
-    --text-mute: #6b7280;
-    --border: #e5e7eb;
-    --radius: 16px;
-    --radius-sm: 10px;
-    --shadow: 0 8px 30px rgba(0,0,0,0.08);
-    --shadow-lg: 0 20px 60px rgba(0,0,0,0.12);
-  }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    font-family: 'Inter', -apple-system, sans-serif;
-    color: var(--text);
-    background: #ffffff;
-    line-height: 1.6;
-    overflow-x: hidden;
-  }
-
-  img { max-width: 100%; display: block; }
-  a { text-decoration: none; color: inherit; }
-
-  .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-  .container-sm { max-width: 900px; margin: 0 auto; padding: 0 24px; }
-
-  /* ============================================================
-     ANIMATIONS
-  ============================================================ */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
-  }
-  @keyframes marquee {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
-  @keyframes countUp {
-    from { opacity: 0; transform: scale(0.8); }
-    to { opacity: 1; transform: scale(1); }
-  }
-
-  .fade-up {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
-  .fade-up.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* ============================================================
-     NAVIGATION — Sticky transparent → solid on scroll
-  ============================================================ */
-  .nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    padding: 16px 0;
-    transition: background 0.3s ease, padding 0.3s ease, box-shadow 0.3s ease;
-  }
-  .nav.scrolled {
-    background: rgba(26, 26, 26, 0.95);
-    backdrop-filter: blur(12px);
-    padding: 10px 0;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-  }
-  .nav-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 24px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .nav-logo { height: 44px; }
-  .nav-links {
-    display: flex;
-    align-items: center;
-    gap: 28px;
-    list-style: none;
-  }
-  .nav-links a {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    color: rgba(255,255,255,0.85);
-    transition: color 0.2s ease;
-  }
-  .nav-links a:hover { color: #ffffff; }
-  .nav-dropdown {
-    position: relative;
-  }
-  .nav-dropdown > a {
-    cursor: pointer;
-  }
-  .nav-dropdown > a::after {
-    content: ' ▾';
-    font-size: 10px;
-  }
-  .nav-dropdown-menu {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    padding-top: 12px;
-    background: rgba(30,30,30,0.95);
-    backdrop-filter: blur(10px);
-    border-radius: 10px;
-    padding: 10px 0;
-    min-width: 200px;
-    box-shadow: 0 12px 40px rgba(0,0,0,0.5);
-    z-index: 100;
-    list-style: none;
-  }
-  .nav-dropdown:hover .nav-dropdown-menu,
-  .nav-dropdown.open .nav-dropdown-menu {
-    display: block;
-  }
-  .nav-dropdown-menu li a {
-    display: block;
-    padding: 8px 20px;
-    font-size: 13px;
-    white-space: nowrap;
-  }
-  .nav-dropdown-menu li a:hover {
-    background: rgba(116,185,63,0.15);
-  }
-  .nav-cta {
-    background: var(--green) !important;
-    color: #fff !important;
-    padding: 10px 22px !important;
-    border-radius: 999px !important;
-    font-size: 12px !important;
-    letter-spacing: 0.8px !important;
-    text-transform: uppercase;
-    transition: transform 0.15s ease, box-shadow 0.15s ease !important;
-  }
-  .nav-cta:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 14px rgba(116, 185, 63, 0.4);
-  }
-  .nav-hamburger {
-    display: none;
-    background: none;
-    border: none;
-    color: #fff;
-    font-size: 28px;
-    cursor: pointer;
-  }
-
-  /* ============================================================
-     SECTION 1: HERO — Full-bleed lifestyle + bold CTA
-  ============================================================ */
-  .hero {
-    position: relative;
-    min-height: 100vh;
-    display: flex;
-    align-items: flex-start;
-    background: var(--dark);
-    overflow: hidden;
-  }
-  .hero-bg {
-    position: absolute;
-    inset: 0;
-  }
-  .hero-bg-left {
-    position: absolute;
-    inset: 0;
-    background: url('img/dji-drone-floats.jpg') center/cover no-repeat;
-    clip-path: polygon(0 0, 100% 0, 100% 35%, 0 100%);
-    opacity: 0.5;
-    z-index: 1;
-  }
-  .hero-bg-right {
-    position: absolute;
-    inset: 0;
-    background: url('img/clj03-full-unit.jpeg') center/cover no-repeat;
-    clip-path: polygon(100% 36%, 100% 100%, 0 100%, 1% 100%);
-    opacity: 0.55;
-    z-index: 1;
-  }
-  .hero-bg-line {
-    position: absolute;
-    inset: 0;
-    z-index: 2;
-    overflow: hidden;
-  }
-  .hero-bg-line::after {
-    content: '';
-    position: absolute;
-    top: -5%;
-    left: 0;
-    width: 3px;
-    height: 115%;
-    background: rgba(116,185,63,0.6);
-    transform-origin: top left;
-    transform: rotate(60.5deg) translateX(58vw);
-    box-shadow: 0 0 12px rgba(116,185,63,0.3);
-  }
-  .hero-gradient {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(26,26,26,0.88) 0%, rgba(26,26,26,0.5) 40%, rgba(26,26,26,0.3) 70%, rgba(26,26,26,0.4) 100%);
-    z-index: 3;
-  }
-  .hero-content {
-    position: relative;
-    z-index: 4;
-    width: 100%;
-    margin: 0;
-    padding: 140px 24px 80px 60px;
-    display: block;
-  }
-  .hero-text h1 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 82px;
-    line-height: 0.95;
-    letter-spacing: 2px;
-    color: #ffffff;
-    margin-bottom: 20px;
-  }
-  .hero-text h1 span { color: var(--green); }
-  .hero-sub {
-    font-size: 19px;
-    line-height: 1.7;
-    color: rgba(255,255,255,0.95);
-    margin-bottom: 32px;
-    max-width: 500px;
-  }
-  .hero-buttons {
-    display: flex;
-    gap: 14px;
-    flex-wrap: wrap;
-  }
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    padding: 16px 32px;
-    border-radius: 999px;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: 14px;
-    letter-spacing: 0.5px;
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
-    border: none;
-    cursor: pointer;
-  }
-  .btn:hover { transform: translateY(-2px); }
-  .btn-green { background: var(--green); color: #fff; box-shadow: 0 8px 24px rgba(116,185,63,0.35); }
-  .btn-green:hover { box-shadow: 0 12px 32px rgba(116,185,63,0.45); }
-  .btn-outline { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.3); }
-  .btn-outline:hover { border-color: rgba(255,255,255,0.6); }
-  .btn-dark { background: var(--charcoal); color: #fff; box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
-  .btn-sky { background: var(--sky); color: #fff; box-shadow: 0 8px 24px rgba(91,189,212,0.35); }
-
-  .hero-visual {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .hero-phone {
-    width: 280px;
-    height: 560px;
-    background: var(--charcoal);
-    border-radius: 36px;
-    border: 3px solid rgba(255,255,255,0.15);
-    overflow: hidden;
-    box-shadow: 0 30px 80px rgba(0,0,0,0.5);
-    animation: float 4s ease-in-out infinite;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-  }
-  .hero-phone::before {
-    content: 'DAB App';
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 24px;
-    color: rgba(255,255,255,0.3);
-    letter-spacing: 2px;
-  }
-
-  .hero-stats {
-    position: absolute;
-    bottom: 80px;
-    right: 40px;
-    z-index: 5;
-    display: flex;
-    gap: 40px;
-    padding: 16px 28px;
-    background: rgba(0,0,0,0.45);
-    border-radius: 12px;
-    backdrop-filter: blur(6px);
-  }
-  .hero-stat {
-    text-align: center;
-    color: rgba(255,255,255,0.6);
-    font-size: 12px;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-  }
-  .hero-stat strong {
-    display: block;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 42px;
-    color: #fff;
-    letter-spacing: 1px;
-  }
-
-  /* ============================================================
-     MARQUEE STRIP
-  ============================================================ */
-  .marquee-strip {
-    background: var(--sky);
-    padding: 14px 0;
-    overflow: hidden;
-    white-space: nowrap;
-  }
-  .marquee-inner {
-    display: inline-flex;
-    animation: marquee 30s linear infinite;
-  }
-  .marquee-inner span {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: #fff;
-    padding: 0 40px;
-  }
-
-  /* ============================================================
-     SECTION 2: HOW IT WORKS — 3-step
-  ============================================================ */
-  .how-it-works {
-    padding: 100px 0;
-    background: #ffffff;
-  }
-  .section-label {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
-    color: var(--green);
-    text-align: center;
-    margin-bottom: 10px;
-  }
-  .section-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 52px;
-    letter-spacing: 1.5px;
-    text-align: center;
-    color: var(--charcoal);
-    margin-bottom: 16px;
-  }
-  .section-sub {
-    text-align: center;
-    font-size: 17px;
-    color: var(--text-mute);
-    max-width: 600px;
-    margin: 0 auto 60px;
-    line-height: 1.7;
-  }
-  .steps-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 32px;
-  }
-  .step-card {
-    text-align: center;
-    padding: 40px 28px;
-    border-radius: var(--radius);
-    background: var(--light);
-    border: 1px solid var(--border);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  .step-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-lg);
-  }
-  .step-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 64px;
-    line-height: 1;
-    color: var(--green);
-    margin-bottom: 12px;
-  }
-  .step-card h3 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 18px;
-    font-weight: 800;
-    margin-bottom: 10px;
-    color: var(--charcoal);
-  }
-  .step-card p {
-    font-size: 14px;
-    color: var(--text-mute);
-    line-height: 1.7;
-  }
-  .step-icon {
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
-    margin: 0 auto 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 28px;
-  }
-  .step-icon-1 { background: rgba(116,185,63,0.12); }
-  .step-icon-2 { background: rgba(91,189,212,0.12); }
-  .step-icon-3 { background: rgba(249,201,38,0.12); }
-
-  /* ============================================================
-     SECTION 3: EXPANDING NATIONWIDE
-  ============================================================ */
-  .locations {
-    padding: 100px 0;
-    background: var(--dark);
-    color: #fff;
-  }
-  .locations .section-label { color: var(--sky); }
-  .locations .section-title { color: #fff; }
-  .locations .section-sub { color: rgba(255,255,255,0.6); }
-
-  .expansion-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 16px;
-    margin-top: 40px;
-  }
-  .expansion-card {
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: var(--radius);
-    padding: 24px;
-  }
-  .expansion-card h4 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 22px;
-    letter-spacing: 0.5px;
-    margin-bottom: 8px;
-  }
-  .expansion-card p {
-    font-size: 13px;
-    color: rgba(255,255,255,0.55);
-    line-height: 1.65;
-  }
-  .expansion-cta { margin-top: 36px; text-align: center; }
-  .gear-tag {
-    font-size: 10px;
-    font-weight: 600;
-    padding: 4px 10px;
-    border-radius: 999px;
-    background: rgba(116,185,63,0.15);
-    color: var(--green);
-    font-family: 'Montserrat', sans-serif;
-  }
-
-
-  /* ============================================================
-     SECTION 4: EQUIPMENT — Bento Grid
-  ============================================================ */
-  .equipment {
-    padding: 100px 0;
-    background: #ffffff;
-  }
-  .bento-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: auto auto;
-    gap: 16px;
-    margin-top: 48px;
-  }
-  .bento-card {
-    position: relative;
-    border-radius: var(--radius);
-    overflow: hidden;
-    min-height: 240px;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-  }
-  .bento-card:hover { transform: scale(1.02); }
-  .bento-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    position: absolute;
-    inset: 0;
-  }
-  .bento-card .bento-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(transparent 40%, rgba(0,0,0,0.75) 100%);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 20px;
-  }
-  .bento-card h4 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 24px;
-    color: #fff;
-    letter-spacing: 0.5px;
-  }
-  .bento-card .bento-price {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 12px;
-    font-weight: 700;
-    color: var(--green);
-  }
-  .bento-wide { grid-column: span 2; }
-  .bento-tall { grid-row: span 2; min-height: 500px; }
-
-  /* ============================================================
-     SECTION 5: FEATURES — Scroll-reveal IoT style
-  ============================================================ */
-  .features {
-    padding: 100px 0;
-    background: var(--light);
-  }
-  .feature-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    align-items: center;
-    margin-bottom: 80px;
-  }
-  .feature-row:last-child { margin-bottom: 0; }
-  .feature-row.reverse { direction: rtl; }
-  .feature-row.reverse > * { direction: ltr; }
-  .feature-img {
-    border-radius: var(--radius);
-    overflow: hidden;
-    box-shadow: var(--shadow-lg);
-  }
-  .feature-img img {
-    width: 100%;
-    height: 360px;
-    object-fit: cover;
-  }
-  .feature-text h3 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 38px;
-    color: var(--charcoal);
-    margin-bottom: 14px;
-    letter-spacing: 0.5px;
-  }
-  .feature-text p {
-    font-size: 15px;
-    color: var(--text-mute);
-    line-height: 1.8;
-    margin-bottom: 16px;
-  }
-  .feature-specs {
-    display: flex;
-    gap: 24px;
-    margin-top: 20px;
-  }
-  .feature-spec {
-    text-align: center;
-  }
-  .feature-spec strong {
-    display: block;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 32px;
-    color: var(--green);
-  }
-  .feature-spec span {
-    font-size: 11px;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
-    color: var(--text-mute);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-
-  /* ============================================================
-     SECTION 6: CLASSES & GUIDES (NEW)
-  ============================================================ */
-  .classes {
-    padding: 100px 0;
-    background: #ffffff;
-  }
-  .classes-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-    margin-top: 48px;
-  }
-  .class-card {
-    border-radius: var(--radius);
-    overflow: hidden;
-    border: 1px solid var(--border);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    background: #fff;
-  }
-  .class-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-lg);
-  }
-  .class-card-img {
-    height: 220px;
-    overflow: hidden;
-    position: relative;
-  }
-  .class-card-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.4s ease;
-  }
-  .class-card:hover .class-card-img img { transform: scale(1.05); }
-  .class-badge {
-    position: absolute;
-    top: 12px;
-    left: 12px;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    padding: 6px 12px;
-    border-radius: 999px;
-    color: #fff;
-  }
-  .badge-sky { background: var(--sky); }
-  .badge-green { background: var(--green); }
-  .badge-yellow { background: var(--yellow); color: var(--charcoal); }
-  .class-card-body { padding: 22px; }
-  .class-card-body h3 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 18px;
-    font-weight: 800;
-    color: var(--charcoal);
-    margin-bottom: 8px;
-  }
-  .class-card-body p {
-    font-size: 14px;
-    color: var(--text-mute);
-    line-height: 1.7;
-    margin-bottom: 14px;
-  }
-  .class-meta {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 12px;
-    font-weight: 600;
-  }
-  .class-meta .price { color: var(--green); font-size: 16px; }
-  .class-meta .duration { color: var(--text-mute); }
-
-  .fa-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    align-items: center;
-    position: relative;
-    z-index: 1;
-  }
-  .fa-text h2 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 52px;
-    letter-spacing: 1px;
-    margin-bottom: 18px;
-  }
-  .fa-text h2 span { color: var(--green); }
-  .fa-text p {
-    font-size: 16px;
-    line-height: 1.8;
-    color: rgba(255,255,255,0.7);
-    margin-bottom: 14px;
-  }
-  .fa-text ul {
-    list-style: none;
-    padding: 0;
-    margin-bottom: 28px;
-  }
-  .fa-text li {
-    font-size: 14px;
-    color: rgba(255,255,255,0.8);
-    padding: 8px 0;
-    padding-left: 24px;
-    position: relative;
-    line-height: 1.6;
-  }
-  .fa-text li::before {
-    content: '✓';
-    position: absolute;
-    left: 0;
-    color: var(--green);
-    font-weight: 700;
-  }
-  .fa-pricing {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-  }
-  .fa-price-card {
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.12);
-    border-radius: var(--radius);
-    padding: 28px;
-    text-align: center;
-    transition: border-color 0.2s ease, transform 0.2s ease;
-  }
-  .fa-price-card:hover {
-    border-color: var(--green);
-    transform: translateY(-3px);
-  }
-  .fa-price-card h4 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 12px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    color: rgba(255,255,255,0.5);
-    margin-bottom: 8px;
-  }
-  .fa-price-card .price {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 48px;
-    color: #fff;
-    line-height: 1;
-    margin-bottom: 8px;
-  }
-  .fa-price-card p {
-    font-size: 13px;
-    color: rgba(255,255,255,0.5);
-  }
-
-  /* ============================================================
-     SECTION 8: SOCIAL PROOF / STATS
-  ============================================================ */
-  .social-proof {
-    padding: 80px 0;
-    background: #ffffff;
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-  }
-  .stats-row {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 24px;
-    text-align: center;
-  }
-  .stat-item strong {
-    display: block;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 56px;
-    color: var(--charcoal);
-    line-height: 1;
-    margin-bottom: 6px;
-  }
-  .stat-item span {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: var(--text-mute);
-  }
-
-  /* ============================================================
-     SECTION 8B: LOCATIONS ROADMAP
-  ============================================================ */
-  .roadmap { padding: 100px 0; background: var(--charcoal); }
-  .roadmap .section-label { color: var(--green); text-align: center; }
-  .roadmap .section-title { color: #fff; text-align: center; font-family: 'Bebas Neue', sans-serif; font-size: 46px; letter-spacing: 0.5px; margin-bottom: 12px; }
-  .roadmap .section-sub { color: rgba(255,255,255,0.5); text-align: center; max-width: 600px; margin: 0 auto 56px; }
-  .roadmap-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; margin-bottom: 32px; }
-  .roadmap-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius); padding: 28px 22px; text-align: center; }
-  .roadmap-card.roadmap-current { background: rgba(116,185,63,0.1); border-color: rgba(116,185,63,0.35); }
-  .roadmap-year { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 11px; letter-spacing: 0.14em; color: rgba(255,255,255,0.35); text-transform: uppercase; margin-bottom: 12px; }
-  .roadmap-current .roadmap-year { color: var(--green); }
-  .roadmap-num { font-family: 'Bebas Neue', sans-serif; font-size: 52px; color: #fff; line-height: 1; margin-bottom: 4px; }
-  .roadmap-current .roadmap-num { color: var(--green); }
-  .roadmap-label { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 14px; }
-  .roadmap-desc { font-size: 12px; color: rgba(255,255,255,0.48); line-height: 1.65; margin-bottom: 16px; }
-  .roadmap-status { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 10px; letter-spacing: 0.08em; border-radius: 20px; padding: 4px 12px; display: inline-block; }
-  .roadmap-status.active { background: rgba(116,185,63,0.15); color: var(--green); }
-  .roadmap-status.upcoming { background: rgba(249,201,38,0.12); color: var(--yellow); }
-  .roadmap-status.planned { background: rgba(91,189,212,0.1); color: var(--sky); }
-  .roadmap-tam { text-align: center; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius); padding: 24px 32px; font-size: 14px; color: rgba(255,255,255,0.48); line-height: 1.7; }
-  .roadmap-tam strong { font-family: 'Bebas Neue', sans-serif; font-size: 32px; color: var(--sky); line-height: 1; margin-right: 6px; vertical-align: middle; }
-
-  /* ============================================================
-     SECTION 9: ABOUT / STORY
-  ============================================================ */
-  .about {
-    padding: 100px 0;
-    background: var(--light);
-  }
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    align-items: center;
-  }
-  .about-img {
-    border-radius: var(--radius);
-    overflow: hidden;
-    box-shadow: var(--shadow-lg);
-  }
-  .about-img img {
-    width: 100%;
-    height: 450px;
-    object-fit: cover;
-  }
-  .about-text h2 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 46px;
-    color: var(--charcoal);
-    margin-bottom: 18px;
-    letter-spacing: 0.5px;
-  }
-  .about-text p {
-    font-size: 15px;
-    color: var(--text-mute);
-    line-height: 1.8;
-    margin-bottom: 14px;
-  }
-  .about-timeline {
-    margin-top: 24px;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-  }
-  .timeline-item {
-    display: flex;
-    gap: 14px;
-    align-items: flex-start;
-  }
-  .timeline-year {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 22px;
-    color: var(--green);
-    min-width: 52px;
-  }
-  .timeline-item p {
-    font-size: 13px;
-    margin: 0;
-    line-height: 1.6;
-  }
-
-  /* ============================================================
-     SECTION 9B: HISTORY TIMELINE
-  ============================================================ */
-  .history {
-    padding: 100px 0;
-    background: var(--charcoal);
-    overflow: hidden;
-  }
-  .history-heading {
-    text-align: center;
-    margin-bottom: 64px;
-  }
-  .history-heading h2 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 52px;
-    color: #fff;
-    letter-spacing: 0.5px;
-    margin-bottom: 10px;
-  }
-  .history-heading p {
-    color: rgba(255,255,255,0.45);
-    font-size: 15px;
-    max-width: 540px;
-    margin: 0 auto;
-    line-height: 1.7;
-  }
-  .history-track {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    max-width: 780px;
-    margin: 0 auto;
-  }
-  .history-track::before {
-    content: '';
-    position: absolute;
-    left: 68px;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    background: linear-gradient(to bottom, transparent, rgba(116,185,63,0.4) 8%, rgba(116,185,63,0.4) 92%, transparent);
-  }
-  .history-item {
-    display: flex;
-    gap: 28px;
-    align-items: flex-start;
-    padding: 20px 0;
-  }
-  .history-year-col {
-    min-width: 56px;
-    text-align: right;
-    flex-shrink: 0;
-  }
-  .history-year {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 20px;
-    color: var(--green);
-    line-height: 1.2;
-  }
-  .history-dot {
-    width: 28px;
-    flex-shrink: 0;
-    display: flex;
-    align-items: flex-start;
-    padding-top: 4px;
-    justify-content: center;
-  }
-  .history-dot::after {
-    content: '';
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: var(--green);
-    border: 2px solid var(--charcoal);
-    box-shadow: 0 0 0 3px rgba(116,185,63,0.25);
-    flex-shrink: 0;
-  }
-  .history-item.current .history-dot::after {
-    background: var(--green);
-    box-shadow: 0 0 0 4px rgba(116,185,63,0.35), 0 0 12px rgba(116,185,63,0.4);
-  }
-  .history-content {
-    flex: 1;
-    padding-bottom: 8px;
-  }
-  .history-content h4 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 22px;
-    color: #fff;
-    letter-spacing: 0.3px;
-    margin-bottom: 6px;
-    line-height: 1.1;
-  }
-  .history-content p {
-    font-size: 13px;
-    color: rgba(255,255,255,0.52);
-    line-height: 1.75;
-    margin: 0;
-  }
-  .history-tag {
-    display: inline-block;
-    margin-top: 8px;
-    padding: 3px 10px;
-    border-radius: 20px;
-    font-size: 10px;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-  .tag-live { background: rgba(116,185,63,0.15); color: var(--green); }
-  .tag-upcoming { background: rgba(249,201,38,0.12); color: #c9a200; }
-  @media (max-width: 600px) {
-    .history-track::before { left: 48px; }
-    .history-year-col { min-width: 38px; }
-    .history-year { font-size: 16px; }
-    .history-content h4 { font-size: 18px; }
-  }
-
-  /* ============================================================
-     SECTION 10: PARTNERS
-  ============================================================ */
-  .partners {
-    padding: 100px 0;
-    background: #ffffff;
-  }
-  .partners-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-    margin-top: 48px;
-  }
-  .partner-card {
-    padding: 40px;
-    border-radius: var(--radius);
-    border: 2px solid var(--border);
-    transition: border-color 0.3s ease, transform 0.3s ease;
-    text-align: center;
-  }
-  .partner-card:hover {
-    border-color: var(--green);
-    transform: translateY(-3px);
-  }
-  .partner-card h3 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 28px;
-    color: var(--charcoal);
-    margin-bottom: 12px;
-  }
-  .partner-card p {
-    font-size: 14px;
-    color: var(--text-mute);
-    line-height: 1.7;
-    margin-bottom: 20px;
-    max-width: 340px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  /* ============================================================
-     SECTION 11: APP DOWNLOAD
-  ============================================================ */
-  .app-download {
-    padding: 100px 0;
-    background: linear-gradient(135deg, var(--sky) 0%, #3da8c2 100%);
-    color: #fff;
-    text-align: center;
-  }
-  .app-download h2 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 52px;
-    letter-spacing: 1px;
-    margin-bottom: 16px;
-  }
-  .app-download p {
-    font-size: 17px;
-    opacity: 0.9;
-    margin-bottom: 32px;
-    max-width: 500px;
-    margin-left: auto;
-    margin-right: auto;
-    line-height: 1.7;
-  }
-  .app-buttons {
-    display: flex;
-    gap: 14px;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-  .app-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 16px 28px;
-    border-radius: 14px;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: 14px;
-    transition: transform 0.15s ease;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
-  }
-  .app-btn:hover { transform: translateY(-2px); }
-  .app-btn-ios { background: #111827; color: #fff; }
-  .app-btn-android { background: #fff; color: var(--charcoal); }
-
-  /* ============================================================
-     FOOTER
-  ============================================================ */
-  .footer {
-    padding: 60px 0 30px;
-    background: var(--dark);
-    color: rgba(255,255,255,0.6);
-  }
-  .footer-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
-    gap: 40px;
-    margin-bottom: 40px;
-  }
-  .footer-brand img { height: 48px; margin-bottom: 14px; }
-  .footer-brand p {
-    font-size: 13px;
-    line-height: 1.7;
-    max-width: 280px;
-  }
-  .footer-col h4 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.9);
-    margin-bottom: 16px;
-  }
-  .footer-col a {
-    display: block;
-    font-size: 13px;
-    color: rgba(255,255,255,0.5);
-    padding: 4px 0;
-    transition: color 0.2s ease;
-  }
-  .footer-col a:hover { color: var(--green); }
-  .footer-bottom {
-    border-top: 1px solid rgba(255,255,255,0.1);
-    padding-top: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 12px;
-  }
-  .footer-socials {
-    display: flex;
-    gap: 16px;
-  }
-  .footer-socials a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.08);
-    transition: background 0.2s ease;
-  }
-  .footer-socials a:hover { background: var(--green); }
-  .footer-socials a svg { width: 18px; height: 18px; fill: rgba(255,255,255,0.7); }
-  .footer-socials a:hover svg { fill: #fff; }
-
-  /* ============================================================
-     SECTION 11: HAVE A LOCATION
-  ============================================================ */
-  .have-location {
-    padding: 100px 0;
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-    color: #fff;
-  }
-  .hl-grid {
-    display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
-    gap: 60px;
-    align-items: center;
-  }
-  .hl-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 52px;
-    letter-spacing: 1px;
-    line-height: 1;
-    margin-bottom: 18px;
-  }
-  .hl-title span { color: var(--yellow); }
-  .hl-text > p {
-    font-size: 16px;
-    color: rgba(255,255,255,0.7);
-    line-height: 1.7;
-    margin-bottom: 28px;
-  }
-  .hl-options {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-    margin-bottom: 28px;
-  }
-  .hl-option {
-    display: flex;
-    gap: 16px;
-    align-items: flex-start;
-  }
-  .hl-option-num {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 20px;
-    color: #fff;
-    flex-shrink: 0;
-    margin-top: 2px;
-  }
-  .hl-option h4 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 16px;
-    font-weight: 700;
-    margin-bottom: 4px;
-  }
-  .hl-option p {
-    font-size: 13px;
-    color: rgba(255,255,255,0.6);
-    line-height: 1.6;
-    margin: 0;
-  }
-  .hl-buttons { display: flex; gap: 12px; flex-wrap: wrap; }
-  .btn-sky { background: var(--sky); color: #fff; box-shadow: 0 8px 24px rgba(91,189,212,0.35); }
-
-  .hl-card {
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.12);
-    border-radius: var(--radius);
-    padding: 28px;
-  }
-  .hl-card-header {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 24px;
-    margin-bottom: 18px;
-    letter-spacing: 0.5px;
-  }
-  .hl-card-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-    font-size: 14px;
-    color: rgba(255,255,255,0.8);
-  }
-  .hl-card-item:last-child { border-bottom: none; }
-  .hl-check {
-    color: var(--green);
-    font-weight: 700;
-    font-size: 16px;
-  }
-
-  /* ============================================================
-     RESPONSIVE
-  ============================================================ */
-  @media (max-width: 991px) {
-    .roadmap-grid { grid-template-columns: repeat(2,1fr); }
-    .hero-content { grid-template-columns: 1fr; padding: 120px 24px 80px 24px; }
-    .hero-visual { display: none; }
-    .hero-text h1 { font-size: 58px; }
-    .section-title { font-size: 40px; }
-    .feature-row, .feature-row.reverse { grid-template-columns: 1fr; direction: ltr; }
-    .feature-img img { height: 280px; }
-    .fa-grid { grid-template-columns: 1fr; }
-    .about-grid { grid-template-columns: 1fr; }
-    .about-img img { height: 320px; }
-    .bento-grid { grid-template-columns: 1fr 1fr; }
-    .bento-tall { grid-row: span 1; min-height: 260px; }
-    .footer-grid { grid-template-columns: 1fr 1fr; }
-    .nav-links {
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      right: 0;
-      background: rgba(26,26,26,0.97);
-      backdrop-filter: blur(12px);
-      flex-direction: column;
-      padding: 16px 24px;
-      gap: 4px;
-    }
-    .nav-links.show { display: flex; }
-    .nav-links li { width: 100%; }
-    .nav-links li a { display: block; padding: 10px 0; font-size: 14px; }
-    .nav-dropdown-menu {
-      position: static !important;
-      background: transparent !important;
-      box-shadow: none !important;
-      padding: 0 0 0 16px !important;
-      min-width: auto !important;
-    }
-    .nav-dropdown.open .nav-dropdown-menu,
-    .nav-dropdown:hover .nav-dropdown-menu { display: block; }
-    .nav-hamburger { display: block; }
-    .stats-row { grid-template-columns: 1fr 1fr; gap: 32px; }
-    .hl-grid { grid-template-columns: 1fr; }
-    .hero { min-height: auto; padding-bottom: 24px; }
-    .hero-stats {
-      position: relative;
-      bottom: auto;
-      right: auto;
-      justify-content: center;
-      margin: 32px 24px 0;
-      z-index: 5;
-    }
-    .how-it-works, .equipment, .features, .classes,
-    .about, .partners, .have-location { padding: 70px 0; }
-    .partners-grid { grid-template-columns: 1fr; }
-    .hl-title { font-size: 42px; }
-    .fa-text h2 { font-size: 42px; }
-    .app-download h2 { font-size: 40px; }
-  }
-
-  @media (max-width: 640px) {
-    .roadmap-grid { grid-template-columns: 1fr; }
-    .hero-content { padding: 110px 16px 60px 16px; }
-    .hero-text h1 { font-size: 38px; }
-    .hero-sub { font-size: 16px; }
-    .section-title { font-size: 30px; }
-    .section-sub { font-size: 15px; margin-bottom: 40px; }
-    .steps-grid { grid-template-columns: 1fr; }
-    .classes-grid { grid-template-columns: 1fr; }
-    .partners-grid { grid-template-columns: 1fr; }
-    .bento-grid { grid-template-columns: 1fr; }
-    .bento-wide { grid-column: span 1; }
-    .fa-pricing { grid-template-columns: 1fr; }
-    .footer-grid { grid-template-columns: 1fr; gap: 24px; }
-    .hero-buttons { flex-direction: column; }
-    .btn { width: 100%; justify-content: center; }
-    .stats-row { grid-template-columns: 1fr 1fr; }
-    .hero-stats { flex-wrap: wrap; gap: 16px; margin: 24px 16px 0; padding: 14px 20px; }
-    .hero-stat strong { font-size: 32px; }
-    .hero-stat { font-size: 10px; }
-    .hero-bg-line::after { display: none; }
-    .how-it-works, .equipment, .features, .classes,
-    .about, .partners, .have-location { padding: 50px 0; }
-    .feature-row { gap: 30px; margin-bottom: 50px; }
-    .feature-text h3 { font-size: 28px; }
-    .feature-img img { height: 220px; }
-    .about-text h2 { font-size: 36px; }
-    .hl-title { font-size: 34px; }
-    .fa-text h2 { font-size: 36px; }
-    .app-download { padding: 60px 0; }
-    .app-download h2 { font-size: 34px; }
-    .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
-    .social-proof { padding: 50px 0; }
-    .stat-item strong { font-size: 42px; }
-  }
-
-  /* ── GEAR CAROUSEL ── */
-  .gear-carousel-wrap {
-    position: relative;
-    overflow: hidden;
-    margin-top: 48px;
-    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
-    mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
-  }
-  .gear-carousel-track {
-    display: flex;
-    gap: 14px;
-    width: max-content;
-    animation: gearScroll 40s linear infinite;
-  }
-  .gear-carousel-wrap:hover .gear-carousel-track { animation-play-state: paused; }
-  @keyframes gearScroll {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
-  .gear-item {
-    flex-shrink: 0;
-    width: 260px;
-    height: 200px;
-    border-radius: 14px;
-    overflow: hidden;
-    position: relative;
-  }
-  .gear-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
-  .gear-item:hover img { transform: scale(1.06); }
-  .gear-item-label {
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    background: linear-gradient(transparent, rgba(0,0,0,0.72));
-    color: #fff;
-    padding: 28px 14px 12px;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 19px;
-    letter-spacing: 0.5px;
-  }
-</style>
 </head>
 <body>
-
-  <!-- ============================================================
-       NAVIGATION
-  ============================================================ -->
-  <nav class="nav" id="mainNav">
-    <div class="nav-inner">
-      <img class="nav-logo" src="img/dab-logo.png" alt="DailyAdventureBox">
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html" aria-label="DailyAdventureBox home"><img src="media/dab-logo.png" alt=""><span class="nav-word">Daily<b>Adventure</b>Box</span></a>
+    <nav>
       <ul class="nav-links">
-        <li class="nav-dropdown">
-          <a href="#" onclick="this.parentElement.classList.toggle('open');return false;">Home Page</a>
-          <ul class="nav-dropdown-menu">
-            <li><a href="#how-it-works">How It Works</a></li>
-            <li><a href="#locations">Locations</a></li>
-            <li><a href="#about">Our Story</a></li>
-          </ul>
-        </li>
-        <li class="nav-dropdown">
-          <a href="#" onclick="this.parentElement.classList.toggle('open');return false;">Additional Pages</a>
-          <ul class="nav-dropdown-menu">
-            <li><a href="https://www.dailyadventurebox.com/partnership-advertismentopportunities" target="_top">Advertise on Boxes</a></li>
-          </ul>
-        </li>
-        <li><a href="https://www.dailyadventurebox.com/download-app" target="_top" class="nav-cta">Get the App</a></li>
+        <li><a href="gear.html">Gear</a></li>
+        <li><a href="locations.html">For Locations</a></li>
+        <li><a href="ad-opportunities.html">For Brands</a></li>
+        <li><a href="story.html">Our Story</a></li>
+        <li><a href="https://www.dailyadventurebox.com/support" target="_top">Support</a></li>
+        <li><a class="nav-cta" href="https://www.dailyadventurebox.com/download-app" target="_top">Get the App</a></li>
       </ul>
-      <button class="nav-hamburger" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('show')">&#9776;</button>
+    </nav>
+    <button class="nav-burger" id="navBurger" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<div class="nav-mobile" id="navMobile">
+  <a href="index.html">Home</a>
+  <a href="gear.html">Gear</a>
+  <a href="locations.html">For Locations</a>
+  <a href="ad-opportunities.html">For Brands</a>
+  <a href="story.html">Our Story</a>
+  <a href="https://www.dailyadventurebox.com/download-app" target="_top" style="color:var(--green)">Get the App</a>
+  <div class="nav-mobile-foot">Questions? Email <strong>support@dailyadventurebox.com</strong></div>
+</div>
+<main>
+<!-- ============================================================ HERO -->
+<section class="hero" id="top">
+  <div class="hero-media">
+    <img class="kb" src="media/b33i3444.webp" alt="" fetchpriority="high">
+    <iframe class="yt" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube-nocookie.com/embed/UzxDN0vsQpY?autoplay=1&amp;mute=1&amp;loop=1&amp;playlist=UzxDN0vsQpY&amp;controls=0&amp;rel=0&amp;modestbranding=1&amp;playsinline=1&amp;iv_load_policy=3&amp;disablekb=1&amp;enablejsapi=1" title="DailyAdventureBox in action" allow="autoplay; encrypted-media" tabindex="-1" aria-hidden="true" loading="eager"></iframe>
+  </div>
+  <div class="hero-shade"></div>
+  <div class="hero-grain"></div>
+  <div class="hero-content">
+    <div class="hero-kicker"><span class="dot"></span> Self-serve adventure gear &middot; Growing nationwide</div>
+    <h1 class="display display-xl">
+      <span class="line"><span>Adventure</span></span>
+      <span class="line"><span class="accent">On Demand.</span></span>
+      <span class="line"><span>Grab Gear. Go.</span></span>
+    </h1>
+    <p class="lede">Smart lockers stocked with surfboards, paddle boards, kayaks, beach gear and games, right where you play. Open the app, pick your gear, and the locker unlocks from your phone.</p>
+    <div class="btn-row">
+      <a class="btn btn-green" href="https://www.dailyadventurebox.com/download-app" target="_top">Get the App <span class="arrow">&rarr;</span></a>
+      <a class="btn btn-outline" href="#how">See How It Works</a>
     </div>
-  </nav>
-
-  <!-- ============================================================
-       SECTION 1: HERO
-  ============================================================ -->
-  <section class="hero">
-    <div class="hero-bg">
-      <div class="hero-bg-left"></div>
-      <div class="hero-bg-right"></div>
-      <div class="hero-bg-mesh"></div>
-    </div>
-    <div class="hero-gradient"></div>
-    <div class="hero-content">
-      <div class="hero-text">
-        <h1>Adventure <span>On Demand.</span><br>Grab Gear. Create Memories.</h1>
-        <p class="hero-sub">
-          Smart lockers loaded with adventure gear — water sports, sports equipment, and more — right where you recreate. Download the app, pick your gear, and the locker opens from your phone.
-        </p>
-        <div class="hero-buttons">
-          <a href="https://www.dailyadventurebox.com/download-app" class="btn btn-green" target="_top">Download Our App</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       MARQUEE
-  ============================================================ -->
-  <div class="marquee-strip">
-    <div class="marquee-inner">
-      <span>Surfboards</span><span>Paddle Boards</span><span>Kayaks</span><span>Snorkel Gear</span><span>Floats</span><span>Footballs</span><span>Volleyball</span><span>Frisbees</span><span>Cornhole</span><span>Beach Chairs</span><span>Coolers</span><span>Speakers</span>
-      <span>Surfboards</span><span>Paddle Boards</span><span>Kayaks</span><span>Snorkel Gear</span><span>Floats</span><span>Footballs</span><span>Volleyball</span><span>Frisbees</span><span>Cornhole</span><span>Beach Chairs</span><span>Coolers</span><span>Speakers</span>
+    <div class="hero-stats">
+      <div class="hero-stat"><strong>24 / 7</strong><span>Self-serve</span></div>
+      <div class="hero-stat"><strong>Nationwide</strong><span>and growing</span></div>
+      <div class="hero-stat"><strong>Any Gear</strong><span>stocked per location</span></div>
+      <div class="hero-stat"><strong>No Keys</strong><span>opens from your phone</span></div>
     </div>
   </div>
+  <div class="hero-scroll">Scroll</div>
+</section>
 
-  <!-- ============================================================
-       SECTION 2: HOW IT WORKS
-  ============================================================ -->
-  <section class="how-it-works" id="how-it-works">
-    <div class="container">
-      <div class="section-label">Simple as 1-2-3</div>
-      <h2 class="section-title">How It Works</h2>
-      <p class="section-sub">No hauling gear. No hassle. Just scan, grab, and go.</p>
-      <div class="steps-grid">
-        <div class="step-card fade-up">
-          <div class="step-icon step-icon-1">&#128241;</div>
-          <div class="step-num">01</div>
-          <h3>Download the App</h3>
-          <p>Create your account in 30 seconds. Browse gear at your nearest locker.</p>
-        </div>
-        <div class="step-card fade-up">
-          <div class="step-icon step-icon-2">&#127940;</div>
-          <div class="step-num">02</div>
-          <h3>Pick Your Gear</h3>
-          <p>Water sports gear, team sports equipment, games, and more — choose what sounds fun.</p>
-        </div>
-        <div class="step-card fade-up">
-          <div class="step-icon step-icon-3">&#128275;</div>
-          <div class="step-num">03</div>
-          <h3>Locker Opens</h3>
-          <p>Smart lock unlocks from your phone. Grab your gear and get after it. Return when you're done.</p>
-        </div>
-      </div>
+<!-- ============================================================ MARQUEE -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Surfboards</span><span>Paddle Boards</span><span>Kayaks</span><span>Body Boards</span><span>Snorkel Sets</span><span>Floats &amp; Hangouts</span><span>Beach Shade</span><span>Beach Chairs</span><span>Coolers</span><span>Speakers</span><span>Footballs</span><span>Volleyball</span><span>Spikeball</span><span>Cornhole</span><span>Frisbees</span><span>Pickleball</span><span>Kids Gear</span><span>Anything &amp; Everything</span>
+  </div>
+</div>
+
+<!-- ============================================================ HOW IT WORKS -->
+<section class="section" id="how">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <p class="eyebrow">Simple as 1-2-3-Go</p>
+      <h2 class="display display-lg">No hauling. No lines.<br>Just <span class="accent">play.</span></h2>
+      <p class="lede">The whole rental happens on your phone. Walk up, unlock, and you’re on the water in minutes.</p>
     </div>
-  </section>
-
-  <!-- ============================================================
-       SECTION 2.5: VIDEO — See It In Action
-  ============================================================ -->
-  <section style="padding:80px 0;background:linear-gradient(135deg,#1a1a2e 0%,#16213e 100%);position:relative;overflow:hidden;">
-    <div style="position:absolute;inset:0;background:radial-gradient(circle at 30% 50%,rgba(116,185,63,0.08),transparent 60%),radial-gradient(circle at 70% 50%,rgba(91,189,212,0.06),transparent 60%);"></div>
-    <div class="container" style="position:relative;z-index:2;">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;">
-        <div>
-          <div style="font-family:Montserrat,sans-serif;font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#74B93F;margin-bottom:10px;">See It In Action</div>
-          <h2 style="font-family:Bebas Neue,sans-serif;font-size:46px;letter-spacing:1px;color:#fff;margin-bottom:16px;line-height:1.05;">Watch Our Lockers<br>Come to Life</h2>
-          <p style="font-size:16px;color:rgba(255,255,255,0.6);line-height:1.7;margin-bottom:24px;">See exactly how DailyAdventureBox works — from walking up to the locker to hitting the water with premium gear. No talking, no fluff, just the experience.</p>
-          <div style="display:flex;gap:20px;">
-            <div style="text-align:center;">
-              <div style="font-family:Bebas Neue,sans-serif;font-size:32px;color:#5BBDD4;line-height:1;">USA</div>
-              <div style="font-family:Montserrat,sans-serif;font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-top:2px;">Growing Nationwide</div>
+    <div class="steps">
+      <div class="steps-sticky" data-reveal="scale">
+        <div class="phone">
+          <div class="phone-screen">
+            <div class="screen active">
+              <img src="media/clj05-wide-bluesky-md.webp" alt="">
+              <div class="ui"><span class="pill">Step 1</span><h4>Download the app</h4><p>Free on iPhone and Android. Create your account in about thirty seconds.</p><div class="fake-btn">Create account</div></div>
             </div>
-            <div style="text-align:center;">
-              <div style="font-family:Bebas Neue,sans-serif;font-size:32px;color:#F9C926;line-height:1;">$5</div>
-              <div style="font-family:Montserrat,sans-serif;font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-top:2px;">Starting</div>
+            <div class="screen">
+              <img src="media/clj05-locker-open-md.webp" alt="">
+              <div class="ui"><span class="pill">Step 2</span><h4>Pick your gear</h4><p>See what’s stocked in the locker in front of you and choose what sounds fun.</p><div class="fake-btn green">Rent this board</div></div>
             </div>
-          </div>
-        </div>
-        <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,0.4);">
-          <iframe src="https://www.youtube.com/embed/UzxDN0vsQpY" title="DailyAdventureBox — See It In Action" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       SECTION 3: EXPANDING NATIONWIDE
-  ============================================================ -->
-  <section class="locations" id="locations">
-    <div class="container">
-      <div class="section-label">Where to Find Us</div>
-      <h2 class="section-title">Expanding Across the Nation</h2>
-      <p class="section-sub">DailyAdventureBox is rolling out smart lockers coast to coast. Some locations are shown in the DAB app — others are private and not shown in the app.</p>
-
-      <div class="expansion-grid">
-        <div class="expansion-card fade-up">
-          <h4>Shown in the App</h4>
-          <p>Public locker locations appear in the DAB app. Open the app to see the lockers near you, browse the gear inside, and rent in seconds.</p>
-        </div>
-        <div class="expansion-card fade-up">
-          <h4>Private Locations</h4>
-          <p>Some lockers serve private properties and communities — hotels, resorts, bases, and campgrounds. These are not shown in the app and are available only to the guests and members of those locations.</p>
-        </div>
-        <div class="expansion-card fade-up">
-          <h4>Coming to You</h4>
-          <p>We're growing nationwide, and every locker can be stocked with anything and everything your guests want — water sports, beach gear, games, and more. Want lockers at your location? Email support@dailyadventurebox.com.</p>
-        </div>
-      </div>
-
-      <div class="expansion-cta">
-        <a href="https://www.dailyadventurebox.com/download-app" class="btn btn-green" target="_top">Get the App</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       SECTION 3B: WHY WE'RE BUILT TO SCALE
-  ============================================================ -->
-  <section style="padding:80px 0;background:var(--off-white);">
-    <div class="container">
-      <div class="section-label">Why We're Built to Scale</div>
-      <h2 class="section-title">Fast-Growing. Fully Backed.</h2>
-      <p class="section-sub">Not a garage project — a company with the contract, the capacity, and the pipeline to move fast.</p>
-
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;margin-top:40px;">
-        <div style="background:#fff;border:1px solid var(--border);border-radius:14px;padding:26px;">
-          <div style="font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--green);margin-bottom:8px;">Signed Government Contract</div>
-          <p style="font-size:13px;color:#666;line-height:1.65;">Signed government contract with the U.S. Marine Corps — the legal and operational foundation to expand DAB lockers to additional military installations.</p>
-        </div>
-        <div style="background:#fff;border:1px solid var(--border);border-radius:14px;padding:26px;">
-          <div style="font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--sky);margin-bottom:8px;">Manufacturing Ready</div>
-          <p style="font-size:13px;color:#666;line-height:1.65;">Production partner already lined up to manufacture the next wave of locker units for the national rollout — hardware capacity is not the bottleneck.</p>
-        </div>
-        <div style="background:#fff;border:1px solid var(--border);border-radius:14px;padding:26px;">
-          <div style="font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--yellow);margin-bottom:8px;">Growing Nationwide</div>
-          <p style="font-size:13px;color:#666;line-height:1.65;">New locations in active review across military bases, beaches, campgrounds, resorts, and hospitality properties nationwide.</p>
-        </div>
-        <div style="background:#fff;border:1px solid var(--border);border-radius:14px;padding:26px;">
-          <div style="font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--charcoal);margin-bottom:8px;">Proven Operator</div>
-          <p style="font-size:13px;color:#666;line-height:1.65;">Live and generating revenue today — a validated model, ready to replicate at every new site.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       SECTION 4: EQUIPMENT — Bento Grid
-  ============================================================ -->
-  <section class="equipment" id="equipment">
-    <div class="container">
-      <div class="section-label">Premium Gear, Affordable Rates</div>
-      <h2 class="section-title">What's Inside the Lockers</h2>
-      <p class="section-sub">Top-quality equipment maintained to the highest standards. Always.</p>
-
-      <div class="gear-carousel-wrap">
-        <div class="gear-carousel-track">
-          <div class="gear-item"><img src="img/sup-hd-mangrove.png" alt="Paddle board"><div class="gear-item-label">Paddle Boards</div></div>
-          <div class="gear-item"><img src="img/clj05-surfboards-locker.jpg" alt="Surfboards"><div class="gear-item-label">Surfboards</div></div>
-          <div class="gear-item"><img src="img/float-dock10.png" alt="Floats"><div class="gear-item-label">Floats & Hangouts</div></div>
-          <div class="gear-item"><img src="img/kayak-koda-120.png" alt="Kayak"><div class="gear-item-label">Kayaks</div></div>
-          <div class="gear-item"><img src="img/clj05-v2-sports-gear.jpg" alt="Sports gear"><div class="gear-item-label">Sports Gear</div></div>
-          <div class="gear-item"><img src="img/b33i3444.jpg" alt="Snorkel and games"><div class="gear-item-label">Snorkel & Games</div></div>
-          <div class="gear-item"><img src="img/yoga-shot.jpg" alt="SUP yoga"><div class="gear-item-label">SUP Yoga</div></div>
-          <div class="gear-item"><img src="img/dji-drone-floats.jpg" alt="Life outdoors"><div class="gear-item-label">Life Outdoors</div></div>
-          <!-- duplicate for seamless loop -->
-          <div class="gear-item"><img src="img/sup-hd-mangrove.png" alt="Paddle board"><div class="gear-item-label">Paddle Boards</div></div>
-          <div class="gear-item"><img src="img/clj05-surfboards-locker.jpg" alt="Surfboards"><div class="gear-item-label">Surfboards</div></div>
-          <div class="gear-item"><img src="img/float-dock10.png" alt="Floats"><div class="gear-item-label">Floats & Hangouts</div></div>
-          <div class="gear-item"><img src="img/kayak-koda-120.png" alt="Kayak"><div class="gear-item-label">Kayaks</div></div>
-          <div class="gear-item"><img src="img/clj05-v2-sports-gear.jpg" alt="Sports gear"><div class="gear-item-label">Sports Gear</div></div>
-          <div class="gear-item"><img src="img/b33i3444.jpg" alt="Snorkel and games"><div class="gear-item-label">Snorkel & Games</div></div>
-          <div class="gear-item"><img src="img/yoga-shot.jpg" alt="SUP yoga"><div class="gear-item-label">SUP Yoga</div></div>
-          <div class="gear-item"><img src="img/dji-drone-floats.jpg" alt="Life outdoors"><div class="gear-item-label">Life Outdoors</div></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       SECTION 5: FEATURES — Smart Locker Tech
-  ============================================================ -->
-  <section class="features" id="features">
-    <div class="container">
-      <div class="section-label">Built Different</div>
-      <h2 class="section-title">Smart Locker Technology</h2>
-      <p class="section-sub">Custom-built HDPE marine plastic lockers with smart locks, solar power, and IoT connectivity.</p>
-
-      <div class="feature-row fade-up">
-        <div class="feature-img">
-          <img src="img/clj05-locker-open.jpg" alt="DAB locker open with surfboards and gear">
-        </div>
-        <div class="feature-text">
-          <h3>Self-Powered Smart Locks</h3>
-          <p>Every locker runs on solar power with a custom smart controller. No external power needed. Smart locks open from the app — no keys, no codes, no staff required.</p>
-          <div class="feature-specs">
-            <div class="feature-spec">
-              <strong>Solar</strong>
-              <span>Powered</span>
+            <div class="screen">
+              <img src="media/clj05-surfboards-locker-md.webp" alt="">
+              <div class="ui"><span class="pill">Step 3</span><h4>Locker unlocks</h4><p>Tap once and the door opens. No keys, no codes, no staff.</p><div class="fake-btn green">Unlocked &#10003;</div></div>
             </div>
-            <div class="feature-spec">
-              <strong>IoT</strong>
-              <span>Connected</span>
+            <div class="screen">
+              <img src="media/river-group-float-md.webp" alt="">
+              <div class="ui"><span class="pill">Step 4</span><h4>Play, then return</h4><p>Put it back when you’re done. Rinse, repeat, make memories.</p><div class="fake-btn">End rental</div></div>
             </div>
           </div>
         </div>
       </div>
-
-      <div class="feature-row reverse fade-up">
-        <div class="feature-img">
-          <img src="img/screenshot-145152.jpg" alt="Lockers on manufacturing floor">
-        </div>
-        <div class="feature-text">
-          <h3>Built to Last</h3>
-          <p>Built from HDPE marine-grade plastic and stainless steel hardware — UV resistant, weatherproof, and engineered to handle saltwater environments year-round.</p>
-          <div class="feature-specs">
-            <div class="feature-spec">
-              <strong>HDPE</strong>
-              <span>Marine Plastic</span>
-            </div>
-            <div class="feature-spec">
-              <strong>Stainless</strong>
-              <span>Steel Hardware</span>
-            </div>
-            <div class="feature-spec">
-              <strong>USA</strong>
-              <span>Made</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ============================================================
-       SECTION 5B: ENVIRONMENTAL COMMITMENT
-  ============================================================ -->
-  <section style="padding:80px 0;background:var(--off-white);">
-    <div class="container">
-      <div class="section-label">Doing Our Part</div>
-      <h2 class="section-title">Built to Cut Down on Waste.</h2>
-      <p class="section-sub">Less gear bought and thrown away. Less plastic in landfills. More time outside.</p>
-
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;margin-top:40px;">
-        <div style="background:#fff;border:1px solid var(--border);border-radius:14px;padding:26px;">
-          <div style="width:56px;height:56px;border-radius:50%;background:rgba(116,185,63,0.12);display:flex;align-items:center;justify-content:center;font-size:26px;margin-bottom:14px;">&#128260;</div>
-          <div style="font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--green);margin-bottom:8px;">Reuse Over Waste</div>
-          <p style="font-size:13px;color:#666;line-height:1.65;">Every board, kayak, and float in a DAB locker gets rented, returned, and rented again — cutting down on the single-use gear purchases that end up in a closet or a landfill.</p>
-          <span class="history-tag tag-live">Live now</span>
-        </div>
-        <div style="background:#fff;border:1px solid var(--border);border-radius:14px;padding:26px;">
-          <div style="width:56px;height:56px;border-radius:50%;background:rgba(91,189,212,0.12);display:flex;align-items:center;justify-content:center;font-size:26px;margin-bottom:14px;">&#9851;&#65039;</div>
-          <div style="font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--sky);margin-bottom:8px;">Recycled-Material Lockers</div>
-          <p style="font-size:13px;color:#666;line-height:1.65;">Our locker units are built using recycled materials, cutting the environmental footprint of every install compared to virgin-material construction.</p>
-          <span class="history-tag tag-live">Live now</span>
-        </div>
-        <div style="background:#fff;border:1px solid var(--border);border-radius:14px;padding:26px;">
-          <div style="width:56px;height:56px;border-radius:50%;background:rgba(249,201,38,0.12);display:flex;align-items:center;justify-content:center;font-size:26px;margin-bottom:14px;">&#128465;&#65039;</div>
-          <div style="font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--yellow);margin-bottom:8px;">Cutting Beach &amp; Trail Litter</div>
-          <p style="font-size:13px;color:#666;line-height:1.65;">We're rolling out trash bags inside every locker cubby, making it easy for renters to pack out what they bring in.</p>
-          <span class="history-tag tag-upcoming">Coming soon</span>
-        </div>
-        <div style="background:#fff;border:1px solid var(--border);border-radius:14px;padding:26px;">
-          <div style="width:56px;height:56px;border-radius:50%;background:rgba(44,44,44,0.08);display:flex;align-items:center;justify-content:center;font-size:26px;margin-bottom:14px;">&#127793;</div>
-          <div style="font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--charcoal);margin-bottom:8px;">Giving Back</div>
-          <p style="font-size:13px;color:#666;line-height:1.65;">We're establishing partnerships with environmental and outdoor-access foundations to direct a share of DAB's growth back into protecting the places our gear gets used.</p>
-          <span class="history-tag tag-upcoming">Coming soon</span>
-        </div>
+      <div class="steps-list">
+        <div class="step" data-step="0"><div class="step-num">01</div><h3>Download the App</h3><p>Free on iPhone and Android. Create an account in about thirty seconds and you’re ready to rent at any DailyAdventureBox locker.</p></div>
+        <div class="step" data-step="1"><div class="step-num">02</div><h3>Pick Your Gear</h3><p>Every locker shows exactly what’s inside it right now: boards, kayaks, floats, shade, games and more. Choose what sounds fun and how long you want it.</p></div>
+        <div class="step" data-step="2"><div class="step-num">03</div><h3>The Locker Opens</h3><p>Tap once and the door unlocks from your phone. No keys, no codes, no waiting on a rental counter.</p></div>
+        <div class="step" data-step="3"><div class="step-num">04</div><h3>Play, Then Return</h3><p>When you’re done, put the gear back and end the rental in the app. Every renter accepts a safety waiver before the door opens, so everyone plays by the same rules.</p></div>
       </div>
     </div>
-  </section>
+    <div class="btn-row" style="margin-top:48px" data-reveal>
+      <a class="btn btn-green" href="https://www.dailyadventurebox.com/download-app" target="_top">Get the App <span class="arrow">&rarr;</span></a>
+      <a class="btn btn-outline-dark" href="#video">Watch the Walkthrough</a>
+    </div>
+  </div>
+</section>
 
-  <!-- ============================================================
-       SECTION 6: CLASSES & GUIDES
-  ============================================================ -->
-  <section class="classes" id="classes">
-    <div class="container">
-      <div class="section-label">More Than Gear</div>
-      <h2 class="section-title">Group Adventures & Guided Sessions</h2>
-      <p class="section-sub">Join experienced locals on the water. Equipment included — just show up.</p>
+<!-- ============================================================ WHAT'S IN THE BOX -->
+<section class="section bg-sand" id="gear">
+  <div class="container-wide">
+    <div class="section-head center" data-reveal>
+      <p class="eyebrow">What’s in the Box</p>
+      <h2 class="display display-lg">Stocked for the way <span class="accent-sky">you</span> play.</h2>
+      <p class="lede">Premium gear from brands you know, cleaned and maintained between every rental. Each location is stocked to fit its guests, so no two boxes are the same.</p>
+    </div>
+    <div class="bento" data-stagger>
+      <a class="tile span-2 row-2" href="gear.html#water"><img src="media/sup-hd-mangrove-md.webp" alt="Stand-up paddle board"><span class="tag green">Water</span><div class="tile-body"><h3>Paddle Boards</h3><p>Rigid and inflatable boards for flat water, surf and everything between.</p></div></a>
+      <a class="tile" href="gear.html#water"><img src="media/clj05-surfboards-locker-md.webp" alt="Surfboards in a locker"><div class="tile-body"><h3>Surfboards</h3><p>Soft-tops for beginners, shortboards for the rest.</p></div></a>
+      <a class="tile" href="gear.html#water"><img src="media/kayak-koda-120-md.webp" alt="Kayak"><div class="tile-body"><h3>Kayaks</h3><p>Sit-on-top and inflatable, solo or tandem.</p></div></a>
+      <a class="tile span-2" href="gear.html#water"><img src="media/river-group-float-md.webp" alt="Family on an inflatable hangout dock"><span class="tag">Crowd favorite</span><div class="tile-body"><h3>Floats &amp; Hangouts</h3><p>Inflatable docks, hammocks and loungers for a whole group on the water.</p></div></a>
+      <a class="tile" href="gear.html#beach"><img src="media/bote-ad-rendering-md.webp" alt="Beach chair and gear bag beside a DailyAdventureBox locker" style="object-position:50% 70%"><div class="tile-body"><h3>Beach &amp; Shade</h3><p>Chairs, shade, coolers and speakers.</p></div></a>
+      <a class="tile" href="gear.html#sports"><img src="media/clj05-v2-sports-gear-md.webp" alt="Sports gear locker"><div class="tile-body"><h3>Sports &amp; Games</h3><p>Footballs, volleyball, spikeball, cornhole, frisbees.</p></div></a>
+      <a class="tile span-2" href="gear.html#custom" style="background:linear-gradient(135deg,var(--green-deep),var(--sky-deep))"><span class="tag sun">Your location, your mix</span><div class="tile-body"><h3>Anything &amp; Everything</h3><p>Hosting a locker? Tell us what your guests love and we stock it: snorkel sets, fishing gear, kids’ toys, pickleball, bikes. If people play with it, we can box it.</p></div></a>
+    </div>
+    <div class="btn-row" style="justify-content:center;margin-top:40px" data-reveal>
+      <a class="btn btn-outline-dark" href="gear.html">Explore All Gear <span class="arrow">&rarr;</span></a>
+    </div>
+  </div>
+</section>
 
-      <div class="classes-grid">
-        <div class="class-card fade-up" style="opacity:0.6;">
-          <div class="class-card-img">
-            <img src="img/yoga-shot.jpg" alt="Stand up paddle board yoga">
-            <span class="class-badge badge-yellow">Coming Soon</span>
-          </div>
-          <div class="class-card-body">
-            <h3>SUP Yoga</h3>
-            <p>Sunrise and sunset yoga on paddle boards. All skill levels. Equipment included. Led by experienced guides.</p>
-            <div class="class-meta">
-              <span class="price">Coming Soon</span>
-              <span class="duration">60 min</span>
-            </div>
-          </div>
+<!-- ============================================================ STATEMENT -->
+<section class="section bg-ocean dark statement">
+  <div class="container">
+    <p class="eyebrow" style="justify-content:center">Growing Nationwide</p>
+    <h2><span class="word">Every</span> <span class="word">location</span> <span class="word">is</span> <span class="word">different.</span><br><span class="word accent">So</span> <span class="word accent">is</span> <span class="word accent">every</span> <span class="word accent">box.</span></h2>
+  </div>
+</section>
+
+<!-- ============================================================ WHERE -->
+<section class="section" id="where">
+  <div class="container">
+    <div class="feature-row">
+      <div data-reveal="left">
+        <p class="eyebrow">Where to Find Us</p>
+        <h2 class="display display-lg">Expanding across <span class="accent">the nation.</span></h2>
+        <p class="lede">DailyAdventureBox is rolling out smart lockers coast to coast: beaches, lakes, resorts, campgrounds, parks and military recreation areas.</p>
+        <ul class="check-list">
+          <li><div><strong>Shown in the app.</strong> Public locker locations appear in the DAB app. Open it to see the lockers near you, what’s inside, and rent in seconds.</div></li>
+          <li><div><strong>Private locations.</strong> Some lockers serve private properties and communities, such as hotels, resorts, bases and campgrounds. These are not shown in the app and are available only to the guests and members of those places.</div></li>
+          <li><div><strong>Coming to you.</strong> New markets open on a rolling basis. Want a locker where you play? Email <strong>support@dailyadventurebox.com</strong>.</div></li>
+        </ul>
+        <div class="btn-row" style="margin-top:32px">
+          <a class="btn btn-green" href="https://www.dailyadventurebox.com/download-app" target="_top">Find Lockers in the App <span class="arrow">&rarr;</span></a>
         </div>
-        <div class="class-card fade-up" style="opacity:0.6;">
-          <div class="class-card-img">
-            <img src="img/surfing-shot.jpg" alt="Surfer catching a wave">
-            <span class="class-badge badge-yellow">Coming Soon</span>
-          </div>
-          <div class="class-card-body">
-            <h3>Learn to Surf</h3>
-            <p>Learn the basics with experienced local surfers. Board included. No experience needed.</p>
-            <div class="class-meta">
-              <span class="price">Coming Soon</span>
-              <span class="duration">90 min</span>
-            </div>
-          </div>
-        </div>
-        <div class="class-card fade-up" style="opacity:0.6;">
-          <div class="class-card-img">
-            <img src="img/dji-drone-floats.jpg" alt="Kayak fishing guide">
-            <span class="class-badge badge-yellow">Coming Soon</span>
-          </div>
-          <div class="class-card-body">
-            <h3>Kayak Fishing Trip</h3>
-            <p>Join local anglers on a group kayak fishing trip. Kayak, paddle, and basic tackle from the locker.</p>
-            <div class="class-meta">
-              <span class="price">Coming Soon</span>
-              <span class="duration">2-3 hrs</span>
-            </div>
-          </div>
-        </div>
+      </div>
+      <div data-reveal="right">
+        <div class="feature-media"><img src="media/dji-drone-floats.webp" alt="Friends floating down a clear river"></div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ============================================================
-       SECTION 8: SOCIAL PROOF / STATS
-  ============================================================ -->
-  <section class="social-proof">
-    <div class="container">
-      <div class="stats-row">
-        <div class="stat-item fade-up">
-          <strong>USA</strong>
-          <span>Growing Nationwide</span>
+<!-- ============================================================ WHY DAB -->
+<section class="section bg-sand" id="why">
+  <div class="container">
+    <div class="section-head center" data-reveal>
+      <p class="eyebrow">Built Different</p>
+      <h2 class="display display-lg">Made for sun, salt <span class="accent-sky">and real life.</span></h2>
+      <p class="lede">We design and build our lockers in the United States to live outside year-round and to make renting feel effortless.</p>
+    </div>
+    <div class="grid grid-4" data-stagger>
+      <div class="card card-glow"><div class="icon">&#128241;</div><h3>Opens From Your Phone</h3><p>No keys, codes or kiosks. The app is the key, and it works day or night.</p></div>
+      <div class="card card-glow"><div class="icon">&#127774;</div><h3>Weatherproof by Design</h3><p>Marine-grade materials and stainless hardware built to shrug off salt air, sand and summer heat.</p></div>
+      <div class="card card-glow"><div class="icon">&#129529;</div><h3>Always Stocked &amp; Clean</h3><p>Gear is inspected, cleaned and maintained between rentals so it’s ready when you are.</p></div>
+      <div class="card card-glow"><div class="icon">&#128737;&#65039;</div><h3>Insured &amp; Covered</h3><p>Every rental is insured, and every renter accepts a safety waiver before the door opens.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ SPLIT: LOCATIONS / BRANDS -->
+<section class="section" id="partner">
+  <div class="container-wide">
+    <div class="section-head center" data-reveal>
+      <p class="eyebrow">Work With Us</p>
+      <h2 class="display display-lg">Bring adventure <span class="accent">to your place.</span></h2>
+    </div>
+    <div class="split" data-stagger>
+      <a class="panel" href="locations.html">
+        <img src="media/float-dock10-md.webp" alt="Guests relaxing on a floating dock">
+        <div class="panel-body">
+          <p class="eyebrow" style="color:var(--sun)">For Locations</p>
+          <h3>Own a property?<br>Host a locker.</h3>
+          <p>Hotels, resorts, campgrounds, marinas, parks, communities and military recreation. We supply the locker, stock it with anything and everything your guests want, and handle maintenance. You provide the space.</p>
+          <span class="btn btn-white">See the Program <span class="arrow">&rarr;</span></span>
         </div>
-        <div class="stat-item fade-up">
-          <strong>ANY</strong>
-          <span>Gear — Anything &amp; Everything</span>
+      </a>
+      <a class="panel" href="ad-opportunities.html">
+        <img src="media/cobranding-1-md.webp" alt="Brand-wrapped DailyAdventureBox locker on the beach">
+        <div class="panel-body">
+          <p class="eyebrow" style="color:var(--sun)">For Brands</p>
+          <h3>Have a brand?<br>Put it on the box.</h3>
+          <p>Ad panels and full wraps on lockers at the exact moment people reach for outdoor gear. Feature your products inside, your brand outside.</p>
+          <span class="btn btn-white">Advertise With Us <span class="arrow">&rarr;</span></span>
         </div>
-        <div class="stat-item fade-up">
-          <strong>2021</strong>
-          <span>Founded</span>
-        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ VIDEO -->
+<section class="section bg-charcoal dark" id="video">
+  <div class="container-wide">
+    <div class="section-head" data-reveal>
+      <p class="eyebrow">See It in Action</p>
+      <h2 class="display display-lg">Watch the lockers <span class="accent">come to life.</span></h2>
+      <p class="lede">From walking up to the locker to hitting the water. New footage of the latest lockers and gear is on the way.</p>
+    </div>
+    <div class="grid grid-2" data-stagger>
+      <div class="video-frame"><iframe referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube-nocookie.com/embed/UzxDN0vsQpY?rel=0&amp;modestbranding=1" title="DailyAdventureBox teaser" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+      <div class="video-frame"><iframe referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube-nocookie.com/embed/2kjWIoqD9Hs?rel=0&amp;modestbranding=1" title="How to use a DailyAdventureBox locker" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+    </div>
+    <div class="grid grid-3" style="margin-top:24px" data-stagger>
+      <div class="media-soon"><span class="badge">Coming 2027</span><div><div class="play"></div><div class="label">New Locker Walkthrough</div><div class="sub">The latest locker, door to door</div></div></div>
+      <div class="media-soon"><span class="badge">Coming 2027</span><div><div class="play"></div><div class="label">Gear Close-Ups</div><div class="sub">Boards, kayaks, floats and games</div></div></div>
+      <div class="media-soon"><span class="badge">Coming 2027</span><div><div class="play"></div><div class="label">From the Air</div><div class="sub">Drone footage of a day on the water</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ STORY STRIP -->
+<section class="section" id="story">
+  <div class="container">
+    <div class="feature-row flip">
+      <div data-reveal="right">
+        <p class="eyebrow">Our Story</p>
+        <h2 class="display display-lg">Built by a Marine.<br><span class="accent">Built to last.</span></h2>
+        <p class="lede">DailyAdventureBox started with a simple frustration: people at the beach wanted to get on the water but didn’t own gear, couldn’t haul it, or couldn’t afford to rent it the old way. So we built a locker that lives where you play and opens from your phone.</p>
+        <blockquote style="margin:28px 0 0;padding:22px 26px;border-left:4px solid var(--green);background:var(--sand);border-radius:0 var(--radius-sm) var(--radius-sm) 0;font-size:17px;line-height:1.6">
+          “Make outdoor adventure gear accessible to everyone. No hauling, no hassle.”
+          <footer style="margin-top:10px;font-family:var(--font-label);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute)">Shay Putnam, Founder</footer>
+        </blockquote>
+        <div class="btn-row" style="margin-top:28px"><a class="btn btn-outline-dark" href="story.html">Read Our Story <span class="arrow">&rarr;</span></a></div>
+      </div>
+      <div data-reveal="left">
+        <div class="feature-media landscape"><img src="media/screenshot-locker-gear.webp" alt="DailyAdventureBox locker on the shoreline with a paddle board"></div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ============================================================
-       SECTION 9: ABOUT / STORY
-  ============================================================ -->
-  <section class="about" id="about">
-    <div class="container">
-      <div class="about-grid">
-        <div class="about-img">
-          <img src="img/screenshot-145126.jpg" alt="Shay building lockers in workshop">
-        </div>
-        <div class="about-text">
-          <div class="section-label" style="text-align:left;">Our Story</div>
-          <h2>Built by a Marine. Built to Last.</h2>
-          <p>DailyAdventureBox was founded by Shay Putnam, a U.S. Marine Captain, with a simple idea: make outdoor adventure gear accessible to everyone — no hauling, no hassle.</p>
-          <p>What started as a single locker on the beach has grown into a smart locker platform expanding across military bases and beaches nationwide.</p>
+<!-- ============================================================ PLANET -->
+<section class="section bg-sand" id="planet">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <p class="eyebrow">Doing Our Part</p>
+      <h2 class="display display-lg">Less gear in landfills.<br><span class="accent">More time outside.</span></h2>
+    </div>
+    <div class="grid grid-4" data-stagger>
+      <div class="card"><div class="icon">&#128260;</div><h3>Reuse Over Waste</h3><p>Every board, kayak and float gets rented, returned and rented again, instead of bought once and left in a garage.</p></div>
+      <div class="card"><div class="icon">&#9851;&#65039;</div><h3>Recycled-Material Lockers</h3><p>Our lockers are built with recycled materials to cut the footprint of every install.</p></div>
+      <div class="card"><div class="icon">&#128465;&#65039;</div><h3>Pack It Out</h3><p>Trash bags in every locker make it easy to leave the beach cleaner than you found it. <span class="note">Rolling out.</span></p></div>
+      <div class="card"><div class="icon">&#9881;&#65039;</div><h3>Built to Last</h3><p>Marine-grade materials and stainless hardware keep every locker in service season after season, not in a landfill.</p></div>
+    </div>
+  </div>
+</section>
 
-          <div class="about-timeline">
-            <div class="timeline-item">
-              <div class="timeline-year">2023</div>
-              <p><strong>The First Launch</strong> — First DAB locker deployed and renting gear to real customers</p>
-            </div>
-            <div class="timeline-item">
-              <div class="timeline-year">2024</div>
-              <p><strong>Rebuild</strong> — Complete system redesign: new app, new lockers, new platform</p>
-            </div>
-            <div class="timeline-item">
-              <div class="timeline-year">2025</div>
-              <p><strong>Government Contract</strong> — Concession contract signed with the U.S. Marine Corps. Base credentialing and site prep underway.</p>
-            </div>
-            <div class="timeline-item">
-              <div class="timeline-year">2026</div>
-              <p><strong>Expansion</strong> — Multiple locations live, national expansion plan underway</p>
-            </div>
-            <div class="timeline-item">
-              <div class="timeline-year">Next</div>
-              <p><strong>Nationwide Growth</strong> — Expanding to military installations, beaches, resorts, campgrounds, and more — stocked with anything and everything our partners want.</p>
-            </div>
-          </div>
+<!-- ============================================================ APP BAND -->
+<section class="section bg-mesh" id="app">
+  <div class="container">
+    <div class="feature-row">
+      <div data-reveal="left">
+        <p class="eyebrow">Get the App</p>
+        <h2 class="display display-lg">Your key to <span class="accent">every box.</span></h2>
+        <p class="lede">Browse gear, pick your rental and unlock your locker, all from your phone. Free on iPhone and Android.</p>
+        <div class="btn-row" style="margin-top:32px">
+          <a class="btn btn-green" href="https://www.dailyadventurebox.com/download-app" target="_top">Download the App <span class="arrow">&rarr;</span></a>
         </div>
+      </div>
+      <div data-reveal="scale">
+        <div class="media-soon portrait" style="max-width:320px;margin:0 auto;border-radius:40px"><span class="badge">App preview soon</span><div><div class="play"></div><div class="label">App Walkthrough</div><div class="sub">Screens from the new DAB app</div></div></div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ============================================================
-       SECTION 9B: HISTORY
-  ============================================================ -->
-  <section class="history" id="history">
-    <div class="container">
-      <div class="history-heading">
-        <div class="section-label" style="color:var(--green);">The DAB Story</div>
-        <h2>From One Locker<br>to a Growing Network.</h2>
-        <p>A Marine Captain's idea — built in a garage, tested on a beach, contracted onto a military base, and now scaling nationwide.</p>
+<section class="section bg-ocean dark" id="contact">
+  <div class="container contact-block" data-reveal>
+    <p class="eyebrow" style="justify-content:center">Get in Touch</p>
+    <h2 class="display display-lg">Let’s Get You Outside.</h2>
+    <div class="email-big">support<span class="at">@</span>dailyadventurebox.com</div>
+    <p class="contact-note">Email us at support@dailyadventurebox.com with any questions. If you have a location or want lockers, reach out to support@dailyadventurebox.com.</p>
+  </div>
+</section>
+
+</main>
+<footer class="footer">
+  <div class="footer-big" aria-hidden="true">ADVENTURE ON DEMAND</div>
+  <div class="container" style="position:relative;z-index:1">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="media/dab-logo.png" alt="DailyAdventureBox">
+        <p>Smart lockers stocked with adventure gear, right where you play. Open the app, pick your gear, and go.</p>
       </div>
-
-      <div class="history-track">
-
-        <div class="history-item">
-          <div class="history-year-col"><div class="history-year">2019</div></div>
-          <div class="history-dot"></div>
-          <div class="history-content">
-            <h4>The Idea &amp; First Prototype</h4>
-            <p>Shay Putnam, an active-duty U.S. Marine Captain, keeps seeing the same problem at every base and beach: people want to get on the water but don't own gear, can't haul it, or can't afford to rent it the traditional way. He sketches a smart locker that lives at the beach and unlocks from your phone — and builds the first working prototype.</p>
-          </div>
-        </div>
-
-        <div class="history-item">
-          <div class="history-year-col"><div class="history-year">2021</div></div>
-          <div class="history-dot"></div>
-          <div class="history-content">
-            <h4>First Manufactured Units</h4>
-            <p>The prototype becomes production hardware. Daily Adventure Box Inc. is formally incorporated, and the first manufactured locker units are built.</p>
-          </div>
-        </div>
-
-        <div class="history-item">
-          <div class="history-year-col"><div class="history-year">2023</div></div>
-          <div class="history-dot"></div>
-          <div class="history-content">
-            <h4>First Locker. First Rentals.</h4>
-            <p>The first DAB locker is deployed on the beach. It rents surfboards, paddle boards, and beach gear to real customers. The model works — gear goes out, comes back, revenue flows. Patent application filed.</p>
-            <span class="history-tag tag-live">Proof of concept</span>
-          </div>
-        </div>
-
-        <div class="history-item">
-          <div class="history-year-col"><div class="history-year">2024</div></div>
-          <div class="history-dot"></div>
-          <div class="history-content">
-            <h4>The Rebuild</h4>
-            <p>Real-world deployment exposed gaps in hardware and software. The entire system is rebuilt from scratch — new locker chassis, new circuit boards, new app, new backend. Version 2 is stronger, smarter, and designed to scale. More locations added during the rebuild.</p>
-          </div>
-        </div>
-
-        <div class="history-item">
-          <div class="history-year-col"><div class="history-year">2025</div></div>
-          <div class="history-dot"></div>
-          <div class="history-content">
-            <h4>Government Contract</h4>
-            <p>DAB signs a government concession contract with the U.S. Marine Corps. Site selection, base credentialing, and installation prep begin across multiple on-base venues.</p>
-            <span class="history-tag tag-live">Contract signed</span>
-          </div>
-        </div>
-
-        <div class="history-item current">
-          <div class="history-year-col"><div class="history-year">2026</div></div>
-          <div class="history-dot"></div>
-          <div class="history-content">
-            <h4>Operations Live &amp; Growing</h4>
-            <p>On-base locker locations go operational across multiple venues alongside the original beach operation. BOTE gear — SUPs, kayaks, and water equipment — is loaded into the lockers. Some locations are shown in the DAB app; others are private and not shown.</p>
-            <span class="history-tag tag-live">● Live now</span>
-          </div>
-        </div>
-
-        <div class="history-item">
-          <div class="history-year-col"><div class="history-year">Next</div></div>
-          <div class="history-dot"></div>
-          <div class="history-content">
-            <h4>Nationwide Growth</h4>
-            <p>Expanding to military installations, beach destinations, resorts, and campgrounds across the nation — with lockers stocked with anything and everything our partners and customers want. Partner tiers open to outside operators.</p>
-            <span class="history-tag tag-upcoming">Growing now</span>
-          </div>
-        </div>
-
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <a href="index.html#how">How It Works</a>
+        <a href="gear.html">Gear</a>
+        <a href="index.html#where">Where We Are</a>
+        <a href="https://www.dailyadventurebox.com/download-app" target="_top">Get the App</a>
+      </div>
+      <div class="footer-col">
+        <h4>Partner</h4>
+        <a href="locations.html">Host a Locker</a>
+        <a href="ad-opportunities.html">Advertise on Lockers</a>
+        <a href="story.html">Our Story</a>
+        <a href="https://www.dailyadventurebox.com/support" target="_top">Support</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <span class="plain" style="display:block;font-size:14px;padding:6px 0;">Email support@dailyadventurebox.com</span>
+        <h4 style="margin-top:22px">Legal</h4>
+        <a href="https://www.dailyadventurebox.com/general-terms-and-conditions" target="_top">General Terms</a>
+        <a href="https://www.dailyadventurebox.com/federal-terms-and-conditions" target="_top">Federal Terms</a>
+        <a href="https://www.dailyadventurebox.com/privacy-policy" target="_top">Privacy Policy</a>
       </div>
     </div>
-  </section>
-
-  <!-- ============================================================
-       SECTION 10: PARTNERS
-  ============================================================ -->
-  <section class="partners" id="partners">
-    <div class="container">
-      <div class="section-label">Work With Us</div>
-      <h2 class="section-title">Partner With DailyAdventureBox</h2>
-      <p class="section-sub">We're looking for locations to host lockers and brands to feature inside them.</p>
-
-      <div class="partners-grid">
-        <div class="partner-card fade-up">
-          <h3>Host a Locker</h3>
-          <p>Hotels, resorts, campgrounds, beaches, parks, military bases — if people recreate there, DAB belongs there. We supply the locker, stock it with anything and everything your guests want, and handle maintenance. You provide the space. Zero cost to you, revenue share on every rental.</p>
-          <p style="font-size:15px;font-weight:600;color:var(--charcoal);margin-top:6px;">Email <strong>support@dailyadventurebox.com</strong></p>
-        </div>
-        <div class="partner-card fade-up">
-          <h3>Brand Partnerships</h3>
-          <p>Get your gear in front of adventurers. Feature your products inside DAB lockers or advertise on locker panels at high-traffic locations.</p>
-          <p style="font-size:15px;font-weight:600;color:var(--charcoal);margin-top:6px;">Email <strong>support@dailyadventurebox.com</strong></p>
-        </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year>2026</span> Daily Adventure Box&#174;, Inc. All rights reserved. &nbsp;&bull;&nbsp; Patent Pending</span>
+      <div class="footer-socials">
+        <a href="https://www.instagram.com/dailyadventurebox" target="_blank" rel="noopener noreferrer" title="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+        <a href="https://www.tiktok.com/@dailyadventurebox" target="_blank" rel="noopener noreferrer" title="TikTok"><svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V8.75a8.18 8.18 0 004.76 1.52V6.84a4.84 4.84 0 01-1-.15z"/></svg></a>
+        <a href="https://www.youtube.com/@DailyAdventureBox" target="_blank" rel="noopener noreferrer" title="YouTube"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+        <a href="https://www.facebook.com/DailyAdventureBox" target="_blank" rel="noopener noreferrer" title="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+        <a href="https://www.linkedin.com/company/dailyadventurebox" target="_blank" rel="noopener noreferrer" title="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
       </div>
     </div>
-  </section>
-
-  <!-- ============================================================
-       SECTION 11: HAVE A LOCATION? — Sales Rep / Referral
-  ============================================================ -->
-  <section class="have-location" id="have-location">
-    <div class="container">
-      <div class="hl-grid">
-        <div class="hl-text">
-          <div class="section-label" style="text-align:left;color:var(--yellow);">Earn With Us</div>
-          <h2 class="hl-title">Have a Location?<br><span>Let's Put a Locker There.</span></h2>
-          <p>Know a beach, hotel, resort, campground, or recreation area that needs a DAB locker? We already operate under a signed government contract with the U.S. Marine Corps — the same install-and-manage model comes to your property. We cover all costs — equipment, installation, and maintenance. Two ways to get involved:</p>
-
-          <div class="hl-options">
-            <div class="hl-option">
-              <div class="hl-option-num" style="background:var(--green);">1</div>
-              <div>
-                <h4>You Own the Property</h4>
-                <p>We install the locker, supply the equipment, and handle all maintenance. You provide the space. Revenue share included — zero cost to you.</p>
-              </div>
-            </div>
-            <div class="hl-option">
-              <div class="hl-option-num" style="background:var(--sky);">2</div>
-              <div>
-                <h4>You Find Us Locations</h4>
-                <p>Become a DAB Sales Rep. Find businesses and properties that want a locker, connect us, and earn revenue share on every location you bring in. No experience needed.</p>
-              </div>
-            </div>
-          </div>
-
-          <p style="font-size:17px;font-weight:600;color:#fff;margin-top:8px;">Email <strong style="color:var(--yellow);">support@dailyadventurebox.com</strong></p>
-        </div>
-        <div class="hl-visual">
-          <div class="hl-card">
-            <div class="hl-card-header">What You Get</div>
-            <div class="hl-card-item"><span class="hl-check">&#10003;</span> Revenue share on every rental</div>
-            <div class="hl-card-item"><span class="hl-check">&#10003;</span> Zero upfront cost</div>
-            <div class="hl-card-item"><span class="hl-check">&#10003;</span> We handle equipment & maintenance</div>
-            <div class="hl-card-item"><span class="hl-check">&#10003;</span> Attract more visitors to your location</div>
-            <div class="hl-card-item"><span class="hl-check">&#10003;</span> Custom locker branding available</div>
-            <div class="hl-card-item"><span class="hl-check">&#10003;</span> Every renter accepts a liability waiver before unlocking gear</div>
-            <div class="hl-card-item"><span class="hl-check">&#10003;</span> Sales reps: earn on every location you refer</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       SECTION 12: TEAM / INVESTORS / PARTNERS
-  ============================================================ -->
-  <section style="padding:100px 0;background:var(--off-white);">
-    <div class="container">
-      <div class="section-label">Who's behind this</div>
-      <h2 class="section-title">THE TEAM<br><span style="color:var(--green);">BUILDING DAB.</span></h2>
-      <p class="section-sub">Military-founded. Engineers nationwide. Investors with skin in the game. Partners shipping the gear.</p>
-
-      <!-- FOUNDER -->
-      <div style="background:#fff;border-radius:16px;padding:32px;margin:48px 0 36px;box-shadow:0 6px 24px rgba(0,0,0,0.05);">
-        <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:9px;letter-spacing:0.14em;color:var(--green);margin-bottom:10px;">FOUNDER · CEO</div>
-        <h3 style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--charcoal);margin-bottom:6px;">SHAY PUTNAM</h3>
-        <div style="font-family:'Montserrat',sans-serif;font-weight:600;font-size:11px;color:#888;letter-spacing:0.06em;margin-bottom:14px;">Founder &amp; CEO</div>
-        <p style="font-size:14px;color:#555;line-height:1.75;margin-bottom:10px;">I built DAB because Marines and their families were missing out on the beach right outside their barracks — gear-rental options were broken. DAB lockers unlock from your phone, stocked with BOTE boards, Shibumi shades, and games.</p>
-        <p style="font-size:14px;color:#555;line-height:1.75;">First units live since 2023 — now scaling through our U.S. Marine Corps contract and beyond.</p>
-      </div>
-
-      <!-- LEADERSHIP -->
-      <div style="margin-bottom:48px;">
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px;">
-          <span style="width:8px;height:8px;border-radius:50%;background:var(--green);display:inline-block;"></span>
-          <span style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:12px;color:var(--charcoal);letter-spacing:0.14em;">LEADERSHIP &amp; OPERATIONS</span>
-        </div>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;">
-          <div style="background:#fff;border:1px solid var(--border);border-radius:14px;padding:22px;">
-            <div style="width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--green),#5a9430);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:22px;margin-bottom:12px;">MG</div>
-            <h4 style="font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--charcoal);margin-bottom:4px;">MAX GALKIN</h4>
-            <div style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:10px;color:var(--green);letter-spacing:0.1em;margin-bottom:8px;">CTO · APP &amp; PLATFORM</div>
-            <p style="font-size:12px;color:#666;line-height:1.65;">Engineering lead on the DAB app and rental platform. Senior Google Developer. Drives technical architecture — auth, payments, IoT, scaling.</p>
-          </div>
-          <div style="background:#fff;border:1px solid var(--border);border-radius:14px;padding:22px;">
-            <div style="width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--yellow),#d4ac1f);color:var(--charcoal);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:22px;margin-bottom:12px;">JR</div>
-            <h4 style="font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--charcoal);margin-bottom:4px;">JAN ROOS</h4>
-            <div style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:10px;color:#b08800;letter-spacing:0.1em;margin-bottom:8px;">ADVISOR · STRATEGY</div>
-            <p style="font-size:12px;color:#666;line-height:1.65;">Strategic advisor and early shareholder. Shaping DAB's go-to-market and partner network expansion.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- INVESTORS -->
-      <div style="margin-bottom:48px;">
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px;">
-          <span style="width:8px;height:8px;border-radius:50%;background:var(--yellow);display:inline-block;"></span>
-          <span style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:12px;color:var(--charcoal);letter-spacing:0.14em;">INVESTORS &amp; BACKERS</span>
-        </div>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;">
-          <div style="background:#fff;border:1px solid var(--border);border-radius:14px;padding:22px;">
-            <div style="width:52px;height:52px;border-radius:50%;background:var(--light);color:var(--charcoal);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:18px;margin-bottom:12px;">WM</div>
-            <h4 style="font-family:'Bebas Neue',sans-serif;font-size:18px;color:var(--charcoal);margin-bottom:4px;">WILLIS MULLET</h4>
-            <div style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:10px;color:#888;letter-spacing:0.08em;margin-bottom:8px;">FOUNDER · CURRENT PRODUCTS CORP</div>
-            <p style="font-size:12px;color:#666;line-height:1.65;">160+ patents over 50 years. Founded QMotion Advanced Shading Systems and Current Products Corp.</p>
-          </div>
-          <div style="background:#fff;border:1px solid var(--border);border-radius:14px;padding:22px;">
-            <div style="width:52px;height:52px;border-radius:50%;background:var(--light);color:var(--charcoal);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:18px;margin-bottom:12px;">AH</div>
-            <h4 style="font-family:'Bebas Neue',sans-serif;font-size:18px;color:var(--charcoal);margin-bottom:4px;">ASHLEE HOFBERGER</h4>
-            <div style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:10px;color:#888;letter-spacing:0.08em;margin-bottom:8px;">ESCAMBIA COUNTY COMMISSIONER</div>
-            <p style="font-size:12px;color:#666;line-height:1.65;">Pensacola entrepreneur, County Commissioner (District 4). Built and sold an emergency restoration firm.</p>
-          </div>
-          <div style="background:#fff;border:1px solid var(--border);border-radius:14px;padding:22px;">
-            <div style="width:52px;height:52px;border-radius:50%;background:var(--light);color:var(--charcoal);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:18px;margin-bottom:12px;">MC</div>
-            <h4 style="font-family:'Bebas Neue',sans-serif;font-size:18px;color:var(--charcoal);margin-bottom:4px;">MICHAEL CASHMAN</h4>
-            <div style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:10px;color:#888;letter-spacing:0.08em;margin-bottom:8px;">ANGEL INVESTOR</div>
-            <p style="font-size:12px;color:#666;line-height:1.65;">Early backer of DAB. Long-term believer in veteran-led businesses and the military rec-services market.</p>
-          </div>
-          <div style="background:#fff;border:1px solid var(--border);border-radius:14px;padding:22px;">
-            <div style="width:52px;height:52px;border-radius:50%;background:var(--light);color:var(--charcoal);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:18px;margin-bottom:12px;">RC</div>
-            <h4 style="font-family:'Bebas Neue',sans-serif;font-size:18px;color:var(--charcoal);margin-bottom:4px;">RYAN CHRISTOPHER</h4>
-            <div style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:10px;color:#888;letter-spacing:0.08em;margin-bottom:8px;">ANGEL INVESTOR</div>
-            <p style="font-size:12px;color:#666;line-height:1.65;">Pensacola Beach hospitality executive. Former owner of Lazy Days Beach Service, now merged with La Dolce Vita Beach Service.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- INDUSTRY PARTNERS -->
-      <div>
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px;">
-          <span style="width:8px;height:8px;border-radius:50%;background:var(--sky);display:inline-block;"></span>
-          <span style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:12px;color:var(--charcoal);letter-spacing:0.14em;">INDUSTRY PARTNERS</span>
-        </div>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;">
-          <div style="background:#fff;border:1px solid var(--border);border-radius:14px;padding:22px;">
-            <h4 style="font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--charcoal);margin-bottom:4px;">BOTE</h4>
-            <div style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:10px;color:var(--sky);letter-spacing:0.1em;margin-bottom:10px;">EQUIPMENT PARTNER · DESTIN, FL</div>
-            <p style="font-size:12px;color:#666;line-height:1.65;">Premier American SUP and outdoor lifestyle brand. Supplies the boards, Hangouts, paddle gear, and shades in our lockers. Manufacturer-direct relationship.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       SECTION 13: APP DOWNLOAD
-  ============================================================ -->
-  <section class="app-download">
-    <div class="container">
-      <h2>Get the DailyAdventureBox App</h2>
-      <p>Browse gear, pick your rental, and unlock your locker — all from your phone.</p>
-      <div class="app-buttons">
-        <a href="https://www.dailyadventurebox.com/download-app" class="btn btn-green" style="font-size:16px;padding:18px 40px;" target="_top">Download the App</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       FOOTER
-  ============================================================ -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <img src="img/dab-logo.png" alt="DailyAdventureBox">
-          <p>Smart lockers loaded with adventure gear — right where you recreate. Download the app, pick your gear, and go.</p>
-        </div>
-        <div class="footer-col">
-          <h4>Explore</h4>
-          <a href="#how-it-works">How It Works</a>
-          <a href="#locations">Locations</a>
-
-        </div>
-        <div class="footer-col">
-          <h4>Company</h4>
-          <a href="#about">Our Story</a>
-          <a href="https://www.dailyadventurebox.com/partnership-advertismentopportunities" target="_top">Advertise on Boxes</a>
-          <a href="https://www.dailyadventurebox.com/support" target="_top">Support</a>
-        </div>
-        <div class="footer-col">
-          <h4>Legal</h4>
-          <a href="https://www.dailyadventurebox.com/general-terms-and-conditions" target="_top">General Terms</a>
-          <a href="https://www.dailyadventurebox.com/federal-terms-and-conditions" target="_top">Federal Terms</a>
-          <a href="https://www.dailyadventurebox.com/privacy-policy" target="_top">Privacy Policy</a>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <span>&copy; 2026 Daily Adventure Box&#174;, Inc. All rights reserved. &nbsp;&bull;&nbsp; Patent Pending</span>
-        <div class="footer-socials">
-          <a href="https://www.instagram.com/dailyadventurebox" target="_blank" rel="noopener noreferrer" title="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
-          <a href="https://www.tiktok.com/@dailyadventurebox" target="_blank" rel="noopener noreferrer" title="TikTok"><svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V8.75a8.18 8.18 0 004.76 1.52V6.84a4.84 4.84 0 01-1-.15z"/></svg></a>
-          <a href="https://www.youtube.com/@DailyAdventureBox" target="_blank" rel="noopener noreferrer" title="YouTube"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
-          <a href="https://www.facebook.com/DailyAdventureBox" target="_blank" rel="noopener noreferrer" title="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
-          <a href="https://www.linkedin.com/company/dailyadventurebox" target="_blank" rel="noopener noreferrer" title="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <!-- ============================================================
-       JAVASCRIPT — Scroll animations + sticky nav
-  ============================================================ -->
-  <script>
-    // Iframe detection — fix 100vh inside iframes
-    if (window.self !== window.top) {
-      document.querySelector('.hero').style.minHeight = '700px';
-    }
-
-    // Sticky nav background on scroll
-    window.addEventListener('scroll', function() {
-      var nav = document.getElementById('mainNav');
-      if (window.scrollY > 60) {
-        nav.classList.add('scrolled');
-      } else {
-        nav.classList.remove('scrolled');
-      }
-    });
-
-    // Handle anchor links — always scroll within this window (scrolling
-    // happens inside the iframe itself on the live site, same as the sticky-
-    // nav scroll listener above; there is no parent-page listener for a
-    // postMessage scrollTo, so that branch never actually navigated anywhere).
-    document.querySelectorAll('.nav-dropdown-menu a[href^="#"]').forEach(function(a) {
-      a.addEventListener('click', function(e) {
-        e.preventDefault();
-        var target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          var offset = target.getBoundingClientRect().top + window.scrollY;
-          window.scrollTo({ top: offset - 80, behavior: 'smooth' });
-        }
-        var dd = this.closest('.nav-dropdown');
-        if (dd) dd.classList.remove('open');
-      });
-    });
-    // Close dropdowns when clicking outside
-    document.addEventListener('click', function(e) {
-      if (!e.target.closest('.nav-dropdown')) {
-        document.querySelectorAll('.nav-dropdown.open').forEach(function(dd) { dd.classList.remove('open'); });
-      }
-    });
-
-    // Fade-up on scroll (IntersectionObserver)
-    var fadeEls = document.querySelectorAll('.fade-up');
-    var observer = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.15 });
-    fadeEls.forEach(function(el) { observer.observe(el); });
-  </script>
-
-  <!-- ============================================================
-       CONTACT — email only
-  ============================================================ -->
-  <section id="brand-contact" style="padding:80px 0;background:var(--charcoal);">
-    <div class="container" style="max-width:700px;text-align:center;">
-      <div class="section-label" style="color:var(--green);">Contact Us</div>
-      <h2 class="section-title" style="color:#fff;">Get in Touch</h2>
-      <p style="font-size:15px;color:rgba(255,255,255,0.7);line-height:1.7;margin-bottom:12px;">Email us at <strong style="color:var(--green);">support@dailyadventurebox.com</strong> with any questions.</p>
-      <p style="font-size:15px;color:rgba(255,255,255,0.7);line-height:1.7;margin-bottom:28px;">If you have a location or want lockers, reach out to <strong style="color:var(--green);">support@dailyadventurebox.com</strong>.</p>
-    </div>
-  </section>
-
-  <script>
-    function sendHeight() {
-      window.parent.postMessage({ type: 'resize', height: document.body.scrollHeight }, 'https://www.dailyadventurebox.com');
-    }
-    window.addEventListener('load', sendHeight);
-    window.addEventListener('resize', sendHeight);
-    setInterval(sendHeight, 500);
-  </script>
-
+  </div>
+</footer>
+<script src="assets/site.js"></script>
 </body>
 </html>
